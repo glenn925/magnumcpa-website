@@ -1,0 +1,2319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magnum CPA PC — Max Drew, CPA | Trusted by Ramsey</title>
+<meta name="description" content="Magnum CPA PC — Max Drew, CPA &amp; Financial Coach. Ramsey Trusted for 10+ years. Tax planning, preparation, and financial coaching.">
+<meta name="theme-color" content="#0B3D91">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link id="fa-cdn" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  /* ===== Magnum CPA — shared styles ===== */
+  :root{
+    /* Palette: Primary #0B3D91 · Secondary #3BA7F2 · Tertiary #7FE7D6 · Background #E8F6FF.
+       Everything else here is a shade of those four, for text and the dark bands. */
+    --primary:#0B3D91;--secondary:#3BA7F2;--tertiary:#7FE7D6;--bg:#E8F6FF;
+    --primary-700:#0A3480;--primary-800:#072A66;--primary-900:#051D47;
+    --secondary-ink:#1670B8;   /* secondary, darkened enough for small text on light backgrounds */
+    --navy:var(--primary);--navy-dark:var(--primary-800);--navy-3:var(--primary-900);
+    --text:#0B1F3F;--muted:#4A607E;--bg-alt:#F3FAFF;--surface:#FFFFFF;
+    --border:#CFE5F6;--radius:10px;--maxw:none;
+    --shadow:0 1px 2px rgba(11,61,145,.06),0 10px 28px rgba(11,61,145,.10);
+    --shadow-lg:0 2px 4px rgba(11,61,145,.06),0 22px 50px rgba(11,61,145,.16);
+    --on-dark:#D6E9FB;
+    --gold:#D9A53A;--gold-ink:#9A6B10;   /* the logo's gold, used only as a small accent */
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{font-size:17px;scroll-behavior:smooth;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;
+    background:var(--bg);
+  }
+  img{max-width:100%;height:auto;display:block;}
+  a{color:inherit;text-decoration:none;}
+  /* content fills the screen at any width, with a proportional side margin */
+  .container{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,6vw,140px);}
+  .globe{width:58px;height:58px;flex:none;display:block;}
+  /* anchor offset so sticky header doesn't cover section tops */
+  section[id]{scroll-margin-top:118px;}
+
+  /* ---------- Announcement / booking banner ---------- */
+  .announce{background:linear-gradient(90deg,var(--primary-800),var(--primary));color:#fff;text-align:center;
+    font-size:.9rem;padding:9px 16px;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;}
+  .announce b{color:var(--tertiary);}
+  .announce a{background:var(--tertiary);color:var(--primary-900);font-weight:800;padding:5px 15px;border-radius:20px;font-size:.82rem;white-space:nowrap;}
+  .announce a:hover{filter:brightness(1.05);}
+
+  /* ---------- Top bar ---------- */
+  .topbar{background:var(--primary-900);color:var(--on-dark);font-size:.98rem;font-weight:500;}
+  .topbar .container{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center;justify-content:space-between;padding:8px clamp(20px,6vw,140px);}
+  .topbar a{display:inline-flex;align-items:center;gap:6px;}
+  .topbar a:hover{color:#fff;}
+
+  /* ---------- Header / Nav ---------- */
+  header.site-header{background:rgba(255,255,255,.94);-webkit-backdrop-filter:saturate(1.4) blur(12px);backdrop-filter:saturate(1.4) blur(12px);
+    position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border);box-shadow:0 4px 18px rgba(11,61,145,.08);}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding-top:12px;padding-bottom:12px;gap:16px;}
+  .brand{display:flex;align-items:center;gap:12px;color:#fff;}
+  /* Logo files are 840px wide (about 3x display size) so they stay sharp on high-density screens. */
+  .brand img{display:block;height:58px;width:auto;transition:transform .25s,filter .25s;}
+  .brand:hover img{transform:scale(1.03);filter:drop-shadow(0 4px 14px rgba(59,167,242,.35));}
+  .nav-toggle{display:none;background:transparent;border:0;cursor:pointer;padding:8px;border-radius:6px;}
+  .nav-toggle span{display:block;width:24px;height:2px;background:var(--primary);margin:5px 0;transition:.3s;}
+  nav.main-nav > ul{list-style:none;display:flex;flex-wrap:nowrap;gap:2px;justify-content:flex-end;align-items:center;}
+  nav.main-nav a{color:var(--primary-800);font-size:.76rem;font-weight:600;letter-spacing:.2px;padding:8px 8px;border-radius:6px;
+    text-transform:uppercase;transition:background .2s,color .2s;white-space:nowrap;display:inline-block;}
+  nav.main-nav a:hover{background:var(--bg);color:var(--primary);}
+  nav.main-nav a.active{background:var(--primary);color:#fff;}
+
+  /* dropdown */
+  .has-sub{position:relative;}
+  .submenu{position:absolute;top:100%;left:0;min-width:230px;background:#fff;border-radius:10px;border:1px solid var(--border);
+    box-shadow:var(--shadow-lg);padding:6px;display:none;flex-direction:column;gap:2px;z-index:60;list-style:none;}
+  .has-sub:hover .submenu{display:flex;}
+  .submenu li{width:100%;}
+  .submenu a{display:block;text-align:left;border-radius:5px;}
+
+  /* ---------- Hero (home) ---------- */
+  .hero{position:relative;overflow:hidden;background:linear-gradient(180deg,#F5FBFF 0%,#E1F0FC 100%);}
+  .hero-photo{position:absolute;top:0;right:0;bottom:0;width:60%;}
+  .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:38% 30%;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 34%);mask-image:linear-gradient(90deg,transparent 0,#000 34%);}
+  /* diagonal blue panel with a gold edge, carrying the script tagline */
+  .hero-slash{position:absolute;top:0;bottom:0;right:-170px;width:300px;transform:skewX(-22deg);pointer-events:none;
+    background:linear-gradient(180deg,rgba(11,61,145,.94),rgba(21,96,201,.82));border-left:6px solid var(--gold);}
+  .hero-wrap{position:relative;z-index:2;padding:52px 0 0;}
+  .hero-info{max-width:600px;}
+  .hero-info h1{color:var(--primary);font-size:clamp(2rem,2.75vw,2.45rem);line-height:1.15;font-weight:800;letter-spacing:-.4px;margin:14px 0 18px;}
+  @media(min-width:1100px){.hero-info h1{white-space:nowrap;}}
+  .nw{white-space:nowrap;}
+  .hero-info h1 .accent{color:var(--secondary-ink);}
+  .hero-info p.lede{color:var(--text);max-width:480px;font-size:1.06rem;margin-bottom:28px;}
+  .hero-cta .btn{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:14px 28px;}
+  .hero-cta .btn i{transition:transform .2s;}
+  .hero-cta .btn:hover i{transform:translateX(4px);}
+  .hero-feats{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);margin:34px 0 34px;max-width:1060px;padding:22px 8px;
+    background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+    border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow-lg);}
+  .hero-feat{display:flex;gap:14px;align-items:flex-start;padding:4px 20px;}
+  .hero-feat + .hero-feat{border-left:1px solid var(--border);}
+  .hero-feat .ic{flex:none;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font-size:1.3rem;
+    background:var(--ic-bg,#E3F0FD);color:var(--ic,var(--primary));transition:background .2s,color .2s,transform .2s;}
+  .hero-feat:hover .ic{background:var(--primary);color:#fff;transform:translateY(-2px);}
+  .hero-feat b{display:block;color:var(--primary);font-size:.98rem;line-height:1.25;margin-bottom:4px;}
+  .hero-feat span{display:block;color:var(--muted);font-size:.84rem;line-height:1.45;}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px;}  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px;}
+
+  /* ---------- Home video section ---------- */
+  .home-section .section-head h2{color:var(--primary);}
+  .home-section .section-head p{color:var(--muted);}
+  .why-video{max-width:900px;margin:0 auto;border-radius:14px;overflow:hidden;
+    box-shadow:var(--shadow-lg);border-top:5px solid var(--secondary);background:#000;}
+  .why-video video{display:block;width:100%;height:auto;}
+  .why-video iframe{display:block;width:100%;aspect-ratio:16/9;border:0;}
+
+  /* light section band: kicker + headline + subtitle, faded globe and gold stripe on the right */
+  .sec-head{position:relative;overflow:hidden;padding:46px 0 42px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+    background:linear-gradient(100deg,#fff 0%,var(--bg-alt) 45%,#D6ECFB 100%);}
+  .sec-head:before{content:"";position:absolute;right:4%;top:50%;width:380px;aspect-ratio:600/546;transform:translateY(-50%);
+    background:url('images/globe.webp') center/contain no-repeat;opacity:.16;pointer-events:none;}
+  .sec-head:after{content:"";position:absolute;top:-10px;bottom:-10px;right:-70px;width:150px;transform:skewX(-32deg);pointer-events:none;
+    background:linear-gradient(90deg,var(--gold) 0 7px,rgba(11,61,145,.1) 7px);}
+  .sec-head .container{position:relative;z-index:1;}
+  .sec-kicker{display:flex;align-items:center;gap:12px;color:var(--gold-ink);font-weight:800;font-size:1.1rem;letter-spacing:.6px;text-transform:uppercase;}
+  .sec-kicker:after{content:"";width:46px;height:2px;background:var(--gold);}
+  .sec-kicker.blue{color:var(--secondary-ink);font-size:.9rem;letter-spacing:1.2px;}
+  .sec-kicker.blue:after{background:linear-gradient(90deg,var(--secondary),var(--tertiary));}
+  .sec-head h1,.sec-head h2{color:var(--primary);font-size:2.15rem;line-height:1.2;margin:6px 0 8px;}
+  .sec-head p{color:var(--muted);font-size:1.12rem;}
+  @media(max-width:600px){.sec-head{padding:34px 0 30px;}.sec-head h1,.sec-head h2{font-size:1.6rem;}.sec-head:before{opacity:.1;right:-80px;}.sec-head:after{display:none;}}
+
+  /* sections */
+  .section{padding:60px 0;}
+  .section-head{text-align:center;max-width:760px;margin:0 auto 40px;}
+  .section-head .kicker{color:var(--secondary-ink);font-weight:700;letter-spacing:2px;text-transform:uppercase;font-size:.78rem;}
+  .section-head h2{font-size:2rem;color:var(--primary);margin:8px 0 10px;}
+  .section-head h2:after{content:"";display:block;width:56px;height:4px;margin:14px auto 0;border-radius:2px;
+    background:linear-gradient(90deg,var(--secondary),var(--tertiary));}
+  .section-head p{color:var(--muted);}
+
+  /* generic card */
+  .panel{background:#fff;color:var(--text);border-radius:14px;box-shadow:var(--shadow-lg);}
+
+  /* services */
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+  /* gold is the logo's, used only as a small accent here */
+  #services .container{max-width:var(--maxw);}
+  .svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+  .svc-card{position:relative;display:flex;flex-direction:column;background:#fff;color:var(--text);border-radius:14px;overflow:hidden;
+    border:1px solid var(--border);box-shadow:var(--shadow);transition:transform .25s,box-shadow .25s;}
+  .svc-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);}
+  /* corner accent: gold stripe, then a primary blue triangle */
+  .svc-card:after{content:"";position:absolute;right:0;bottom:0;width:78px;height:78px;pointer-events:none;
+    background:linear-gradient(135deg,transparent 54%,var(--gold) 54% 61%,var(--primary) 61%);}
+  .svc-img{position:relative;height:180px;}
+  .svc-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.8,.2,1);}
+  .svc-img-wrap{height:100%;overflow:hidden;}
+  .svc-card:hover .svc-img img{transform:scale(1.05);}
+  .svc-ic{position:absolute;left:20px;bottom:-26px;width:58px;height:58px;border-radius:14px;display:grid;place-items:center;
+    background:linear-gradient(135deg,var(--primary),#1560C9);color:#fff;font-size:1.55rem;box-shadow:0 10px 22px rgba(11,61,145,.3);
+    border:3px solid #fff;}
+  .svc-body{flex:1;display:flex;flex-direction:column;padding:42px 22px 26px;}
+  .svc-card h3{color:var(--primary);font-size:1.2rem;line-height:1.25;margin-bottom:10px;}
+  .svc-card p{color:var(--muted);font-size:.93rem;line-height:1.5;margin-bottom:14px;}
+  .svc-list{list-style:none;margin:0 0 22px;flex:1;}
+  .svc-list li{position:relative;padding-left:26px;margin-bottom:7px;font-size:.88rem;color:#33475F;}
+  .svc-list li:before{content:"\f00c";font-family:"Font Awesome 6 Free";font-weight:900;position:absolute;left:0;top:1px;color:var(--gold);font-size:.85rem;}
+  .svc-more{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;padding:10px 22px;border-radius:999px;
+    background:var(--primary);color:#fff;font-weight:700;font-size:.88rem;transition:background .2s,box-shadow .2s;position:relative;z-index:1;}
+  .svc-more i{font-size:.75rem;transition:transform .2s;}
+  .svc-more:hover{background:var(--primary-700);box-shadow:0 8px 20px rgba(11,61,145,.3);}
+  .svc-more:hover i{transform:translateX(3px);}
+  .svc-more:focus-visible{outline:3px solid var(--secondary);outline-offset:3px;}
+
+  /* about */
+  .about-wrap{display:grid;grid-template-columns:minmax(0,420px) 1fr;gap:56px;align-items:center;}
+  .about-card{position:relative;border-radius:20px;overflow:hidden;background:var(--primary-900);box-shadow:var(--shadow-lg);
+    transition:transform .35s,box-shadow .35s;}
+  .about-card:hover{transform:translateY(-4px);box-shadow:0 30px 64px rgba(11,61,145,.24);}
+  .about-card img{width:100%;aspect-ratio:1;object-fit:cover;}
+  .about-name{position:relative;padding:16px 20px 18px;text-align:center;color:#fff;
+    background:linear-gradient(120deg,var(--primary-800),var(--primary));border-top:3px solid var(--gold);}
+  .about-name b{display:block;font-size:1.12rem;}
+  .about-name span{display:block;font-size:.74rem;letter-spacing:1.6px;text-transform:uppercase;color:var(--on-dark);margin-top:2px;}
+  .about-txt h2{color:var(--primary);font-size:2.35rem;line-height:1.15;margin:10px 0 16px;}
+  .about-txt h2 span{color:var(--secondary-ink);}
+  .about-txt > p{color:var(--text);font-size:1.06rem;line-height:1.7;margin-bottom:30px;}
+  .about-vals{display:grid;grid-template-columns:repeat(4,1fr);}
+  .about-val{padding:0 18px;}
+  .about-val:first-child{padding-left:0;}
+  .about-val + .about-val{border-left:1px solid var(--border);}
+  .about-val .ic{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-size:1.1rem;margin-bottom:12px;
+    background:var(--tint,#E3F0FD);color:var(--tint-ink,var(--primary));transition:transform .2s;}
+  .about-val:hover .ic{transform:translateY(-3px) scale(1.05);}
+  .about-val b{display:block;color:var(--primary);font-size:.95rem;margin-bottom:4px;}
+  .about-val span{display:block;color:var(--muted);font-size:.84rem;line-height:1.45;}
+  .adv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:10px;}
+  .adv-card{background:#fff;color:var(--text);border-radius:14px;padding:26px;text-align:center;box-shadow:var(--shadow);}
+  .adv-card .badge-img{height:120px;display:grid;place-items:center;margin-bottom:16px;}
+  .adv-card .badge-img img{max-height:120px;width:auto;}
+  .adv-card h3{color:var(--navy);font-size:1.15rem;margin-bottom:10px;}
+  .adv-card p{color:var(--muted);font-size:.95rem;}
+
+  /* why choose us */
+  .wcu .container{max-width:var(--maxw);}
+  .wcu{position:relative;padding:20px 0 0;background:linear-gradient(180deg,transparent,#EAF5FF 40%);}
+  .wcu-title{color:var(--primary);font-size:2.9rem;font-weight:800;letter-spacing:-.4px;line-height:1.1;}
+  .wcu-sub{display:flex;align-items:center;gap:10px;margin:10px 0 28px;color:var(--primary);font-size:.8rem;font-weight:700;letter-spacing:2.4px;text-transform:uppercase;}
+  .wcu-sub:before{content:"";width:40px;height:3px;border-radius:2px;background:var(--primary);}
+  .wcu-sub i{font-style:normal;color:#1C8BDF;}
+  .wcu-grid{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .wcu-card{display:flex;gap:16px;align-items:center;padding:18px 18px;background:#fff;border:1px solid rgba(207,229,246,.8);border-radius:14px;
+    box-shadow:0 2px 4px rgba(11,61,145,.04),0 14px 34px rgba(11,61,145,.09);transition:transform .25s,box-shadow .25s;}
+  .wcu-card:hover{transform:translateY(-4px);box-shadow:0 4px 8px rgba(11,61,145,.05),0 22px 46px rgba(11,61,145,.15);}
+  .wcu-card img{flex:none;width:80px;height:92px;object-fit:contain;}
+  .wcu-card h3{color:var(--primary);font-size:1rem;line-height:1.25;margin-bottom:6px;}
+  .wcu-card p{color:var(--muted);font-size:.8rem;line-height:1.5;}
+  .wcu-band{position:relative;margin-top:-40px;padding:66px 0 30px;color:#fff;overflow:hidden;
+    background:url('images/precision-desk.webp') right center/34% auto no-repeat,linear-gradient(100deg,var(--primary-900) 0%,var(--primary) 45%,#1560C9 64%);}
+  .wcu-band:before{content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(100deg,transparent 62%,#3BA7F2 62% 64.5%,#7FE7D6 64.5% 65.5%,transparent 65.5%);}
+  .wcu-band .container{position:relative;display:flex;align-items:center;gap:26px;}
+  .wcu-target{flex:none;width:62px;height:62px;border-radius:50%;display:grid;place-items:center;font-size:1.9rem;color:var(--tertiary);border:2px solid var(--tertiary);}
+  .wcu-band h3{font-size:1.7rem;line-height:1.2;}
+  .wcu-band h3 span{font-weight:500;}
+  .wcu-band p{color:var(--on-dark);max-width:560px;font-size:.95rem;}
+  .wcu + #about{margin-top:0;}
+  @media(max-width:1100px){.wcu-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:900px){.wcu-band{background:linear-gradient(100deg,var(--primary-900),var(--primary) 70%,#1560C9);}.wcu-band:before{display:none;}}
+  @media(max-width:600px){.wcu-title{font-size:2rem;}.wcu-sub{font-size:.66rem;letter-spacing:1.4px;flex-wrap:wrap;}.wcu-grid{grid-template-columns:1fr;}
+    .wcu-band .container{flex-direction:column;align-items:flex-start;gap:14px;}}
+
+  /* buttons */
+  .btn{display:inline-block;background:linear-gradient(135deg,var(--primary),#1560C9);color:#fff;font-weight:700;padding:12px 26px;border-radius:8px;
+    border:0;cursor:pointer;letter-spacing:.4px;font-size:.95rem;transition:transform .15s,box-shadow .2s,filter .2s;
+    box-shadow:0 6px 16px rgba(11,61,145,.22);}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(11,61,145,.32);filter:brightness(1.08);}
+  .btn:focus-visible{outline:3px solid var(--secondary);outline-offset:3px;}
+  /* on dark bands the button flips to tertiary mint so it stands out */
+  .cta-band .btn{background:var(--tertiary);color:var(--primary-900);box-shadow:0 8px 22px rgba(127,231,214,.28);}
+  .cta-band .btn:hover{box-shadow:0 14px 32px rgba(127,231,214,.42);filter:brightness(1.04);}
+  .btn.outline{background:transparent;border:2px solid #fff;color:#fff;}
+  .btn.green{background:var(--tertiary);color:var(--primary-900);}
+
+  /* mission + client reviews: one soft panel with wave and dot-grid decorations */
+  .mc{position:relative;overflow:hidden;padding:76px 0 84px;background:linear-gradient(180deg,#F4FAFF 0%,#EAF5FF 100%);}
+  .mc-deco{position:absolute;pointer-events:none;}
+  .mc-deco.tl{top:0;left:0;width:340px;}
+  .mc-deco.bl{bottom:0;left:0;width:520px;}
+  .mc-deco.br{bottom:0;right:0;width:460px;}
+  .mc-dots{position:absolute;width:84px;height:52px;pointer-events:none;opacity:.55;
+    background:radial-gradient(circle,#9CCBF0 2.4px,transparent 2.8px) 0 0/21px 17px;}
+  .mc-dots.tr{top:38px;right:5%;}
+  .mc-dots.br2{bottom:56px;right:6.5%;}
+  .mc .container{position:relative;z-index:1;}
+  .mc-title{text-align:center;color:var(--primary);font-size:2.6rem;font-weight:800;letter-spacing:.5px;line-height:1.15;text-transform:uppercase;}
+  .mc-title span{color:#1C8BDF;}
+  .mc-title:after{content:"";display:block;width:72px;height:5px;border-radius:3px;margin:16px auto 0;background:#3CCFC0;}
+  .mc-mission{max-width:880px;margin:22px auto 64px;text-align:center;color:#1D3F75;font-size:1.14rem;line-height:1.75;}
+  .reviews{position:relative;max-width:1040px;margin:30px auto 0;}
+  .review-viewport{overflow:hidden;border-radius:18px;background:#fff;box-shadow:0 2px 4px rgba(11,61,145,.04),0 24px 60px rgba(11,61,145,.12);}
+  .review-track{display:flex;transition:transform .55s cubic-bezier(.32,.72,0,1);}
+  .review{min-width:100%;box-sizing:border-box;color:var(--text);padding:40px 46px 42px;}
+  .review .stars{color:#1C8BDF;font-size:1.55rem;letter-spacing:4px;line-height:1;margin-bottom:14px;}
+  .review h4{color:var(--primary);font-size:1.45rem;line-height:1.3;margin-bottom:12px;}
+  .review p{color:#2A4A7A;font-size:1.04rem;line-height:1.8;}
+  .rev-nav{position:absolute;top:calc(50% - 22px);transform:translateY(-50%);width:58px;height:58px;border-radius:50%;border:0;z-index:2;cursor:pointer;
+    display:grid;place-items:center;color:#fff;font-size:1.05rem;background:linear-gradient(135deg,#2B9BEA,#0B57C2);
+    box-shadow:0 10px 24px rgba(11,87,194,.35),0 0 0 6px rgba(255,255,255,.7);transition:transform .2s,box-shadow .2s;}
+  .rev-nav:hover{transform:translateY(-50%) scale(1.06);box-shadow:0 14px 30px rgba(11,87,194,.45),0 0 0 6px rgba(255,255,255,.85);}
+  .rev-nav:focus-visible{outline:3px solid var(--secondary);outline-offset:4px;}
+  .rev-nav.prev{left:-29px;}.rev-nav.next{right:-29px;}
+  .rev-dots{display:flex;gap:10px;justify-content:center;align-items:center;margin-top:28px;}
+  .rev-dots button{width:10px;height:10px;border-radius:50%;border:0;background:#9CCBF0;cursor:pointer;padding:0;transition:background .2s,transform .2s;}
+  .rev-dots button:hover{background:#5DB0EE;}
+  .rev-dots button.active{background:#0B57C2;transform:scale(1.4);}
+  .rev-dots button:focus-visible{outline:2px solid var(--secondary);outline-offset:3px;}
+  .mc{border-top:1px solid rgba(207,229,246,.7);}
+  .mc-dots.bl2{bottom:48px;left:2.5%;}
+  .mc-title.plain{text-transform:none;font-size:2.9rem;letter-spacing:-.3px;}
+  .mc-title.plain:after,.mc-title.grad-bar:after{background:linear-gradient(90deg,#1C8BDF,#3CCFC0);width:84px;}
+
+  /* in-section header (newsletters, tax videos) */
+  .nl-head{margin-bottom:42px;max-width:980px;}
+  .nl-kicker{display:flex;align-items:center;gap:14px;color:#1C8BDF;font-weight:800;font-size:.95rem;letter-spacing:1.6px;text-transform:uppercase;}
+  .nl-kicker .ic{font-size:1.75rem;color:var(--primary);}
+  .nl-kicker .sep{width:1px;height:26px;background:#B9D9F2;}
+  .nl-kicker.line:after{content:"";width:44px;height:2px;background:linear-gradient(90deg,#3BA7F2,#7FE7D6);}
+  .nl-head h2{color:var(--primary);font-size:2.7rem;font-weight:800;line-height:1.15;letter-spacing:-.3px;margin:12px 0 10px;}
+  .grad{background:linear-gradient(90deg,#1C8BDF,#139E92);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+  .nl-head p{color:var(--muted);font-size:1.14rem;}
+  .nl-bar{display:block;width:76px;height:4px;border-radius:2px;margin-top:16px;background:linear-gradient(90deg,#1C8BDF,#3CCFC0);}
+  .soft-card{background:#fff;border:1px solid rgba(207,229,246,.75);border-radius:18px;
+    box-shadow:0 2px 4px rgba(11,61,145,.04),0 18px 44px rgba(11,61,145,.10);transition:transform .25s,box-shadow .25s;}
+  .soft-card:hover{transform:translateY(-4px);box-shadow:0 4px 8px rgba(11,61,145,.05),0 26px 56px rgba(11,61,145,.15);}
+  /* client newsletter cards */
+  .news-card.soft-card{position:relative;overflow:hidden;padding:28px 30px 30px;border-top:1px solid rgba(207,229,246,.75);}
+  .news-card.soft-card:before{content:"";position:absolute;top:-70px;right:-70px;width:190px;height:190px;border-radius:50%;
+    background:radial-gradient(circle,#DCF3FA 0,rgba(220,243,250,0) 70%);pointer-events:none;}
+  .news-top{position:relative;display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px;}
+  .news-card.soft-card .date{background:#E3F0FD;color:var(--primary);border-radius:12px;padding:10px 14px;min-width:66px;margin:0;}
+  .news-card.soft-card .date b{font-size:1.65rem;font-weight:800;line-height:1.1;}
+  .news-card.soft-card .date span{display:block;font-size:.78rem;font-weight:700;letter-spacing:1px;}
+  .news-art{position:relative;font-size:2.7rem;line-height:1;color:#1C8BDF;margin:4px 10px 0 0;}
+  .news-art .bdg{position:absolute;right:-12px;bottom:-8px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;
+    background:#3CCFC0;color:#fff;font-size:.8rem;border:2px solid #fff;}
+  .news-card.soft-card h3{color:var(--primary);font-size:1.3rem;font-weight:800;line-height:1.25;margin-bottom:10px;}
+  .news-card.soft-card p{color:var(--muted);font-size:.98rem;line-height:1.6;}
+  .news-card.soft-card .nl-bar{width:56px;margin-top:20px;}
+  .btn-pill{display:inline-flex;align-items:center;gap:16px;padding:16px 32px;border-radius:999px;color:#fff;font-weight:700;font-size:.95rem;
+    background:linear-gradient(90deg,var(--primary),#1C8BDF);box-shadow:0 12px 28px rgba(11,61,145,.28);transition:transform .2s,box-shadow .2s;}
+  .btn-pill .sep{width:1px;height:22px;background:rgba(255,255,255,.4);}
+  .btn-pill i{font-size:1.1rem;}
+  .btn-pill .fa-arrow-right{font-size:.85rem;transition:transform .2s;}
+  .btn-pill:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(11,61,145,.36);}
+  .btn-pill:hover .fa-arrow-right{transform:translateX(4px);}
+  .btn-pill:focus-visible{outline:3px solid var(--secondary);outline-offset:4px;}
+  /* tax planning cards */
+  .art-card.soft-card{display:flex;align-items:center;gap:26px;padding:30px 32px;border-top:1px solid rgba(207,229,246,.75);}
+  .art-ic{flex:none;width:96px;height:96px;border-radius:50%;display:grid;place-items:center;font-size:2.2rem;color:#1C8BDF;
+    background:radial-gradient(circle at 35% 30%,#F0FBFD,#D3EEF7);}
+  .art-body{border-left:2px solid #3CCFC0;padding-left:24px;}
+  .art-card.soft-card h3{color:var(--primary);font-size:1.3rem;font-weight:800;line-height:1.25;margin-bottom:8px;}
+  .art-card.soft-card p{color:var(--muted);font-size:.98rem;line-height:1.6;}
+  /* why get tax help video frame */
+  .why-video.framed{max-width:860px;padding:8px;background:#fff;border-radius:18px;border-top:5px solid #2B9BEA;
+    box-shadow:0 2px 4px rgba(11,61,145,.05),0 26px 60px rgba(11,61,145,.16);}
+  .why-video.framed iframe{border-radius:12px;}
+  @media(max-width:600px){
+    .nl-head h2{font-size:1.75rem;}.nl-kicker{font-size:.8rem;}.mc-title.plain{font-size:1.9rem;}
+    .art-card.soft-card{flex-direction:column;align-items:flex-start;gap:18px;padding:24px;}
+    .art-ic{width:68px;height:68px;font-size:1.6rem;}
+    .btn-pill{padding:14px 22px;gap:12px;}
+  }
+  /* smaller screens: arrows sit beside the dots instead of over the review text */
+  @media(max-width:880px){
+    .rev-dots{min-height:44px;align-items:center;margin-top:14px;}
+    .rev-nav{top:auto;bottom:0;transform:none;width:46px;height:46px;box-shadow:0 8px 18px rgba(11,87,194,.3);}
+    .rev-nav:hover{transform:scale(1.06);}
+    .rev-nav.prev{left:0;}.rev-nav.next{right:0;}
+    .mc-title{font-size:1.9rem;}
+    .mc-deco.bl,.mc-deco.br{width:300px;}
+  }
+  @media(max-width:560px){.review{padding:28px 22px;}.review h4{font-size:1.15rem;}.review p{font-size:.97rem;}.mc{padding:54px 0 60px;}.mc-dots{display:none;}.mc-title{font-size:1.5rem;}}
+
+  /* search */
+  .search-li a{font-size:1.05rem;}
+  .search-overlay{position:fixed;inset:0;background:rgba(5,29,71,.62);display:none;z-index:200;padding:84px 16px 16px;}
+  .search-overlay.open{display:block;}
+  .search-box{max-width:640px;margin:0 auto;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 30px 70px rgba(5,29,71,.4);}
+  .search-top{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--border);}
+  .search-ic{font-size:1.2rem;}
+  .search-top input{flex:1;border:0;outline:none;font-size:1.1rem;color:var(--text);font-family:inherit;background:transparent;}
+  .search-close{background:transparent;border:0;font-size:1.7rem;line-height:1;cursor:pointer;color:var(--muted);padding:0 4px;}
+  .search-results{max-height:62vh;overflow:auto;}
+  .search-results a{display:block;padding:14px 18px;border-bottom:1px solid var(--border);color:var(--primary);}
+  .search-results a:hover{background:var(--bg-alt);}
+  .search-results a b{display:block;font-size:1rem;}
+  .search-results a span{font-size:.86rem;color:var(--muted);}
+  .search-none{padding:20px 18px;color:var(--muted);}
+
+  /* floating "Book a Consultation" CTA */
+  .book-fab{position:fixed;right:22px;bottom:22px;z-index:90;background:linear-gradient(135deg,var(--primary),#1560C9);color:#fff;
+    font-weight:800;padding:14px 24px;border-radius:40px;display:inline-flex;align-items:center;gap:8px;letter-spacing:.3px;
+    box-shadow:0 12px 30px rgba(11,61,145,.35);transition:transform .15s,box-shadow .2s;animation:bookpulse 2.8s ease-in-out infinite;}
+  .book-fab:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(11,61,145,.45);}
+  @keyframes bookpulse{0%,100%{box-shadow:0 12px 30px rgba(11,61,145,.3),0 0 0 0 rgba(59,167,242,.5);}50%{box-shadow:0 14px 36px rgba(11,61,145,.38),0 0 0 12px rgba(59,167,242,0);}}
+  @media(max-width:560px){.book-fab{right:14px;bottom:14px;padding:12px 18px;font-size:.92rem;}}
+  /* hidden while the hero's own booking button is on screen, so it never covers it */
+  .book-fab{transition:transform .15s,box-shadow .2s,opacity .3s,visibility .3s;}
+  .book-fab.away{opacity:0;visibility:hidden;transform:translateY(16px);}
+
+  /* booking popup */
+  .bookpop-overlay{position:fixed;inset:0;background:rgba(5,29,71,.62);z-index:120;display:none;align-items:center;justify-content:center;padding:18px;}
+  .bookpop-overlay.show{display:flex;}
+  .bookpop{background:#fff;border-radius:16px;max-width:440px;width:100%;overflow:hidden;box-shadow:0 30px 70px rgba(5,29,71,.4);position:relative;animation:popin .3s ease;}
+  @keyframes popin{from{transform:translateY(20px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+  .bookpop .top{background:linear-gradient(120deg,var(--navy-dark),var(--navy));color:#fff;padding:28px 26px 24px;text-align:center;}
+  .bookpop .top h3{font-size:1.45rem;line-height:1.2;margin-bottom:8px;}
+  .bookpop .top p{color:var(--on-dark);font-size:.95rem;}
+  .bookpop .body{padding:24px;text-align:center;}
+  .bookpop .x{position:absolute;top:8px;right:14px;background:0;border:0;color:#fff;font-size:1.7rem;line-height:1;cursor:pointer;}
+
+  /* CTA band */
+  .cta-band{position:relative;overflow:hidden;color:#fff;text-align:center;padding:62px 0;
+    background:radial-gradient(90% 160% at 100% 0%,rgba(59,167,242,.45),transparent 60%),radial-gradient(70% 120% at 0% 100%,rgba(127,231,214,.22),transparent 60%),linear-gradient(120deg,var(--primary-800),var(--primary));}
+  .cta-band h2{font-size:1.9rem;margin-bottom:10px;}
+  .cta-band p{color:var(--on-dark);margin-bottom:24px;}
+
+  /* footer */
+  footer{position:relative;background:var(--primary-900);color:#B8CBE6;padding:50px 0 22px;margin-top:20px;}
+  footer::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--primary),var(--secondary),var(--tertiary));}
+  footer .brand img{height:60px;}
+  .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:30px;margin-bottom:28px;}
+  footer h4{color:#fff;font-size:1rem;margin-bottom:13px;}
+  footer ul{list-style:none;}
+  footer li{margin-bottom:8px;font-size:.9rem;}
+  footer a:hover{color:var(--tertiary);}
+  .social{display:flex;gap:12px;justify-content:center;margin:6px 0 22px;}
+  .social a{width:40px;height:40px;border-radius:50%;background:var(--tertiary);color:var(--primary-900);display:grid;place-items:center;font-size:1.05rem;transition:transform .15s,background .2s,color .2s;}
+  .social a:hover{transform:translateY(-3px);background:var(--secondary);color:#fff;}
+  .foot-copy{border-top:1px solid rgba(255,255,255,.12);padding-top:18px;font-size:.82rem;text-align:center;}
+
+  /* ----- Resources: client newsletter ----- */
+  .news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .news-card{background:#fff;color:var(--text);border-radius:12px;padding:24px;box-shadow:var(--shadow);border-top:4px solid var(--secondary);transition:transform .2s,box-shadow .2s;}
+  .news-card:hover,.art-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);}
+  .news-card .date{background:linear-gradient(135deg,var(--primary),#1560C9);color:#fff;border-radius:8px;text-align:center;padding:8px 12px;display:inline-block;margin-bottom:14px;}
+  .news-card .date b{display:block;font-size:1.2rem;}.news-card .date span{font-size:.7rem;}
+  .news-card h3{color:var(--navy);font-size:1.1rem;margin-bottom:8px;}
+  .news-card p{color:var(--muted);font-size:.95rem;}
+  @media(max-width:860px){.news-grid{grid-template-columns:1fr;}}
+
+  /* ----- Resources: tax planning newsletter ----- */
+  .art-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+  .art-card{background:#fff;color:var(--text);border-radius:12px;padding:26px;box-shadow:var(--shadow);border-top:4px solid var(--tertiary);transition:transform .2s,box-shadow .2s;}
+  .art-card h3{color:var(--navy);font-size:1.15rem;margin-bottom:8px;}
+  .art-card p{color:var(--muted);font-size:.95rem;}
+  @media(max-width:860px){.art-grid{grid-template-columns:1fr;}}
+
+  /* ----- Resources: tax videos ----- */
+  /* Gallery: stacked slides crossfade on top, thumbnail tablist below with one
+     shared outline that slides to the active thumb. */
+  .vg{--cols:5;--gap:6px;--pad:6px;
+    --spring:linear(0, 0.0941 5.6%, 0.2736 11.1%, 0.4548 16.7%, 0.6076 22.2%, 0.7255 27.8%, 0.8119 33.3%, 0.8732 38.9%, 0.9156 44.4%, 0.9444 50.0%, 0.9636 55.6%, 0.9764 61.1%, 0.9848 66.7%, 0.9902 72.2%, 0.9938 77.8%, 0.9960 83.3%, 0.9975 88.9%, 0.9984 94.4%, 1 100%);
+    max-width:860px;margin:0 auto;}
+  .vg-top{display:grid;grid-template-columns:minmax(0,340px) 1fr;gap:36px;align-items:center;}
+  .vg-stage{position:relative;aspect-ratio:9/16;border-radius:14px;overflow:hidden;background:var(--navy-3);
+    box-shadow:var(--shadow-lg);touch-action:pan-y;}
+  .vg-slide{position:absolute;inset:0;opacity:0;transform:scale(1.06);
+    transition:opacity .6s ease,transform .9s cubic-bezier(.32,.72,0,1);}
+  .vg-slide{transition:opacity .6s ease,transform .9s var(--spring);}
+  .vg-slide.is-active{opacity:1;transform:none;z-index:1;}
+  .vg-slide img{display:block;width:100%;height:100%;object-fit:cover;}
+  .vg-slide iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000;}
+  .vg-play{position:absolute;inset:0;margin:auto;width:76px;height:76px;border:0;border-radius:50%;cursor:pointer;
+    background:var(--tertiary);color:var(--primary-900);font-size:1.5rem;box-shadow:0 8px 24px rgba(5,29,71,.45);transition:transform .15s;}
+  .vg-play:before{content:"\25B6";margin-left:5px;}
+  .vg-play:hover{transform:scale(1.07);}
+  .vg-play:focus-visible{outline:3px solid #fff;outline-offset:4px;}
+  .vg-fallback{display:none;position:absolute;inset:0;padding:24px;place-items:center;text-align:center;
+    color:#fff;font-size:1.3rem;font-weight:700;background:var(--navy);}
+  .is-missing .vg-fallback{display:grid;}
+  .is-missing img{visibility:hidden;}
+  .vg-info{color:var(--text);}
+  .vg-info h2{color:var(--primary);}
+  .vg-count{color:var(--secondary-ink);font-size:.82rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;}
+  .vg-info h2{font-size:2rem;line-height:1.2;margin:10px 0 12px;}
+  .vg-info p{color:var(--muted);}
+  .vg-nav{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;}
+  .vg-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;font:inherit;font-size:.92rem;font-weight:600;
+    cursor:pointer;border:2px solid rgba(11,61,145,.2);background:#fff;color:var(--primary);text-decoration:none;transition:border-color .15s,background .15s,color .15s;}
+  .vg-btn:hover{border-color:var(--secondary);}
+  .vg-btn.solid{background:var(--primary);border-color:var(--primary);color:#fff;}
+  .vg-btn.solid:hover{background:var(--primary-700);border-color:var(--primary-700);}
+  .vg-btn:focus-visible{outline:3px solid var(--secondary);outline-offset:3px;}
+  .vg-strip{position:relative;display:grid;grid-auto-flow:column;gap:var(--gap);padding:var(--pad);margin-top:30px;
+    grid-auto-columns:calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols));
+    overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:var(--secondary) transparent;}
+  .vg-thumb{position:relative;aspect-ratio:9/16;padding:0;border:0;border-radius:8px;overflow:hidden;cursor:pointer;
+    background:var(--navy);opacity:.6;transition:opacity .3s ease;scroll-snap-align:start;}
+  .vg-thumb:hover{opacity:.85;}
+  .vg-thumb[aria-selected="true"]{opacity:1;}
+  .vg-thumb:focus-visible{outline:3px solid #fff;outline-offset:-3px;}
+  .vg-thumb img{display:block;width:100%;height:100%;object-fit:cover;}
+  .vg-thumb .vg-fallback{font-size:.78rem;padding:8px;}
+  .vg-num{position:absolute;top:6px;left:6px;z-index:1;padding:1px 7px;border-radius:6px;font-size:.72rem;font-weight:700;
+    background:rgba(5,29,71,.85);color:#fff;}
+  /* One cell plus one gap wide, so translateX(n * 100%) lands exactly on thumb n. */
+  .vg-ind{position:absolute;top:var(--pad);left:var(--pad);pointer-events:none;z-index:2;
+    width:calc((100% - 2 * var(--pad) - (var(--cols) - 1) * var(--gap)) / var(--cols) + var(--gap));
+    transform:translateX(calc(var(--n, 0) * 100%));transition:transform .6s cubic-bezier(.32,.72,0,1);}
+  .vg-ind{transition:transform .6s var(--spring);}
+  /* 2px ring sitting 3px outside the thumb, like the reference's border at -3px. */
+  .vg-ind:before{content:"";display:block;width:calc(100% - var(--gap));aspect-ratio:9/16;border-radius:8px;
+    outline:2px solid var(--secondary);outline-offset:1px;}
+  /* ---- Interactive motion ---- */
+  .vg-stage{transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+    transition:transform .5s var(--spring),box-shadow .3s;}
+  .vg-stage:hover{box-shadow:0 28px 60px rgba(11,61,145,.28);}
+  .vg-play:after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--tertiary);
+    animation:vgPulse 2s ease-out infinite;pointer-events:none;}
+  .vg-play:active{transform:scale(.93);}
+  .vg-slide iframe{animation:vgFade .4s ease;}
+  .vg-progress{position:absolute;left:0;right:0;bottom:0;height:4px;z-index:3;background:rgba(255,255,255,.18);transition:opacity .3s;}
+  .vg-progress i{display:block;height:100%;background:linear-gradient(90deg,var(--secondary),var(--tertiary));transform-origin:left;transform:scaleX(0);}
+  .vg-progress i.run{animation:vgFill 4s linear forwards;}
+  .vg.is-paused .vg-progress i{animation-play-state:paused;}
+  .vg.is-paused .vg-progress{opacity:.45;}
+  .vg.is-playing .vg-progress,.vg.is-stopped .vg-progress{opacity:0;}
+  .vg-swap{animation:vgIn .55s var(--spring);}
+  .vg-thumb{transition:opacity .3s ease,transform .45s var(--spring);}
+  .vg-thumb:not([aria-selected="true"]):hover{transform:translateY(-4px);}
+  .vg-thumb:active{transform:scale(.95)!important;}
+  .vg-cap{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:22px 8px 8px;text-align:left;
+    font-size:.7rem;line-height:1.25;font-weight:600;color:#fff;background:linear-gradient(transparent,rgba(5,29,71,.95) 45%);
+    transform:translateY(101%);transition:transform .45s var(--spring);}
+  .vg-thumb:hover .vg-cap,.vg-thumb:focus-visible .vg-cap{transform:none;}
+  .vg-auto{width:44px;padding:10px 0;justify-content:center;}
+  .vg.pre .vg-stage,.vg.pre .vg-info,.vg.pre .vg-thumb{opacity:0;}
+  .vg.is-in .vg-stage,.vg.is-in .vg-info{animation:vgRise .8s var(--spring) backwards;}
+  .vg.is-in .vg-info{animation-delay:.12s;}
+  .vg.is-in .vg-thumb{animation:vgRise .7s var(--spring) backwards;animation-delay:calc(.25s + var(--i,0) * 55ms);}
+  @keyframes vgPulse{from{transform:scale(1);opacity:.85}to{transform:scale(1.7);opacity:0}}
+  @keyframes vgFill{to{transform:scaleX(1)}}
+  @keyframes vgIn{from{opacity:0;transform:translateY(12px)}}
+  @keyframes vgRise{from{opacity:0;transform:translateY(24px)}}
+  @keyframes vgFade{from{opacity:0}}
+  @media(hover:none){.vg-cap{display:none;}}
+  @media(prefers-reduced-motion:reduce){
+    .vg-slide,.vg-ind,.vg-stage,.vg-thumb,.vg-cap{transition:none;}
+    .vg *,.vg *:before,.vg *:after{animation:none!important;}
+    .vg-stage{transform:none;}
+    .vg-progress,.vg-auto{display:none;}
+  }
+  @media(max-width:760px){
+    .vg-top{grid-template-columns:1fr;gap:24px;text-align:center;}
+    .vg-stage{width:min(340px,100%);margin:0 auto;}
+    .vg-nav{justify-content:center;}
+    .vg-info h2{font-size:1.6rem;}
+    .vg-num{display:none;}
+  }
+  .vg{--cols:6;--gap:14px;--pad:8px;max-width:none;}
+  .vg-top{grid-template-columns:minmax(0,340px) minmax(0,560px);justify-content:center;gap:64px;}
+  .vg-count{display:flex;align-items:center;gap:14px;color:#1C8BDF;font-size:.98rem;font-weight:800;letter-spacing:2px;}
+  .vg-count:after{content:"";width:56px;height:2px;background:linear-gradient(90deg,#3BA7F2,#7FE7D6);}
+  .vg-info h2{font-family:inherit;font-weight:800;font-size:2.6rem;line-height:1.15;letter-spacing:-.3px;margin:14px 0 18px;}
+  .vg-info p{font-size:1.12rem;line-height:1.7;}
+  .vg-nav{gap:12px;margin-top:28px;}
+  .vg-btn{padding:11px 22px;font-size:.96rem;font-weight:700;border:2px solid #1C6FD1;color:#0B57C2;gap:10px;}
+  .vg-btn:hover{background:#EEF7FF;border-color:#0B57C2;}
+  .vg-btn.solid{padding:12px 24px;background:linear-gradient(90deg,var(--primary),#1560C9);border-color:transparent;
+    box-shadow:0 12px 26px rgba(11,61,145,.28);}
+  .vg-btn.solid:hover{background:linear-gradient(90deg,var(--primary-700),#1257B8);}
+  .vg-stripwrap{position:relative;margin-top:44px;}
+  .vg-strip{margin-top:0;padding-bottom:14px;}
+  .vg-thumb{aspect-ratio:auto;display:flex;flex-direction:column;background:#fff;border-radius:14px;opacity:.72;
+    box-shadow:0 2px 4px rgba(11,61,145,.05),0 12px 26px rgba(11,61,145,.10);}
+  .vg-thumb:focus-visible{outline:3px solid var(--secondary);outline-offset:-3px;}
+  .vg-tthumb{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--navy);}
+  .vg-tthumb img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 14%;}
+  .vg-tthumb .vg-fallback{font-size:.78rem;padding:8px;}
+  .vg-tcap{display:block;padding:10px 12px 12px;text-align:left;color:var(--primary);font-size:.8rem;font-weight:600;line-height:1.3;}
+  .vg-tcap small{display:block;color:#1C8BDF;font-size:.72rem;font-weight:600;margin-bottom:2px;}
+  .vg-tcap .t{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  .vg-ind{bottom:calc(var(--pad) + 14px);}
+  .vg-ind:before{aspect-ratio:auto;height:100%;border-radius:14px;outline-offset:2px;}
+  .vg-sarrow{position:absolute;top:calc(50% - 7px);transform:translateY(-50%);z-index:3;width:50px;height:50px;border-radius:50%;cursor:pointer;
+    display:grid;place-items:center;background:#fff;color:#0B57C2;font-size:1rem;border:1px solid var(--border);
+    box-shadow:0 8px 20px rgba(11,61,145,.16);transition:transform .2s,background .2s,color .2s;}
+  .vg-sarrow:hover{background:#0B57C2;color:#fff;}
+  .vg-sarrow:focus-visible{outline:3px solid var(--secondary);outline-offset:3px;}
+  .vg-sarrow.prev{left:-26px;}.vg-sarrow.next{right:-26px;}
+  @media(max-width:1240px){.vg-sarrow.prev{left:-6px;}.vg-sarrow.next{right:-6px;}}
+  @media(max-width:980px){.vg{--cols:4;}.vg-top{gap:36px;}}
+  @media(max-width:760px){.vg{--cols:3;--gap:10px;}.vg-top{grid-template-columns:1fr;gap:28px;}.vg-info h2{font-size:1.8rem;}.vg-count{justify-content:center;}.vg-sarrow{display:none;}}
+
+  /* ----- Resources: financial calculators ----- */
+  .calc-cat{margin-bottom:34px;}
+  .calc-cat h2{color:var(--primary);font-size:1.3rem;margin-bottom:6px;}
+  .calc-cat h2:after{content:"";display:block;width:54px;height:4px;background:linear-gradient(90deg,var(--secondary),var(--tertiary));margin-top:10px;border-radius:2px;}
+  .calc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px;}
+  .calc-card{background:#fff;color:var(--text);border-radius:10px;padding:16px 18px;border-left:4px solid var(--secondary);
+    box-shadow:var(--shadow);transition:transform .15s,box-shadow .2s,border-color .2s;}
+  .calc-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-left-color:var(--tertiary);}
+  .calc-card b{display:block;color:var(--navy);font-size:.98rem;}
+  .calc-card span{color:var(--muted);font-size:.85rem;}
+  @media(max-width:860px){.calc-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.calc-grid{grid-template-columns:1fr;}}
+
+  /* ----- Request a consultation ----- */
+  .form-card{max-width:640px;margin:0 auto;background:#fff;color:var(--text);border-radius:14px;
+    padding:30px;border:1px solid var(--border);box-shadow:var(--shadow-lg);}
+  .form-card .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .fld{margin-bottom:16px;}
+  .fld.full{grid-column:1 / -1;}
+  .fld label{display:block;font-size:.8rem;font-weight:700;color:var(--navy);margin-bottom:6px;text-transform:uppercase;letter-spacing:.3px;}
+  .fld input,.fld select,.fld textarea{width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:8px;font-size:1rem;font-family:inherit;}
+  .fld input:focus,.fld select:focus,.fld textarea:focus{outline:2px solid var(--secondary);border-color:transparent;box-shadow:0 0 0 5px rgba(59,167,242,.15);}
+  /* multi-select as tick-box chips */
+  .fld-group{border:0;padding:0;margin:0 0 16px;min-width:0;}
+  .fld-group legend{display:block;font-size:.8rem;font-weight:700;color:var(--navy);margin-bottom:8px;text-transform:uppercase;letter-spacing:.3px;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{position:relative;cursor:pointer;}
+  .chip input{position:absolute;opacity:0;width:1px;height:1px;}
+  .chip span{display:inline-flex;align-items:center;gap:9px;padding:9px 15px;border:1px solid var(--border);border-radius:999px;
+    background:#fff;color:var(--text);font-size:.92rem;line-height:1.3;transition:border-color .15s,background .15s,color .15s;}
+  .chip span:before{content:"";flex:none;width:17px;height:17px;border-radius:5px;border:1.5px solid #9DB8D6;background:#fff center/12px no-repeat;
+    transition:background-color .15s,border-color .15s;}
+  .chip:hover span{border-color:var(--secondary);}
+  .chip input:checked + span{background:var(--bg);border-color:var(--primary);color:var(--primary);font-weight:600;}
+  .chip input:checked + span:before{border-color:var(--primary);background-color:var(--primary);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.3l2.3 2.3 4.7-5' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");}
+  .chip input:focus-visible + span{outline:2px solid var(--secondary);outline-offset:2px;}
+  .fld-group.invalid .chip span{border-color:#c0392b;}
+  .fld-optional{text-transform:none;font-weight:400;color:var(--muted);letter-spacing:0;}
+  .fld-error{display:block;color:#c0392b;font-size:.78rem;margin-top:5px;min-height:0;}
+  .fld input.invalid,.fld select.invalid,.fld textarea.invalid{border-color:#c0392b;}
+  .form-error-banner{background:#fff0f0;color:#c0392b;border:1px solid #f5c6cb;border-radius:8px;
+    padding:12px 16px;font-size:.9rem;margin-bottom:18px;}
+  /* Honeypot: off-screen, not display:none (some bots specifically skip
+     display:none fields), never focusable/autofillable by real visitors. */
+  .hp-field{position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;}
+  .form-intro{text-align:center;color:var(--muted);max-width:620px;margin:0 auto 28px;}
+  .step-head{font-size:1.25rem;font-weight:800;color:var(--navy);display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+  .step-head .num{width:30px;height:30px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;font-size:.95rem;}
+  .step-head .of{margin-left:auto;font-size:.78rem;color:var(--muted);font-weight:600;}
+  .schedule-embed{max-width:900px;margin:0 auto;background:#fff;border-radius:14px;overflow:hidden;
+    box-shadow:var(--shadow-lg);border:1px solid var(--border);border-top:5px solid var(--secondary);}
+  .sched-head{background:var(--navy);color:#fff;font-weight:700;font-size:1.05rem;letter-spacing:.3px;
+    padding:16px 22px;display:flex;align-items:center;gap:10px;}
+  .sched-head .ic{width:34px;height:34px;border-radius:8px;background:rgba(127,231,214,.18);color:var(--tertiary);display:grid;place-items:center;font-size:1.1rem;}
+  .sched-head small{display:block;font-weight:400;font-size:.78rem;color:var(--on-dark);}
+  .schedule-embed iframe{display:block;width:100%;border:0;background:#fff;}
+  @media(max-width:560px){.form-card .grid2{grid-template-columns:1fr;}}
+  /* "Book Your Free Strategy Call" form */
+  .bookcall-title{font-size:1.7rem;color:var(--navy);font-weight:800;margin-bottom:8px;}
+  .bookcall-sub{color:var(--muted);font-size:.95rem;margin-bottom:26px;}
+  .bookcall-note{color:var(--muted);font-size:.82rem;text-align:center;margin-top:14px;}
+  .btn.btn-dark{background:linear-gradient(135deg,var(--primary),#1560C9);color:#fff;text-transform:uppercase;letter-spacing:.6px;padding:15px 26px;font-size:.95rem;border-radius:10px;}
+  .btn.btn-dark:hover{filter:brightness(1.08);box-shadow:0 12px 26px rgba(11,61,145,.35);}
+
+  /* ----- Contact ----- */
+  .contactx{background:#fff;color:var(--primary);border-radius:18px;max-width:none;margin:0 auto;
+    padding:48px 42px 42px;border:1px solid var(--border);box-shadow:var(--shadow-lg);position:relative;overflow:hidden;}
+  .contactx:before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--primary),var(--secondary),var(--tertiary));}
+  .contactx h1{text-align:center;font-size:2.6rem;font-weight:800;color:var(--primary);letter-spacing:1px;margin:0;}
+  .contactx .sub{text-align:center;color:var(--muted);max-width:560px;margin:12px auto 38px;line-height:1.6;}
+  .cx-grid{display:grid;grid-template-columns:1fr 1.18fr;gap:34px;align-items:center;}
+  .cx-photo{position:relative;border-radius:12px;overflow:hidden;box-shadow:var(--shadow-lg);}
+  .cx-photo img{width:100%;display:block;}
+  .cx-badge{position:absolute;left:0;bottom:22px;background:var(--primary);color:#fff;padding:9px 18px;border-radius:0 8px 8px 0;}
+  .cx-badge b{display:block;font-size:.98rem;}
+  .cx-badge span{font-size:.74rem;color:var(--on-dark);}
+  .cx-name b{font-size:1.55rem;color:var(--primary);}
+  .cx-name span{display:block;color:var(--muted);margin:2px 0 20px;}
+  .cx-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px;}
+  .cx-card{border:1px solid var(--border);border-radius:12px;padding:18px 20px;box-shadow:0 10px 24px rgba(11,61,145,.08);}
+  .cx-card .h{display:flex;align-items:center;gap:9px;font-weight:800;color:var(--primary);text-transform:uppercase;font-size:.82rem;letter-spacing:.5px;margin-bottom:14px;}
+  .cx-card .h .dot{width:30px;height:30px;border-radius:50%;background:var(--primary);color:var(--tertiary);display:grid;place-items:center;font-size:.85rem;flex:none;}
+  .cx-card p{font-size:.88rem;color:#33475F;margin-bottom:12px;line-height:1.45;}
+  .cx-card p:last-child{margin-bottom:0;}
+  .cx-card p b{color:var(--primary);display:block;}
+  .cx-map iframe{width:100%;height:200px;border:0;border-radius:12px;box-shadow:0 10px 24px rgba(11,61,145,.12);}
+  @media(max-width:860px){.cx-grid{grid-template-columns:1fr;}.cx-cards{grid-template-columns:1fr;}}
+  @media(max-width:600px){.contactx{padding:32px 20px;}.contactx h1{font-size:2rem;}}
+  .contactx{border-radius:22px;border-color:rgba(207,229,246,.75);box-shadow:0 2px 4px rgba(11,61,145,.04),0 26px 64px rgba(11,61,145,.12);}
+  .contactx:before{top:26px;left:50%;right:auto;width:120px;height:3px;border-radius:2px;transform:translateX(-50%);
+    background:linear-gradient(90deg,#1C6FD1 0 55%,#BDE6F2 55%);}
+  .contactx h1{font-size:3rem;letter-spacing:.5px;}
+  .contactx h1 span{color:#1C8BDF;}
+  .contactx .sub{color:#4A607E;font-size:1.08rem;max-width:700px;}
+  .cx-photo{border-radius:16px;}
+  .cx-badge{bottom:26px;padding:12px 28px 12px 30px;border-radius:0 16px 16px 0;background:linear-gradient(90deg,var(--primary),#1560C9);}
+  .cx-badge:before{content:"";position:absolute;left:14px;top:12px;bottom:12px;width:3px;border-radius:2px;background:var(--tertiary);}
+  .cx-badge b{font-size:1.15rem;}
+  .cx-badge span{font-size:.86rem;}
+  .cx-name b{font-size:2.4rem;font-weight:800;line-height:1.1;}
+  .cx-name span{font-size:1.15rem;margin:4px 0 0;}
+  .cx-name:after{content:"";display:block;width:50px;height:3px;border-radius:2px;background:#3CCFC0;margin:12px 0 24px;}
+  .cx-card{border-radius:16px;padding:22px 24px;border-color:rgba(207,229,246,.8);box-shadow:0 2px 4px rgba(11,61,145,.04),0 14px 34px rgba(11,61,145,.09);}
+  .cx-card .h{gap:14px;font-size:.9rem;letter-spacing:1.2px;white-space:nowrap;color:#1C8BDF;margin-bottom:20px;}
+  .cx-card .h .dot{width:56px;height:56px;font-size:1.25rem;background:#DDF1FD;color:var(--primary);}
+  .cx-card .h .lbl:after{content:"";display:block;width:34px;height:3px;border-radius:2px;background:#3CCFC0;margin-top:8px;}
+  .cx-row{display:flex;gap:14px;align-items:flex-start;margin-bottom:16px;}
+  .cx-row:last-child{margin-bottom:0;}
+  .cx-row > i{flex:none;width:22px;margin-top:3px;color:#1C8BDF;font-size:1.15rem;text-align:center;}
+  .cx-row p{margin:0;font-size:.96rem;color:#1D3F75;}
+  .cx-map{padding:4px;background:#fff;border-radius:16px;border:1px solid rgba(207,229,246,.8);box-shadow:0 14px 34px rgba(11,61,145,.10);}
+  .cx-map iframe{height:210px;box-shadow:none;}
+  @media(max-width:600px){.contactx h1{font-size:2.1rem;}.cx-name b{font-size:1.9rem;}}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:980px){
+    .svc-grid{grid-template-columns:repeat(2,1fr);}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:980px){
+    .nav-toggle{display:block;}
+    nav.main-nav{position:absolute;top:100%;left:0;right:0;background:#fff;box-shadow:0 18px 30px rgba(11,61,145,.12);max-height:0;overflow:hidden;transition:max-height .35s ease;}
+    nav.main-nav.open{max-height:760px;overflow:auto;}
+    nav.main-nav > ul{flex-direction:column;gap:0;padding:8px 0;align-items:stretch;}
+    nav.main-nav li{width:100%;}
+    nav.main-nav a{display:block;padding:13px 24px;border-radius:0;border-bottom:1px solid var(--border);text-align:left;}
+    .submenu{position:static;display:none;box-shadow:none;border:0;border-radius:0;background:var(--bg-alt);padding:0;min-width:0;}
+    .has-sub.open .submenu{display:flex;}
+    .submenu a{padding-left:40px;}
+    /* hero: photo becomes a banner on top, text and highlights below it */
+    .hero-photo{position:relative;width:100%;height:52vw;}
+    .hero-photo img{-webkit-mask-image:linear-gradient(180deg,#000 70%,transparent);mask-image:linear-gradient(180deg,#000 70%,transparent);}
+    .hero-slash{top:0;bottom:auto;height:52vw;right:-120px;width:230px;}
+    .hero-wrap{padding:8px 0 0;}
+    .hero-info{max-width:100%;}
+    .hero-info h1{font-size:2.3rem;}
+    .hero-feats{grid-template-columns:repeat(2,1fr);row-gap:20px;margin-top:30px;}
+    .hero-feat:nth-child(3){border-left:0;}
+    .about-wrap{grid-template-columns:1fr;gap:34px;}
+    .about-card{max-width:420px;width:100%;margin:0 auto;}
+    .about-vals{grid-template-columns:repeat(2,1fr);row-gap:22px;}
+    .about-val:nth-child(3){border-left:0;padding-left:0;}
+    .adv-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:600px){
+    .container{padding:0 16px;}
+    .topbar .container{justify-content:center;text-align:center;gap:2px 14px;font-size:.74rem;padding:7px 14px;}
+    .svc-grid{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr;}
+    .section{padding:46px 0;}
+    .section-head{margin-bottom:30px;}
+    .section-head h2{font-size:1.6rem;}
+    .hero-photo,.hero-slash{height:60vw;}
+    .hero-info h1{font-size:1.85rem;}
+    .hero-info p.lede{font-size:.98rem;}
+    .hero-feats{grid-template-columns:1fr;padding:12px 6px;}
+    .sec-kicker.blue{font-size:.74rem;letter-spacing:.8px;}
+    .hero-feat{padding:12px 14px;}
+    .hero-feat + .hero-feat{border-left:0;border-top:1px solid var(--border);}
+    .about-txt h2{font-size:1.8rem;}
+    .about-vals{grid-template-columns:1fr;}
+    .about-val{padding:0 !important;border-left:0 !important;}
+    .hero-cta{flex-direction:column;}
+    .hero-cta .btn{width:100%;justify-content:center;}
+    .brand img{height:46px;}
+    .adv-grid{grid-template-columns:1fr;}
+  }
+
+
+  /* ===== call-to-action band ===== */
+  .cta-band{position:relative;overflow:hidden;color:#fff;text-align:center;padding:70px 0 76px;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 300' preserveAspectRatio='none'%3E%3Cpath d='M0 120C260 200 420 290 640 300H0Z' fill='%237FE7D6' opacity='.35'/%3E%3Cpath d='M0 170C300 230 470 280 700 300' fill='none' stroke='%23BFF3EC' stroke-width='2' opacity='.7'/%3E%3Cpath d='M1600 150C1350 230 1180 280 980 300H1600Z' fill='%233BA7F2' opacity='.35'/%3E%3Cpath d='M1600 190C1380 250 1200 285 1020 300' fill='none' stroke='%23BFE6FF' stroke-width='2' opacity='.7'/%3E%3C/svg%3E") bottom/100% 100% no-repeat,
+      radial-gradient(60% 120% at 100% 0%,rgba(79,195,255,.55),transparent 60%),linear-gradient(120deg,#062C74,#0B3D91 45%,#1561C9);}
+  .cta-band h2{font-size:2.5rem;font-weight:800;line-height:1.15;margin-bottom:10px;}
+  .cta-band p{color:#E3EEFF;font-size:1.2rem;margin-bottom:28px;}
+  .cta-band .btn{display:inline-flex;align-items:center;gap:12px;padding:16px 34px;border-radius:999px;font-size:1.02rem;
+    background:linear-gradient(90deg,#7FE7D6,#5EEAD4);color:#0A2A6B;box-shadow:0 12px 30px rgba(127,231,214,.35);}
+  .cta-band .btn i{transition:transform .2s;}
+  .cta-band .btn:hover i{transform:translateX(4px);}
+  @media(max-width:600px){.cta-band h2{font-size:1.7rem;}.cta-band p{font-size:1rem;}}
+
+  /* ===== footer (light) ===== */
+  footer{position:relative;overflow:hidden;background:linear-gradient(180deg,#F7FBFF,#EAF5FF);color:var(--primary);padding:64px 0 26px;margin-top:0;}
+  footer::before{content:"";position:absolute;left:0;right:0;bottom:0;top:auto;height:260px;pointer-events:none;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 300' preserveAspectRatio='none'%3E%3Cpath d='M0 120C260 200 420 290 640 300H0Z' fill='%237FE7D6' opacity='.35'/%3E%3Cpath d='M0 170C300 230 470 280 700 300' fill='none' stroke='%23BFF3EC' stroke-width='2' opacity='.7'/%3E%3Cpath d='M1600 150C1350 230 1180 280 980 300H1600Z' fill='%233BA7F2' opacity='.35'/%3E%3Cpath d='M1600 190C1380 250 1200 285 1020 300' fill='none' stroke='%23BFE6FF' stroke-width='2' opacity='.7'/%3E%3C/svg%3E") bottom/100% 100% no-repeat;opacity:.9;}
+  footer .container{position:relative;z-index:1;max-width:var(--maxw);}
+  footer .brand img{height:76px;}
+  .foot-grid{grid-template-columns:1.45fr 1fr 1.05fr;gap:0;margin-bottom:30px;align-items:start;}
+  .foot-grid > div{padding:0 34px;}
+  .foot-grid > div:first-child{padding-left:0;}
+  .foot-grid > div + div:not(.foot-cta){border-left:1px solid rgba(59,167,242,.3);}
+  .foot-grid > div:nth-child(2),.foot-grid > div:nth-child(3){padding-bottom:8px;}
+  .foot-grid > div:first-child p{color:var(--primary);font-size:1.02rem !important;line-height:1.6;}
+  .foot-grid > div:first-child p:before{content:"";display:block;width:76px;height:3px;border-radius:2px;margin:0 0 16px;background:linear-gradient(90deg,#1C8BDF,#5FD3E2);}
+  footer h4{color:var(--primary);font-size:1.15rem;margin-bottom:16px;}
+  footer h4:before{content:"";display:block;width:34px;height:3px;border-radius:2px;margin-bottom:14px;background:linear-gradient(90deg,#3BA7F2,#7FE7D6);}
+  footer li{margin-bottom:12px;font-size:.98rem;}
+  footer li a{white-space:nowrap;display:inline-flex;align-items:center;gap:12px;color:#1D3F75;transition:color .2s,transform .2s;}
+  footer li a:before{content:"\f054";font-family:"Font Awesome 6 Free";font-weight:900;font-size:.72rem;color:#1CA9D6;}
+  footer li a:hover{color:#1C8BDF;transform:translateX(3px);}
+  .foot-cta{align-self:center;padding:0 0 0 34px !important;border-left:1px solid rgba(59,167,242,.3);}
+  .foot-book{display:inline-flex;align-items:center;gap:16px;white-space:nowrap;padding:18px 30px;border-radius:999px;color:#fff !important;font-weight:700;
+    background:linear-gradient(90deg,#0B3D91,#1560C9);box-shadow:0 14px 34px rgba(11,61,145,.3),0 0 0 3px rgba(59,167,242,.35);transition:transform .2s,box-shadow .2s;}
+  .foot-book .sep{width:1px;height:24px;background:rgba(255,255,255,.35);}
+  .foot-book i{font-size:1.2rem;}
+  .foot-book .fa-arrow-right{font-size:.85rem;transition:transform .2s;}
+  .foot-book:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(11,61,145,.38),0 0 0 3px rgba(59,167,242,.5);}
+  .foot-book:hover .fa-arrow-right{transform:translateX(4px);}
+  .social{position:relative;gap:16px;margin:10px 0 22px;align-items:center;}
+  .social:before,.social:after{content:"";width:min(340px,22vw);height:1px;background:linear-gradient(90deg,transparent,rgba(59,167,242,.45));}
+  .social:after{background:linear-gradient(90deg,rgba(59,167,242,.45),transparent);}
+  .social a{width:46px;height:46px;font-size:1.1rem;color:#fff;background:#0B3D91;box-shadow:0 8px 18px rgba(11,61,145,.2);}
+  .social a:nth-child(6n+2){background:#1C8BDF;}
+  .social a:nth-child(6n+3){background:#2EC4B6;}
+  .social a:nth-child(6n+4){background:#3BA7F2;}
+  .social a:nth-child(6n+5){background:#5FD3C8;}
+  .social a:hover{transform:translateY(-3px);background:#0A2A6B;color:#fff;}
+  .foot-copy{border-top:0;color:#1D3F75;font-size:.95rem;}
+  footer a:hover{color:#1C8BDF;}
+  @media(max-width:1100px){.foot-grid{grid-template-columns:1fr 1fr;row-gap:34px;}.foot-grid > div{padding:0 24px;}
+    .foot-grid > div:nth-child(3){border-left:1px solid rgba(59,167,242,.3);}.foot-grid > div:nth-child(2){border-left:0;padding-left:0;}
+    .foot-cta{grid-column:1/-1;border-left:0 !important;padding:0 !important;}}
+  @media(max-width:600px){.foot-grid{grid-template-columns:1fr;}.foot-grid > div{padding:0 !important;border-left:0 !important;}
+    .social{flex-wrap:wrap;gap:12px;}.social:before,.social:after{display:none;}.foot-book{padding:15px 24px;}}
+
+  /* ===== hero (light photo banner) ===== */
+  .hero{background:linear-gradient(100deg,#F3F9FF 0%,#EAF4FD 45%,#DDEEFB 100%);}
+  .hero:before{content:"";position:absolute;left:0;bottom:0;width:360px;height:150px;z-index:1;pointer-events:none;
+    background:linear-gradient(160deg,transparent 48%,rgba(127,231,214,.55) 48% 56%,rgba(59,167,242,.55) 56%);clip-path:polygon(0 0,100% 100%,0 100%);}
+  .hero-photo{width:50%;}
+  .hero-photo img{object-position:30% 28%;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 24%);mask-image:linear-gradient(90deg,transparent 0,#000 24%);}
+  .hero-info h1{font-size:clamp(2.1rem,2.9vw,2.9rem);letter-spacing:-.6px;}
+  .hero-info h1 .accent{background:linear-gradient(90deg,#1C8BDF,#2EC4C9);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .hero .sec-kicker.blue{color:#1CA9D6;}
+  .hero .sec-kicker.blue:after{width:150px;height:3px;border-radius:2px;background:linear-gradient(90deg,#0B3D91,#1C8BDF 30%,#7FE7D6);}
+  .hero-cta .btn{background:linear-gradient(90deg,#0B3D91,#1C6FD1 55%,#25B7C6);padding:16px 32px;font-size:1.02rem;box-shadow:0 12px 28px rgba(11,61,145,.28);}
+  @media(max-width:980px){.hero:before{display:none;}.hero-photo{width:100%;}.hero-photo img{-webkit-mask-image:linear-gradient(180deg,#000 70%,transparent);mask-image:linear-gradient(180deg,#000 70%,transparent);}}
+
+  /* ===== why choose us (glass cards over an office scene) ===== */
+  .wcu{position:relative;overflow:hidden;padding:64px 0 70px;background:linear-gradient(110deg,#F2F9FF 0%,#E6F3FE 55%,#D6ECFB 100%);}
+  .wcu:before{content:"";position:absolute;left:-120px;top:-60px;width:520px;height:420px;border-radius:50%;pointer-events:none;
+    background:radial-gradient(circle,rgba(255,255,255,.9),rgba(255,255,255,0) 70%);}
+  .wcu-desk{position:absolute;right:0;top:0;bottom:0;width:24%;max-width:420px;pointer-events:none;}
+  .wcu-desk img{width:100%;height:100%;object-fit:cover;object-position:30% 50%;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 40%);mask-image:linear-gradient(90deg,transparent 0,#000 40%);}
+  .wcu .container{position:relative;z-index:1;}
+  .wcu-kicker{display:flex;align-items:center;justify-content:center;gap:22px;color:var(--primary);font-weight:700;font-size:.95rem;letter-spacing:4px;text-transform:uppercase;}
+  .wcu-kicker:before,.wcu-kicker:after{content:"";width:130px;height:2px;background:linear-gradient(90deg,#0B3D91,#5FD3E2);}
+  .wcu-kicker:after{background:linear-gradient(90deg,#5FD3E2,#0B3D91);}
+  .wcu-title{text-align:center;font-size:3.3rem;line-height:1.05;margin-top:16px;}
+  .wcu-title .grad{display:block;background:linear-gradient(90deg,#1C8BDF,#2EC4C9);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .wcu-sub{justify-content:center;gap:14px;margin:14px 0 34px;color:#33475F;font-size:1.15rem;font-weight:500;letter-spacing:.6px;text-transform:none;}
+  .wcu-sub:before{display:none;}
+  .wcu-sub i{color:#1CA9D6;}
+  .wcu-grid{max-width:none;}
+  .wcu-card{position:relative;align-items:flex-start;padding:22px 20px 30px;background:rgba(255,255,255,.66);
+    -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.9);border-radius:18px;
+    box-shadow:0 2px 6px rgba(11,61,145,.05),0 18px 44px rgba(11,61,145,.10);}
+  .wcu-card:after{content:"";position:absolute;left:28px;bottom:16px;width:76px;height:4px;border-radius:2px;background:linear-gradient(90deg,#3BA7F2,#7FE7D6);}
+  .wcu-card img{width:92px;height:104px;padding:6px;border-radius:14px;background:#fff;box-shadow:0 8px 20px rgba(11,61,145,.12);}
+  .wcu-card h3{font-size:1.08rem;}
+  .wcu-card p{font-size:.86rem;}
+  .wcu-prec{position:relative;z-index:1;display:flex;align-items:center;gap:26px;max-width:860px;margin-top:22px;padding:22px 30px;
+    background:rgba(255,255,255,.6);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.9);
+    border-radius:18px;box-shadow:0 18px 44px rgba(11,61,145,.10);}
+  .wcu-prec .wcu-target{width:66px;height:66px;font-size:1.8rem;color:#1C8BDF;border:0;background:radial-gradient(circle at 35% 30%,#fff,#D6EEFB);
+    box-shadow:0 8px 20px rgba(11,61,145,.14);}
+  .wcu-prec > div{border-left:2px solid rgba(59,167,242,.35);padding-left:26px;}
+  .wcu-prec h3{color:var(--primary);font-size:1.35rem;margin-bottom:4px;}
+  .wcu-prec p{color:#33475F;font-size:.95rem;line-height:1.6;}
+  @media(max-width:1100px){.wcu-desk{display:none;}}
+  @media(max-width:600px){.wcu-title{font-size:2.2rem;}.wcu-kicker{font-size:.78rem;letter-spacing:2.5px;gap:12px;}.wcu-kicker:before,.wcu-kicker:after{width:44px;}
+    .wcu-sub{font-size:.92rem;flex-wrap:wrap;}.wcu-prec{flex-direction:column;align-items:flex-start;padding:22px;}.wcu-prec > div{border-left:0;padding-left:0;}}
+
+  /* ===== one typeface everywhere ===== */
+  body,button,input,select,textarea{font-family:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  /* ===== two-tone gradient headings ===== */
+  .grad{background:linear-gradient(90deg,#1C8BDF,#139E92);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+  .grad-light{background:linear-gradient(90deg,#9FD8FF,#7FE7D6);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+  .mc{border-top:0 !important;}
+  .sec-head{border-top:0;border-bottom:0;-webkit-mask-image:linear-gradient(180deg,#000 70%,transparent);mask-image:linear-gradient(180deg,#000 70%,transparent);}
+  /* the full-width dark band melts into the light sections above and below */
+  #services .cta-band{-webkit-mask-image:linear-gradient(180deg,transparent,#000 16%,#000 84%,transparent);mask-image:linear-gradient(180deg,transparent,#000 16%,#000 84%,transparent);padding:96px 0 104px;}
+
+  /* ===== one continuous background: no visible section edges ===== */
+  body{background:#EDF6FE;background-image:radial-gradient(60vw 60vh at 85% 15%,rgba(59,167,242,.10),transparent 70%),
+    radial-gradient(55vw 55vh at 10% 70%,rgba(127,231,214,.10),transparent 70%);background-attachment:fixed;}
+  .mc,.wcu,.hero,.sec-head,.sd-hero,.section{background:transparent !important;}
+  .mc-deco{display:none;}
+  /* ===== small titles are gold, with a gold rule ===== */
+  .sec-kicker.blue,.hero .sec-kicker.blue,.nl-kicker,.wcu-kicker,.sd-kicker,.vg-count{color:var(--gold-ink) !important;}
+  .sec-kicker.blue:after,.hero .sec-kicker.blue:after,.nl-kicker.line:after,.sd-kicker:after,.vg-count:after{background:var(--gold) !important;width:46px !important;height:2px !important;}
+  .wcu-kicker:before,.wcu-kicker:after{background:var(--gold) !important;}
+  .nl-kicker .sep{background:rgba(217,165,58,.5);}
+  .cx-card .h .lbl{color:var(--gold-ink);}
+  /* ===== every section title the same size ===== */
+  .mc-title,.mc-title.plain,.nl-head h2,.wcu-title,.about-txt h2,.contactx h1,.cta-band h2,.sec-head h1,.sec-head h2,.sd-hero h1,.sd-sec h2{
+    font-size:2.15rem !important;font-weight:700 !important;line-height:1.2 !important;letter-spacing:-.2px !important;text-transform:none !important;}
+  .wcu-title .grad{display:inline;}
+  @media(max-width:600px){.mc-title,.mc-title.plain,.nl-head h2,.wcu-title,.about-txt h2,.contactx h1,.cta-band h2,.sec-head h1,.sec-head h2,.sd-hero h1,.sd-sec h2{font-size:1.6rem !important;}}
+  /* ===== footer: soft top, dark blue bottom bar ===== */
+  footer{background:transparent !important;padding-bottom:0 !important;}
+  footer::before{display:none !important;}
+  .foot-bottom{position:relative;margin-top:30px;padding:26px 0 22px;background:linear-gradient(90deg,#051D47,#0B3D91 50%,#072A66);}
+  .foot-bottom .social{margin:0 0 14px;}
+  .foot-bottom .social:before,.foot-bottom .social:after{background:linear-gradient(90deg,transparent,rgba(127,231,214,.5)) !important;}
+  .foot-bottom .social:after{background:linear-gradient(90deg,rgba(127,231,214,.5),transparent) !important;}
+  .foot-bottom .foot-copy{color:#C9DAF2;padding-top:0;}
+  .foot-bottom .social a:hover{background:#fff;color:var(--primary);}
+  .foot-bottom .social a:nth-child(6n+1),.foot-bottom .social a:nth-child(6n){background:#1C8BDF;}
+  .sec-head:before,.sec-head:after{display:none !important;}
+  /* header band sits right on top of its content */
+  .sec-head{padding-bottom:18px !important;}
+  .sec-head + .section{padding-top:14px !important;}
+  .sec-head{-webkit-mask-image:none !important;mask-image:none !important;}
+
+  /* ===== hero fills the first screen ===== */
+  .hero{display:flex;align-items:center;min-height:max(600px,calc(100vh - 175px));}
+  .hero:before{display:none;}
+  .hero > .container{width:100%;}
+  .hero-wrap{padding:60px 0;}
+  .hero-info{max-width:none;}
+  /* sized to the viewport so the headline always ends before the photo's subject */
+  .hero-info h1{font-size:clamp(2rem,3.7vw,5.5rem) !important;margin:18px 0 22px;}
+  .hero-info p.lede{font-size:clamp(1.05rem,1.15vw,1.5rem);max-width:min(38vw,760px);line-height:1.7;margin-bottom:34px;}
+  .hero .sec-kicker{font-size:1rem;}
+  .hero-cta .btn{padding:18px 36px;font-size:1.08rem;}
+  .hero-photo img{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 24%),linear-gradient(180deg,#000 78%,transparent);
+    -webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 0,#000 24%),linear-gradient(180deg,#000 78%,transparent);mask-composite:intersect;}
+  @media(max-width:980px){.hero{display:block;min-height:0;}.hero-wrap{padding:10px 0 40px;}.hero-photo img{-webkit-mask-image:linear-gradient(180deg,#000 70%,transparent);mask-image:linear-gradient(180deg,#000 70%,transparent);}}
+  @media(max-width:600px){.hero-info p.lede{font-size:1.02rem;}.hero-cta .btn{padding:15px 24px;}}
+
+  /* ===== why choose us: real glass — bright scene behind, translucent cards with a lit rim ===== */
+  .wcu{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 700' preserveAspectRatio='none'%3E%3Cpath d='M0 0H330C190 160 120 360 0 520Z' fill='%23fff' opacity='.55'/%3E%3Cpath d='M0 560C240 500 420 560 560 700H0Z' fill='%233BA7F2' opacity='.55'/%3E%3Cpath d='M0 610C220 570 380 620 480 700H0Z' fill='%231C6FD1' opacity='.55'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat,url('images/why-bg.webp') right center/cover no-repeat !important;
+    -webkit-mask-image:linear-gradient(180deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(180deg,transparent,#000 7%,#000 93%,transparent);
+    padding:90px 0 100px;}
+  .wcu-desk,.wcu:before{display:none;}
+  .wcu-card,.wcu-prec{position:relative;overflow:hidden;isolation:isolate;
+    background:linear-gradient(135deg,rgba(255,255,255,.42) 0%,rgba(255,255,255,.14) 55%,rgba(255,255,255,.26) 100%) !important;
+    -webkit-backdrop-filter:blur(14px) saturate(180%) brightness(1.06);backdrop-filter:blur(14px) saturate(180%) brightness(1.06);
+    border:1.5px solid rgba(255,255,255,.85) !important;border-radius:20px !important;
+    box-shadow:inset 0 1px 1px rgba(255,255,255,.95),inset 0 0 0 1px rgba(255,255,255,.25),inset 0 -18px 30px rgba(255,255,255,.18),
+      0 10px 24px rgba(11,61,145,.08),0 28px 60px rgba(11,61,145,.12) !important;}
+  /* glossy sheen across the top of each pane */
+  .wcu-card:before,.wcu-prec:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;border-radius:inherit;
+    background:linear-gradient(160deg,rgba(255,255,255,.75) 0%,rgba(255,255,255,.18) 28%,rgba(255,255,255,0) 45%);}
+  .wcu-card img{background:linear-gradient(145deg,rgba(255,255,255,.85),rgba(255,255,255,.45)) !important;border:1px solid rgba(255,255,255,.95);
+    box-shadow:inset 0 1px 1px #fff,0 10px 22px rgba(11,61,145,.14) !important;}
+  .wcu-prec{-webkit-mask-image:linear-gradient(90deg,#000 80%,rgba(0,0,0,.35));mask-image:linear-gradient(90deg,#000 80%,rgba(0,0,0,.35));}
+  .wcu-prec .wcu-target{background:linear-gradient(145deg,rgba(255,255,255,.95),rgba(214,238,251,.7)) !important;border:1px solid #fff !important;}
+  .wcu-card:hover{transform:translateY(-5px);box-shadow:inset 0 1px 1px #fff,0 14px 30px rgba(11,61,145,.12),0 36px 70px rgba(11,61,145,.16) !important;}
+  @media(max-width:1100px){.wcu{background-position:0 0,right center !important;}}
+
+  /* ===== phones and tablets: every line readable and uncut (desktop untouched) ===== */
+  @media(max-width:980px){
+    .hero-info p.lede{max-width:640px;}
+    .wcu{background:linear-gradient(180deg,rgba(242,249,255,.86),rgba(234,245,254,.7) 45%,rgba(242,249,255,.86)),url('images/why-bg.webp') center/cover no-repeat !important;}
+    .wcu-card,.wcu-prec{background:linear-gradient(135deg,rgba(255,255,255,.82),rgba(255,255,255,.6)) !important;}
+    .wcu-card p,.wcu-prec p{color:#33475F;}
+    .wcu-prec{-webkit-mask-image:none;mask-image:none;}
+    .foot-bottom{padding-bottom:96px;}
+  }
+  @media(max-width:600px){
+    .hero .sec-kicker{font-size:.8rem;letter-spacing:.3px;gap:10px;}
+    .wcu-sub{row-gap:2px;}
+    .wcu-sub i:nth-of-type(2){flex-basis:100%;height:0;overflow:hidden;visibility:hidden;}
+    .cta-band .btn{padding:15px 22px;font-size:.95rem;gap:10px;}
+  }
+
+  /* ===== request form: fields on the left, booking picker on the right ===== */
+  .form-card{max-width:none;padding:34px 38px;}
+  .bookcall-title,.bookcall-sub{text-align:center;}
+  #leadForm{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(330px,1fr);gap:22px 32px;align-items:start;}
+  .lf-fields{display:grid;grid-template-columns:repeat(3,1fr);gap:0 16px;align-items:start;}
+  .lf-fields .grid2{display:contents;}
+  .lf-fields .fld-group,.lf-fields .fld.full{grid-column:1/-1;}
+  .lf-fields .fld.full textarea{height:48px;min-height:48px;resize:vertical;}
+  .lf-fields .cf-turnstile{grid-column:1/-1;margin:2px 0 0 !important;}
+  #leadForm .bookcall-note{grid-column:1/-1;margin-top:0;}
+  .bk{background:#fff;border:1px solid var(--border);border-radius:20px;padding:22px 22px 20px;
+    box-shadow:0 2px 4px rgba(11,61,145,.04),0 24px 54px rgba(11,61,145,.13);}
+  .bk.invalid{border-color:#c0392b;}
+  .bk-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px;}
+  .bk-title{color:var(--primary);font-size:1.3rem;font-weight:800;line-height:1.2;margin-bottom:8px;}
+  .bk-pill{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:var(--bg);color:var(--primary);font-size:.85rem;font-weight:600;border:1px solid #CFE5F6;}
+  .bk-pill i{color:#1C8BDF;}
+  .bk-nav{display:flex;gap:6px;}
+  .bk-arrow{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:#fff;color:var(--primary);cursor:pointer;transition:background .2s,transform 90ms;}
+  .bk-arrow:hover:not(:disabled){background:var(--bg);}
+  .bk-arrow:active:not(:disabled){transform:scale(.94);}
+  .bk-arrow:disabled{opacity:.35;cursor:default;}
+  .bk-month{color:var(--text);font-weight:800;font-size:1.05rem;margin-bottom:6px;}
+  .bk-dow,.bk-days{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;text-align:center;}
+  .bk-dow span{font-size:.78rem;font-weight:700;color:var(--muted);padding:4px 0;}
+  .bk-day{height:42px;border:0;border-radius:12px;background:transparent;color:var(--text);font:inherit;font-weight:600;font-size:.95rem;cursor:pointer;
+    transition:transform 600ms var(--spring,cubic-bezier(.32,.72,0,1)),background .2s,color .2s,box-shadow .2s;}
+  .bk-day:hover:not(:disabled){background:var(--bg);}
+  .bk-day:active:not(:disabled){transform:scale(.94);transition-duration:90ms;}
+  .bk-day:disabled{color:#B5C7DC;cursor:default;}
+  .bk-day[aria-pressed="true"]{background:linear-gradient(135deg,var(--primary),#1C6FD1);color:#fff;transform:scale(1.1);box-shadow:0 8px 18px rgba(11,61,145,.3);}
+  .bk-day:focus-visible,.bk-slot:focus-visible,.bk-arrow:focus-visible,.bk-confirm:focus-visible{outline:3px solid var(--secondary);outline-offset:2px;}
+  .bk-slots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px;min-height:46px;}
+  .bk-hint{grid-column:1/-1;color:var(--muted);font-size:.88rem;text-align:center;padding:12px 0;}
+  .bk-slot{height:42px;border-radius:999px;border:1.5px solid var(--border);background:#fff;color:var(--text);font:inherit;font-weight:600;font-size:.9rem;cursor:pointer;
+    opacity:0;transform:translateY(6px);transition:opacity .4s ease,transform 600ms var(--spring,cubic-bezier(.32,.72,0,1)),border-color .2s,background .2s,color .2s;
+    transition-delay:calc(var(--i,0) * 80ms);}
+  .bk-slots.in .bk-slot{opacity:1;transform:none;}
+  .bk-slot:hover{border-color:var(--secondary);}
+  .bk-slot:active{transform:scale(.94) !important;transition-duration:90ms;transition-delay:0s;}
+  .bk-slot[aria-pressed="true"]{border-color:var(--primary);background:#E3F0FD;color:var(--primary);}
+  .bk-tz{color:var(--muted);font-size:.78rem;margin:10px 0 0;}
+  .bk .fld-error{display:block;margin:4px 0 0;}
+  .bk-confirm{width:100%;margin-top:12px;height:52px;border:0;border-radius:999px;font:inherit;font-weight:800;font-size:1rem;cursor:pointer;
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;background:#E6EEF6;color:#7C8EA6;transition:background .3s,color .3s,box-shadow .3s,transform 90ms;}
+  .bk-confirm.ready{background:linear-gradient(90deg,var(--primary),#1C6FD1 55%,#25B7C6);color:#fff;box-shadow:0 12px 26px rgba(11,61,145,.28);}
+  .bk-confirm:active{transform:scale(.97);}
+  .bk-confirm:disabled{opacity:.7;}
+  @media(prefers-reduced-motion:reduce){.bk-slot{transition-delay:0s !important;transform:none !important;}.bk-day[aria-pressed="true"]{transform:none;}}
+  @media(max-width:1000px){#leadForm{grid-template-columns:1fr;}.lf-fields{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.lf-fields{grid-template-columns:1fr;}.form-card{padding:26px 18px;}.bk{padding:18px 14px;}.bk-day{height:38px;font-size:.88rem;}}
+</style>
+<script>/* links in the Services dropdown (and Switch service) mark the next navigation as a zoom */(function(){var K='vtZoom',RE=/(tax-preparation-planning|bookkeeping-payroll|business-consulting|future-security)\.html$/;function tag(e){try{if(e.viewTransition&&sessionStorage.getItem(K))e.viewTransition.types.add('zoom');}catch(_){}}addEventListener('pageswap',tag);addEventListener('pagereveal',function(e){tag(e);try{sessionStorage.removeItem(K);}catch(_){}});document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('.submenu a');if(a&&RE.test(a.getAttribute('href')||'')){try{sessionStorage.setItem(K,'1');}catch(_){}}},true);})();</script>
+</head>
+<body>
+
+<!-- ===== Announcement / booking banner ===== -->
+<div class="announce">
+  <span>🎯 New clients: your <b>first consultation is free</b> — limited weekly spots.</span>
+  <a href="#request">Book Now →</a>
+</div>
+
+<!-- ===== Top contact bar ===== -->
+<div class="topbar">
+  <div class="container">
+    <span>📞 (916) 616-1789 &nbsp;·&nbsp; ✉️ ask@magnumcpa.com</span>
+    <span>🕘 Mon–Fri 9:00am – 5:00pm &nbsp;·&nbsp; Sat–Sun 2:00pm – 6:00pm</span>
+  </div>
+</div>
+
+<!-- ===== Header / Navigation ===== -->
+<header class="site-header">
+  <div class="container nav-inner">
+    <a href="#home" class="brand"><picture><source srcset="images/logo.webp" type="image/webp"><img src="images/logo.png" width="840" height="180" alt="Magnum CPA PC — Tax · Accounting · Advisory" fetchpriority="high"></picture></a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="main-nav" id="mainNav">
+      <ul>
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li class="has-sub">
+          <a href="#services" class="sub-toggle">Services ▾</a>
+          <ul class="submenu">
+            <li><a href="tax-preparation-planning.html">Tax Preparation &amp; Planning</a></li>
+            <li><a href="bookkeeping-payroll.html">Bookkeeping &amp; Payroll</a></li>
+            <li><a href="business-consulting.html">Business Consulting</a></li>
+            <li><a href="future-security.html">Future Security</a></li>
+            <li><a href="#services">All Services</a></li>
+          </ul>
+        </li>
+        <li class="has-sub">
+          <a href="#" class="sub-toggle">Resources ▾</a>
+          <ul class="submenu">
+            <li><a href="#client-newsletter">Client Newsletter</a></li>
+            <li><a href="#tax-planning-newsletter">Tax Planning Newsletter</a></li>
+            <li><a href="#tax-videos">Tax Videos</a></li>
+            <li><a href="financial-calculators.html">Financial Calculators</a></li>
+          </ul>
+        </li>
+        <li><a href="https://magnumcpa.clientportal.com/#/login" target="_blank" rel="noopener">Client Portal</a></li>
+        <li><a href="#request">Request Consultation</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+        <li class="search-li"><a href="#" class="search-btn" aria-label="Search the site">🔍</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== Hero (Home) ===== -->
+<section class="hero" id="home">
+  <div class="hero-photo">
+    <picture>
+      <source type="image/webp" srcset="images/hero-photo2-700.webp 700w, images/hero-photo2.webp 1032w" sizes="(max-width:980px) 100vw, 56vw">
+      <img src="images/hero-photo2.jpg" width="1032" height="782" alt="Max Drew, CPA, meeting with a client in the Magnum CPA PC office" fetchpriority="high">
+    </picture>
+  </div>
+  <div class="container">
+    <div class="hero-wrap">
+      <div class="hero-info">
+        <div class="sec-kicker blue">Your Trusted Financial Partner</div>
+        <h1>More Than <span class="nw">Accounting</span><br><span class="grad">We're Your Strategic Partner</span></h1>
+        <p class="lede">At Magnum CPA PC, we provide more than numbers. We deliver personalized tax, accounting, and advisory solutions that help you grow, protect, and build a stronger financial future.</p>
+        <div class="hero-cta">
+          <a href="#request" class="btn">Schedule a Consultation <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Why Choose Us ===== -->
+<section id="why-choose-us" class="wcu">
+  <div class="wcu-desk" aria-hidden="true"><img src="images/why-desk.webp" width="332" height="725" alt="" loading="lazy"></div>
+  <div class="container">
+    <div class="wcu-kicker">Why Choose Us?</div>
+    <h2 class="wcu-title">Your Success <span class="grad">Is Our Priority</span></h2>
+    <p class="wcu-sub">Trusted <i>•</i> Experienced <i>•</i> Committed to Your Success</p>
+    <div class="wcu-grid">
+      <div class="wcu-card"><img src="images/badge-bbb.webp" width="195" height="235" alt="BBB Accredited Business plaque" loading="lazy">
+        <div><h3>BBB Accredited</h3><p>Our commitment to transparency and ethical service is verified through our Better Business Bureau accreditation.</p></div></div>
+      <div class="wcu-card"><img src="images/badge-sac.webp" width="190" height="235" alt="2025 BusinessRate award plaque, Sacramento" loading="lazy">
+        <div><h3>2025 Best Business Rate in Sacramento</h3><p>We provide elite, specialized expertise and personalized rates, ensuring we are competitive in the Sacramento region.</p></div></div>
+      <div class="wcu-card"><img src="images/badge-ramsey.webp" width="190" height="217" alt="Ramsey Trusted badge" loading="lazy">
+        <div><h3>Trusted by Ramsey</h3><p>We are recognized for providing the high level of reliability and sound financial principles expected of Ramsey-trusted professionals.</p></div></div>
+      <div class="wcu-card"><img src="images/badge-best.webp" width="225" height="202" alt="Best of 2026 BusinessRate badge" loading="lazy">
+        <div><h3>2026 Ranked 1 by Momentum Score</h3><p>Showcasing excellence in customer satisfaction and review performance.</p></div></div>
+    </div>
+    <div class="wcu-prec">
+      <span class="wcu-target" aria-hidden="true"><i class="fa-solid fa-bullseye"></i></span>
+      <div><h3>Passion for Precision</h3><p>Our team combines a passion for professional design with strict procedural compliance to ensure your reports are as clear as they are accurate.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== About Us ===== -->
+<section id="about">
+  <!-- intro -->
+  <div class="section">
+    <div class="container">
+      <div class="about-wrap">
+        <figure class="about-card" style="margin:0;">
+          <picture>
+            <source type="image/webp" srcset="images/Max-contact-new-700.webp 700w, images/Max-contact-new.webp 1254w" sizes="(max-width:980px) 92vw, 420px">
+            <img src="images/Max-contact-new.jpg" width="1254" height="1254" loading="lazy" alt="Max (Magnum) Drew, Founder and CEO of Magnum CPA PC, smiling with arms crossed">
+          </picture>
+        </figure>
+        <div class="about-txt">
+          <div class="sec-kicker blue">About Us</div>
+          <h2>Welcome to <span class="grad">Magnum CPA PC</span></h2>
+          <p>Our story began 10 years ago right here in California, established by our founder, Max (Magnum) Drew. We have grown from a small practice into a trusted professional corporation with a clear vision: to be more than just accountants—we aim to be true financial partners.</p>
+          <div class="about-vals">
+            <div class="about-val"><span class="ic" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></span>
+              <b>Expert Guidance</b><span>Trusted expertise and personalized solutions.</span></div>
+            <div class="about-val" style="--tint:#DDF7F2;--tint-ink:#0F7C6C;"><span class="ic" aria-hidden="true"><i class="fa-solid fa-user-group"></i></span>
+              <b>Client First</b><span>Your success is our priority.</span></div>
+            <div class="about-val" style="--tint:#E1F1FD;--tint-ink:var(--secondary-ink);"><span class="ic" aria-hidden="true"><i class="fa-solid fa-chart-simple"></i></span>
+              <b>Long-Term Partnership</b><span>Building lasting financial security.</span></div>
+            <div class="about-val" style="--tint:#DDF7F2;--tint-ink:#0F7C6C;"><span class="ic" aria-hidden="true"><i class="fa-solid fa-handshake"></i></span>
+              <b>Integrity &amp; Excellence</b><span>Honesty, accuracy and professionalism.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Our Mission + What Our Clients Say -->
+  <div class="mc">
+    <svg class="mc-deco tl" viewBox="0 0 340 150" aria-hidden="true"><path d="M0 0h250C190 40 120 70 0 118Z" fill="#CFE8FB" opacity=".55"/><path d="M0 104C95 72 160 38 215 0" fill="none" stroke="#5FD3E2" stroke-width="2" opacity=".7"/></svg>
+    <svg class="mc-deco bl" viewBox="0 0 520 230" aria-hidden="true"><path d="M0 70C120 70 230 150 330 230H0Z" fill="#CFE8FB" opacity=".6"/><path d="M0 20C150 30 260 120 360 230" fill="none" stroke="#5FD3E2" stroke-width="2" opacity=".7"/></svg>
+    <svg class="mc-deco br" viewBox="0 0 460 170" aria-hidden="true"><path d="M460 30C350 70 250 120 130 170H460Z" fill="#CFE8FB" opacity=".6"/><path d="M460 70C370 110 300 140 220 170" fill="none" stroke="#7FE7D6" stroke-width="2" opacity=".8"/></svg>
+    <span class="mc-dots tr" aria-hidden="true"></span><span class="mc-dots br2" aria-hidden="true"></span>
+    <div class="container">
+      <h2 class="mc-title">Our <span class="grad">Mission</span></h2>
+      <p class="mc-mission">Our mission is to be the trusted financial partner for individuals and businesses, delivering accurate tax compliance, proactive financial planning, and strategic advisory services that secure and grow their wealth.</p>
+
+      <h2 class="mc-title">What Our <span class="grad">Clients Say</span></h2>
+      <div class="reviews">
+        <div class="review-viewport">
+          <div class="review-track" id="reviewTrack">
+            <div class="review">
+              <div class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+              <h4>Phenomenal CPA Firm – Highly Professional and Efficient!</h4>
+              <p>We've been working with Magnum CPA for our accounting, tax filings, and advisory needs, and I cannot recommend them enough. Sir Max and his entire team are incredibly sharp, thorough, and organized. What really sets them apart is their proactive communication and airtight processes. They keep us completely on track with our project milestones, and their billing is always transparent and clear. It's rare to find an accounting firm that balances top-tier financial expertise with such an approachable, structured administrative team. If you want peace of mind with your business finances, look no further than Magnum.</p>
+            </div>
+            <div class="review">
+              <div class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+              <h4>Reliable, organized, and stress-free!</h4>
+              <p>Switching our accounting and tax preparation over to Magnum CPA was the best decision we made for our business this year. The team is exceptionally responsive and keeps everything running like clockwork. They make complex tax and billing processes incredibly straightforward and stress-free. Huge shout-out to Max and the staff for always being on top of their game. 5 stars all the way!</p>
+            </div>
+            <div class="review">
+              <div class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+              <h4>Excellent team and seamless processes!</h4>
+              <p>I am always impressed by the level of professionalism at Magnum CPA. They handle our corporate filings and accounting with absolute precision. Their internal workflow is incredibly efficient—you never have to worry about missing a deadline or chasing down updates because they are already two steps ahead of you. The customer service is excellent, clear, and consistent. Highly recommend their services to any business looking for a reliable financial partner.</p>
+            </div>
+          </div>
+        </div>
+        <button class="rev-nav prev" onclick="revMove(-1)" aria-label="Previous review"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+        <button class="rev-nav next" onclick="revMove(1)" aria-label="Next review"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+        <div class="rev-dots" id="revDots"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Why Get Tax Help ===== -->
+<section class="mc" style="padding:72px 0 80px;">
+    <svg class="mc-deco tl" viewBox="0 0 340 150" aria-hidden="true"><path d="M0 0h250C190 40 120 70 0 118Z" fill="#CFE8FB" opacity=".55"/><path d="M0 104C95 72 160 38 215 0" fill="none" stroke="#5FD3E2" stroke-width="2" opacity=".7"/></svg>
+    <svg class="mc-deco br" viewBox="0 0 460 170" aria-hidden="true"><path d="M460 30C350 70 250 120 130 170H460Z" fill="#CFE8FB" opacity=".6"/><path d="M460 70C370 110 300 140 220 170" fill="none" stroke="#7FE7D6" stroke-width="2" opacity=".8"/></svg>
+    <span class="mc-dots tr" aria-hidden="true"></span><span class="mc-dots bl2" aria-hidden="true"></span>
+  <div class="container">
+    <h2 class="mc-title plain">Why Get <span class="grad">Tax Help?</span></h2>
+    <div class="why-video framed" style="margin-top:40px;">
+      <iframe src="https://www.youtube.com/embed/8ZnrVnLpm-o?rel=0"
+              title="Magnum CPA PC — Why Get Tax Help?" loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Services ===== -->
+<section id="services">
+  <div class="sec-head">
+    <div class="container">
+      <div class="sec-kicker">Our Services</div>
+      <h2>Comprehensive Solutions for <span class="grad">Your Financial Success</span></h2>
+      <p>Expert guidance. Personalized strategies. Long-term value.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="svc-grid">
+        <article class="svc-card">
+          <div class="svc-img">
+            <div class="svc-img-wrap"><img src="images/tax.jpg" style="view-transition-name:svc-tax" alt="Tax forms and a calculator on a desk" loading="lazy"></div>
+            <span class="svc-ic" aria-hidden="true"><i class="fa-solid fa-file-invoice-dollar"></i></span>
+          </div>
+          <div class="svc-body">
+            <h3>Tax Preparation and Planning</h3>
+            <p>We help you stay compliant and maximize your tax savings with strategic, year-round planning.</p>
+            <ul class="svc-list">
+              <li>Individual &amp; business tax returns</li>
+              <li>Tax planning and projections</li>
+              <li>IRS representation and support</li>
+              <li>Year-round tax advisory</li>
+            </ul>
+            <a class="svc-more" href="tax-preparation-planning.html">Learn More <i class="fa-solid fa-chevron-right" aria-hidden="true"></i><span class="sr-only"> about Tax Preparation and Planning</span></a>
+          </div>
+        </article>
+        <article class="svc-card">
+          <div class="svc-img">
+            <div class="svc-img-wrap"><img src="images/bk-payroll.jpg" style="view-transition-name:svc-books" alt="Hands working on a laptop and calculator" loading="lazy"></div>
+            <span class="svc-ic" aria-hidden="true"><i class="fa-solid fa-calculator"></i></span>
+          </div>
+          <div class="svc-body">
+            <h3>Bookkeeping and Payroll Services</h3>
+            <p>Accurate records and timely payroll so you can focus on what matters most — your business.</p>
+            <ul class="svc-list">
+              <li>Daily/Monthly bookkeeping</li>
+              <li>Payroll processing &amp; tax filings</li>
+              <li>Financial statement preparation</li>
+              <li>Clean-up and catch-up services</li>
+            </ul>
+            <a class="svc-more" href="bookkeeping-payroll.html">Learn More <i class="fa-solid fa-chevron-right" aria-hidden="true"></i><span class="sr-only"> about Bookkeeping and Payroll Services</span></a>
+          </div>
+        </article>
+        <article class="svc-card">
+          <div class="svc-img">
+            <div class="svc-img-wrap"><img src="images/consulting.jpg" style="view-transition-name:svc-consult" alt="Reviewing business charts on a laptop" loading="lazy"></div>
+            <span class="svc-ic" aria-hidden="true"><i class="fa-solid fa-chart-column"></i></span>
+          </div>
+          <div class="svc-body">
+            <h3>Business Consulting</h3>
+            <p>Strategic insights and practical solutions to drive growth, improve efficiency, and increase profitability.</p>
+            <ul class="svc-list">
+              <li>Business strategy and planning</li>
+              <li>Operational improvement</li>
+              <li>Financial analysis and forecasting</li>
+              <li>Succession and growth planning</li>
+            </ul>
+            <a class="svc-more" href="business-consulting.html">Learn More <i class="fa-solid fa-chevron-right" aria-hidden="true"></i><span class="sr-only"> about Business Consulting</span></a>
+          </div>
+        </article>
+        <article class="svc-card">
+          <div class="svc-img">
+            <div class="svc-img-wrap"><img src="images/security.jpg" style="view-transition-name:svc-future" alt="Hands sheltering a piggy bank" loading="lazy"></div>
+            <span class="svc-ic" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></span>
+          </div>
+          <div class="svc-body">
+            <h3>Future Security</h3>
+            <p>Build, protect, and grow your wealth with a holistic approach to retirement, wealth management, and estate planning.</p>
+            <ul class="svc-list">
+              <li>Retirement planning</li>
+              <li>Wealth management</li>
+              <li>Estate and legacy planning</li>
+              <li>Life and business protection</li>
+            </ul>
+            <a class="svc-more" href="future-security.html">Learn More <i class="fa-solid fa-chevron-right" aria-hidden="true"></i><span class="sr-only"> about Future Security</span></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-band">
+    <div class="container">
+      <h2>Ready to take control of <span class="grad-light">your taxes?</span></h2>
+      <p>Work with a CPA that Ramsey has trusted for over 10 years.</p>
+      <a href="#request" class="btn">Schedule Your Free Consultation <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Resources: Client Newsletter ===== -->
+<section id="client-newsletter" class="mc">
+    <svg class="mc-deco tl" viewBox="0 0 340 150" aria-hidden="true"><path d="M0 0h250C190 40 120 70 0 118Z" fill="#CFE8FB" opacity=".55"/><path d="M0 104C95 72 160 38 215 0" fill="none" stroke="#5FD3E2" stroke-width="2" opacity=".7"/></svg>
+    <svg class="mc-deco br" viewBox="0 0 460 170" aria-hidden="true"><path d="M460 30C350 70 250 120 130 170H460Z" fill="#CFE8FB" opacity=".6"/><path d="M460 70C370 110 300 140 220 170" fill="none" stroke="#7FE7D6" stroke-width="2" opacity=".8"/></svg>
+    <span class="mc-dots tr" aria-hidden="true"></span><span class="mc-dots bl2" aria-hidden="true"></span>
+  <div class="container">
+    <div class="nl-head">
+      <div class="nl-kicker"><i class="fa-solid fa-newspaper ic" aria-hidden="true"></i><span class="sep" aria-hidden="true"></span>Client Newsletter</div>
+      <h2>Monthly Updates, <span class="grad">Firm News &amp; Money Tips</span></h2>
+      <p>Practical insights to keep your finances on track all year.</p>
+      <span class="nl-bar" aria-hidden="true"></span>
+    </div>
+    <div class="news-grid">
+      <div class="news-card soft-card"><div class="news-top"><div class="date"><b>15</b><span>JUN</span></div>
+        <span class="news-art" aria-hidden="true"><i class="fa-regular fa-calendar-days"></i><span class="bdg"><i class="fa-solid fa-dollar-sign"></i></span></span></div>
+        <h3>Mid-Year Money Check-In</h3><p>Five steps to keep your finances on track for the rest of the year.</p><span class="nl-bar" aria-hidden="true"></span></div>
+      <div class="news-card soft-card"><div class="news-top"><div class="date"><b>02</b><span>MAY</span></div>
+        <span class="news-art" aria-hidden="true"><i class="fa-solid fa-file-invoice"></i><span class="bdg"><i class="fa-solid fa-dollar-sign"></i></span></span></div>
+        <h3>Smart Ways to Use Your Refund</h3><p>Turn this year's refund into next year's progress.</p><span class="nl-bar" aria-hidden="true"></span></div>
+      <div class="news-card soft-card"><div class="news-top"><div class="date"><b>10</b><span>APR</span></div>
+        <span class="news-art" aria-hidden="true"><i class="fa-regular fa-file-lines"></i><span class="bdg"><i class="fa-regular fa-clock"></i></span></span></div>
+        <h3>Last-Minute Filing Tips</h3><p>Avoid the most common mistakes before the deadline.</p><span class="nl-bar" aria-hidden="true"></span></div>
+    </div>
+    <div style="text-align:center;margin-top:44px;"><a href="#contact" class="btn-pill"><i class="fa-solid fa-envelope" aria-hidden="true"></i><span class="sep" aria-hidden="true"></span>Subscribe to the Newsletter <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div>
+  </div>
+</section>
+
+<!-- ===== Resources: Tax Planning Newsletter ===== -->
+<section id="tax-planning-newsletter" class="mc">
+    <svg class="mc-deco tl" viewBox="0 0 340 150" aria-hidden="true"><path d="M0 0h250C190 40 120 70 0 118Z" fill="#CFE8FB" opacity=".55"/><path d="M0 104C95 72 160 38 215 0" fill="none" stroke="#5FD3E2" stroke-width="2" opacity=".7"/></svg>
+    <svg class="mc-deco br" viewBox="0 0 460 170" aria-hidden="true"><path d="M460 30C350 70 250 120 130 170H460Z" fill="#CFE8FB" opacity=".6"/><path d="M460 70C370 110 300 140 220 170" fill="none" stroke="#7FE7D6" stroke-width="2" opacity=".8"/></svg>
+    <span class="mc-dots tr" aria-hidden="true"></span><span class="mc-dots bl2" aria-hidden="true"></span>
+  <div class="container">
+    <div class="nl-head">
+      <div class="nl-kicker"><i class="fa-solid fa-envelope-open-text ic" aria-hidden="true"></i><span class="sep" aria-hidden="true"></span>Tax Planning Newsletter</div>
+      <h2>Strategies for <span class="grad">Proactive Tax Savings</span></h2>
+      <p>Strategy-focused articles for proactive tax savings all year long.</p>
+    </div>
+    <div class="art-grid">
+      <div class="art-card soft-card"><span class="art-ic" aria-hidden="true"><i class="fa-solid fa-seedling"></i></span><div class="art-body"><h3>Maximizing Retirement Contributions</h3><p>How to use 401(k)s, IRAs, and HSAs to lower this year's tax bill while building wealth.</p></div></div>
+      <div class="art-card soft-card"><span class="art-ic" aria-hidden="true"><i class="fa-solid fa-store"></i></span><div class="art-body"><h3>Small Business Entity Choices</h3><p>LLC, S-Corp, or sole proprietor? Understand the tax impact of each structure.</p></div></div>
+      <div class="art-card soft-card"><span class="art-ic" aria-hidden="true"><i class="fa-solid fa-hand-holding-heart"></i></span><div class="art-body"><h3>Charitable Giving Strategies</h3><p>Bunching, donor-advised funds, and other ways to give smarter.</p></div></div>
+      <div class="art-card soft-card"><span class="art-ic" aria-hidden="true"><i class="fa-solid fa-chart-line"></i></span><div class="art-body"><h3>Capital Gains Planning</h3><p>Timing sales and harvesting losses to keep more of your investment returns.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Resources: Tax Videos ===== -->
+<section id="tax-videos" class="mc">
+    <svg class="mc-deco tl" viewBox="0 0 340 150" aria-hidden="true"><path d="M0 0h250C190 40 120 70 0 118Z" fill="#CFE8FB" opacity=".55"/><path d="M0 104C95 72 160 38 215 0" fill="none" stroke="#5FD3E2" stroke-width="2" opacity=".7"/></svg>
+    <svg class="mc-deco br" viewBox="0 0 460 170" aria-hidden="true"><path d="M460 30C350 70 250 120 130 170H460Z" fill="#CFE8FB" opacity=".6"/><path d="M460 70C370 110 300 140 220 170" fill="none" stroke="#7FE7D6" stroke-width="2" opacity=".8"/></svg>
+    <span class="mc-dots tr" aria-hidden="true"></span><span class="mc-dots bl2" aria-hidden="true"></span>
+  <div class="container">
+      <div class="nl-head">
+        <div class="nl-kicker line"><i class="fa-solid fa-circle-play ic" aria-hidden="true"></i>Tax Videos</div>
+        <h2>Plain-English Answers to<br><span class="grad">Your Tax Questions</span></h2>
+        <p>Short videos on the tax topics that matter most.</p>
+      </div>
+      <div class="vg" id="videoGallery">
+        <div class="vg-top">
+          <div class="vg-stage" id="vgStage" role="tabpanel"></div>
+          <div class="vg-info">
+            <div class="vg-count" id="vgCount"></div>
+            <h2 id="vgTitle"></h2>
+            <p>Plain-English answers from Max Drew, CPA. Press play, or browse every topic below.</p>
+            <div class="vg-nav">
+              <button type="button" class="vg-btn" id="vgPrev" aria-label="Previous video"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Prev</button>
+              <button type="button" class="vg-btn" id="vgNext" aria-label="Next video">Next <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+              <button type="button" class="vg-btn vg-auto" id="vgAuto" aria-pressed="false" aria-label="Pause auto-advance">&#10074;&#10074;</button>
+              <a class="vg-btn solid" href="#request"><i class="fa-solid fa-comment-dots" aria-hidden="true"></i> Ask Us About This</a>
+            </div>
+          </div>
+        </div>
+        <div class="vg-stripwrap">
+          <button type="button" class="vg-sarrow prev" id="vgSPrev" aria-label="Previous video"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+          <div class="vg-strip" id="vgStrip" role="tablist" aria-label="Tax videos">
+            <div class="vg-ind" id="vgInd" aria-hidden="true"></div>
+          </div>
+          <button type="button" class="vg-sarrow next" id="vgSNext" aria-label="Next video"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+        </div>
+      </div>
+  </div>
+</section>
+
+<!-- ===== Request a Consultation ===== -->
+<section id="request">
+  <div class="sec-head">
+    <div class="container">
+      <div class="sec-kicker">Request a Consultation</div>
+      <h2>Let's Talk About <span class="grad">Your Taxes and Financial Goals</span></h2>
+      <p>Book a free strategy call with Max Drew, CPA.</p>
+    </div>
+  </div>
+  <div class="section">
+    <div class="container">
+
+      <!-- Step 1: Book Your Free Strategy Call -->
+      <div id="step1" class="form-card">
+        <h2 class="bookcall-title">Book Your <span class="grad">Free Strategy Call</span></h2>
+        <p class="bookcall-sub">Available slots: Mon–Fri, 9:00am–5:00pm EST · Sat–Sun 2:00pm – 6:00pm </p>
+        <div class="form-error-banner" id="formError" style="display:none;"></div>
+        <form id="leadForm" onsubmit="return submitLeadForm(event)" novalidate>
+          <div class="lf-fields">
+          <div class="grid2">
+            <div class="fld"><label>First Name</label><input type="text" id="dcFirst" placeholder="First" required><span class="fld-error" id="err-dcFirst"></span></div>
+            <div class="fld"><label>Last Name</label><input type="text" id="dcLast" placeholder="Last" required><span class="fld-error" id="err-dcLast"></span></div>
+          </div>
+          <div class="fld"><label>Business Email</label><input type="email" id="dcEmail" placeholder="you@company.com" required><span class="fld-error" id="err-dcEmail"></span></div>
+          <div class="fld"><label>Phone Number</label><input type="tel" id="dcPhone" placeholder="(555) 555-5555" required><span class="fld-error" id="err-dcPhone"></span></div>
+          <div class="grid2">
+            <div class="fld"><label>Business Name <span class="fld-optional">(optional)</span></label><input type="text" id="dcBusiness" placeholder="Your business name"></div>
+            <div class="fld"><label>State</label>
+              <select id="dcState" required>
+                <option value="">Select your state</option>
+                <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option>
+                <option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option>
+                <option>District of Columbia</option><option>Florida</option><option>Georgia</option><option>Hawaii</option>
+                <option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option>
+                <option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option>
+                <option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option>
+                <option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option>
+                <option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option>
+                <option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option>
+                <option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option>
+                <option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option>
+                <option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option>
+                <option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option>
+              </select>
+              <span class="fld-error" id="err-dcState"></span>
+            </div>
+          </div>
+          <fieldset class="fld-group" id="dcHelp" aria-describedby="err-dcHelp">
+            <legend>I Need Help With <span class="fld-optional">(choose all that apply)</span></legend>
+            <div class="chips">
+              <label class="chip"><input type="checkbox" name="dcHelp" value="Tax Strategy &amp; Planning"><span>Tax Strategy &amp; Planning</span></label>
+              <label class="chip"><input type="checkbox" name="dcHelp" value="Tax Preparation"><span>Tax Preparation</span></label>
+              <label class="chip"><input type="checkbox" name="dcHelp" value="Bookkeeping &amp; Payroll"><span>Bookkeeping &amp; Payroll</span></label>
+              <label class="chip"><input type="checkbox" name="dcHelp" value="Business Consulting"><span>Business Consulting</span></label>
+              <label class="chip"><input type="checkbox" name="dcHelp" value="Wealth, Retirement &amp; Estate Planning"><span>Wealth, Retirement &amp; Estate Planning</span></label>
+              <label class="chip"><input type="checkbox" name="dcHelp" value="Something Else"><span>Something Else</span></label>
+            </div>
+            <span class="fld-error" id="err-dcHelp"></span>
+          </fieldset>
+          <div class="fld"><label>Annual Revenue (Approximate)</label>
+            <select id="dcRevenue">
+              <option>Under $250K</option>
+              <option>$250K – $500K</option>
+              <option>$500K – $1M</option>
+              <option>$1M – $5M</option>
+              <option>$5M+</option>
+              <option>Not applicable / Individual</option>
+            </select>
+          </div>
+          <div class="grid2">
+            <div class="fld"><label>Preferred Contact Method</label>
+              <select id="dcContactMethod">
+                <option>Email</option>
+                <option>Phone Call</option>
+                <option>Text Message</option>
+              </select>
+            </div>
+          </div>
+          <div class="fld full"><label>Message <span class="fld-optional">(optional)</span></label>
+            <textarea id="dcMessage" rows="1" maxlength="2000" placeholder="Anything else we should know?"></textarea>
+            <span class="fld-error" id="err-dcMessage"></span>
+          </div>
+
+          <!-- Honeypot: invisible to real visitors, left blank by them; bots
+               that auto-fill every field trip it. Positioned off-screen
+               (not display:none) and unfocusable/unautofillable. -->
+          <div class="hp-field" aria-hidden="true">
+            <label for="dcCompanyWebsite">Company Website</label>
+            <input type="text" id="dcCompanyWebsite" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAEBKjiEdCTa8l7GC" data-theme="light" style="margin-bottom:16px;"></div>
+          <script>
+            /* The normal Turnstile widget is a fixed 300px wide; use the compact one where that won't fit. */
+            if (window.innerWidth < 380) document.querySelector('#leadForm .cf-turnstile').setAttribute('data-size', 'compact');
+          </script>
+
+          </div>
+
+          <!-- Preferred day + time. Not live availability: the exact slot is confirmed in the scheduler on the next step. -->
+          <div class="bk" id="dcSlot" aria-describedby="err-dcSlot">
+            <div class="bk-head">
+              <div>
+                <div class="bk-title">Book a time that <span class="grad">works</span></div>
+                <span class="bk-pill"><i class="fa-regular fa-clock" aria-hidden="true"></i> Free 30-minute call</span>
+              </div>
+              <div class="bk-nav">
+                <button type="button" class="bk-arrow" id="bkPrev" aria-label="Earlier dates"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+                <button type="button" class="bk-arrow" id="bkNext" aria-label="Later dates"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+              </div>
+            </div>
+            <div class="bk-month" id="bkMonth" aria-live="polite"></div>
+            <div class="bk-dow" aria-hidden="true"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div>
+            <div class="bk-days" id="bkDays" role="group" aria-label="Choose a day"></div>
+            <div class="bk-slots" id="bkSlots" role="group" aria-label="Choose a time"></div>
+            <p class="bk-tz">Times shown in Eastern Time (ET).</p>
+            <span class="fld-error" id="err-dcSlot"></span>
+            <button type="submit" class="bk-confirm" id="leadSubmitBtn" aria-disabled="true">Reserve My Free Call <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+          </div>
+          <p class="bookcall-note">🔒 Your information is private and never sold. We'll confirm within 2 hours.</p>
+        </form>
+      </div>
+
+      <!-- Step 2: scheduler (revealed after Step 1) -->
+      <div id="step2" style="display:none;">
+        <p class="form-intro">Great, <span id="dcGreet"></span>! Pick a date and time that works for you — instantly confirmed online.<span id="dcPicked"></span></p>
+        <div class="schedule-embed">
+          <div class="sched-head">
+            <span class="ic">📅</span>
+            <span>Book Your Appointment<small>Choose a date &amp; time — instantly confirmed</small></span>
+          </div>
+          <iframe id="schedFrame" title="Schedule a consultation with Magnum CPA PC" width="100%" height="900" frameborder="0"></iframe>
+        </div>
+        <p style="text-align:center;color:var(--muted);font-size:.9rem;margin-top:16px;">
+          <a href="#" onclick="backToDetails();return false;" style="color:var(--primary);font-weight:700;">← Edit your details</a>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== Contact Us ===== -->
+<section id="contact" class="mc" style="padding:72px 0 84px;">
+    <svg class="mc-deco tl" viewBox="0 0 340 150" aria-hidden="true"><path d="M0 0h250C190 40 120 70 0 118Z" fill="#CFE8FB" opacity=".55"/><path d="M0 104C95 72 160 38 215 0" fill="none" stroke="#5FD3E2" stroke-width="2" opacity=".7"/></svg>
+    <svg class="mc-deco br" viewBox="0 0 460 170" aria-hidden="true"><path d="M460 30C350 70 250 120 130 170H460Z" fill="#CFE8FB" opacity=".6"/><path d="M460 70C370 110 300 140 220 170" fill="none" stroke="#7FE7D6" stroke-width="2" opacity=".8"/></svg>
+    <span class="mc-dots tr" aria-hidden="true"></span><span class="mc-dots bl2" aria-hidden="true"></span>
+    <div class="container">
+      <div class="contactx">
+        <h1>Contact <span class="grad">Us</span></h1>
+        <p class="sub">Have questions about your accounting needs? We are here to help. Reach out to our dedicated team today.</p>
+
+        <div class="cx-grid">
+          <div class="cx-photo">
+            <img src="images/Max-contact-us.jpg" alt="Max Drew, Magnum CPA PC">
+            <div class="cx-badge"><b>Max Drew</b><span>Founder &amp; CPA</span></div>
+          </div>
+
+          <div class="cx-right">
+            <div class="cx-name"><b>Max Drew</b><span>Founder &amp; CPA</span></div>
+
+            <div class="cx-cards">
+              <div class="cx-card">
+                <div class="h"><span class="dot"><i class="fa-solid fa-phone" aria-hidden="true"></i></span><span class="lbl">Get In Touch</span></div>
+                <div class="cx-row"><i class="fa-solid fa-phone" aria-hidden="true"></i><p><b>Phone:</b> 916-616-1789</p></div>
+                <div class="cx-row"><i class="fa-solid fa-envelope" aria-hidden="true"></i><p><b>Email:</b> ask@magnumcpa.com</p></div>
+              </div>
+              <div class="cx-card">
+                <div class="h"><span class="dot"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></span><span class="lbl">Find Us</span></div>
+                <div class="cx-row"><i class="fa-solid fa-location-dot" aria-hidden="true"></i><p><b>Address:</b> 907 Green Moss Drive, Sacramento, CA 95831</p></div>
+              </div>
+            </div>
+
+            <div class="cx-map">
+              <iframe title="Magnum CPA PC location map" loading="lazy"
+                src="https://www.google.com/maps?q=907%20Green%20Moss%20Drive%2C%20Sacramento%2C%20CA%2095831&output=embed"></iframe>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="brand" style="margin-bottom:14px;"><picture><source srcset="images/logo.webp" type="image/webp"><img src="images/logo.png" width="840" height="180" alt="Magnum CPA PC" loading="lazy"></picture></div>
+        <p style="font-size:.9rem;">Max Drew, CPA &amp; Financial Coach.<br>Trusted by Ramsey for 10+ years.</p>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="https://magnumcpa.clientportal.com/#/login" target="_blank" rel="noopener">Client Portal</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#client-newsletter">Client Newsletter</a></li>
+          <li><a href="#tax-planning-newsletter">Tax Planning Newsletter</a></li>
+          <li><a href="#tax-videos">Tax Videos</a></li>
+          <li><a href="financial-calculators.html">Financial Calculators</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bottom"><div class="container">
+    <div class="social">
+      <a href="https://www.facebook.com/max.drew.522" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/magnumcpa11/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.youtube.com/@MaxDrew" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <a href="https://www.threads.com/@magnumcpa11?xmt=AQG0ulpk6R3kK_t4bDitznWtQA3G7iO-LKH2PQMVhY07s6E" target="_blank" rel="noopener" aria-label="Threads"><i class="fa-brands fa-threads"></i></a>
+      <a href="https://x.com/MagnumCPA11" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="https://www.quora.com/profile/Magnum-CPA" target="_blank" rel="noopener" aria-label="Quora"><i class="fa-brands fa-quora"></i></a>
+    </div>
+    <div class="foot-copy">© <span id="year"></span> Magnum CPA PC. All rights reserved.</div>
+  </div></div>
+</footer>
+
+<!-- ===== Floating Book a Consultation CTA ===== -->
+<a class="book-fab" href="#request">📅 Book a Consultation</a>
+
+<!-- ===== One-time booking popup ===== -->
+<div class="bookpop-overlay" id="bookPop" onclick="if(event.target===this)closeBookPop()">
+  <div class="bookpop">
+    <button class="x" onclick="closeBookPop()" aria-label="Close">&times;</button>
+    <div class="top">
+      <h3>Ready to keep more of what you earn?</h3>
+      <p>Book a free consultation with Max Drew, CPA — Ramsey Trusted for 10+ years.</p>
+    </div>
+    <div class="body">
+      <a href="#request" class="btn" style="display:inline-block;" onclick="closeBookPop()">Schedule My Free Consultation</a>
+      <div style="margin-top:12px;"><a href="#" onclick="closeBookPop();return false;" style="color:var(--muted);font-size:.85rem;">No thanks, maybe later</a></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ===== Nav: mobile toggle + dropdown ===== */
+  (function(){
+    var toggle = document.getElementById('navToggle');
+    var nav = document.getElementById('mainNav');
+    if (toggle && nav){
+      toggle.addEventListener('click', function(){
+        nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', nav.classList.contains('open'));
+      });
+    }
+    // Resources dropdown: tap to expand on mobile
+    document.querySelectorAll('.has-sub > .sub-toggle').forEach(function(a){
+      a.addEventListener('click', function(e){
+        if (window.matchMedia('(max-width:980px)').matches){
+          e.preventDefault();
+          a.parentNode.classList.toggle('open');
+        }
+      });
+    });
+    // Close mobile nav after picking an in-page anchor
+    document.querySelectorAll('nav.main-nav a[href^="#"]').forEach(function(a){
+      a.addEventListener('click', function(){
+        if (a.classList.contains('sub-toggle') && a.getAttribute('href') === '#') return;
+        nav.classList.remove('open');
+        if (toggle) toggle.setAttribute('aria-expanded', false);
+      });
+    });
+    // current year
+    var y = document.getElementById('year');
+    if (y) y.textContent = new Date().getFullYear();
+    // hide the floating booking button while the hero's booking button is visible
+    var fab = document.querySelector('.book-fab'), heroCta = document.querySelector('.hero-cta');
+    if (fab && heroCta && 'IntersectionObserver' in window){
+      new IntersectionObserver(function(entries){
+        fab.classList.toggle('away', entries[0].isIntersecting);
+      }).observe(heroCta);
+    }
+  })();
+
+  /* ===== Highlight active nav link while scrolling ===== */
+  (function(){
+    var map = {};
+    document.querySelectorAll('nav.main-nav a[href^="#"]').forEach(function(a){
+      var id = a.getAttribute('href').slice(1);
+      if (id) map[id] = a;
+    });
+    var ids = Object.keys(map);
+    if (!ids.length) return;
+    function onScroll(){
+      var pos = window.scrollY + 140, current = 'home';
+      ids.forEach(function(id){
+        var el = document.getElementById(id);
+        if (el && el.offsetTop <= pos) current = id;
+      });
+      document.querySelectorAll('nav.main-nav a').forEach(function(a){ a.classList.remove('active'); });
+      if (map[current]) map[current].classList.add('active');
+    }
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+  })();
+
+  /* ===== Client reviews (About) — auto-rotating slideshow ===== */
+  var revIndex = 0;
+  var revTrack = document.getElementById('reviewTrack');
+  var revSlides = revTrack ? revTrack.children.length : 0;
+  var revDotsWrap = document.getElementById('revDots');
+  if (revTrack && revSlides){
+    for (var i=0;i<revSlides;i++){
+      var d = document.createElement('button');
+      d.setAttribute('aria-label','Go to review '+(i+1));
+      (function(idx){ d.addEventListener('click', function(){ revShow(idx); }); })(i);
+      revDotsWrap.appendChild(d);
+    }
+  }
+  function revShow(i){
+    if(!revSlides) return;
+    revIndex = (i % revSlides + revSlides) % revSlides;
+    revTrack.style.transform = 'translateX(-' + (revIndex*100) + '%)';
+    var dots = revDotsWrap.children;
+    for (var k=0;k<dots.length;k++){ dots[k].classList.toggle('active', k===revIndex); }
+  }
+  function revMove(d){ revShow(revIndex + d); }
+  revShow(0);
+  if (revSlides > 1){ setInterval(function(){ revMove(1); }, 7000); }
+
+
+  /* ===== Request form: preferred day + time picker ===== */
+  // Office hours from the form header: Mon–Fri 9–5, Sat–Sun 2–6 (ET). Earliest day is tomorrow.
+  var BK_SLOTS = { weekday: ['9:30 am', '11:00 am', '1:00 pm', '2:30 pm', '4:00 pm'], weekend: ['2:00 pm', '3:30 pm', '5:00 pm'] };
+  var bkState = { start: null, day: null, slot: null };
+  function bkChoice(){
+    if (!bkState.day || !bkState.slot) return '';
+    return bkState.day.toLocaleDateString('en-US', {weekday: 'short', month: 'short', day: 'numeric'}) + ', ' + bkState.slot;
+  }
+  (function(){
+    var daysEl = document.getElementById('bkDays'), slotsEl = document.getElementById('bkSlots');
+    if (!daysEl) return;
+    var monthEl = document.getElementById('bkMonth'), btn = document.getElementById('leadSubmitBtn');
+    var today = new Date(); today.setHours(0, 0, 0, 0);
+    var first = new Date(today); first.setDate(first.getDate() - ((first.getDay() + 6) % 7));   // Monday of this week
+    var MAX_WEEKS = 6;
+    bkState.start = new Date(first);
+    function same(a, b){ return a && b && a.getTime() === b.getTime(); }
+    function addDays(d, n){ var x = new Date(d); x.setDate(x.getDate() + n); return x; }
+    function updateBtn(){
+      var ready = !!bkChoice();
+      btn.setAttribute('aria-disabled', ready ? 'false' : 'true');
+      btn.classList.toggle('ready', ready);
+      if (ready){ var e = document.getElementById('err-dcSlot'); e.textContent = ''; document.getElementById('dcSlot').classList.remove('invalid'); }
+    }
+    function renderSlots(){
+      slotsEl.innerHTML = '';
+      if (!bkState.day){ slotsEl.innerHTML = '<p class="bk-hint">Pick a day to see times.</p>'; return; }
+      var wk = bkState.day.getDay() % 6 === 0 ? 'weekend' : 'weekday';
+      BK_SLOTS[wk].forEach(function(t, i){
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'bk-slot'; b.textContent = t;
+        b.style.setProperty('--i', i);
+        b.setAttribute('aria-pressed', t === bkState.slot ? 'true' : 'false');
+        b.addEventListener('click', function(){
+          bkState.slot = t;
+          slotsEl.querySelectorAll('.bk-slot').forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+          updateBtn();
+        });
+        slotsEl.appendChild(b);
+      });
+      requestAnimationFrame(function(){ slotsEl.classList.add('in'); });
+    }
+    function renderDays(){
+      daysEl.innerHTML = '';
+      var end = addDays(bkState.start, 13);
+      var m1 = bkState.start.toLocaleDateString('en-US', {month: 'long'}), m2 = end.toLocaleDateString('en-US', {month: 'long', year: 'numeric'});
+      monthEl.textContent = m1 === end.toLocaleDateString('en-US', {month: 'long'}) ? m2 : m1 + ' – ' + m2;
+      for (var i = 0; i < 14; i++){
+        (function(d){
+          var b = document.createElement('button');
+          b.type = 'button'; b.className = 'bk-day'; b.textContent = d.getDate();
+          b.setAttribute('aria-label', d.toLocaleDateString('en-US', {weekday: 'long', month: 'long', day: 'numeric'}));
+          if (d <= today){ b.disabled = true; }
+          b.setAttribute('aria-pressed', same(d, bkState.day) ? 'true' : 'false');
+          b.addEventListener('click', function(){
+            bkState.day = d; bkState.slot = null;
+            daysEl.querySelectorAll('.bk-day').forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+            slotsEl.classList.remove('in'); void slotsEl.offsetWidth;
+            renderSlots(); updateBtn();
+          });
+          daysEl.appendChild(b);
+        })(addDays(bkState.start, i));
+      }
+      document.getElementById('bkPrev').disabled = same(bkState.start, first);
+      document.getElementById('bkNext').disabled = bkState.start >= addDays(first, (MAX_WEEKS - 2) * 7);
+    }
+    document.getElementById('bkPrev').addEventListener('click', function(){ bkState.start = addDays(bkState.start, -14); if (bkState.start < first) bkState.start = new Date(first); renderDays(); });
+    document.getElementById('bkNext').addEventListener('click', function(){ bkState.start = addDays(bkState.start, 14); renderDays(); });
+    renderDays(); renderSlots(); updateBtn();
+  })();
+
+  /* ===== Request a consultation: secure lead capture, then Acuity ===== */
+  var ACUITY_BASE = 'https://magnumcpa.as.me/schedule/c78873bb/appointment/7960861?appointmentTypeIds%5B%5D=7960861';
+
+  // Fill in once the Worker is deployed (see SETUP-CLOUDFLARE.md). Until
+  // then the form fails closed with a friendly message rather than silently
+  // skipping validation/spam checks.
+  var LEAD_API_URL = 'https://magnum-cpa-lead-worker.magnum-cpa.workers.dev/lead';
+
+  function revealScheduler(first, last, email, phone){
+    var url = ACUITY_BASE +
+      '&firstName=' + encodeURIComponent(first) +
+      '&lastName='  + encodeURIComponent(last) +
+      '&email='     + encodeURIComponent(email) +
+      '&phone='     + encodeURIComponent(phone);
+    document.getElementById('schedFrame').src = url;
+    document.getElementById('dcGreet').textContent = (first || 'there');
+    var pk = bkChoice(); document.getElementById('dcPicked').textContent = pk ? ' You asked for ' + pk + ' ET.' : '';
+    document.getElementById('step1').style.display = 'none';
+    document.getElementById('step2').style.display = 'block';
+    document.getElementById('request').scrollIntoView({behavior:'smooth'});
+  }
+  function backToDetails(){
+    document.getElementById('step2').style.display = 'none';
+    document.getElementById('step1').style.display = 'block';
+  }
+
+  /* ---- client-side validation / sanitization ----
+     UX politeness only — the real security boundary is the Worker, which
+     never trusts anything the browser claims to have already checked. */
+  var LEAD_EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  var LEAD_PHONE_RE = /^\+?1?[\s.-]?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
+
+  function leadStripTags(s){ return (s || '').replace(/<[^>]*>/g, ''); }
+
+  function clearLeadErrors(){
+    document.querySelectorAll('#leadForm .fld-error').forEach(function(el){ el.textContent = ''; });
+    document.querySelectorAll('#leadForm .invalid').forEach(function(el){ el.classList.remove('invalid'); });
+    var banner = document.getElementById('formError');
+    banner.style.display = 'none';
+    banner.textContent = '';
+  }
+  function showLeadFieldError(id, message){
+    var input = document.getElementById(id);
+    var err = document.getElementById('err-' + id);
+    if (input) input.classList.add('invalid');
+    if (err) err.textContent = message;
+  }
+  function showLeadFormBanner(message){
+    var banner = document.getElementById('formError');
+    banner.textContent = message;
+    banner.style.display = 'block';
+    banner.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+
+  function collectLeadFields(){
+    return {
+      firstName: leadStripTags(document.getElementById('dcFirst').value.trim()),
+      lastName: leadStripTags(document.getElementById('dcLast').value.trim()),
+      email: leadStripTags(document.getElementById('dcEmail').value.trim()),
+      phone: leadStripTags(document.getElementById('dcPhone').value.trim()),
+      businessName: leadStripTags(document.getElementById('dcBusiness').value.trim()),
+      state: document.getElementById('dcState').value,
+      serviceNeeded: [].map.call(document.querySelectorAll('#dcHelp input:checked'), function(i){ return i.value; }).join('; '),
+      revenue: document.getElementById('dcRevenue').value,
+      preferredContact: document.getElementById('dcContactMethod').value,
+      bestTimeToCall: bkChoice() || 'Anytime',
+      message: leadStripTags(document.getElementById('dcMessage').value.trim())
+    };
+  }
+
+  function validateLeadClientSide(lead){
+    var ok = true;
+    if (!lead.firstName){ showLeadFieldError('dcFirst', 'First name is required.'); ok = false; }
+    if (!lead.lastName){ showLeadFieldError('dcLast', 'Last name is required.'); ok = false; }
+    if (!lead.email){ showLeadFieldError('dcEmail', 'Email is required.'); ok = false; }
+    else if (!LEAD_EMAIL_RE.test(lead.email)){ showLeadFieldError('dcEmail', 'Enter a valid email address.'); ok = false; }
+    if (!lead.phone){ showLeadFieldError('dcPhone', 'Phone number is required.'); ok = false; }
+    else if (!LEAD_PHONE_RE.test(lead.phone)){ showLeadFieldError('dcPhone', 'Enter a valid US phone number.'); ok = false; }
+    if (!lead.state){ showLeadFieldError('dcState', 'Please select your state.'); ok = false; }
+    if (!lead.serviceNeeded){ showLeadFieldError('dcHelp', 'Choose at least one.'); ok = false; }
+    if (!bkChoice()){ showLeadFieldError('dcSlot', 'Pick a day and time.'); ok = false; }
+    if (lead.message.length > 2000){ showLeadFieldError('dcMessage', 'Message is too long.'); ok = false; }
+    return ok;
+  }
+
+  function getTurnstileToken(){
+    var el = document.querySelector('#leadForm [name="cf-turnstile-response"]');
+    return el ? el.value : '';
+  }
+
+  // Arriving from a service page (index.html?service=...#request): tick that service
+  (function(){
+    var want = new URLSearchParams(location.search).get('service');
+    if (!want) return;
+    document.querySelectorAll('#dcHelp input').forEach(function(cb){
+      if (cb.value === want && !cb.checked){ cb.checked = true; cb.dispatchEvent(new Event('change')); }
+    });
+  })();
+
+  // clear the "choose at least one" error as soon as something is ticked
+  document.querySelectorAll('#dcHelp input').forEach(function(cb){
+    cb.addEventListener('change', function(){
+      var g = document.getElementById('dcHelp');
+      if (g.querySelector('input:checked')){ g.classList.remove('invalid'); document.getElementById('err-dcHelp').textContent = ''; }
+    });
+  });
+
+  function submitLeadForm(e){
+    e.preventDefault();
+    clearLeadErrors();
+    var lead = collectLeadFields();
+    if (!validateLeadClientSide(lead)) return false;
+
+    var btn = document.getElementById('leadSubmitBtn');
+    btn.disabled = true;
+    var originalLabel = btn.innerHTML;
+    btn.textContent = 'Sending…';
+
+    var payload = {
+      meta: {
+        turnstileToken: getTurnstileToken(),
+        ts: Date.now(),
+        hp: document.getElementById('dcCompanyWebsite').value
+      },
+      lead: lead
+    };
+
+    fetch(LEAD_API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function(resp){
+      return resp.json().catch(function(){ return {}; }).then(function(data){
+        return { status: resp.status, data: data };
+      });
+    }).then(function(result){
+      if (result.data && result.data.ok){
+        revealScheduler(lead.firstName, lead.lastName, lead.email, lead.phone);
+        return;
+      }
+      if (result.data && result.data.error === 'validation' && result.data.fields){
+        var fieldMap = { firstName:'dcFirst', lastName:'dcLast', email:'dcEmail', phone:'dcPhone', state:'dcState', serviceNeeded:'dcHelp', message:'dcMessage' };
+        Object.keys(result.data.fields).forEach(function(f){
+          if (fieldMap[f]) showLeadFieldError(fieldMap[f], result.data.fields[f]);
+        });
+        showLeadFormBanner('Please check the highlighted fields and try again.');
+      } else if (result.status === 429 || (result.data && result.data.error === 'rate_limited')){
+        showLeadFormBanner('Too many submissions — please wait a few minutes and try again.');
+      } else {
+        showLeadFormBanner('Something went wrong — please try again or call us at (916) 616-1789.');
+      }
+    }).catch(function(){
+      showLeadFormBanner('Something went wrong — please try again or call us at (916) 616-1789.');
+    }).finally(function(){
+      btn.disabled = false;
+      btn.innerHTML = originalLabel;
+    });
+
+    return false;
+  }
+
+  /* ===== One-time booking popup (once per browser session) ===== */
+  function closeBookPop(){ document.getElementById('bookPop').classList.remove('show'); }
+  (function(){
+    if (sessionStorage.getItem('magnum_bookpop')) return;
+    var shown = false;
+    function show(){
+      if (shown) return; shown = true;
+      sessionStorage.setItem('magnum_bookpop','1');
+      document.getElementById('bookPop').classList.add('show');
+    }
+    window.addEventListener('scroll', function(){
+      if (window.scrollY > document.body.scrollHeight * 0.35) show();
+    }, {passive:true});
+    setTimeout(show, 25000); // fallback if they don't scroll far
+  })();
+
+  /* ===== Site search (anchors within this single page) ===== */
+  (function(){
+    var INDEX = [
+      {title:'Home', url:'#home',
+       snippet:"More than accounting — we're your strategic partner.",
+       text:'home magnum cpa pc max drew strategic growth tax advantage proactive accounting expert tax planning financial coaching ramsey trusted consultation california'},
+      {title:'About Us', url:'#about',
+       snippet:'Our story, founder Max Drew, and The Magnum Advantage.',
+       text:'about us max magnum drew founder california professional corporation financial partners magnum advantage bbb accredited better business bureau trusted by ramsey best business rate sacramento history mission'},
+      {title:'Why Choose Us', url:'#why-choose-us',
+       snippet:'BBB Accredited, Trusted by Ramsey, Best Business Rate 2025, Momentum Score #1 2026.',
+       text:'why choose us trusted experienced committed success bbb accredited better business bureau best business rate sacramento 2025 ramsey trusted momentum score ranked 2026 passion for precision awards recognition'},
+      {title:'Services', url:'#services',
+       snippet:'Tax preparation & planning, bookkeeping, consulting, future security.',
+       text:'services tax preparation planning bookkeeping payroll business consulting future security wealth management retirement estate planning filings liabilities growth efficiency'},
+      {title:'Tax Preparation and Planning', url:'tax-preparation-planning.html',
+       snippet:'We help you stay compliant and maximize your tax savings with strategic, year-round planning.',
+       text:'tax preparation and planning tax preparation individual & business tax returns tax planning and projections irs representation and support year-round tax advisory'},
+      {title:'Bookkeeping and Payroll Services', url:'bookkeeping-payroll.html',
+       snippet:'Accurate records and timely payroll so you can focus on what matters most — your business.',
+       text:'bookkeeping and payroll services bookkeeping & payroll daily/monthly bookkeeping payroll processing & tax filings financial statement preparation clean-up and catch-up services'},
+      {title:'Business Consulting', url:'business-consulting.html',
+       snippet:'Strategic insights and practical solutions to drive growth, improve efficiency, and increase profitability.',
+       text:'business consulting business consulting business strategy and planning operational improvement financial analysis and forecasting succession and growth planning'},
+      {title:'Future Security', url:'future-security.html',
+       snippet:'Build, protect, and grow your wealth with a holistic approach to retirement, wealth management, and estate planning.',
+       text:'future security future security retirement planning wealth management estate and legacy planning life and business protection'},
+      {title:'Client Newsletter', url:'#client-newsletter',
+       snippet:'Monthly updates, firm news, and money tips.',
+       text:'client newsletter mid-year money check-in refund last-minute filing tips updates subscribe firm news'},
+      {title:'Tax Planning Newsletter', url:'#tax-planning-newsletter',
+       snippet:'Strategy articles for proactive tax savings.',
+       text:'tax planning newsletter retirement contributions 401k ira hsa small business entity llc s-corp sole proprietor charitable giving donor advised capital gains harvesting'},
+      {title:'Tax Videos', url:'#tax-videos',
+       snippet:'Plain-English videos on key tax topics.',
+       text:'tax videos watch learn alternative minimum tax amt audits cancellation of debt insolvency capital gains losses charitable contributions noncash recordkeeping clergy consumer credit crowdfunding dependent digital assets crypto divorce education estimated quarterly taxes extension families children filing status foreign bank accounts fbar gambling high income hobby business household employees identity theft itemized deductions casualty homeowners interest medical kiddie tax like-kind exchange moving expenses multi-state new tax law principal residence home sale standard deduction stock options tax facts figures scams social security irs notice tipped employees trump accounts irs contacts withholding w-4'},
+      {title:'Financial Calculators', url:'financial-calculators.html',
+       snippet:'Tax, retirement, mortgage, loan, savings & business calculators.',
+       text:'financial calculators tax payroll 1040 marginal estate retirement roth ira 401k social security rmd mortgage piti arm loan amortization auto savings college net worth business cash flow breakeven valuation rent vs buy'},
+      {title:'Client Portal', url:'https://magnumcpa.clientportal.com/#/login', target:true,
+       snippet:'Secure client portal (Canopy) for documents and messages.',
+       text:'client portal canopy login documents upload messages secure account'},
+      {title:'Contact Us', url:'#contact',
+       snippet:'Phone, email, and our Sacramento office location.',
+       text:'contact us phone 916 616 1789 email info ask magnumcpa find us 907 green moss drive sacramento ca 95831 map directions location office hours'},
+      {title:'Request a Consultation', url:'#request',
+       snippet:'Request your free consultation with Max Drew, CPA.',
+       text:'request consultation free appointment schedule book meeting max drew cpa tax planning preparation bookkeeping financial coaching preferred date service'}
+    ];
+
+    function escapeHtml(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+    var ov = document.createElement('div');
+    ov.className = 'search-overlay';
+    ov.innerHTML =
+      '<div class="search-box">' +
+        '<div class="search-top">' +
+          '<span class="search-ic">🔍</span>' +
+          '<input type="text" id="siteSearchInput" placeholder="Search the site..." autocomplete="off">' +
+          '<button class="search-close" aria-label="Close search">&times;</button>' +
+        '</div>' +
+        '<div class="search-results" id="siteSearchResults"></div>' +
+      '</div>';
+    document.body.appendChild(ov);
+
+    var input = ov.querySelector('#siteSearchInput');
+    var results = ov.querySelector('#siteSearchResults');
+
+    function openSearch(){ ov.classList.add('open'); input.value=''; render(''); setTimeout(function(){ input.focus(); }, 40); }
+    function closeSearch(){ ov.classList.remove('open'); }
+
+    function render(q){
+      q = q.trim().toLowerCase();
+      if (!q){ results.innerHTML = '<div class="search-none">Type a keyword to search across the website.</div>'; return; }
+      var terms = q.split(/\s+/);
+      var matches = INDEX.map(function(p){
+        var hay = (p.title + ' ' + p.text + ' ' + p.snippet).toLowerCase();
+        var score = 0;
+        terms.forEach(function(t){ if (hay.indexOf(t) > -1) score++; });
+        return {p:p, score:score};
+      }).filter(function(m){ return m.score > 0; })
+        .sort(function(a,b){ return b.score - a.score; });
+
+      if (!matches.length){ results.innerHTML = '<div class="search-none">No results for &ldquo;' + escapeHtml(q) + '&rdquo;.</div>'; return; }
+      results.innerHTML = matches.map(function(m){
+        var tgt = m.p.target ? ' target="_blank" rel="noopener"' : '';
+        return '<a href="' + m.p.url + '"' + tgt + '><b>' + escapeHtml(m.p.title) + '</b><span>' + escapeHtml(m.p.snippet) + '</span></a>';
+      }).join('');
+    }
+
+    input.addEventListener('input', function(){ render(input.value); });
+    ov.querySelector('.search-close').addEventListener('click', closeSearch);
+    ov.addEventListener('click', function(e){ if (e.target === ov) closeSearch(); });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeSearch(); });
+    // close overlay when an in-page result is chosen
+    results.addEventListener('click', function(e){
+      var a = e.target.closest('a');
+      if (a && a.getAttribute('href').charAt(0) === '#') closeSearch();
+    });
+
+    document.querySelectorAll('.search-btn').forEach(function(b){
+      b.addEventListener('click', function(e){ e.preventDefault(); openSearch(); });
+    });
+  })();
+
+  /* ===== Tax Videos gallery ===== */
+  (function(){
+    var gallery = document.getElementById('videoGallery');
+    var stage = document.getElementById('vgStage');
+    var strip = document.getElementById('vgStrip');
+    var ind = document.getElementById('vgInd');
+    if (!stage || !strip) return;
+
+    // [number, title, Google Drive file id]. Files must stay shared as
+    // "Anyone with the link" or the thumbnail and player render blank.
+    var VIDEOS = [
+      ['01','Alternative Minimum Tax','1x0Dm__ntt5S04ydgcmL6n74hWmZpq5YL'],
+      ['02','Audits','1bi86JDzXojyaCaSzzAHeVfNyYwkTis34'],
+      ['03','Cancellation of Debt & Insolvency','1ZUy0R69SxYWZtZ0c2E1DxOpUZ5_2WmmN'],
+      ['04','Capital Gains and Losses','1UdfyiyMDoRf0d2crpx2tiR-jprZ7hrXe'],
+      ['05','Charitable Contributions','1JceZIH5ciYXX0944XMQ9zon5xGkHy1RS'],
+      ['06','Charitable Contributions: Recordkeeping','1P3d1ia16Fiypb6Zq83Z_RPN88stLbndJ'],
+      ['07','Charitable Contributions: Noncash Gifts','1wrjWoXmDdpHb1FMrnC8IdZDO3qhsVRLE'],
+      ['08','Clergy & Religious Workers','1Go86qwhFbJaKe24ulLZNzSVUIFzO8rpx'],
+      ['09','Consumer Credit','1sXWnc2JihC_NyYwkm4_5w45hHOwucd2T'],
+      ['10','Crowdfunding','1v2CCBWgcpzI66QaciN26QYJrARZWBK0j'],
+      ['11','Dependent Support Worksheet','1r1l_8AoJXCUHQ7FZdUifT2TuB2q5xTF5'],
+      ['12','Digital Assets','1G2VCnPS4lLL_sHCzn1qNJugUCojKwUs4'],
+      ['13','Divorce and Taxes','1pihCYSgkKL-S3f7k-bY1hvoWVbmQYr0E'],
+      ['14','Education Tax Benefits','1PPVv0oqb7kFRbLtzVk4ciZDGObRw4Cdr'],
+      ['15','Estimated Taxes','1Ieh-3WhGwgd-nTDIfx6zaMmkxJdVB2dh'],
+      ['16','Extending Your Individual Income Tax Return','1tCjeSHSn8r4ZTNCKHdandEp_Nfy1ErsU'],
+      ['17','Families with Children','1zwqijw8W1L-Um8ztP4DT0XYT4SRBaTTd'],
+      ['19','Filing Status','1CQbtEJbdMnQlDoc08T9wdrGGtMvEPy2F'],
+      ['20','Foreign Bank and Financial Accounts','1PSceH5RBDW0yzYbmGeOqIlHa1CGTg2Pl'],
+      ['21','Gambling Log','1MQNNm6tGkZ0p4Bm6p3VmF4scfJMvlKJx'],
+      ['23','High-Income Taxpayers','1JCxRvsYPPSv_GB8Iz0QXnL3sQCSYS3c5'],
+      ['24','Hobby vs. Business','1nETceCt12rkFx_sBZetFvBpccX9EAXRY'],
+      ['25','Household Employees','1KG3PaNckryLQ4MKwv8gQeF9H77p9t6Ok'],
+      ['26','Identity Theft & Your Taxes','1jxgUJ9UgZcGdhzKdSKF4zceOhlGO2ZTg'],
+      ['27','Itemized Deductions: Casualty & Theft Losses','19XWK_Dc4yALAK-Uy0kn7LE_6A-Q899WE'],
+      ['28','Itemized Deductions: Homeowners','1yvzHHItg7sBflomggJALolor4cHZ6sPp'],
+      ['29','Itemized Deductions: Interest Paid','18ZiKPF0r_ktiaO3KyscVYSsyZRXvXrbk'],
+      ['30','Itemized Deductions: Medical Expenses','11RohZimwutVA1cFqL2pVxPy1xnTZCJp1'],
+      ['32','Itemized Deductions: Taxes Paid','1dBRDcTMlQW8kZI11bE-q7yShhe6TxcBU'],
+      ['33','Kiddie Tax','11u_udpl91rCGOaEZLsu690o7sQOPz_iG'],
+      ['34','Like-Kind Exchanges','17he11HU3HQWBUT8m7oLgrL2SScBrbE1y'],
+      ['35','Moving Expenses','1Zj-h0IkEL8NMvpjVPEVSAZcp14PAyhrN'],
+      ['36','Multi-State Taxation','1Dkv9xq4DfIYyTXds8FkP4iVdpiO0E7-2'],
+      ['37','New Tax Law Provisions','1k0GoqJcil-osZDmzcKrjtsgQKGljhFj_'],
+      ['38','Sale of a Principal Residence','1lATjiAMq7orRDfO7Aas35z6OQSmNK32J'],
+      ['39','Standard vs. Itemized Deduction','1wXpnAKaTv32RfBnmtFH_th2rRL2vTU9x'],
+      ['40','Stock Options: Same-Day Sales','1dziMBQ4kAb47WRacNz20tj1zzI6nTUNK'],
+      ['41','Tax Facts and Figures','1ZXqxn-50-VqEP5gyvGpKJgkKsjIyidg0'],
+      ['42','Tax Scams: Protect Yourself','1oxZ5iZxa85M5_GNVfeHuZeAjT68Kg4b7'],
+      ['43','Taxable Social Security Benefits','1iOnVVyp_1IpUP6q98IJrTspqs8vgVnXU'],
+      ['44','Taxpayers Who Receive an IRS Notice','1dyE2MKVmSohynOyvjCRGRvIvYi_z2wXi'],
+      ['45','Tipped Employees','1gCFnWvV7rk2YYD2wKlt0kEKrzu7R0JSc'],
+      ['46','Trump Accounts','1c1Lm7d7MeFTveFfl-4svhmEZfmpjI2d4'],
+      ['47','How the IRS Contacts Taxpayers','1N92pz4iNoczwaCPnt5uZLj9JMWde6Cmk'],
+      ['49','Withholding: Filling Out Form W-4','15_1MDamIXyW8rLGwysFX5-3SEDy-5IhQ']
+    ];
+    var total = VIDEOS.length;
+    var thumbUrl = function(id, w){ return 'https://drive.google.com/thumbnail?id=' + id + '&sz=w' + w; };
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var countEl = document.getElementById('vgCount');
+    var titleEl = document.getElementById('vgTitle');
+    var slides = [], tabs = [], current = -1;
+
+    function el(tag, cls){ var n = document.createElement(tag); if (cls) n.className = cls; return n; }
+    function withFallback(img, box, title){
+      var fb = el('span', 'vg-fallback'); fb.textContent = title; box.appendChild(fb);
+      img.addEventListener('error', function(){ box.classList.add('is-missing'); });
+    }
+
+    VIDEOS.forEach(function(v, i){
+      var title = v[1];
+
+      var slide = el('div', 'vg-slide');
+      var img = el('img');
+      img.alt = 'Cover of the "' + title + '" video with Max Drew, CPA';
+      img.dataset.src = thumbUrl(v[2], 720);
+      slide.appendChild(img);
+      withFallback(img, slide, title);
+      var play = el('button', 'vg-play');
+      play.type = 'button';
+      play.setAttribute('aria-label', 'Play ' + title);
+      play.addEventListener('click', function(){ if (!swiped) startVideo(i); });
+      slide.appendChild(play);
+      slide.inert = true;
+      slide.setAttribute('aria-hidden', 'true');
+      stage.appendChild(slide);
+      slides.push(slide);
+
+      var tab = el('button', 'vg-thumb');
+      tab.type = 'button';
+      tab.id = 'vg-tab-' + i;
+      tab.setAttribute('role', 'tab');
+      tab.setAttribute('aria-selected', 'false');
+      tab.setAttribute('aria-controls', 'vgStage');
+      tab.setAttribute('aria-label', 'Video ' + (i + 1) + ' of ' + total + ': ' + title);
+      tab.tabIndex = -1;
+      tab.style.setProperty('--i', Math.min(i, 8));
+      var box = el('span', 'vg-tthumb');
+      var timg = el('img');
+      timg.alt = 'Thumbnail for ' + title;
+      timg.loading = 'lazy';
+      timg.src = thumbUrl(v[2], 320);
+      box.appendChild(timg);
+      withFallback(timg, box, title);
+      var cap = el('span', 'vg-tcap'); cap.setAttribute('aria-hidden', 'true');
+      var capNum = el('small'); capNum.textContent = 'Video ' + (i + 1);
+      var capTitle = el('span', 't'); capTitle.textContent = title;
+      cap.appendChild(capNum); cap.appendChild(capTitle);
+      tab.appendChild(box);
+      tab.appendChild(cap);
+      tab.addEventListener('click', function(){ select(i); });
+      strip.appendChild(tab);
+      tabs.push(tab);
+    });
+
+    // Load the large cover only for the active slide and its neighbours.
+    function loadCover(i){
+      var img = slides[(i + total) % total].querySelector('img');
+      if (img.dataset.src){ img.src = img.dataset.src; delete img.dataset.src; }
+    }
+
+    function startVideo(i){
+      var slide = slides[i];
+      if (slide.querySelector('iframe')) return;
+      var f = el('iframe');
+      f.src = 'https://drive.google.com/file/d/' + VIDEOS[i][2] + '/preview';
+      f.title = VIDEOS[i][1] + ' video player';
+      f.allow = 'autoplay; fullscreen';
+      f.allowFullscreen = true;
+      slide.appendChild(f);
+      f.focus();
+      stage.style.setProperty('--rx', '0deg');
+      stage.style.setProperty('--ry', '0deg');
+      updatePause();
+    }
+
+    // Restart a CSS animation by removing the class and forcing a reflow.
+    function replay(node, cls){
+      node.classList.remove(cls);
+      void node.offsetWidth;
+      node.classList.add(cls);
+    }
+
+    function select(i, focusTab){
+      i = (i + total) % total;
+      if (i === current) return;
+      if (current >= 0){
+        var prev = slides[current];
+        var frame = prev.querySelector('iframe');
+        if (frame) prev.removeChild(frame);   // stops playback
+        prev.classList.remove('is-active');
+        prev.inert = true;
+        prev.setAttribute('aria-hidden', 'true');
+        tabs[current].setAttribute('aria-selected', 'false');
+        tabs[current].tabIndex = -1;
+      }
+      current = i;
+      loadCover(i); loadCover(i - 1); loadCover(i + 1);
+      slides[i].classList.add('is-active');
+      slides[i].inert = false;
+      slides[i].removeAttribute('aria-hidden');
+      tabs[i].setAttribute('aria-selected', 'true');
+      tabs[i].tabIndex = 0;
+      stage.setAttribute('aria-labelledby', tabs[i].id);
+      ind.style.setProperty('--n', i);
+      countEl.textContent = 'Video ' + (i + 1) + ' of ' + total;
+      titleEl.textContent = VIDEOS[i][1];
+      replay(countEl, 'vg-swap');
+      replay(titleEl, 'vg-swap');
+      replay(bar, 'run');
+      updatePause();
+
+      // Keep the active thumb in view without scrolling the page itself.
+      var t = tabs[i], pad = 6;
+      var left = t.offsetLeft - pad, right = t.offsetLeft + t.offsetWidth + pad - strip.clientWidth;
+      var to = strip.scrollLeft < right ? right : strip.scrollLeft > left ? left : null;
+      if (to !== null) strip.scrollTo({left: to, behavior: reduced.matches ? 'auto' : 'smooth'});
+      if (focusTab) t.focus({preventScroll: true});
+    }
+
+    strip.addEventListener('keydown', function(e){
+      var next = {ArrowLeft: current - 1, ArrowRight: current + 1, Home: 0, End: total - 1}[e.key];
+      if (next === undefined) return;
+      e.preventDefault();
+      select(next, true);
+    });
+    stage.addEventListener('keydown', function(e){
+      if (e.key === 'ArrowLeft'){ e.preventDefault(); select(current - 1); }
+      if (e.key === 'ArrowRight'){ e.preventDefault(); select(current + 1); }
+    });
+    document.getElementById('vgPrev').addEventListener('click', function(){ select(current - 1); });
+    document.getElementById('vgNext').addEventListener('click', function(){ select(current + 1); });
+    document.getElementById('vgSPrev').addEventListener('click', function(){ select(current - 1); });
+    document.getElementById('vgSNext').addEventListener('click', function(){ select(current + 1); });
+
+    // Swipe on the cover. Once a video is playing the iframe owns the pointer.
+    var sx = 0, sy = 0, swiped = false;
+    stage.addEventListener('pointerdown', function(e){ sx = e.clientX; sy = e.clientY; swiped = false; });
+    stage.addEventListener('pointerup', function(e){
+      var dx = e.clientX - sx, dy = e.clientY - sy;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)){
+        swiped = true;
+        select(current + (dx < 0 ? 1 : -1));
+      }
+    });
+
+    // Tilt the cover toward the mouse.
+    stage.addEventListener('pointermove', function(e){
+      if (e.pointerType !== 'mouse' || reduced.matches || stage.querySelector('.is-active iframe')) return;
+      var r = stage.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      stage.style.setProperty('--rx', (y * -7).toFixed(2) + 'deg');
+      stage.style.setProperty('--ry', (x * 9).toFixed(2) + 'deg');
+    });
+    stage.addEventListener('pointerleave', function(){
+      stage.style.setProperty('--rx', '0deg');
+      stage.style.setProperty('--ry', '0deg');
+    });
+
+    // Auto-advance. The progress bar is the timer: its fill animation ends,
+    // the next video comes up. Pausing it (hover, keyboard focus, a recent
+    // click, off screen, a video playing) pauses the countdown with it.
+    // Reduced motion disables the animation, so nothing advances on its own.
+    var holdUntil = 0, hovering = false, onScreen = true, stopped = false;
+    var autoBtn = document.getElementById('vgAuto');
+    var prog = el('div', 'vg-progress'), bar = el('i');
+    prog.setAttribute('aria-hidden', 'true');
+    prog.appendChild(bar);
+    stage.appendChild(prog);
+
+    function updatePause(){
+      var playing = !!stage.querySelector('iframe');
+      gallery.classList.toggle('is-playing', playing);
+      gallery.classList.toggle('is-stopped', stopped);
+      gallery.classList.toggle('is-paused', playing || stopped || hovering || !onScreen || document.hidden ||
+        !!gallery.querySelector(':focus-visible') || performance.now() < holdUntil);
+    }
+    bar.addEventListener('animationend', function(){ select(current + 1); });
+
+    ['pointerdown', 'keydown'].forEach(function(ev){
+      gallery.addEventListener(ev, function(){
+        holdUntil = performance.now() + 2500;
+        updatePause();
+        setTimeout(updatePause, 2550);
+      });
+    });
+    gallery.addEventListener('mouseenter', function(){ hovering = true; updatePause(); });
+    gallery.addEventListener('mouseleave', function(){ hovering = false; updatePause(); });
+    gallery.addEventListener('focusin', updatePause);
+    gallery.addEventListener('focusout', function(){ setTimeout(updatePause, 0); });
+    document.addEventListener('visibilitychange', updatePause);
+    autoBtn.addEventListener('click', function(){
+      stopped = !stopped;
+      autoBtn.setAttribute('aria-pressed', stopped);
+      autoBtn.setAttribute('aria-label', stopped ? 'Resume auto-advance' : 'Pause auto-advance');
+      autoBtn.innerHTML = stopped ? '&#9654;' : '&#10074;&#10074;';
+      updatePause();
+    });
+
+    // Rise in the first time the gallery scrolls into view; only count down while it's visible.
+    if ('IntersectionObserver' in window){
+      gallery.classList.add('pre');
+      onScreen = false;
+      new IntersectionObserver(function(entries){
+        onScreen = entries[0].isIntersecting;
+        if (onScreen && gallery.classList.contains('pre')){
+          gallery.classList.remove('pre');
+          gallery.classList.add('is-in');
+        }
+        updatePause();
+      }, {rootMargin: '0px 0px -20% 0px'}).observe(gallery); // fires once the top reaches 80% of the screen, however tall the gallery is
+    }
+
+    select(0);
+  })();
+</script>
+
+<script src="https://embed.acuityscheduling.com/js/embed.js" type="text/javascript"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+</body>
+</html>

@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Consulting — Magnum CPA PC</title>
+<meta name="description" content="Business Consulting from Magnum CPA PC. Strategic insights and practical solutions to drive growth, improve efficiency, and increase profitability.">
+<meta name="theme-color" content="#0B3D91">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link id="fa-cdn" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  :root{
+    /* Palette: Primary #0B3D91 · Secondary #3BA7F2 · Tertiary #7FE7D6 · Background #E8F6FF.
+       Everything else here is a shade of those four, for text and the dark bands. */
+    --primary:#0B3D91;--secondary:#3BA7F2;--tertiary:#7FE7D6;--bg:#E8F6FF;
+    --primary-700:#0A3480;--primary-800:#072A66;--primary-900:#051D47;
+    --secondary-ink:#1670B8;   /* secondary, darkened enough for small text on light backgrounds */
+    --navy:var(--primary);--navy-dark:var(--primary-800);--navy-3:var(--primary-900);
+    --text:#0B1F3F;--muted:#4A607E;--bg-alt:#F3FAFF;--surface:#FFFFFF;
+    --border:#CFE5F6;--radius:10px;--maxw:none;
+    --shadow:0 1px 2px rgba(11,61,145,.06),0 10px 28px rgba(11,61,145,.10);
+    --shadow-lg:0 2px 4px rgba(11,61,145,.06),0 22px 50px rgba(11,61,145,.16);
+    --on-dark:#D6E9FB;
+    --gold:#D9A53A;--gold-ink:#9A6B10;   /* the logo's gold, used only as a small accent */
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{font-size:17px;scroll-behavior:smooth;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;
+    background:var(--bg);
+  }
+  img{max-width:100%;height:auto;display:block;}
+  a{color:inherit;text-decoration:none;}
+  /* content fills the screen at any width, with a proportional side margin */
+  .container{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,6vw,140px);}
+
+  /* top bar */
+  .topbar{background:var(--primary-900);color:var(--on-dark);font-size:.98rem;font-weight:500;}
+  .topbar .container{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center;justify-content:space-between;padding:8px clamp(20px,6vw,140px);}
+
+  /* header / nav */
+  header.site-header{background:rgba(255,255,255,.94);-webkit-backdrop-filter:saturate(1.4) blur(12px);backdrop-filter:saturate(1.4) blur(12px);
+    position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border);box-shadow:0 4px 18px rgba(11,61,145,.08);}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding-top:12px;padding-bottom:12px;gap:16px;}
+  .brand{display:flex;align-items:center;gap:12px;color:#fff;}
+  /* Logo files are 840px wide (about 3x display size) so they stay sharp on high-density screens. */
+  .brand img{display:block;height:58px;width:auto;transition:transform .25s,filter .25s;}
+  .brand:hover img{transform:scale(1.03);filter:drop-shadow(0 4px 14px rgba(59,167,242,.35));}
+  .nav-toggle{display:none;background:transparent;border:0;cursor:pointer;padding:8px;border-radius:6px;}
+  .nav-toggle span{display:block;width:24px;height:2px;background:var(--primary);margin:5px 0;transition:.3s;}
+  nav.main-nav > ul{list-style:none;display:flex;flex-wrap:nowrap;gap:2px;justify-content:flex-end;align-items:center;}
+  nav.main-nav a{color:var(--primary-800);font-size:.76rem;font-weight:600;letter-spacing:.2px;padding:8px 8px;border-radius:6px;
+    text-transform:uppercase;transition:background .2s,color .2s;white-space:nowrap;display:inline-block;}
+  nav.main-nav a:hover{background:var(--bg);color:var(--primary);}
+  nav.main-nav a.active{background:var(--primary);color:#fff;}
+  .has-sub{position:relative;}
+  .submenu{position:absolute;top:100%;left:0;min-width:230px;background:#fff;border-radius:10px;border:1px solid var(--border);
+    box-shadow:var(--shadow-lg);padding:6px;display:none;flex-direction:column;gap:2px;z-index:60;list-style:none;}
+  .has-sub:hover .submenu{display:flex;}
+  .submenu li{width:100%;}
+  .submenu a{display:block;text-align:left;border-radius:5px;}
+
+  /* light section band: kicker + headline + subtitle, faded globe and gold stripe on the right */
+  .sec-head{position:relative;overflow:hidden;padding:46px 0 42px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+    background:linear-gradient(100deg,#fff 0%,var(--bg-alt) 45%,#D6ECFB 100%);}
+  .sec-head:before{content:"";position:absolute;right:4%;top:50%;width:380px;aspect-ratio:600/546;transform:translateY(-50%);
+    background:url('images/globe.webp') center/contain no-repeat;opacity:.16;pointer-events:none;}
+  .sec-head:after{content:"";position:absolute;top:-10px;bottom:-10px;right:-70px;width:150px;transform:skewX(-32deg);pointer-events:none;
+    background:linear-gradient(90deg,var(--gold) 0 7px,rgba(11,61,145,.1) 7px);}
+  .sec-head .container{position:relative;z-index:1;}
+  .sec-kicker{display:flex;align-items:center;gap:12px;color:var(--gold-ink);font-weight:800;font-size:1.1rem;letter-spacing:.6px;text-transform:uppercase;}
+  .sec-kicker:after{content:"";width:46px;height:2px;background:var(--gold);}
+  .sec-kicker.blue{color:var(--secondary-ink);font-size:.9rem;letter-spacing:1.2px;}
+  .sec-kicker.blue:after{background:linear-gradient(90deg,var(--secondary),var(--tertiary));}
+  .sec-head h1,.sec-head h2{color:var(--primary);font-size:2.15rem;line-height:1.2;margin:6px 0 8px;}
+  .sec-head p{color:var(--muted);font-size:1.12rem;}
+  @media(max-width:600px){.sec-head{padding:34px 0 30px;}.sec-head h1,.sec-head h2{font-size:1.6rem;}.sec-head:before{opacity:.1;right:-80px;}.sec-head:after{display:none;}}
+
+  /* sections */
+  .section{padding:60px 0;}
+
+  /* buttons */
+  .btn{display:inline-block;background:linear-gradient(135deg,var(--primary),#1560C9);color:#fff;font-weight:700;padding:12px 26px;border-radius:8px;
+    border:0;cursor:pointer;letter-spacing:.4px;font-size:.95rem;transition:transform .15s,box-shadow .2s,filter .2s;
+    box-shadow:0 6px 16px rgba(11,61,145,.22);}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(11,61,145,.32);filter:brightness(1.08);}
+  .btn:focus-visible{outline:3px solid var(--secondary);outline-offset:3px;}
+  /* on dark bands the button flips to tertiary mint so it stands out */
+  .cta-band .btn{background:var(--tertiary);color:var(--primary-900);box-shadow:0 8px 22px rgba(127,231,214,.28);}
+  .cta-band .btn:hover{box-shadow:0 14px 32px rgba(127,231,214,.42);filter:brightness(1.04);}
+
+  /* calculators */
+  .calc-cat{margin-bottom:34px;}
+  .calc-cat h2{color:var(--primary);background:linear-gradient(90deg,#0B3D91,#1C8BDF 55%,#139E92);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;width:fit-content;font-size:1.3rem;margin-bottom:6px;}
+  .calc-cat h2:after{content:"";display:block;width:54px;height:4px;background:linear-gradient(90deg,var(--secondary),var(--tertiary));margin-top:10px;border-radius:2px;}
+  .calc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px;}
+  .calc-card{background:#fff;color:var(--text);border-radius:10px;padding:16px 18px;border-left:4px solid var(--secondary);
+    box-shadow:var(--shadow);transition:transform .15s,box-shadow .2s,border-color .2s;}
+  .calc-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-left-color:var(--tertiary);}
+  .calc-card b{display:block;color:var(--navy);font-size:.98rem;}
+  .calc-card span{color:var(--muted);font-size:.85rem;}
+  @media(max-width:860px){.calc-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.calc-grid{grid-template-columns:1fr;}}
+
+  /* CTA band */
+  .cta-band{position:relative;overflow:hidden;color:#fff;text-align:center;padding:62px 0;
+    background:radial-gradient(90% 160% at 100% 0%,rgba(59,167,242,.45),transparent 60%),radial-gradient(70% 120% at 0% 100%,rgba(127,231,214,.22),transparent 60%),linear-gradient(120deg,var(--primary-800),var(--primary));}
+  .cta-band h2{font-size:1.9rem;margin-bottom:10px;}
+  .cta-band p{color:var(--on-dark);margin-bottom:24px;}
+
+  /* search */
+  .search-li a{font-size:1.05rem;}
+  .search-overlay{position:fixed;inset:0;background:rgba(5,29,71,.62);display:none;z-index:200;padding:84px 16px 16px;}
+  .search-overlay.open{display:block;}
+  .search-box{max-width:640px;margin:0 auto;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 30px 70px rgba(5,29,71,.4);}
+  .search-top{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--border);}
+  .search-ic{font-size:1.2rem;}
+  .search-top input{flex:1;border:0;outline:none;font-size:1.1rem;color:var(--text);font-family:inherit;background:transparent;}
+  .search-close{background:transparent;border:0;font-size:1.7rem;line-height:1;cursor:pointer;color:var(--muted);padding:0 4px;}
+  .search-results{max-height:62vh;overflow:auto;}
+  .search-results a{display:block;padding:14px 18px;border-bottom:1px solid var(--border);color:var(--primary);}
+  .search-results a:hover{background:var(--bg-alt);}
+  .search-results a b{display:block;font-size:1rem;}
+  .search-results a span{font-size:.86rem;color:var(--muted);}
+  .search-none{padding:20px 18px;color:var(--muted);}
+
+  /* floating "Book a Consultation" CTA */
+  .book-fab{position:fixed;right:22px;bottom:22px;z-index:90;background:linear-gradient(135deg,var(--primary),#1560C9);color:#fff;
+    font-weight:800;padding:14px 24px;border-radius:40px;display:inline-flex;align-items:center;gap:8px;letter-spacing:.3px;
+    box-shadow:0 12px 30px rgba(11,61,145,.35);transition:transform .15s,box-shadow .2s;animation:bookpulse 2.8s ease-in-out infinite;}
+  .book-fab:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(11,61,145,.45);}
+  @keyframes bookpulse{0%,100%{box-shadow:0 12px 30px rgba(11,61,145,.3),0 0 0 0 rgba(59,167,242,.5);}50%{box-shadow:0 14px 36px rgba(11,61,145,.38),0 0 0 12px rgba(59,167,242,0);}}
+  @media(max-width:560px){.book-fab{right:14px;bottom:14px;padding:12px 18px;font-size:.92rem;}}
+
+  /* footer */
+  footer{position:relative;background:var(--primary-900);color:#B8CBE6;padding:50px 0 22px;margin-top:20px;}
+  footer::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--primary),var(--secondary),var(--tertiary));}
+  footer .brand img{height:60px;}
+  .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:30px;margin-bottom:28px;}
+  footer h4{color:#fff;font-size:1rem;margin-bottom:13px;}
+  footer ul{list-style:none;}
+  footer li{margin-bottom:8px;font-size:.9rem;}
+  footer a:hover{color:var(--tertiary);}
+  .social{display:flex;gap:12px;justify-content:center;margin:6px 0 22px;}
+  .social a{width:40px;height:40px;border-radius:50%;background:var(--tertiary);color:var(--primary-900);display:grid;place-items:center;font-size:1.05rem;transition:transform .15s,background .2s,color .2s;}
+  .social a:hover{transform:translateY(-3px);background:var(--secondary);color:#fff;}
+  .foot-copy{border-top:1px solid rgba(255,255,255,.12);padding-top:18px;font-size:.82rem;text-align:center;}
+
+  /* responsive */
+  @media (max-width:980px){.foot-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:980px){
+    .nav-toggle{display:block;}
+    nav.main-nav{position:absolute;top:100%;left:0;right:0;background:#fff;box-shadow:0 18px 30px rgba(11,61,145,.12);max-height:0;overflow:hidden;transition:max-height .35s ease;}
+    nav.main-nav.open{max-height:760px;overflow:auto;}
+    nav.main-nav > ul{flex-direction:column;gap:0;padding:8px 0;align-items:stretch;}
+    nav.main-nav li{width:100%;}
+    nav.main-nav a{display:block;padding:13px 24px;border-radius:0;border-bottom:1px solid var(--border);text-align:left;}
+    .submenu{position:static;display:none;box-shadow:none;border:0;border-radius:0;background:var(--bg-alt);padding:0;min-width:0;}
+    .has-sub.open .submenu{display:flex;}
+    .submenu a{padding-left:40px;}
+  }
+  @media (max-width:600px){
+    .container{padding:0 16px;}
+    .topbar .container{justify-content:center;text-align:center;gap:2px 14px;font-size:.74rem;padding:7px 14px;}
+    .foot-grid{grid-template-columns:1fr;}
+    .section{padding:46px 0;}
+    .brand img{height:46px;}
+  }
+
+  /* ===== call-to-action band ===== */
+  .cta-band{position:relative;overflow:hidden;color:#fff;text-align:center;padding:70px 0 76px;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 300' preserveAspectRatio='none'%3E%3Cpath d='M0 120C260 200 420 290 640 300H0Z' fill='%237FE7D6' opacity='.35'/%3E%3Cpath d='M0 170C300 230 470 280 700 300' fill='none' stroke='%23BFF3EC' stroke-width='2' opacity='.7'/%3E%3Cpath d='M1600 150C1350 230 1180 280 980 300H1600Z' fill='%233BA7F2' opacity='.35'/%3E%3Cpath d='M1600 190C1380 250 1200 285 1020 300' fill='none' stroke='%23BFE6FF' stroke-width='2' opacity='.7'/%3E%3C/svg%3E") bottom/100% 100% no-repeat,
+      radial-gradient(60% 120% at 100% 0%,rgba(79,195,255,.55),transparent 60%),linear-gradient(120deg,#062C74,#0B3D91 45%,#1561C9);}
+  .cta-band h2{font-size:2.5rem;font-weight:800;line-height:1.15;margin-bottom:10px;}
+  .cta-band p{color:#E3EEFF;font-size:1.2rem;margin-bottom:28px;}
+  .cta-band .btn{display:inline-flex;align-items:center;gap:12px;padding:16px 34px;border-radius:999px;font-size:1.02rem;
+    background:linear-gradient(90deg,#7FE7D6,#5EEAD4);color:#0A2A6B;box-shadow:0 12px 30px rgba(127,231,214,.35);}
+  .cta-band .btn i{transition:transform .2s;}
+  .cta-band .btn:hover i{transform:translateX(4px);}
+  @media(max-width:600px){.cta-band h2{font-size:1.7rem;}.cta-band p{font-size:1rem;}}
+
+  /* ===== footer (light) ===== */
+  footer{position:relative;overflow:hidden;background:linear-gradient(180deg,#F7FBFF,#EAF5FF);color:var(--primary);padding:64px 0 26px;margin-top:0;}
+  footer::before{content:"";position:absolute;left:0;right:0;bottom:0;top:auto;height:260px;pointer-events:none;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 300' preserveAspectRatio='none'%3E%3Cpath d='M0 120C260 200 420 290 640 300H0Z' fill='%237FE7D6' opacity='.35'/%3E%3Cpath d='M0 170C300 230 470 280 700 300' fill='none' stroke='%23BFF3EC' stroke-width='2' opacity='.7'/%3E%3Cpath d='M1600 150C1350 230 1180 280 980 300H1600Z' fill='%233BA7F2' opacity='.35'/%3E%3Cpath d='M1600 190C1380 250 1200 285 1020 300' fill='none' stroke='%23BFE6FF' stroke-width='2' opacity='.7'/%3E%3C/svg%3E") bottom/100% 100% no-repeat;opacity:.9;}
+  footer .container{position:relative;z-index:1;max-width:var(--maxw);}
+  footer .brand img{height:76px;}
+  .foot-grid{grid-template-columns:1.45fr 1fr 1.05fr;gap:0;margin-bottom:30px;align-items:start;}
+  .foot-grid > div{padding:0 34px;}
+  .foot-grid > div:first-child{padding-left:0;}
+  .foot-grid > div + div:not(.foot-cta){border-left:1px solid rgba(59,167,242,.3);}
+  .foot-grid > div:nth-child(2),.foot-grid > div:nth-child(3){padding-bottom:8px;}
+  .foot-grid > div:first-child p{color:var(--primary);font-size:1.02rem !important;line-height:1.6;}
+  .foot-grid > div:first-child p:before{content:"";display:block;width:76px;height:3px;border-radius:2px;margin:0 0 16px;background:linear-gradient(90deg,#1C8BDF,#5FD3E2);}
+  footer h4{color:var(--primary);font-size:1.15rem;margin-bottom:16px;}
+  footer h4:before{content:"";display:block;width:34px;height:3px;border-radius:2px;margin-bottom:14px;background:linear-gradient(90deg,#3BA7F2,#7FE7D6);}
+  footer li{margin-bottom:12px;font-size:.98rem;}
+  footer li a{white-space:nowrap;display:inline-flex;align-items:center;gap:12px;color:#1D3F75;transition:color .2s,transform .2s;}
+  footer li a:before{content:"\f054";font-family:"Font Awesome 6 Free";font-weight:900;font-size:.72rem;color:#1CA9D6;}
+  footer li a:hover{color:#1C8BDF;transform:translateX(3px);}
+  .foot-cta{align-self:center;padding:0 0 0 34px !important;border-left:1px solid rgba(59,167,242,.3);}
+  .foot-book{display:inline-flex;align-items:center;gap:16px;white-space:nowrap;padding:18px 30px;border-radius:999px;color:#fff !important;font-weight:700;
+    background:linear-gradient(90deg,#0B3D91,#1560C9);box-shadow:0 14px 34px rgba(11,61,145,.3),0 0 0 3px rgba(59,167,242,.35);transition:transform .2s,box-shadow .2s;}
+  .foot-book .sep{width:1px;height:24px;background:rgba(255,255,255,.35);}
+  .foot-book i{font-size:1.2rem;}
+  .foot-book .fa-arrow-right{font-size:.85rem;transition:transform .2s;}
+  .foot-book:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(11,61,145,.38),0 0 0 3px rgba(59,167,242,.5);}
+  .foot-book:hover .fa-arrow-right{transform:translateX(4px);}
+  .social{position:relative;gap:16px;margin:10px 0 22px;align-items:center;}
+  .social:before,.social:after{content:"";width:min(340px,22vw);height:1px;background:linear-gradient(90deg,transparent,rgba(59,167,242,.45));}
+  .social:after{background:linear-gradient(90deg,rgba(59,167,242,.45),transparent);}
+  .social a{width:46px;height:46px;font-size:1.1rem;color:#fff;background:#0B3D91;box-shadow:0 8px 18px rgba(11,61,145,.2);}
+  .social a:nth-child(6n+2){background:#1C8BDF;}
+  .social a:nth-child(6n+3){background:#2EC4B6;}
+  .social a:nth-child(6n+4){background:#3BA7F2;}
+  .social a:nth-child(6n+5){background:#5FD3C8;}
+  .social a:hover{transform:translateY(-3px);background:#0A2A6B;color:#fff;}
+  .foot-copy{border-top:0;color:#1D3F75;font-size:.95rem;}
+  footer a:hover{color:#1C8BDF;}
+  @media(max-width:1100px){.foot-grid{grid-template-columns:1fr 1fr;row-gap:34px;}.foot-grid > div{padding:0 24px;}
+    .foot-grid > div:nth-child(3){border-left:1px solid rgba(59,167,242,.3);}.foot-grid > div:nth-child(2){border-left:0;padding-left:0;}
+    .foot-cta{grid-column:1/-1;border-left:0 !important;padding:0 !important;}}
+  @media(max-width:600px){.foot-grid{grid-template-columns:1fr;}.foot-grid > div{padding:0 !important;border-left:0 !important;}
+    .social{flex-wrap:wrap;gap:12px;}.social:before,.social:after{display:none;}.foot-book{padding:15px 24px;}}
+
+  /* ===== one typeface everywhere ===== */
+  body,button,input,select,textarea{font-family:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  /* ===== two-tone gradient headings ===== */
+  .grad{background:linear-gradient(90deg,#1C8BDF,#139E92);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+  .grad-light{background:linear-gradient(90deg,#9FD8FF,#7FE7D6);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+  .mc{border-top:0 !important;}
+  .sec-head{border-top:0;border-bottom:0;-webkit-mask-image:linear-gradient(180deg,#000 70%,transparent);mask-image:linear-gradient(180deg,#000 70%,transparent);}
+
+  /* ===== one continuous background: no visible section edges ===== */
+  body{background:#EDF6FE;background-image:radial-gradient(60vw 60vh at 85% 15%,rgba(59,167,242,.10),transparent 70%),
+    radial-gradient(55vw 55vh at 10% 70%,rgba(127,231,214,.10),transparent 70%);background-attachment:fixed;}
+  .mc,.wcu,.hero,.sec-head,.sd-hero,.section{background:transparent !important;}
+  .mc-deco{display:none;}
+  /* ===== small titles are gold, with a gold rule ===== */
+  .sec-kicker.blue,.hero .sec-kicker.blue,.nl-kicker,.wcu-kicker,.sd-kicker,.vg-count{color:var(--gold-ink) !important;}
+  .sec-kicker.blue:after,.hero .sec-kicker.blue:after,.nl-kicker.line:after,.sd-kicker:after,.vg-count:after{background:var(--gold) !important;width:46px !important;height:2px !important;}
+  .wcu-kicker:before,.wcu-kicker:after{background:var(--gold) !important;}
+  .nl-kicker .sep{background:rgba(217,165,58,.5);}
+  .cx-card .h .lbl{color:var(--gold-ink);}
+  /* ===== every section title the same size ===== */
+  .mc-title,.mc-title.plain,.nl-head h2,.wcu-title,.about-txt h2,.contactx h1,.cta-band h2,.sec-head h1,.sec-head h2,.sd-hero h1,.sd-sec h2{
+    font-size:2.15rem !important;font-weight:700 !important;line-height:1.2 !important;letter-spacing:-.2px !important;text-transform:none !important;}
+  .wcu-title .grad{display:inline;}
+  @media(max-width:600px){.mc-title,.mc-title.plain,.nl-head h2,.wcu-title,.about-txt h2,.contactx h1,.cta-band h2,.sec-head h1,.sec-head h2,.sd-hero h1,.sd-sec h2{font-size:1.6rem !important;}}
+  /* ===== footer: soft top, dark blue bottom bar ===== */
+  footer{background:transparent !important;padding-bottom:0 !important;}
+  footer::before{display:none !important;}
+  .foot-bottom{position:relative;margin-top:30px;padding:26px 0 22px;background:linear-gradient(90deg,#051D47,#0B3D91 50%,#072A66);}
+  .foot-bottom .social{margin:0 0 14px;}
+  .foot-bottom .social:before,.foot-bottom .social:after{background:linear-gradient(90deg,transparent,rgba(127,231,214,.5)) !important;}
+  .foot-bottom .social:after{background:linear-gradient(90deg,rgba(127,231,214,.5),transparent) !important;}
+  .foot-bottom .foot-copy{color:#C9DAF2;padding-top:0;}
+  .foot-bottom .social a:hover{background:#fff;color:var(--primary);}
+  .foot-bottom .social a:nth-child(6n+1),.foot-bottom .social a:nth-child(6n){background:#1C8BDF;}
+  .sec-head:before,.sec-head:after{display:none !important;}
+  /* header band sits right on top of its content */
+  .sec-head{padding-bottom:18px !important;}
+  .sec-head + .section{padding-top:14px !important;}
+  .sec-head{-webkit-mask-image:none !important;mask-image:none !important;}
+
+  /* ===== shared-element page transition (card photo <-> service page photo) ===== */
+  @view-transition{navigation:auto;}
+  ::view-transition-group(*){animation-duration:500ms;animation-timing-function:cubic-bezier(.32,.72,0,1);}
+  ::view-transition-old(root){animation:vtOut 220ms ease both;}
+  ::view-transition-new(root){animation:vtIn 360ms cubic-bezier(.32,.72,0,1) 120ms both;}
+  /* keep photos cropped, not stretched, while they change shape */
+  ::view-transition-old(svc-tax),::view-transition-new(svc-tax),::view-transition-old(svc-books),::view-transition-new(svc-books),
+  ::view-transition-old(svc-consult),::view-transition-new(svc-consult),::view-transition-old(svc-future),::view-transition-new(svc-future){
+    height:100%;width:100%;object-fit:cover;overflow:clip;animation-duration:500ms;}
+  @keyframes vtOut{to{opacity:0;}}
+  @keyframes vtIn{from{opacity:0;transform:translateY(8px);}}
+  @media(prefers-reduced-motion:reduce){@view-transition{navigation:none;}}
+
+  /* ===== dropdown navigation: the next page zooms up from card size ===== */
+  html:active-view-transition-type(zoom)::view-transition-old(root){animation:vtShrink 420ms cubic-bezier(.32,.72,0,1) both;}
+  html:active-view-transition-type(zoom)::view-transition-new(root){animation:vtZoom 560ms cubic-bezier(.32,.72,0,1) both;}
+  html:active-view-transition-type(zoom) [style*="view-transition-name"]{view-transition-name:none !important;}
+  @keyframes vtShrink{to{opacity:0;transform:scale(.9);}}
+  @keyframes vtZoom{from{transform:scale(.42);opacity:.5;clip-path:inset(0 round 60px);filter:drop-shadow(0 30px 60px rgba(11,61,145,.3));}
+    to{clip-path:inset(0 round 0);}}
+
+  /* ===== service detail page ===== */
+  .sd-hero{position:relative;overflow:hidden;padding:30px 0 70px;background:linear-gradient(180deg,#F5FBFF 0%,#E1F0FC 100%);}
+  .sd-back{display:inline-flex;align-items:center;gap:8px;color:var(--primary);font-weight:700;font-size:.92rem;padding:8px 14px 8px 10px;border-radius:999px;transition:background .2s;}
+  .sd-back:hover{background:#fff;}
+  .sd-back i{transition:transform .2s;}
+  .sd-back:hover i{transform:translateX(-3px);}
+  .sd-back:focus-visible{outline:3px solid var(--secondary);outline-offset:2px;}
+  .sd-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;margin-top:24px;}
+  .sd-hero h1{color:var(--primary);font-size:2.9rem;font-weight:800;line-height:1.12;letter-spacing:-.4px;margin:12px 0 16px;}
+  .sd-lede{color:var(--text);font-size:1.15rem;line-height:1.65;margin-bottom:12px;}
+  .sd-more{color:var(--muted);line-height:1.7;margin-bottom:28px;}
+  .sd-cta{display:flex;flex-wrap:wrap;gap:12px;}
+  .sd-cta .btn{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:14px 26px;}
+  .btn.ghost{background:#fff;color:var(--primary);border:2px solid rgba(11,61,145,.2);box-shadow:none;}
+  .btn.ghost:hover{border-color:var(--secondary);}
+  .sd-hero-img{position:relative;border-radius:22px;overflow:hidden;box-shadow:0 30px 70px rgba(11,61,145,.22);aspect-ratio:4/3;}
+  .sd-hero-img img{width:100%;height:100%;object-fit:cover;}
+  .sd-hero-img .svc-ic{position:absolute;left:24px;bottom:24px;width:64px;height:64px;border-radius:16px;display:grid;place-items:center;
+    background:linear-gradient(135deg,var(--primary),#1560C9);color:#fff;font-size:1.7rem;border:3px solid #fff;box-shadow:0 10px 22px rgba(11,61,145,.3);}
+  .sd-sec{padding:70px 0;}
+  .sd-sec h2{color:var(--primary);font-size:2.1rem;font-weight:800;margin:8px 0 30px;}
+  .sd-items{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  .sd-item{display:flex;gap:18px;padding:26px;background:#fff;border:1px solid rgba(207,229,246,.8);border-radius:16px;
+    box-shadow:0 2px 4px rgba(11,61,145,.04),0 14px 34px rgba(11,61,145,.09);transition:transform .25s,box-shadow .25s;}
+  .sd-item:hover{transform:translateY(-4px);box-shadow:0 4px 8px rgba(11,61,145,.05),0 22px 46px rgba(11,61,145,.15);}
+  .sd-item .ic{flex:none;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font-size:1.3rem;background:#E3F0FD;color:var(--primary);}
+  .sd-item:nth-child(even) .ic{background:#DDF7F2;color:#0F9C8A;}
+  .sd-item h3{color:var(--primary);font-size:1.12rem;margin-bottom:6px;}
+  .sd-item p{color:var(--muted);font-size:.95rem;line-height:1.6;}
+  .sd-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:step;}
+  .sd-step{position:relative;padding:28px 26px;background:#fff;border-radius:16px;border:1px solid rgba(207,229,246,.8);}
+  .sd-step:before{counter-increment:step;content:counter(step,decimal-leading-zero);display:block;font-size:1.9rem;font-weight:800;margin-bottom:8px;
+    background:linear-gradient(90deg,#1C8BDF,#3CCFC0);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .sd-step h3{color:var(--primary);font-size:1.08rem;margin-bottom:6px;}
+  .sd-step p{color:var(--muted);font-size:.93rem;line-height:1.6;}
+  .sd-others{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .sd-other{display:flex;align-items:center;gap:16px;padding:16px;background:#fff;border-radius:16px;border:1px solid rgba(207,229,246,.8);
+    box-shadow:0 10px 26px rgba(11,61,145,.08);transition:transform .25s,box-shadow .25s;}
+  .sd-other:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(11,61,145,.15);}
+  .sd-other img{width:84px;height:84px;border-radius:12px;object-fit:cover;flex:none;}
+  .sd-other b{display:block;color:var(--primary);font-size:1rem;line-height:1.3;}
+  .sd-other span{color:#1C8BDF;font-size:.85rem;font-weight:700;}
+  .sd-other:focus-visible{outline:3px solid var(--secondary);outline-offset:3px;}
+  .sd-kicker{display:flex;align-items:center;gap:12px;color:#1C8BDF;font-weight:800;font-size:.9rem;letter-spacing:1.6px;text-transform:uppercase;}
+  .sd-kicker:after{content:"";width:44px;height:2px;background:linear-gradient(90deg,#3BA7F2,#7FE7D6);}
+  .sd-blank{padding-bottom:90px;}
+  .sd-blank h1{margin:22px 0 28px;}
+  .sd-blank .sd-hero-img{aspect-ratio:21/8;}
+  @media(max-width:600px){.sd-blank .sd-hero-img{aspect-ratio:4/3;}}
+  .sd-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;}
+  .sd-switch{display:inline-flex;align-items:center;gap:12px;color:var(--gold-ink);font-weight:700;font-size:.8rem;letter-spacing:1.4px;text-transform:uppercase;}
+  .sd-switch select{appearance:none;-webkit-appearance:none;font:inherit;font-size:.95rem;font-weight:600;letter-spacing:0;text-transform:none;color:var(--primary);
+    padding:11px 44px 11px 18px;border-radius:999px;border:1px solid rgba(11,61,145,.2);cursor:pointer;
+    background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%230B3D91' stroke-width='1.8'/%3E%3C/svg%3E") right 16px center/12px no-repeat;
+    box-shadow:0 6px 16px rgba(11,61,145,.08);}
+  .sd-switch select:focus-visible{outline:3px solid var(--secondary);outline-offset:2px;}
+  @media(max-width:900px){.sd-grid{grid-template-columns:1fr;gap:32px;}.sd-hero-img{order:-1;}.sd-items,.sd-steps,.sd-others{grid-template-columns:1fr;}}
+  @media(max-width:600px){.sd-hero h1{font-size:2rem;}.sd-sec{padding:50px 0;}.sd-sec h2{font-size:1.6rem;}.sd-item{padding:20px;}}
+</style>
+<script>/* links in the Services dropdown (and Switch service) mark the next navigation as a zoom */(function(){var K='vtZoom',RE=/(tax-preparation-planning|bookkeeping-payroll|business-consulting|future-security)\.html$/;function tag(e){try{if(e.viewTransition&&sessionStorage.getItem(K))e.viewTransition.types.add('zoom');}catch(_){}}addEventListener('pageswap',tag);addEventListener('pagereveal',function(e){tag(e);try{sessionStorage.removeItem(K);}catch(_){}});document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('.submenu a');if(a&&RE.test(a.getAttribute('href')||'')){try{sessionStorage.setItem(K,'1');}catch(_){}}},true);})();</script>
+</head>
+<body>
+
+<!-- ===== Top contact bar ===== -->
+<div class="topbar">
+  <div class="container">
+    <span>📞 (916) 616-1789 &nbsp;·&nbsp; ✉️ ask@magnumcpa.com</span>
+    <span>🕘 Mon–Fri 9:00am – 5:00pm &nbsp;·&nbsp; Sat–Sun 2:00pm – 6:00pm</span>
+  </div>
+</div>
+
+<!-- ===== Header / Navigation ===== -->
+<header class="site-header">
+  <div class="container nav-inner">
+    <a href="index.html#home" class="brand"><picture><source srcset="images/logo.webp" type="image/webp"><img src="images/logo.png" width="840" height="180" alt="Magnum CPA PC — Tax · Accounting · Advisory" fetchpriority="high"></picture></a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="main-nav" id="mainNav">
+      <ul>
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#about">About Us</a></li>
+        <li class="has-sub">
+          <a href="index.html#services" class="sub-toggle active">Services ▾</a>
+          <ul class="submenu">
+            <li><a href="tax-preparation-planning.html">Tax Preparation &amp; Planning</a></li>
+            <li><a href="bookkeeping-payroll.html">Bookkeeping &amp; Payroll</a></li>
+            <li><a href="business-consulting.html" aria-current="page">Business Consulting</a></li>
+            <li><a href="future-security.html">Future Security</a></li>
+            <li><a href="index.html#services">All Services</a></li>
+          </ul>
+        </li>
+        <li class="has-sub">
+          <a href="#" class="sub-toggle">Resources ▾</a>
+          <ul class="submenu">
+            <li><a href="index.html#client-newsletter">Client Newsletter</a></li>
+            <li><a href="index.html#tax-planning-newsletter">Tax Planning Newsletter</a></li>
+            <li><a href="index.html#tax-videos">Tax Videos</a></li>
+            <li><a href="financial-calculators.html">Financial Calculators</a></li>
+          </ul>
+        </li>
+        <li><a href="https://magnumcpa.clientportal.com/#/login" target="_blank" rel="noopener">Client Portal</a></li>
+        <li><a href="index.html#request">Request Consultation</a></li>
+        <li><a href="index.html#contact">Contact Us</a></li>
+        <li class="search-li"><a href="#" class="search-btn" aria-label="Search the site">🔍</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="sd-hero sd-blank">
+  <div class="container">
+    <div class="sd-bar">
+      <a class="sd-back" href="index.html#services"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> All Services</a>
+      <label class="sd-switch"><span>Switch service</span>
+        <select onchange="try{sessionStorage.setItem('vtZoom','1')}catch(e){}if(this.value)location.href=this.value" aria-label="Switch to another service">
+          <option value="tax-preparation-planning.html">Tax Preparation and Planning</option>
+          <option value="bookkeeping-payroll.html">Bookkeeping and Payroll Services</option>
+          <option value="business-consulting.html" selected>Business Consulting</option>
+          <option value="future-security.html">Future Security</option>
+        </select>
+      </label>
+    </div>
+    <h1>Business <span class="grad">Consulting</span></h1>
+    <div class="sd-hero-img">
+      <img src="images/consulting.jpg" width="800" height="1000" alt="" style="view-transition-name:svc-consult">
+      <span class="svc-ic" aria-hidden="true"><i class="fa-solid fa-chart-column"></i></span>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="brand" style="margin-bottom:12px;"><picture><source srcset="images/logo.webp" type="image/webp"><img src="images/logo.png" width="840" height="180" alt="Magnum CPA PC" loading="lazy"></picture></div>
+        <p style="font-size:.9rem;">Max Drew, CPA &amp; Financial Coach.<br>Trusted by Ramsey for 10+ years.</p>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="index.html#about">About Us</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#contact">Contact Us</a></li>
+          <li><a href="index.html#request">Request Consultation</a></li>
+          <li><a href="https://magnumcpa.clientportal.com/#/login" target="_blank" rel="noopener">Client Portal</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="index.html#client-newsletter">Client Newsletter</a></li>
+          <li><a href="index.html#tax-planning-newsletter">Tax Planning Newsletter</a></li>
+          <li><a href="index.html#tax-videos">Tax Videos</a></li>
+          <li><a href="financial-calculators.html">Financial Calculators</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bottom"><div class="container">
+    <div class="social">
+      <a href="https://www.facebook.com/max.drew.522" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/magnumcpa11/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.youtube.com/@MaxDrew" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <a href="https://www.threads.com/@magnumcpa11?xmt=AQG0ulpk6R3kK_t4bDitznWtQA3G7iO-LKH2PQMVhY07s6E" target="_blank" rel="noopener" aria-label="Threads"><i class="fa-brands fa-threads"></i></a>
+      <a href="https://x.com/MagnumCPA11" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="https://www.quora.com/profile/Magnum-CPA" target="_blank" rel="noopener" aria-label="Quora"><i class="fa-brands fa-quora"></i></a>
+    </div>
+    <div class="foot-copy">© <span id="year"></span> Magnum CPA PC. All rights reserved.</div>
+  </div></div>
+</footer>
+
+<!-- ===== Floating Book a Consultation CTA ===== -->
+<a class="book-fab" href="index.html#request">📅 Book a Consultation</a>
+
+<script>
+  /* Nav: mobile toggle + dropdown + year */
+  (function(){
+    var toggle = document.getElementById('navToggle');
+    var nav = document.getElementById('mainNav');
+    if (toggle && nav){
+      toggle.addEventListener('click', function(){
+        nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', nav.classList.contains('open'));
+      });
+    }
+    document.querySelectorAll('.has-sub > .sub-toggle').forEach(function(a){
+      a.addEventListener('click', function(e){
+        if (window.matchMedia('(max-width:980px)').matches){
+          e.preventDefault();
+          a.parentNode.classList.toggle('open');
+        }
+      });
+    });
+    var y = document.getElementById('year');
+    if (y) y.textContent = new Date().getFullYear();
+  })();
+
+  /* Site search (links back to the single page's sections) */
+  (function(){
+    var INDEX = [
+      {title:'Home', url:'index.html#home',
+       snippet:"California's premier partner for strategic growth & tax advantage.",
+       text:'home magnum cpa pc max drew strategic growth tax advantage proactive accounting expert tax planning financial coaching ramsey trusted consultation california'},
+      {title:'About Us', url:'index.html#about',
+       snippet:'Our story, founder Max Drew, and The Magnum Advantage.',
+       text:'about us max magnum drew founder california professional corporation financial partners magnum advantage bbb accredited better business bureau trusted by ramsey best business rate sacramento history mission'},
+      {title:'Services', url:'index.html#services',
+       snippet:'Tax preparation & planning, bookkeeping, consulting, future security.',
+       text:'services tax preparation planning bookkeeping payroll business consulting future security wealth management retirement estate planning filings liabilities growth efficiency'},
+      {title:'Tax Preparation and Planning', url:'tax-preparation-planning.html',
+       snippet:'We help you stay compliant and maximize your tax savings with strategic, year-round planning.',
+       text:'tax preparation and planning tax preparation individual & business tax returns tax planning and projections irs representation and support year-round tax advisory'},
+      {title:'Bookkeeping and Payroll Services', url:'bookkeeping-payroll.html',
+       snippet:'Accurate records and timely payroll so you can focus on what matters most — your business.',
+       text:'bookkeeping and payroll services bookkeeping & payroll daily/monthly bookkeeping payroll processing & tax filings financial statement preparation clean-up and catch-up services'},
+      {title:'Business Consulting', url:'business-consulting.html',
+       snippet:'Strategic insights and practical solutions to drive growth, improve efficiency, and increase profitability.',
+       text:'business consulting business consulting business strategy and planning operational improvement financial analysis and forecasting succession and growth planning'},
+      {title:'Future Security', url:'future-security.html',
+       snippet:'Build, protect, and grow your wealth with a holistic approach to retirement, wealth management, and estate planning.',
+       text:'future security future security retirement planning wealth management estate and legacy planning life and business protection'},
+      {title:'Client Newsletter', url:'index.html#client-newsletter',
+       snippet:'Monthly updates, firm news, and money tips.',
+       text:'client newsletter mid-year money check-in refund last-minute filing tips updates subscribe firm news'},
+      {title:'Tax Planning Newsletter', url:'index.html#tax-planning-newsletter',
+       snippet:'Strategy articles for proactive tax savings.',
+       text:'tax planning newsletter retirement contributions 401k ira hsa small business entity llc s-corp sole proprietor charitable giving donor advised capital gains harvesting'},
+      {title:'Tax Videos', url:'index.html#tax-videos',
+       snippet:'Plain-English videos on key tax topics.',
+       text:'tax videos understanding w-2 deductions credits quarterly taxes freelancers small business watch learn'},
+      {title:'Financial Calculators', url:'financial-calculators.html',
+       snippet:'Tax, retirement, mortgage, loan, savings & business calculators.',
+       text:'financial calculators tax payroll 1040 marginal estate retirement roth ira 401k social security rmd mortgage piti arm loan amortization auto savings college net worth business cash flow breakeven valuation rent vs buy'},
+      {title:'Client Portal', url:'https://magnumcpa.clientportal.com/#/login', target:true,
+       snippet:'Secure client portal (Canopy) for documents and messages.',
+       text:'client portal canopy login documents upload messages secure account'},
+      {title:'Contact Us', url:'index.html#contact',
+       snippet:'Phone, email, and our Sacramento office location.',
+       text:'contact us phone 916 616 1789 email info ask magnumcpa find us 907 green moss drive sacramento ca 95831 map directions location office hours'},
+      {title:'Request a Consultation', url:'index.html#request',
+       snippet:'Request your free consultation with Max Drew, CPA.',
+       text:'request consultation free appointment schedule book meeting max drew cpa tax planning preparation bookkeeping financial coaching preferred date service'}
+    ];
+
+    function escapeHtml(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+    var ov = document.createElement('div');
+    ov.className = 'search-overlay';
+    ov.innerHTML =
+      '<div class="search-box">' +
+        '<div class="search-top">' +
+          '<span class="search-ic">🔍</span>' +
+          '<input type="text" id="siteSearchInput" placeholder="Search the site..." autocomplete="off">' +
+          '<button class="search-close" aria-label="Close search">&times;</button>' +
+        '</div>' +
+        '<div class="search-results" id="siteSearchResults"></div>' +
+      '</div>';
+    document.body.appendChild(ov);
+
+    var input = ov.querySelector('#siteSearchInput');
+    var results = ov.querySelector('#siteSearchResults');
+
+    function openSearch(){ ov.classList.add('open'); input.value=''; render(''); setTimeout(function(){ input.focus(); }, 40); }
+    function closeSearch(){ ov.classList.remove('open'); }
+
+    function render(q){
+      q = q.trim().toLowerCase();
+      if (!q){ results.innerHTML = '<div class="search-none">Type a keyword to search across the website.</div>'; return; }
+      var terms = q.split(/\s+/);
+      var matches = INDEX.map(function(p){
+        var hay = (p.title + ' ' + p.text + ' ' + p.snippet).toLowerCase();
+        var score = 0;
+        terms.forEach(function(t){ if (hay.indexOf(t) > -1) score++; });
+        return {p:p, score:score};
+      }).filter(function(m){ return m.score > 0; })
+        .sort(function(a,b){ return b.score - a.score; });
+
+      if (!matches.length){ results.innerHTML = '<div class="search-none">No results for &ldquo;' + escapeHtml(q) + '&rdquo;.</div>'; return; }
+      results.innerHTML = matches.map(function(m){
+        var tgt = m.p.target ? ' target="_blank" rel="noopener"' : '';
+        return '<a href="' + m.p.url + '"' + tgt + '><b>' + escapeHtml(m.p.title) + '</b><span>' + escapeHtml(m.p.snippet) + '</span></a>';
+      }).join('');
+    }
+
+    input.addEventListener('input', function(){ render(input.value); });
+    ov.querySelector('.search-close').addEventListener('click', closeSearch);
+    ov.addEventListener('click', function(e){ if (e.target === ov) closeSearch(); });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeSearch(); });
+
+    document.querySelectorAll('.search-btn').forEach(function(b){
+      b.addEventListener('click', function(e){ e.preventDefault(); openSearch(); });
+    });
+  })();
+</script>
+</body>
+</html>
