@@ -5,14 +5,11 @@ compatibility_date = "2026-01-01"
 # LEADS_KV  — the main site's consultation form. Do not repoint this.
 # LIBRARY_KV — the gated video library (videos, gate leads, analytics).
 #
-# Create LIBRARY_KV with:
-#   npx wrangler kv namespace create LIBRARY_KV
-# then paste the returned id over the placeholder below. `wrangler dev` works
-# without it (local KV is simulated per binding name); `wrangler deploy` will
-# fail loudly until it's replaced, which is the intended failure mode.
+# Both live in the company Cloudflare account (glenn@magnumcpa.com). The old
+# personal account's LEADS_KV (363eb08d…) was not migrated.
 kv_namespaces = [
-  { binding = "LEADS_KV", id = "363eb08d23cb47ab9176fa209afbcef5" },
-  { binding = "LIBRARY_KV", id = "REPLACE_WITH_ID_FROM_wrangler_kv_namespace_create" }
+  { binding = "LEADS_KV", id = "1dcf445a11b343ad8b73d761cd32d44c" },
+  { binding = "LIBRARY_KV", id = "b11d57f561e14aec85ad3ea67a1c7e42" }
 ]
 
 # Flushes the pending-Canopy retry queue and rolls up raw analytics events

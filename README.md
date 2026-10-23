@@ -26,7 +26,9 @@ admin area, or client portal.
   [github.com/glenn925/magnumcpa-website](https://github.com/glenn925/magnumcpa-website).
 - **Email:** Google Workspace (MX records at GoDaddy point to Google). Never edit
   the MX or TXT records when changing website settings.
-- **Lead form backend:** Cloudflare Worker — see `SETUP-CLOUDFLARE.md`.
+- **Lead form backend:** Cloudflare Worker in the company Cloudflare account
+  (glenn@magnumcpa.com) at `https://magnum-cpa-lead-worker.glenn-c44.workers.dev` —
+  see `SETUP-CLOUDFLARE.md`.
 
 ### GitHub Pages settings
 Repo → **Settings** → **Pages**: Source **Deploy from a branch**, Branch **main**,
