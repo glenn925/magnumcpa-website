@@ -341,57 +341,23 @@
   .btn.btn-dark{background:linear-gradient(135deg,var(--primary),#1560C9);color:#fff;text-transform:uppercase;letter-spacing:.6px;padding:15px 26px;font-size:.95rem;border-radius:10px;}
   .btn.btn-dark:hover{filter:brightness(1.08);box-shadow:0 12px 26px rgba(11,61,145,.35);}
 
-  /* ===== request form: fields on the left, booking picker on the right ===== */
+  /* ===== request form: fields across the card, send button centred below ===== */
   .form-card{max-width:none;padding:34px 38px;}
   .bookcall-title,.bookcall-sub{text-align:center;}
-  #leadForm{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(330px,1fr);gap:22px 32px;align-items:start;}
   .lf-fields{display:grid;grid-template-columns:repeat(3,1fr);gap:0 16px;align-items:start;}
   .lf-fields .grid2{display:contents;}
   .lf-fields .fld-group,.lf-fields .fld.full{grid-column:1/-1;}
   .lf-fields .fld.full textarea{height:48px;min-height:48px;resize:vertical;}
   .lf-fields .cf-turnstile{grid-column:1/-1;margin:2px 0 0 !important;}
-  #leadForm .bookcall-note{grid-column:1/-1;margin-top:0;}
-  .bk{background:#fff;border:1px solid var(--border);border-radius:20px;padding:22px 22px 20px;
-    box-shadow:0 2px 4px rgba(11,61,145,.04),0 24px 54px rgba(11,61,145,.13);}
-  .bk.invalid{border-color:#c0392b;}
-  .bk-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px;}
-  .bk-title{color:var(--primary);font-size:1.3rem;font-weight:800;line-height:1.2;margin-bottom:8px;}
-  .bk-pill{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:var(--bg);color:var(--primary);font-size:.85rem;font-weight:600;border:1px solid #CFE5F6;}
-  .bk-pill i{color:#1C8BDF;}
-  .bk-nav{display:flex;gap:6px;}
-  .bk-arrow{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:#fff;color:var(--primary);cursor:pointer;transition:background .2s,transform 90ms;}
-  .bk-arrow:hover:not(:disabled){background:var(--bg);}
-  .bk-arrow:active:not(:disabled){transform:scale(.94);}
-  .bk-arrow:disabled{opacity:.35;cursor:default;}
-  .bk-month{color:var(--text);font-weight:800;font-size:1.05rem;margin-bottom:6px;}
-  .bk-dow,.bk-days{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;text-align:center;}
-  .bk-dow span{font-size:.78rem;font-weight:700;color:var(--muted);padding:4px 0;}
-  .bk-day{height:42px;border:0;border-radius:12px;background:transparent;color:var(--text);font:inherit;font-weight:600;font-size:.95rem;cursor:pointer;
-    transition:transform 600ms var(--spring,cubic-bezier(.32,.72,0,1)),background .2s,color .2s,box-shadow .2s;}
-  .bk-day:hover:not(:disabled){background:var(--bg);}
-  .bk-day:active:not(:disabled){transform:scale(.94);transition-duration:90ms;}
-  .bk-day:disabled{color:#B5C7DC;cursor:default;}
-  .bk-day[aria-pressed="true"]{background:linear-gradient(135deg,var(--primary),#1C6FD1);color:#fff;transform:scale(1.1);box-shadow:0 8px 18px rgba(11,61,145,.3);}
-  .bk-day:focus-visible,.bk-slot:focus-visible,.bk-arrow:focus-visible,.bk-confirm:focus-visible{outline:3px solid var(--secondary);outline-offset:2px;}
-  .bk-slots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px;min-height:46px;}
-  .bk-hint{grid-column:1/-1;color:var(--muted);font-size:.88rem;text-align:center;padding:12px 0;}
-  .bk-slot{height:42px;border-radius:999px;border:1.5px solid var(--border);background:#fff;color:var(--text);font:inherit;font-weight:600;font-size:.9rem;cursor:pointer;
-    opacity:0;transform:translateY(6px);transition:opacity .4s ease,transform 600ms var(--spring,cubic-bezier(.32,.72,0,1)),border-color .2s,background .2s,color .2s;
-    transition-delay:calc(var(--i,0) * 80ms);}
-  .bk-slots.in .bk-slot{opacity:1;transform:none;}
-  .bk-slot:hover{border-color:var(--secondary);}
-  .bk-slot:active{transform:scale(.94) !important;transition-duration:90ms;transition-delay:0s;}
-  .bk-slot[aria-pressed="true"]{border-color:var(--primary);background:#E3F0FD;color:var(--primary);}
-  .bk-tz{color:var(--muted);font-size:.78rem;margin:10px 0 0;}
-  .bk .fld-error{display:block;margin:4px 0 0;}
-  .bk-confirm{width:100%;margin-top:12px;height:52px;border:0;border-radius:999px;font:inherit;font-weight:800;font-size:1rem;cursor:pointer;
-    display:inline-flex;align-items:center;justify-content:center;gap:10px;background:#E6EEF6;color:#7C8EA6;transition:background .3s,color .3s,box-shadow .3s,transform 90ms;}
-  .bk-confirm.ready{background:linear-gradient(90deg,var(--primary),#1C6FD1 55%,#25B7C6);color:#fff;box-shadow:0 12px 26px rgba(11,61,145,.28);}
-  .bk-confirm:active{transform:scale(.97);}
-  .bk-confirm:disabled{opacity:.7;}
-  @media(prefers-reduced-motion:reduce){.bk-slot{transition-delay:0s !important;transform:none !important;}.bk-day[aria-pressed="true"]{transform:none;}}
-  @media(max-width:1000px){#leadForm{grid-template-columns:1fr;}.lf-fields{grid-template-columns:repeat(2,1fr);}}
-  @media(max-width:560px){.lf-fields{grid-template-columns:1fr;}.form-card{padding:26px 18px;}.bk{padding:18px 14px;}.bk-day{height:38px;font-size:.88rem;}}
+  .lf-submit{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;max-width:380px;height:54px;margin:22px auto 0;border:0;border-radius:999px;
+    font:inherit;font-weight:800;font-size:1rem;cursor:pointer;color:#fff;background:linear-gradient(90deg,var(--primary),#1C6FD1 55%,#25B7C6);
+    box-shadow:0 12px 26px rgba(11,61,145,.28);transition:box-shadow .3s,transform 90ms,filter .2s;}
+  .lf-submit:hover{filter:brightness(1.06);box-shadow:0 16px 32px rgba(11,61,145,.34);}
+  .lf-submit:active{transform:scale(.97);}
+  .lf-submit:disabled{opacity:.7;}
+  .lf-submit:focus-visible{outline:3px solid var(--secondary);outline-offset:2px;}
+  @media(max-width:1000px){.lf-fields{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.lf-fields{grid-template-columns:1fr;}.form-card{padding:26px 18px;}}
   [data-curtain-focus]:focus{outline:none;}
 
   /* ===== curtain wipe: a blue panel covers the page on the way to and from the request form ===== */
@@ -615,33 +581,14 @@
 
           </div>
 
-          <!-- Preferred day + time. Not live availability: the exact slot is confirmed in the scheduler on the next step. -->
-          <div class="bk" id="dcSlot" aria-describedby="err-dcSlot">
-            <div class="bk-head">
-              <div>
-                <div class="bk-title">Book a time that <span class="grad">works</span></div>
-                <span class="bk-pill"><i class="fa-regular fa-clock" aria-hidden="true"></i> Free 30-minute call</span>
-              </div>
-              <div class="bk-nav">
-                <button type="button" class="bk-arrow" id="bkPrev" aria-label="Earlier dates"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
-                <button type="button" class="bk-arrow" id="bkNext" aria-label="Later dates"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
-              </div>
-            </div>
-            <div class="bk-month" id="bkMonth" aria-live="polite"></div>
-            <div class="bk-dow" aria-hidden="true"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div>
-            <div class="bk-days" id="bkDays" role="group" aria-label="Choose a day"></div>
-            <div class="bk-slots" id="bkSlots" role="group" aria-label="Choose a time"></div>
-            <p class="bk-tz">Times shown in Eastern Time (ET).</p>
-            <span class="fld-error" id="err-dcSlot"></span>
-            <button type="submit" class="bk-confirm" id="leadSubmitBtn" aria-disabled="true">Reserve My Free Call <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
-          </div>
+          <button type="submit" class="lf-submit" id="leadSubmitBtn">Reserve My Free Call <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
           <p class="bookcall-note">🔒 Your information is private and never sold. We'll confirm within 2 hours.</p>
         </form>
       </div>
 
       <!-- Step 2: scheduler (revealed after Step 1) -->
       <div id="step2" style="display:none;">
-        <p class="form-intro">Great, <span id="dcGreet"></span>! Pick a date and time that works for you — instantly confirmed online.<span id="dcPicked"></span></p>
+        <p class="form-intro">Great, <span id="dcGreet"></span>! Pick a date and time that works for you — instantly confirmed online.</p>
         <div class="schedule-embed">
           <div class="sched-head">
             <span class="ic">📅</span>
@@ -701,77 +648,6 @@
 </footer>
 
 <script>
-  /* ===== Request form: preferred day + time picker ===== */
-  // Office hours from the form header: Mon–Fri 9–5, Sat–Sun 2–6 (ET). Earliest day is tomorrow.
-  var BK_SLOTS = { weekday: ['9:30 am', '11:00 am', '1:00 pm', '2:30 pm', '4:00 pm'], weekend: ['2:00 pm', '3:30 pm', '5:00 pm'] };
-  var bkState = { start: null, day: null, slot: null };
-  function bkChoice(){
-    if (!bkState.day || !bkState.slot) return '';
-    return bkState.day.toLocaleDateString('en-US', {weekday: 'short', month: 'short', day: 'numeric'}) + ', ' + bkState.slot;
-  }
-  (function(){
-    var daysEl = document.getElementById('bkDays'), slotsEl = document.getElementById('bkSlots');
-    if (!daysEl) return;
-    var monthEl = document.getElementById('bkMonth'), btn = document.getElementById('leadSubmitBtn');
-    var today = new Date(); today.setHours(0, 0, 0, 0);
-    var first = new Date(today); first.setDate(first.getDate() - ((first.getDay() + 6) % 7));   // Monday of this week
-    var MAX_WEEKS = 6;
-    bkState.start = new Date(first);
-    function same(a, b){ return a && b && a.getTime() === b.getTime(); }
-    function addDays(d, n){ var x = new Date(d); x.setDate(x.getDate() + n); return x; }
-    function updateBtn(){
-      var ready = !!bkChoice();
-      btn.setAttribute('aria-disabled', ready ? 'false' : 'true');
-      btn.classList.toggle('ready', ready);
-      if (ready){ var e = document.getElementById('err-dcSlot'); e.textContent = ''; document.getElementById('dcSlot').classList.remove('invalid'); }
-    }
-    function renderSlots(){
-      slotsEl.innerHTML = '';
-      if (!bkState.day){ slotsEl.innerHTML = '<p class="bk-hint">Pick a day to see times.</p>'; return; }
-      var wk = bkState.day.getDay() % 6 === 0 ? 'weekend' : 'weekday';
-      BK_SLOTS[wk].forEach(function(t, i){
-        var b = document.createElement('button');
-        b.type = 'button'; b.className = 'bk-slot'; b.textContent = t;
-        b.style.setProperty('--i', i);
-        b.setAttribute('aria-pressed', t === bkState.slot ? 'true' : 'false');
-        b.addEventListener('click', function(){
-          bkState.slot = t;
-          slotsEl.querySelectorAll('.bk-slot').forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
-          updateBtn();
-        });
-        slotsEl.appendChild(b);
-      });
-      requestAnimationFrame(function(){ slotsEl.classList.add('in'); });
-    }
-    function renderDays(){
-      daysEl.innerHTML = '';
-      var end = addDays(bkState.start, 13);
-      var m1 = bkState.start.toLocaleDateString('en-US', {month: 'long'}), m2 = end.toLocaleDateString('en-US', {month: 'long', year: 'numeric'});
-      monthEl.textContent = m1 === end.toLocaleDateString('en-US', {month: 'long'}) ? m2 : m1 + ' – ' + m2;
-      for (var i = 0; i < 14; i++){
-        (function(d){
-          var b = document.createElement('button');
-          b.type = 'button'; b.className = 'bk-day'; b.textContent = d.getDate();
-          b.setAttribute('aria-label', d.toLocaleDateString('en-US', {weekday: 'long', month: 'long', day: 'numeric'}));
-          if (d <= today){ b.disabled = true; }
-          b.setAttribute('aria-pressed', same(d, bkState.day) ? 'true' : 'false');
-          b.addEventListener('click', function(){
-            bkState.day = d; bkState.slot = null;
-            daysEl.querySelectorAll('.bk-day').forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
-            slotsEl.classList.remove('in'); void slotsEl.offsetWidth;
-            renderSlots(); updateBtn();
-          });
-          daysEl.appendChild(b);
-        })(addDays(bkState.start, i));
-      }
-      document.getElementById('bkPrev').disabled = same(bkState.start, first);
-      document.getElementById('bkNext').disabled = bkState.start >= addDays(first, (MAX_WEEKS - 2) * 7);
-    }
-    document.getElementById('bkPrev').addEventListener('click', function(){ bkState.start = addDays(bkState.start, -14); if (bkState.start < first) bkState.start = new Date(first); renderDays(); });
-    document.getElementById('bkNext').addEventListener('click', function(){ bkState.start = addDays(bkState.start, 14); renderDays(); });
-    renderDays(); renderSlots(); updateBtn();
-  })();
-
   /* ===== Request a consultation: secure lead capture, then Acuity ===== */
   var ACUITY_BASE = 'https://magnumcpa.as.me/schedule/c78873bb/appointment/7960861?appointmentTypeIds%5B%5D=7960861';
 
@@ -788,7 +664,6 @@
       '&phone='     + encodeURIComponent(phone);
     document.getElementById('schedFrame').src = url;
     document.getElementById('dcGreet').textContent = (first || 'there');
-    var pk = bkChoice(); document.getElementById('dcPicked').textContent = pk ? ' You asked for ' + pk + ' ET.' : '';
     document.getElementById('step1').style.display = 'none';
     document.getElementById('step2').style.display = 'block';
     document.getElementById('request').scrollIntoView({behavior:'smooth'});
@@ -837,7 +712,7 @@
       serviceNeeded: [].map.call(document.querySelectorAll('#dcHelp input:checked'), function(i){ return i.value; }).join('; '),
       revenue: document.getElementById('dcRevenue').value,
       preferredContact: document.getElementById('dcContactMethod').value,
-      bestTimeToCall: bkChoice() || 'Anytime',
+      bestTimeToCall: 'Anytime',   // the exact time is picked in the scheduler on the next step
       message: leadStripTags(document.getElementById('dcMessage').value.trim())
     };
   }
@@ -852,7 +727,6 @@
     else if (!LEAD_PHONE_RE.test(lead.phone)){ showLeadFieldError('dcPhone', 'Enter a valid US phone number.'); ok = false; }
     if (!lead.state){ showLeadFieldError('dcState', 'Please select your state.'); ok = false; }
     if (!lead.serviceNeeded){ showLeadFieldError('dcHelp', 'Choose at least one.'); ok = false; }
-    if (!bkChoice()){ showLeadFieldError('dcSlot', 'Pick a day and time.'); ok = false; }
     if (lead.message.length > 2000){ showLeadFieldError('dcMessage', 'Message is too long.'); ok = false; }
     return ok;
   }
