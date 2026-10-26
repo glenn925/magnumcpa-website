@@ -573,58 +573,6 @@
   @media(max-width:860px){.calc-grid{grid-template-columns:repeat(2,1fr);}}
   @media(max-width:560px){.calc-grid{grid-template-columns:1fr;}}
 
-  /* ----- Request a consultation ----- */
-  .form-card{max-width:640px;margin:0 auto;background:#fff;color:var(--text);border-radius:14px;
-    padding:30px;border:1px solid var(--border);box-shadow:var(--shadow-lg);}
-  .form-card .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-  .fld{margin-bottom:16px;}
-  .fld.full{grid-column:1 / -1;}
-  .fld label{display:block;font-size:.8rem;font-weight:700;color:var(--navy);margin-bottom:6px;text-transform:uppercase;letter-spacing:.3px;}
-  .fld input,.fld select,.fld textarea{width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:8px;font-size:1rem;font-family:inherit;}
-  .fld input:focus,.fld select:focus,.fld textarea:focus{outline:2px solid var(--secondary);border-color:transparent;box-shadow:0 0 0 5px rgba(59,167,242,.15);}
-  /* multi-select as tick-box chips */
-  .fld-group{border:0;padding:0;margin:0 0 16px;min-width:0;}
-  .fld-group legend{display:block;font-size:.8rem;font-weight:700;color:var(--navy);margin-bottom:8px;text-transform:uppercase;letter-spacing:.3px;}
-  .chips{display:flex;flex-wrap:wrap;gap:8px;}
-  .chip{position:relative;cursor:pointer;}
-  .chip input{position:absolute;opacity:0;width:1px;height:1px;}
-  .chip span{display:inline-flex;align-items:center;gap:9px;padding:9px 15px;border:1px solid var(--border);border-radius:999px;
-    background:#fff;color:var(--text);font-size:.92rem;line-height:1.3;transition:border-color .15s,background .15s,color .15s;}
-  .chip span:before{content:"";flex:none;width:17px;height:17px;border-radius:5px;border:1.5px solid #9DB8D6;background:#fff center/12px no-repeat;
-    transition:background-color .15s,border-color .15s;}
-  .chip:hover span{border-color:var(--secondary);}
-  .chip input:checked + span{background:var(--bg);border-color:var(--primary);color:var(--primary);font-weight:600;}
-  .chip input:checked + span:before{border-color:var(--primary);background-color:var(--primary);
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.3l2.3 2.3 4.7-5' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");}
-  .chip input:focus-visible + span{outline:2px solid var(--secondary);outline-offset:2px;}
-  .fld-group.invalid .chip span{border-color:#c0392b;}
-  .fld-optional{text-transform:none;font-weight:400;color:var(--muted);letter-spacing:0;}
-  .fld-error{display:block;color:#c0392b;font-size:.78rem;margin-top:5px;min-height:0;}
-  .fld input.invalid,.fld select.invalid,.fld textarea.invalid{border-color:#c0392b;}
-  .form-error-banner{background:#fff0f0;color:#c0392b;border:1px solid #f5c6cb;border-radius:8px;
-    padding:12px 16px;font-size:.9rem;margin-bottom:18px;}
-  /* Honeypot: off-screen, not display:none (some bots specifically skip
-     display:none fields), never focusable/autofillable by real visitors. */
-  .hp-field{position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;}
-  .form-intro{text-align:center;color:var(--muted);max-width:620px;margin:0 auto 28px;}
-  .step-head{font-size:1.25rem;font-weight:800;color:var(--navy);display:flex;align-items:center;gap:10px;margin-bottom:6px;}
-  .step-head .num{width:30px;height:30px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;font-size:.95rem;}
-  .step-head .of{margin-left:auto;font-size:.78rem;color:var(--muted);font-weight:600;}
-  .schedule-embed{max-width:900px;margin:0 auto;background:#fff;border-radius:14px;overflow:hidden;
-    box-shadow:var(--shadow-lg);border:1px solid var(--border);border-top:5px solid var(--secondary);}
-  .sched-head{background:var(--navy);color:#fff;font-weight:700;font-size:1.05rem;letter-spacing:.3px;
-    padding:16px 22px;display:flex;align-items:center;gap:10px;}
-  .sched-head .ic{width:34px;height:34px;border-radius:8px;background:rgba(127,231,214,.18);color:var(--tertiary);display:grid;place-items:center;font-size:1.1rem;}
-  .sched-head small{display:block;font-weight:400;font-size:.78rem;color:var(--on-dark);}
-  .schedule-embed iframe{display:block;width:100%;border:0;background:#fff;}
-  @media(max-width:560px){.form-card .grid2{grid-template-columns:1fr;}}
-  /* "Book Your Free Strategy Call" form */
-  .bookcall-title{font-size:1.7rem;color:var(--navy);font-weight:800;margin-bottom:8px;}
-  .bookcall-sub{color:var(--muted);font-size:.95rem;margin-bottom:26px;}
-  .bookcall-note{color:var(--muted);font-size:.82rem;text-align:center;margin-top:14px;}
-  .btn.btn-dark{background:linear-gradient(135deg,var(--primary),#1560C9);color:#fff;text-transform:uppercase;letter-spacing:.6px;padding:15px 26px;font-size:.95rem;border-radius:10px;}
-  .btn.btn-dark:hover{filter:brightness(1.08);box-shadow:0 12px 26px rgba(11,61,145,.35);}
-
   /* ----- Contact ----- */
   .contactx{background:#fff;color:var(--primary);border-radius:18px;max-width:none;margin:0 auto;
     padding:48px 42px 42px;border:1px solid var(--border);box-shadow:var(--shadow-lg);position:relative;overflow:hidden;}
@@ -634,9 +582,6 @@
   .cx-grid{display:grid;grid-template-columns:1fr 1.18fr;gap:34px;align-items:center;}
   .cx-photo{position:relative;border-radius:12px;overflow:hidden;box-shadow:var(--shadow-lg);}
   .cx-photo img{width:100%;display:block;}
-  .cx-badge{position:absolute;left:0;bottom:22px;background:var(--primary);color:#fff;padding:9px 18px;border-radius:0 8px 8px 0;}
-  .cx-badge b{display:block;font-size:.98rem;}
-  .cx-badge span{font-size:.74rem;color:var(--on-dark);}
   .cx-name b{font-size:1.55rem;color:var(--primary);}
   .cx-name span{display:block;color:var(--muted);margin:2px 0 20px;}
   .cx-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px;}
@@ -656,10 +601,6 @@
   .contactx h1 span{color:#1C8BDF;}
   .contactx .sub{color:#4A607E;font-size:1.08rem;max-width:700px;}
   .cx-photo{border-radius:16px;}
-  .cx-badge{bottom:26px;padding:12px 28px 12px 30px;border-radius:0 16px 16px 0;background:linear-gradient(90deg,var(--primary),#1560C9);}
-  .cx-badge:before{content:"";position:absolute;left:14px;top:12px;bottom:12px;width:3px;border-radius:2px;background:var(--tertiary);}
-  .cx-badge b{font-size:1.15rem;}
-  .cx-badge span{font-size:.86rem;}
   .cx-name b{font-size:2.4rem;font-weight:800;line-height:1.1;}
   .cx-name span{font-size:1.15rem;margin:4px 0 0;}
   .cx-name:after{content:"";display:block;width:50px;height:3px;border-radius:2px;background:#3CCFC0;margin:12px 0 24px;}
@@ -930,66 +871,84 @@
     .cta-band .btn{padding:15px 22px;font-size:.95rem;gap:10px;}
   }
 
-  /* ===== request form: fields on the left, booking picker on the right ===== */
-  .form-card{max-width:none;padding:34px 38px;}
-  .bookcall-title,.bookcall-sub{text-align:center;}
-  #leadForm{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(330px,1fr);gap:22px 32px;align-items:start;}
-  .lf-fields{display:grid;grid-template-columns:repeat(3,1fr);gap:0 16px;align-items:start;}
-  .lf-fields .grid2{display:contents;}
-  .lf-fields .fld-group,.lf-fields .fld.full{grid-column:1/-1;}
-  .lf-fields .fld.full textarea{height:48px;min-height:48px;resize:vertical;}
-  .lf-fields .cf-turnstile{grid-column:1/-1;margin:2px 0 0 !important;}
-  #leadForm .bookcall-note{grid-column:1/-1;margin-top:0;}
-  .bk{background:#fff;border:1px solid var(--border);border-radius:20px;padding:22px 22px 20px;
-    box-shadow:0 2px 4px rgba(11,61,145,.04),0 24px 54px rgba(11,61,145,.13);}
-  .bk.invalid{border-color:#c0392b;}
-  .bk-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px;}
-  .bk-title{color:var(--primary);font-size:1.3rem;font-weight:800;line-height:1.2;margin-bottom:8px;}
-  .bk-pill{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:var(--bg);color:var(--primary);font-size:.85rem;font-weight:600;border:1px solid #CFE5F6;}
-  .bk-pill i{color:#1C8BDF;}
-  .bk-nav{display:flex;gap:6px;}
-  .bk-arrow{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:#fff;color:var(--primary);cursor:pointer;transition:background .2s,transform 90ms;}
-  .bk-arrow:hover:not(:disabled){background:var(--bg);}
-  .bk-arrow:active:not(:disabled){transform:scale(.94);}
-  .bk-arrow:disabled{opacity:.35;cursor:default;}
-  .bk-month{color:var(--text);font-weight:800;font-size:1.05rem;margin-bottom:6px;}
-  .bk-dow,.bk-days{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;text-align:center;}
-  .bk-dow span{font-size:.78rem;font-weight:700;color:var(--muted);padding:4px 0;}
-  .bk-day{height:42px;border:0;border-radius:12px;background:transparent;color:var(--text);font:inherit;font-weight:600;font-size:.95rem;cursor:pointer;
-    transition:transform 600ms var(--spring,cubic-bezier(.32,.72,0,1)),background .2s,color .2s,box-shadow .2s;}
-  .bk-day:hover:not(:disabled){background:var(--bg);}
-  .bk-day:active:not(:disabled){transform:scale(.94);transition-duration:90ms;}
-  .bk-day:disabled{color:#B5C7DC;cursor:default;}
-  .bk-day[aria-pressed="true"]{background:linear-gradient(135deg,var(--primary),#1C6FD1);color:#fff;transform:scale(1.1);box-shadow:0 8px 18px rgba(11,61,145,.3);}
-  .bk-day:focus-visible,.bk-slot:focus-visible,.bk-arrow:focus-visible,.bk-confirm:focus-visible{outline:3px solid var(--secondary);outline-offset:2px;}
-  .bk-slots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px;min-height:46px;}
-  .bk-hint{grid-column:1/-1;color:var(--muted);font-size:.88rem;text-align:center;padding:12px 0;}
-  .bk-slot{height:42px;border-radius:999px;border:1.5px solid var(--border);background:#fff;color:var(--text);font:inherit;font-weight:600;font-size:.9rem;cursor:pointer;
-    opacity:0;transform:translateY(6px);transition:opacity .4s ease,transform 600ms var(--spring,cubic-bezier(.32,.72,0,1)),border-color .2s,background .2s,color .2s;
-    transition-delay:calc(var(--i,0) * 80ms);}
-  .bk-slots.in .bk-slot{opacity:1;transform:none;}
-  .bk-slot:hover{border-color:var(--secondary);}
-  .bk-slot:active{transform:scale(.94) !important;transition-duration:90ms;transition-delay:0s;}
-  .bk-slot[aria-pressed="true"]{border-color:var(--primary);background:#E3F0FD;color:var(--primary);}
-  .bk-tz{color:var(--muted);font-size:.78rem;margin:10px 0 0;}
-  .bk .fld-error{display:block;margin:4px 0 0;}
-  .bk-confirm{width:100%;margin-top:12px;height:52px;border:0;border-radius:999px;font:inherit;font-weight:800;font-size:1rem;cursor:pointer;
-    display:inline-flex;align-items:center;justify-content:center;gap:10px;background:#E6EEF6;color:#7C8EA6;transition:background .3s,color .3s,box-shadow .3s,transform 90ms;}
-  .bk-confirm.ready{background:linear-gradient(90deg,var(--primary),#1C6FD1 55%,#25B7C6);color:#fff;box-shadow:0 12px 26px rgba(11,61,145,.28);}
-  .bk-confirm:active{transform:scale(.97);}
-  .bk-confirm:disabled{opacity:.7;}
-  @media(prefers-reduced-motion:reduce){.bk-slot{transition-delay:0s !important;transform:none !important;}.bk-day[aria-pressed="true"]{transform:none;}}
-  @media(max-width:1000px){#leadForm{grid-template-columns:1fr;}.lf-fields{grid-template-columns:repeat(2,1fr);}}
-  @media(max-width:560px){.lf-fields{grid-template-columns:1fr;}.form-card{padding:26px 18px;}.bk{padding:18px 14px;}.bk-day{height:38px;font-size:.88rem;}}
+
+  /* ===== curtain wipe: a blue panel covers the page on the way to and from the request form ===== */
+  .curtain{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;pointer-events:none;visibility:hidden;transform:translateX(-101%);
+    background:linear-gradient(120deg,var(--primary) 0%,#1560C9 55%,var(--secondary) 100%);}
+  .curtain img{width:min(260px,52vw);height:auto;}
+  html.curtain-cover .curtain{visibility:visible;transform:none;}
+  html.curtain-moving .curtain{visibility:visible;pointer-events:auto;}
 </style>
 <script>/* links in the Services dropdown (and Switch service) mark the next navigation as a zoom */(function(){var K='vtZoom',RE=/(tax-preparation-planning|bookkeeping-payroll|business-consulting|future-security)\.html$/;function tag(e){try{if(e.viewTransition&&sessionStorage.getItem(K))e.viewTransition.types.add('zoom');}catch(_){}}addEventListener('pageswap',tag);addEventListener('pagereveal',function(e){tag(e);try{sessionStorage.removeItem(K);}catch(_){}});document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('.submenu a');if(a&&RE.test(a.getAttribute('href')||'')){try{sessionStorage.setItem(K,'1');}catch(_){}}},true);})();</script>
+<script>/* the request form moved to its own page; keep old #request links working */if(location.hash==='#request')location.replace('request-consultation.html'+location.search);</script>
+<script>
+  /* Curtain wipe to and from the request form: the panel slides in over this page, the next page
+     opens covered, then the panel slides off it. Reduced motion gets a quick fade instead. */
+  (function(){
+    var K = 'curtain', FORM = 'request-consultation.html', d = document, html = d.documentElement;
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)'), EASE = 'cubic-bezier(.32,.72,0,1)';
+    function ms(){ return reduce.matches ? 150 : 450; }
+    function frames(entering){
+      if (reduce.matches) return entering ? [{opacity:0, transform:'none'}, {opacity:1, transform:'none'}] : [{opacity:1, transform:'none'}, {opacity:0, transform:'none'}];
+      return entering ? [{transform:'translateX(-101%)'}, {transform:'translateX(0)'}] : [{transform:'translateX(0)'}, {transform:'translateX(101%)'}];
+    }
+    function page(u){ return u.pathname.split('/').pop() || 'index.html'; }
+
+    var arriving = false;
+    try{ if (sessionStorage.getItem(K)){ sessionStorage.removeItem(K); arriving = true; html.classList.add('curtain-cover'); } }catch(_){}
+    // the panel is the transition, so skip the browser's own cross-fade between pages
+    addEventListener('pagereveal', function(e){ if (arriving && e.viewTransition) e.viewTransition.skipTransition(); });
+    if (arriving) d.addEventListener('DOMContentLoaded', function(){
+      var c = d.querySelector('.curtain'), started = false;
+      function reveal(){
+        if (started) return; started = true;
+        html.classList.add('curtain-moving'); html.classList.remove('curtain-cover');
+        if (!c || !c.animate){ html.classList.remove('curtain-moving'); return; }
+        c.animate(frames(false), {duration:ms(), easing:EASE}).finished.then(function(){ html.classList.remove('curtain-moving'); });
+        var h = d.querySelector('[data-curtain-focus]');
+        if (h) h.focus({preventScroll:true});
+      }
+      // wait briefly for the web font so the page doesn't reflow as it's revealed
+      if (d.fonts) d.fonts.ready.then(reveal);
+      setTimeout(reveal, 400);
+    });
+
+    d.addEventListener('click', function(e){
+      if (e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var a = e.target.closest && e.target.closest('a[href]');
+      if (!a || a.target === '_blank' || a.hasAttribute('download')) return;
+      var to = new URL(a.href, location.href), from = page(location), dest = page(to);
+      if (to.origin !== location.origin || dest === from || (dest !== FORM && from !== FORM)) return;
+      var c = d.querySelector('.curtain');
+      if (!c || !c.animate) return;
+      e.preventDefault();
+      try{ sessionStorage.setItem(K, '1'); }catch(_){}
+      html.classList.add('curtain-moving');
+      var gone = false;
+      function go(){ if (!gone){ gone = true; location.href = a.href; } }
+      // swap pages only once the screen is fully covered
+      c.animate(frames(true), {duration:ms(), easing:EASE, fill:'forwards'}).finished.then(go);
+      setTimeout(go, ms() + 150);
+    });
+
+    // back/forward cache brings this page back still covered: lift the panel
+    addEventListener('pageshow', function(e){
+      if (!e.persisted) return;
+      html.classList.remove('curtain-moving', 'curtain-cover');
+      var c = d.querySelector('.curtain');
+      if (c && c.getAnimations) c.getAnimations().forEach(function(x){ x.cancel(); });
+      try{ sessionStorage.removeItem(K); }catch(_){}
+    });
+  })();
+</script>
 </head>
 <body>
+<div class="curtain" aria-hidden="true"><img src="images/logo-light.webp" width="840" height="180" alt=""></div>
 
 <!-- ===== Announcement / booking banner ===== -->
 <div class="announce">
   <span>🎯 New clients: your <b>first consultation is free</b> — limited weekly spots.</span>
-  <a href="#request">Book Now →</a>
+  <a href="request-consultation.html">Book Now →</a>
 </div>
 
 <!-- ===== Top contact bar ===== -->
@@ -1033,7 +992,7 @@
           </ul>
         </li>
         <li><a href="https://magnumcpa.clientportal.com/#/login" target="_blank" rel="noopener">Client Portal</a></li>
-        <li><a href="#request">Request Consultation</a></li>
+        <li><a href="request-consultation.html">Request Consultation</a></li>
         <li><a href="#contact">Contact Us</a></li>
         <li class="search-li"><a href="#" class="search-btn" aria-label="Search the site">🔍</a></li>
       </ul>
@@ -1056,7 +1015,7 @@
         <h1>More Than <span class="nw">Accounting</span><br><span class="grad">We're Your Strategic Partner</span></h1>
         <p class="lede">At Magnum CPA PC, we provide more than numbers. We deliver personalized tax, accounting, and advisory solutions that help you grow, protect, and build a stronger financial future.</p>
         <div class="hero-cta">
-          <a href="#request" class="btn">Schedule a Consultation <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          <a href="request-consultation.html" class="btn">Schedule a Consultation <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
         </div>
       </div>
     </div>
@@ -1262,7 +1221,7 @@
     <div class="container">
       <h2>Ready to take control of <span class="grad-light">your taxes?</span></h2>
       <p>Work with a CPA that Ramsey has trusted for over 10 years.</p>
-      <a href="#request" class="btn">Schedule Your Free Consultation <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+      <a href="request-consultation.html" class="btn">Schedule Your Free Consultation <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
     </div>
   </div>
 </section>
@@ -1336,7 +1295,7 @@
               <button type="button" class="vg-btn" id="vgPrev" aria-label="Previous video"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Prev</button>
               <button type="button" class="vg-btn" id="vgNext" aria-label="Next video">Next <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
               <button type="button" class="vg-btn vg-auto" id="vgAuto" aria-pressed="false" aria-label="Pause auto-advance">&#10074;&#10074;</button>
-              <a class="vg-btn solid" href="#request"><i class="fa-solid fa-comment-dots" aria-hidden="true"></i> Ask Us About This</a>
+              <a class="vg-btn solid" href="request-consultation.html"><i class="fa-solid fa-comment-dots" aria-hidden="true"></i> Ask Us About This</a>
             </div>
           </div>
         </div>
@@ -1348,148 +1307,6 @@
           <button type="button" class="vg-sarrow next" id="vgSNext" aria-label="Next video"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
         </div>
       </div>
-  </div>
-</section>
-
-<!-- ===== Request a Consultation ===== -->
-<section id="request">
-  <div class="sec-head">
-    <div class="container">
-      <div class="sec-kicker">Request a Consultation</div>
-      <h2>Let's Talk About <span class="grad">Your Taxes and Financial Goals</span></h2>
-      <p>Book a free strategy call with Max Drew, CPA.</p>
-    </div>
-  </div>
-  <div class="section">
-    <div class="container">
-
-      <!-- Step 1: Book Your Free Strategy Call -->
-      <div id="step1" class="form-card">
-        <h2 class="bookcall-title">Book Your <span class="grad">Free Strategy Call</span></h2>
-        <p class="bookcall-sub">Available slots: Mon–Fri, 9:00am–5:00pm EST · Sat–Sun 2:00pm – 6:00pm </p>
-        <div class="form-error-banner" id="formError" style="display:none;"></div>
-        <form id="leadForm" onsubmit="return submitLeadForm(event)" novalidate>
-          <div class="lf-fields">
-          <div class="grid2">
-            <div class="fld"><label>First Name</label><input type="text" id="dcFirst" placeholder="First" required><span class="fld-error" id="err-dcFirst"></span></div>
-            <div class="fld"><label>Last Name</label><input type="text" id="dcLast" placeholder="Last" required><span class="fld-error" id="err-dcLast"></span></div>
-          </div>
-          <div class="fld"><label>Business Email</label><input type="email" id="dcEmail" placeholder="you@company.com" required><span class="fld-error" id="err-dcEmail"></span></div>
-          <div class="fld"><label>Phone Number</label><input type="tel" id="dcPhone" placeholder="(555) 555-5555" required><span class="fld-error" id="err-dcPhone"></span></div>
-          <div class="grid2">
-            <div class="fld"><label>Business Name <span class="fld-optional">(optional)</span></label><input type="text" id="dcBusiness" placeholder="Your business name"></div>
-            <div class="fld"><label>State</label>
-              <select id="dcState" required>
-                <option value="">Select your state</option>
-                <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option>
-                <option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option>
-                <option>District of Columbia</option><option>Florida</option><option>Georgia</option><option>Hawaii</option>
-                <option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option>
-                <option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option>
-                <option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option>
-                <option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option>
-                <option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option>
-                <option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option>
-                <option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option>
-                <option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option>
-                <option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option>
-                <option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option>
-              </select>
-              <span class="fld-error" id="err-dcState"></span>
-            </div>
-          </div>
-          <fieldset class="fld-group" id="dcHelp" aria-describedby="err-dcHelp">
-            <legend>I Need Help With <span class="fld-optional">(choose all that apply)</span></legend>
-            <div class="chips">
-              <label class="chip"><input type="checkbox" name="dcHelp" value="Tax Strategy &amp; Planning"><span>Tax Strategy &amp; Planning</span></label>
-              <label class="chip"><input type="checkbox" name="dcHelp" value="Tax Preparation"><span>Tax Preparation</span></label>
-              <label class="chip"><input type="checkbox" name="dcHelp" value="Bookkeeping &amp; Payroll"><span>Bookkeeping &amp; Payroll</span></label>
-              <label class="chip"><input type="checkbox" name="dcHelp" value="Business Consulting"><span>Business Consulting</span></label>
-              <label class="chip"><input type="checkbox" name="dcHelp" value="Wealth, Retirement &amp; Estate Planning"><span>Wealth, Retirement &amp; Estate Planning</span></label>
-              <label class="chip"><input type="checkbox" name="dcHelp" value="Something Else"><span>Something Else</span></label>
-            </div>
-            <span class="fld-error" id="err-dcHelp"></span>
-          </fieldset>
-          <div class="fld"><label>Annual Revenue (Approximate)</label>
-            <select id="dcRevenue">
-              <option>Under $250K</option>
-              <option>$250K – $500K</option>
-              <option>$500K – $1M</option>
-              <option>$1M – $5M</option>
-              <option>$5M+</option>
-              <option>Not applicable / Individual</option>
-            </select>
-          </div>
-          <div class="grid2">
-            <div class="fld"><label>Preferred Contact Method</label>
-              <select id="dcContactMethod">
-                <option>Email</option>
-                <option>Phone Call</option>
-                <option>Text Message</option>
-              </select>
-            </div>
-          </div>
-          <div class="fld full"><label>Message <span class="fld-optional">(optional)</span></label>
-            <textarea id="dcMessage" rows="1" maxlength="2000" placeholder="Anything else we should know?"></textarea>
-            <span class="fld-error" id="err-dcMessage"></span>
-          </div>
-
-          <!-- Honeypot: invisible to real visitors, left blank by them; bots
-               that auto-fill every field trip it. Positioned off-screen
-               (not display:none) and unfocusable/unautofillable. -->
-          <div class="hp-field" aria-hidden="true">
-            <label for="dcCompanyWebsite">Company Website</label>
-            <input type="text" id="dcCompanyWebsite" tabindex="-1" autocomplete="off">
-          </div>
-
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAAFjBF0tBUp8jYNPY" data-theme="light" style="margin-bottom:16px;"></div>
-          <script>
-            /* The normal Turnstile widget is a fixed 300px wide; use the compact one where that won't fit. */
-            if (window.innerWidth < 380) document.querySelector('#leadForm .cf-turnstile').setAttribute('data-size', 'compact');
-          </script>
-
-          </div>
-
-          <!-- Preferred day + time. Not live availability: the exact slot is confirmed in the scheduler on the next step. -->
-          <div class="bk" id="dcSlot" aria-describedby="err-dcSlot">
-            <div class="bk-head">
-              <div>
-                <div class="bk-title">Book a time that <span class="grad">works</span></div>
-                <span class="bk-pill"><i class="fa-regular fa-clock" aria-hidden="true"></i> Free 30-minute call</span>
-              </div>
-              <div class="bk-nav">
-                <button type="button" class="bk-arrow" id="bkPrev" aria-label="Earlier dates"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
-                <button type="button" class="bk-arrow" id="bkNext" aria-label="Later dates"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
-              </div>
-            </div>
-            <div class="bk-month" id="bkMonth" aria-live="polite"></div>
-            <div class="bk-dow" aria-hidden="true"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div>
-            <div class="bk-days" id="bkDays" role="group" aria-label="Choose a day"></div>
-            <div class="bk-slots" id="bkSlots" role="group" aria-label="Choose a time"></div>
-            <p class="bk-tz">Times shown in Eastern Time (ET).</p>
-            <span class="fld-error" id="err-dcSlot"></span>
-            <button type="submit" class="bk-confirm" id="leadSubmitBtn" aria-disabled="true">Reserve My Free Call <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
-          </div>
-          <p class="bookcall-note">🔒 Your information is private and never sold. We'll confirm within 2 hours.</p>
-        </form>
-      </div>
-
-      <!-- Step 2: scheduler (revealed after Step 1) -->
-      <div id="step2" style="display:none;">
-        <p class="form-intro">Great, <span id="dcGreet"></span>! Pick a date and time that works for you — instantly confirmed online.<span id="dcPicked"></span></p>
-        <div class="schedule-embed">
-          <div class="sched-head">
-            <span class="ic">📅</span>
-            <span>Book Your Appointment<small>Choose a date &amp; time — instantly confirmed</small></span>
-          </div>
-          <iframe id="schedFrame" title="Schedule a consultation with Magnum CPA PC" width="100%" height="900" frameborder="0"></iframe>
-        </div>
-        <p style="text-align:center;color:var(--muted);font-size:.9rem;margin-top:16px;">
-          <a href="#" onclick="backToDetails();return false;" style="color:var(--primary);font-weight:700;">← Edit your details</a>
-        </p>
-      </div>
-
-    </div>
   </div>
 </section>
 
@@ -1505,8 +1322,10 @@
 
         <div class="cx-grid">
           <div class="cx-photo">
-            <img src="images/Max-contact-us.jpg" alt="Max Drew, Magnum CPA PC">
-            <div class="cx-badge"><b>Max Drew</b><span>Founder &amp; CPA</span></div>
+            <picture>
+              <source type="image/webp" srcset="images/Max-contact-desk-700.webp 700w, images/Max-contact-desk.webp 1327w" sizes="(max-width:860px) 92vw, 46vw">
+              <img src="images/Max-contact-desk.png" width="1327" height="1185" loading="lazy" alt="Max Drew, Founder and CPA of Magnum CPA PC, smiling at his desk">
+            </picture>
           </div>
 
           <div class="cx-right">
@@ -1577,7 +1396,7 @@
 </footer>
 
 <!-- ===== Floating Book a Consultation CTA ===== -->
-<a class="book-fab" href="#request">📅 Book a Consultation</a>
+<a class="book-fab" href="request-consultation.html">📅 Book a Consultation</a>
 
 <!-- ===== One-time booking popup ===== -->
 <div class="bookpop-overlay" id="bookPop" onclick="if(event.target===this)closeBookPop()">
@@ -1588,7 +1407,7 @@
       <p>Book a free consultation with Max Drew, CPA — Ramsey Trusted for 10+ years.</p>
     </div>
     <div class="body">
-      <a href="#request" class="btn" style="display:inline-block;" onclick="closeBookPop()">Schedule My Free Consultation</a>
+      <a href="request-consultation.html" class="btn" style="display:inline-block;" onclick="closeBookPop()">Schedule My Free Consultation</a>
       <div style="margin-top:12px;"><a href="#" onclick="closeBookPop();return false;" style="color:var(--muted);font-size:.85rem;">No thanks, maybe later</a></div>
     </div>
   </div>
@@ -1681,238 +1500,6 @@
   if (revSlides > 1){ setInterval(function(){ revMove(1); }, 7000); }
 
 
-  /* ===== Request form: preferred day + time picker ===== */
-  // Office hours from the form header: Mon–Fri 9–5, Sat–Sun 2–6 (ET). Earliest day is tomorrow.
-  var BK_SLOTS = { weekday: ['9:30 am', '11:00 am', '1:00 pm', '2:30 pm', '4:00 pm'], weekend: ['2:00 pm', '3:30 pm', '5:00 pm'] };
-  var bkState = { start: null, day: null, slot: null };
-  function bkChoice(){
-    if (!bkState.day || !bkState.slot) return '';
-    return bkState.day.toLocaleDateString('en-US', {weekday: 'short', month: 'short', day: 'numeric'}) + ', ' + bkState.slot;
-  }
-  (function(){
-    var daysEl = document.getElementById('bkDays'), slotsEl = document.getElementById('bkSlots');
-    if (!daysEl) return;
-    var monthEl = document.getElementById('bkMonth'), btn = document.getElementById('leadSubmitBtn');
-    var today = new Date(); today.setHours(0, 0, 0, 0);
-    var first = new Date(today); first.setDate(first.getDate() - ((first.getDay() + 6) % 7));   // Monday of this week
-    var MAX_WEEKS = 6;
-    bkState.start = new Date(first);
-    function same(a, b){ return a && b && a.getTime() === b.getTime(); }
-    function addDays(d, n){ var x = new Date(d); x.setDate(x.getDate() + n); return x; }
-    function updateBtn(){
-      var ready = !!bkChoice();
-      btn.setAttribute('aria-disabled', ready ? 'false' : 'true');
-      btn.classList.toggle('ready', ready);
-      if (ready){ var e = document.getElementById('err-dcSlot'); e.textContent = ''; document.getElementById('dcSlot').classList.remove('invalid'); }
-    }
-    function renderSlots(){
-      slotsEl.innerHTML = '';
-      if (!bkState.day){ slotsEl.innerHTML = '<p class="bk-hint">Pick a day to see times.</p>'; return; }
-      var wk = bkState.day.getDay() % 6 === 0 ? 'weekend' : 'weekday';
-      BK_SLOTS[wk].forEach(function(t, i){
-        var b = document.createElement('button');
-        b.type = 'button'; b.className = 'bk-slot'; b.textContent = t;
-        b.style.setProperty('--i', i);
-        b.setAttribute('aria-pressed', t === bkState.slot ? 'true' : 'false');
-        b.addEventListener('click', function(){
-          bkState.slot = t;
-          slotsEl.querySelectorAll('.bk-slot').forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
-          updateBtn();
-        });
-        slotsEl.appendChild(b);
-      });
-      requestAnimationFrame(function(){ slotsEl.classList.add('in'); });
-    }
-    function renderDays(){
-      daysEl.innerHTML = '';
-      var end = addDays(bkState.start, 13);
-      var m1 = bkState.start.toLocaleDateString('en-US', {month: 'long'}), m2 = end.toLocaleDateString('en-US', {month: 'long', year: 'numeric'});
-      monthEl.textContent = m1 === end.toLocaleDateString('en-US', {month: 'long'}) ? m2 : m1 + ' – ' + m2;
-      for (var i = 0; i < 14; i++){
-        (function(d){
-          var b = document.createElement('button');
-          b.type = 'button'; b.className = 'bk-day'; b.textContent = d.getDate();
-          b.setAttribute('aria-label', d.toLocaleDateString('en-US', {weekday: 'long', month: 'long', day: 'numeric'}));
-          if (d <= today){ b.disabled = true; }
-          b.setAttribute('aria-pressed', same(d, bkState.day) ? 'true' : 'false');
-          b.addEventListener('click', function(){
-            bkState.day = d; bkState.slot = null;
-            daysEl.querySelectorAll('.bk-day').forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
-            slotsEl.classList.remove('in'); void slotsEl.offsetWidth;
-            renderSlots(); updateBtn();
-          });
-          daysEl.appendChild(b);
-        })(addDays(bkState.start, i));
-      }
-      document.getElementById('bkPrev').disabled = same(bkState.start, first);
-      document.getElementById('bkNext').disabled = bkState.start >= addDays(first, (MAX_WEEKS - 2) * 7);
-    }
-    document.getElementById('bkPrev').addEventListener('click', function(){ bkState.start = addDays(bkState.start, -14); if (bkState.start < first) bkState.start = new Date(first); renderDays(); });
-    document.getElementById('bkNext').addEventListener('click', function(){ bkState.start = addDays(bkState.start, 14); renderDays(); });
-    renderDays(); renderSlots(); updateBtn();
-  })();
-
-  /* ===== Request a consultation: secure lead capture, then Acuity ===== */
-  var ACUITY_BASE = 'https://magnumcpa.as.me/schedule/c78873bb/appointment/7960861?appointmentTypeIds%5B%5D=7960861';
-
-  // Fill in once the Worker is deployed (see SETUP-CLOUDFLARE.md). Until
-  // then the form fails closed with a friendly message rather than silently
-  // skipping validation/spam checks.
-  var LEAD_API_URL = 'https://magnum-cpa-lead-worker.glenn-c44.workers.dev/lead';
-
-  function revealScheduler(first, last, email, phone){
-    var url = ACUITY_BASE +
-      '&firstName=' + encodeURIComponent(first) +
-      '&lastName='  + encodeURIComponent(last) +
-      '&email='     + encodeURIComponent(email) +
-      '&phone='     + encodeURIComponent(phone);
-    document.getElementById('schedFrame').src = url;
-    document.getElementById('dcGreet').textContent = (first || 'there');
-    var pk = bkChoice(); document.getElementById('dcPicked').textContent = pk ? ' You asked for ' + pk + ' ET.' : '';
-    document.getElementById('step1').style.display = 'none';
-    document.getElementById('step2').style.display = 'block';
-    document.getElementById('request').scrollIntoView({behavior:'smooth'});
-  }
-  function backToDetails(){
-    document.getElementById('step2').style.display = 'none';
-    document.getElementById('step1').style.display = 'block';
-  }
-
-  /* ---- client-side validation / sanitization ----
-     UX politeness only — the real security boundary is the Worker, which
-     never trusts anything the browser claims to have already checked. */
-  var LEAD_EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  var LEAD_PHONE_RE = /^\+?1?[\s.-]?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
-
-  function leadStripTags(s){ return (s || '').replace(/<[^>]*>/g, ''); }
-
-  function clearLeadErrors(){
-    document.querySelectorAll('#leadForm .fld-error').forEach(function(el){ el.textContent = ''; });
-    document.querySelectorAll('#leadForm .invalid').forEach(function(el){ el.classList.remove('invalid'); });
-    var banner = document.getElementById('formError');
-    banner.style.display = 'none';
-    banner.textContent = '';
-  }
-  function showLeadFieldError(id, message){
-    var input = document.getElementById(id);
-    var err = document.getElementById('err-' + id);
-    if (input) input.classList.add('invalid');
-    if (err) err.textContent = message;
-  }
-  function showLeadFormBanner(message){
-    var banner = document.getElementById('formError');
-    banner.textContent = message;
-    banner.style.display = 'block';
-    banner.scrollIntoView({behavior:'smooth', block:'nearest'});
-  }
-
-  function collectLeadFields(){
-    return {
-      firstName: leadStripTags(document.getElementById('dcFirst').value.trim()),
-      lastName: leadStripTags(document.getElementById('dcLast').value.trim()),
-      email: leadStripTags(document.getElementById('dcEmail').value.trim()),
-      phone: leadStripTags(document.getElementById('dcPhone').value.trim()),
-      businessName: leadStripTags(document.getElementById('dcBusiness').value.trim()),
-      state: document.getElementById('dcState').value,
-      serviceNeeded: [].map.call(document.querySelectorAll('#dcHelp input:checked'), function(i){ return i.value; }).join('; '),
-      revenue: document.getElementById('dcRevenue').value,
-      preferredContact: document.getElementById('dcContactMethod').value,
-      bestTimeToCall: bkChoice() || 'Anytime',
-      message: leadStripTags(document.getElementById('dcMessage').value.trim())
-    };
-  }
-
-  function validateLeadClientSide(lead){
-    var ok = true;
-    if (!lead.firstName){ showLeadFieldError('dcFirst', 'First name is required.'); ok = false; }
-    if (!lead.lastName){ showLeadFieldError('dcLast', 'Last name is required.'); ok = false; }
-    if (!lead.email){ showLeadFieldError('dcEmail', 'Email is required.'); ok = false; }
-    else if (!LEAD_EMAIL_RE.test(lead.email)){ showLeadFieldError('dcEmail', 'Enter a valid email address.'); ok = false; }
-    if (!lead.phone){ showLeadFieldError('dcPhone', 'Phone number is required.'); ok = false; }
-    else if (!LEAD_PHONE_RE.test(lead.phone)){ showLeadFieldError('dcPhone', 'Enter a valid US phone number.'); ok = false; }
-    if (!lead.state){ showLeadFieldError('dcState', 'Please select your state.'); ok = false; }
-    if (!lead.serviceNeeded){ showLeadFieldError('dcHelp', 'Choose at least one.'); ok = false; }
-    if (!bkChoice()){ showLeadFieldError('dcSlot', 'Pick a day and time.'); ok = false; }
-    if (lead.message.length > 2000){ showLeadFieldError('dcMessage', 'Message is too long.'); ok = false; }
-    return ok;
-  }
-
-  function getTurnstileToken(){
-    var el = document.querySelector('#leadForm [name="cf-turnstile-response"]');
-    return el ? el.value : '';
-  }
-
-  // Arriving from a service page (index.html?service=...#request): tick that service
-  (function(){
-    var want = new URLSearchParams(location.search).get('service');
-    if (!want) return;
-    document.querySelectorAll('#dcHelp input').forEach(function(cb){
-      if (cb.value === want && !cb.checked){ cb.checked = true; cb.dispatchEvent(new Event('change')); }
-    });
-  })();
-
-  // clear the "choose at least one" error as soon as something is ticked
-  document.querySelectorAll('#dcHelp input').forEach(function(cb){
-    cb.addEventListener('change', function(){
-      var g = document.getElementById('dcHelp');
-      if (g.querySelector('input:checked')){ g.classList.remove('invalid'); document.getElementById('err-dcHelp').textContent = ''; }
-    });
-  });
-
-  function submitLeadForm(e){
-    e.preventDefault();
-    clearLeadErrors();
-    var lead = collectLeadFields();
-    if (!validateLeadClientSide(lead)) return false;
-
-    var btn = document.getElementById('leadSubmitBtn');
-    btn.disabled = true;
-    var originalLabel = btn.innerHTML;
-    btn.textContent = 'Sending…';
-
-    var payload = {
-      meta: {
-        turnstileToken: getTurnstileToken(),
-        ts: Date.now(),
-        hp: document.getElementById('dcCompanyWebsite').value
-      },
-      lead: lead
-    };
-
-    fetch(LEAD_API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    }).then(function(resp){
-      return resp.json().catch(function(){ return {}; }).then(function(data){
-        return { status: resp.status, data: data };
-      });
-    }).then(function(result){
-      if (result.data && result.data.ok){
-        revealScheduler(lead.firstName, lead.lastName, lead.email, lead.phone);
-        return;
-      }
-      if (result.data && result.data.error === 'validation' && result.data.fields){
-        var fieldMap = { firstName:'dcFirst', lastName:'dcLast', email:'dcEmail', phone:'dcPhone', state:'dcState', serviceNeeded:'dcHelp', message:'dcMessage' };
-        Object.keys(result.data.fields).forEach(function(f){
-          if (fieldMap[f]) showLeadFieldError(fieldMap[f], result.data.fields[f]);
-        });
-        showLeadFormBanner('Please check the highlighted fields and try again.');
-      } else if (result.status === 429 || (result.data && result.data.error === 'rate_limited')){
-        showLeadFormBanner('Too many submissions — please wait a few minutes and try again.');
-      } else {
-        showLeadFormBanner('Something went wrong — please try again or call us at (916) 616-1789.');
-      }
-    }).catch(function(){
-      showLeadFormBanner('Something went wrong — please try again or call us at (916) 616-1789.');
-    }).finally(function(){
-      btn.disabled = false;
-      btn.innerHTML = originalLabel;
-    });
-
-    return false;
-  }
-
   /* ===== One-time booking popup (once per browser session) ===== */
   function closeBookPop(){ document.getElementById('bookPop').classList.remove('show'); }
   (function(){
@@ -1974,7 +1561,7 @@
       {title:'Contact Us', url:'#contact',
        snippet:'Phone, email, and our Sacramento office location.',
        text:'contact us phone 916 616 1789 email info ask magnumcpa find us 907 green moss drive sacramento ca 95831 map directions location office hours'},
-      {title:'Request a Consultation', url:'#request',
+      {title:'Request a Consultation', url:'request-consultation.html',
        snippet:'Request your free consultation with Max Drew, CPA.',
        text:'request consultation free appointment schedule book meeting max drew cpa tax planning preparation bookkeeping financial coaching preferred date service'}
     ];
@@ -2312,8 +1899,6 @@
   })();
 </script>
 
-<script src="https://embed.acuityscheduling.com/js/embed.js" type="text/javascript"></script>
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 </body>
 </html>

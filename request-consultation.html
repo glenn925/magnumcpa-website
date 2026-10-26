@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Request a Consultation — Magnum CPA PC</title>
+<meta name="description" content="Request a free consultation with Max Drew, CPA — Magnum CPA PC. Tax planning, preparation, bookkeeping, consulting and financial coaching.">
+<meta name="theme-color" content="#0B3D91">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link id="fa-cdn" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  :root{
+    /* Palette: Primary #0B3D91 · Secondary #3BA7F2 · Tertiary #7FE7D6 · Background #E8F6FF.
+       Everything else here is a shade of those four, for text and the dark bands. */
+    --primary:#0B3D91;--secondary:#3BA7F2;--tertiary:#7FE7D6;--bg:#E8F6FF;
+    --primary-700:#0A3480;--primary-800:#072A66;--primary-900:#051D47;
+    --secondary-ink:#1670B8;   /* secondary, darkened enough for small text on light backgrounds */
+    --navy:var(--primary);--navy-dark:var(--primary-800);--navy-3:var(--primary-900);
+    --text:#0B1F3F;--muted:#4A607E;--bg-alt:#F3FAFF;--surface:#FFFFFF;
+    --border:#CFE5F6;--radius:10px;--maxw:none;
+    --shadow:0 1px 2px rgba(11,61,145,.06),0 10px 28px rgba(11,61,145,.10);
+    --shadow-lg:0 2px 4px rgba(11,61,145,.06),0 22px 50px rgba(11,61,145,.16);
+    --on-dark:#D6E9FB;
+    --gold:#D9A53A;--gold-ink:#9A6B10;   /* the logo's gold, used only as a small accent */
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{font-size:17px;scroll-behavior:smooth;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;
+    background:var(--bg);
+  }
+  img{max-width:100%;height:auto;display:block;}
+  a{color:inherit;text-decoration:none;}
+  /* content fills the screen at any width, with a proportional side margin */
+  .container{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,6vw,140px);}
+
+  /* top bar */
+  .topbar{background:var(--primary-900);color:var(--on-dark);font-size:.98rem;font-weight:500;}
+  .topbar .container{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center;justify-content:space-between;padding:8px clamp(20px,6vw,140px);}
+
+  /* header / nav */
+  header.site-header{background:rgba(255,255,255,.94);-webkit-backdrop-filter:saturate(1.4) blur(12px);backdrop-filter:saturate(1.4) blur(12px);
+    position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border);box-shadow:0 4px 18px rgba(11,61,145,.08);}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding-top:12px;padding-bottom:12px;gap:16px;}
+  .brand{display:flex;align-items:center;gap:12px;color:#fff;}
+  /* Logo files are 840px wide (about 3x display size) so they stay sharp on high-density screens. */
+  .brand img{display:block;height:58px;width:auto;transition:transform .25s,filter .25s;}
+  .brand:hover img{transform:scale(1.03);filter:drop-shadow(0 4px 14px rgba(59,167,242,.35));}
+  .nav-toggle{display:none;background:transparent;border:0;cursor:pointer;padding:8px;border-radius:6px;}
+  .nav-toggle span{display:block;width:24px;height:2px;background:var(--primary);margin:5px 0;transition:.3s;}
+  nav.main-nav > ul{list-style:none;display:flex;flex-wrap:nowrap;gap:2px;justify-content:flex-end;align-items:center;}
+  nav.main-nav a{color:var(--primary-800);font-size:.76rem;font-weight:600;letter-spacing:.2px;padding:8px 8px;border-radius:6px;
+    text-transform:uppercase;transition:background .2s,color .2s;white-space:nowrap;display:inline-block;}
+  nav.main-nav a:hover{background:var(--bg);color:var(--primary);}
+  nav.main-nav a.active{background:var(--primary);color:#fff;}
+  .has-sub{position:relative;}
+  .submenu{position:absolute;top:100%;left:0;min-width:230px;background:#fff;border-radius:10px;border:1px solid var(--border);
+    box-shadow:var(--shadow-lg);padding:6px;display:none;flex-direction:column;gap:2px;z-index:60;list-style:none;}
+  .has-sub:hover .submenu{display:flex;}
+  .submenu li{width:100%;}
+  .submenu a{display:block;text-align:left;border-radius:5px;}
+
+  /* light section band: kicker + headline + subtitle, faded globe and gold stripe on the right */
+  .sec-head{position:relative;overflow:hidden;padding:46px 0 42px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+    background:linear-gradient(100deg,#fff 0%,var(--bg-alt) 45%,#D6ECFB 100%);}
+  .sec-head:before{content:"";position:absolute;right:4%;top:50%;width:380px;aspect-ratio:600/546;transform:translateY(-50%);
+    background:url('images/globe.webp') center/contain no-repeat;opacity:.16;pointer-events:none;}
+  .sec-head:after{content:"";position:absolute;top:-10px;bottom:-10px;right:-70px;width:150px;transform:skewX(-32deg);pointer-events:none;
+    background:linear-gradient(90deg,var(--gold) 0 7px,rgba(11,61,145,.1) 7px);}
+  .sec-head .container{position:relative;z-index:1;}
+  .sec-kicker{display:flex;align-items:center;gap:12px;color:var(--gold-ink);font-weight:800;font-size:1.1rem;letter-spacing:.6px;text-transform:uppercase;}
+  .sec-kicker:after{content:"";width:46px;height:2px;background:var(--gold);}
+  .sec-kicker.blue{color:var(--secondary-ink);font-size:.9rem;letter-spacing:1.2px;}
+  .sec-kicker.blue:after{background:linear-gradient(90deg,var(--secondary),var(--tertiary));}
+  .sec-head h1,.sec-head h2{color:var(--primary);font-size:2.15rem;line-height:1.2;margin:6px 0 8px;}
+  .sec-head p{color:var(--muted);font-size:1.12rem;}
+  @media(max-width:600px){.sec-head{padding:34px 0 30px;}.sec-head h1,.sec-head h2{font-size:1.6rem;}.sec-head:before{opacity:.1;right:-80px;}.sec-head:after{display:none;}}
+
+  /* sections */
+  .section{padding:60px 0;}
+
+  /* buttons */
+  .btn{display:inline-block;background:linear-gradient(135deg,var(--primary),#1560C9);color:#fff;font-weight:700;padding:12px 26px;border-radius:8px;
+    border:0;cursor:pointer;letter-spacing:.4px;font-size:.95rem;transition:transform .15s,box-shadow .2s,filter .2s;
+    box-shadow:0 6px 16px rgba(11,61,145,.22);}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(11,61,145,.32);filter:brightness(1.08);}
+  .btn:focus-visible{outline:3px solid var(--secondary);outline-offset:3px;}
+  /* on dark bands the button flips to tertiary mint so it stands out */
+  .cta-band .btn{background:var(--tertiary);color:var(--primary-900);box-shadow:0 8px 22px rgba(127,231,214,.28);}
+  .cta-band .btn:hover{box-shadow:0 14px 32px rgba(127,231,214,.42);filter:brightness(1.04);}
+
+  /* calculators */
+  .calc-cat{margin-bottom:34px;}
+  .calc-cat h2{color:var(--primary);background:linear-gradient(90deg,#0B3D91,#1C8BDF 55%,#139E92);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;width:fit-content;font-size:1.3rem;margin-bottom:6px;}
+  .calc-cat h2:after{content:"";display:block;width:54px;height:4px;background:linear-gradient(90deg,var(--secondary),var(--tertiary));margin-top:10px;border-radius:2px;}
+  .calc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px;}
+  .calc-card{background:#fff;color:var(--text);border-radius:10px;padding:16px 18px;border-left:4px solid var(--secondary);
+    box-shadow:var(--shadow);transition:transform .15s,box-shadow .2s,border-color .2s;}
+  .calc-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-left-color:var(--tertiary);}
+  .calc-card b{display:block;color:var(--navy);font-size:.98rem;}
+  .calc-card span{color:var(--muted);font-size:.85rem;}
+  @media(max-width:860px){.calc-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.calc-grid{grid-template-columns:1fr;}}
+
+  /* CTA band */
+  .cta-band{position:relative;overflow:hidden;color:#fff;text-align:center;padding:62px 0;
+    background:radial-gradient(90% 160% at 100% 0%,rgba(59,167,242,.45),transparent 60%),radial-gradient(70% 120% at 0% 100%,rgba(127,231,214,.22),transparent 60%),linear-gradient(120deg,var(--primary-800),var(--primary));}
+  .cta-band h2{font-size:1.9rem;margin-bottom:10px;}
+  .cta-band p{color:var(--on-dark);margin-bottom:24px;}
+
+  /* search */
+  .search-li a{font-size:1.05rem;}
+  .search-overlay{position:fixed;inset:0;background:rgba(5,29,71,.62);display:none;z-index:200;padding:84px 16px 16px;}
+  .search-overlay.open{display:block;}
+  .search-box{max-width:640px;margin:0 auto;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 30px 70px rgba(5,29,71,.4);}
+  .search-top{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--border);}
+  .search-ic{font-size:1.2rem;}
+  .search-top input{flex:1;border:0;outline:none;font-size:1.1rem;color:var(--text);font-family:inherit;background:transparent;}
+  .search-close{background:transparent;border:0;font-size:1.7rem;line-height:1;cursor:pointer;color:var(--muted);padding:0 4px;}
+  .search-results{max-height:62vh;overflow:auto;}
+  .search-results a{display:block;padding:14px 18px;border-bottom:1px solid var(--border);color:var(--primary);}
+  .search-results a:hover{background:var(--bg-alt);}
+  .search-results a b{display:block;font-size:1rem;}
+  .search-results a span{font-size:.86rem;color:var(--muted);}
+  .search-none{padding:20px 18px;color:var(--muted);}
+
+  /* floating "Book a Consultation" CTA */
+  .book-fab{position:fixed;right:22px;bottom:22px;z-index:90;background:linear-gradient(135deg,var(--primary),#1560C9);color:#fff;
+    font-weight:800;padding:14px 24px;border-radius:40px;display:inline-flex;align-items:center;gap:8px;letter-spacing:.3px;
+    box-shadow:0 12px 30px rgba(11,61,145,.35);transition:transform .15s,box-shadow .2s;animation:bookpulse 2.8s ease-in-out infinite;}
+  .book-fab:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(11,61,145,.45);}
+  @keyframes bookpulse{0%,100%{box-shadow:0 12px 30px rgba(11,61,145,.3),0 0 0 0 rgba(59,167,242,.5);}50%{box-shadow:0 14px 36px rgba(11,61,145,.38),0 0 0 12px rgba(59,167,242,0);}}
+  @media(max-width:560px){.book-fab{right:14px;bottom:14px;padding:12px 18px;font-size:.92rem;}}
+
+  /* footer */
+  footer{position:relative;background:var(--primary-900);color:#B8CBE6;padding:50px 0 22px;margin-top:20px;}
+  footer::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--primary),var(--secondary),var(--tertiary));}
+  footer .brand img{height:60px;}
+  .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:30px;margin-bottom:28px;}
+  footer h4{color:#fff;font-size:1rem;margin-bottom:13px;}
+  footer ul{list-style:none;}
+  footer li{margin-bottom:8px;font-size:.9rem;}
+  footer a:hover{color:var(--tertiary);}
+  .social{display:flex;gap:12px;justify-content:center;margin:6px 0 22px;}
+  .social a{width:40px;height:40px;border-radius:50%;background:var(--tertiary);color:var(--primary-900);display:grid;place-items:center;font-size:1.05rem;transition:transform .15s,background .2s,color .2s;}
+  .social a:hover{transform:translateY(-3px);background:var(--secondary);color:#fff;}
+  .foot-copy{border-top:1px solid rgba(255,255,255,.12);padding-top:18px;font-size:.82rem;text-align:center;}
+
+  /* responsive */
+  @media (max-width:980px){.foot-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:980px){
+    .nav-toggle{display:block;}
+    nav.main-nav{position:absolute;top:100%;left:0;right:0;background:#fff;box-shadow:0 18px 30px rgba(11,61,145,.12);max-height:0;overflow:hidden;transition:max-height .35s ease;}
+    nav.main-nav.open{max-height:760px;overflow:auto;}
+    nav.main-nav > ul{flex-direction:column;gap:0;padding:8px 0;align-items:stretch;}
+    nav.main-nav li{width:100%;}
+    nav.main-nav a{display:block;padding:13px 24px;border-radius:0;border-bottom:1px solid var(--border);text-align:left;}
+    .submenu{position:static;display:none;box-shadow:none;border:0;border-radius:0;background:var(--bg-alt);padding:0;min-width:0;}
+    .has-sub.open .submenu{display:flex;}
+    .submenu a{padding-left:40px;}
+  }
+  @media (max-width:600px){
+    .container{padding:0 16px;}
+    .topbar .container{justify-content:center;text-align:center;gap:2px 14px;font-size:.74rem;padding:7px 14px;}
+    .foot-grid{grid-template-columns:1fr;}
+    .section{padding:46px 0;}
+    .brand img{height:46px;}
+  }
+
+  /* ===== call-to-action band ===== */
+  .cta-band{position:relative;overflow:hidden;color:#fff;text-align:center;padding:70px 0 76px;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 300' preserveAspectRatio='none'%3E%3Cpath d='M0 120C260 200 420 290 640 300H0Z' fill='%237FE7D6' opacity='.35'/%3E%3Cpath d='M0 170C300 230 470 280 700 300' fill='none' stroke='%23BFF3EC' stroke-width='2' opacity='.7'/%3E%3Cpath d='M1600 150C1350 230 1180 280 980 300H1600Z' fill='%233BA7F2' opacity='.35'/%3E%3Cpath d='M1600 190C1380 250 1200 285 1020 300' fill='none' stroke='%23BFE6FF' stroke-width='2' opacity='.7'/%3E%3C/svg%3E") bottom/100% 100% no-repeat,
+      radial-gradient(60% 120% at 100% 0%,rgba(79,195,255,.55),transparent 60%),linear-gradient(120deg,#062C74,#0B3D91 45%,#1561C9);}
+  .cta-band h2{font-size:2.5rem;font-weight:800;line-height:1.15;margin-bottom:10px;}
+  .cta-band p{color:#E3EEFF;font-size:1.2rem;margin-bottom:28px;}
+  .cta-band .btn{display:inline-flex;align-items:center;gap:12px;padding:16px 34px;border-radius:999px;font-size:1.02rem;
+    background:linear-gradient(90deg,#7FE7D6,#5EEAD4);color:#0A2A6B;box-shadow:0 12px 30px rgba(127,231,214,.35);}
+  .cta-band .btn i{transition:transform .2s;}
+  .cta-band .btn:hover i{transform:translateX(4px);}
+  @media(max-width:600px){.cta-band h2{font-size:1.7rem;}.cta-band p{font-size:1rem;}}
+
+  /* ===== footer (light) ===== */
+  footer{position:relative;overflow:hidden;background:linear-gradient(180deg,#F7FBFF,#EAF5FF);color:var(--primary);padding:64px 0 26px;margin-top:0;}
+  footer::before{content:"";position:absolute;left:0;right:0;bottom:0;top:auto;height:260px;pointer-events:none;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 300' preserveAspectRatio='none'%3E%3Cpath d='M0 120C260 200 420 290 640 300H0Z' fill='%237FE7D6' opacity='.35'/%3E%3Cpath d='M0 170C300 230 470 280 700 300' fill='none' stroke='%23BFF3EC' stroke-width='2' opacity='.7'/%3E%3Cpath d='M1600 150C1350 230 1180 280 980 300H1600Z' fill='%233BA7F2' opacity='.35'/%3E%3Cpath d='M1600 190C1380 250 1200 285 1020 300' fill='none' stroke='%23BFE6FF' stroke-width='2' opacity='.7'/%3E%3C/svg%3E") bottom/100% 100% no-repeat;opacity:.9;}
+  footer .container{position:relative;z-index:1;max-width:var(--maxw);}
+  footer .brand img{height:76px;}
+  .foot-grid{grid-template-columns:1.45fr 1fr 1.05fr;gap:0;margin-bottom:30px;align-items:start;}
+  .foot-grid > div{padding:0 34px;}
+  .foot-grid > div:first-child{padding-left:0;}
+  .foot-grid > div + div:not(.foot-cta){border-left:1px solid rgba(59,167,242,.3);}
+  .foot-grid > div:nth-child(2),.foot-grid > div:nth-child(3){padding-bottom:8px;}
+  .foot-grid > div:first-child p{color:var(--primary);font-size:1.02rem !important;line-height:1.6;}
+  .foot-grid > div:first-child p:before{content:"";display:block;width:76px;height:3px;border-radius:2px;margin:0 0 16px;background:linear-gradient(90deg,#1C8BDF,#5FD3E2);}
+  footer h4{color:var(--primary);font-size:1.15rem;margin-bottom:16px;}
+  footer h4:before{content:"";display:block;width:34px;height:3px;border-radius:2px;margin-bottom:14px;background:linear-gradient(90deg,#3BA7F2,#7FE7D6);}
+  footer li{margin-bottom:12px;font-size:.98rem;}
+  footer li a{white-space:nowrap;display:inline-flex;align-items:center;gap:12px;color:#1D3F75;transition:color .2s,transform .2s;}
+  footer li a:before{content:"\f054";font-family:"Font Awesome 6 Free";font-weight:900;font-size:.72rem;color:#1CA9D6;}
+  footer li a:hover{color:#1C8BDF;transform:translateX(3px);}
+  .foot-cta{align-self:center;padding:0 0 0 34px !important;border-left:1px solid rgba(59,167,242,.3);}
+  .foot-book{display:inline-flex;align-items:center;gap:16px;white-space:nowrap;padding:18px 30px;border-radius:999px;color:#fff !important;font-weight:700;
+    background:linear-gradient(90deg,#0B3D91,#1560C9);box-shadow:0 14px 34px rgba(11,61,145,.3),0 0 0 3px rgba(59,167,242,.35);transition:transform .2s,box-shadow .2s;}
+  .foot-book .sep{width:1px;height:24px;background:rgba(255,255,255,.35);}
+  .foot-book i{font-size:1.2rem;}
+  .foot-book .fa-arrow-right{font-size:.85rem;transition:transform .2s;}
+  .foot-book:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(11,61,145,.38),0 0 0 3px rgba(59,167,242,.5);}
+  .foot-book:hover .fa-arrow-right{transform:translateX(4px);}
+  .social{position:relative;gap:16px;margin:10px 0 22px;align-items:center;}
+  .social:before,.social:after{content:"";width:min(340px,22vw);height:1px;background:linear-gradient(90deg,transparent,rgba(59,167,242,.45));}
+  .social:after{background:linear-gradient(90deg,rgba(59,167,242,.45),transparent);}
+  .social a{width:46px;height:46px;font-size:1.1rem;color:#fff;background:#0B3D91;box-shadow:0 8px 18px rgba(11,61,145,.2);}
+  .social a:nth-child(6n+2){background:#1C8BDF;}
+  .social a:nth-child(6n+3){background:#2EC4B6;}
+  .social a:nth-child(6n+4){background:#3BA7F2;}
+  .social a:nth-child(6n+5){background:#5FD3C8;}
+  .social a:hover{transform:translateY(-3px);background:#0A2A6B;color:#fff;}
+  .foot-copy{border-top:0;color:#1D3F75;font-size:.95rem;}
+  footer a:hover{color:#1C8BDF;}
+  @media(max-width:1100px){.foot-grid{grid-template-columns:1fr 1fr;row-gap:34px;}.foot-grid > div{padding:0 24px;}
+    .foot-grid > div:nth-child(3){border-left:1px solid rgba(59,167,242,.3);}.foot-grid > div:nth-child(2){border-left:0;padding-left:0;}
+    .foot-cta{grid-column:1/-1;border-left:0 !important;padding:0 !important;}}
+  @media(max-width:600px){.foot-grid{grid-template-columns:1fr;}.foot-grid > div{padding:0 !important;border-left:0 !important;}
+    .social{flex-wrap:wrap;gap:12px;}.social:before,.social:after{display:none;}.foot-book{padding:15px 24px;}}
+
+  /* ===== one typeface everywhere ===== */
+  body,button,input,select,textarea{font-family:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  /* ===== two-tone gradient headings ===== */
+  .grad{background:linear-gradient(90deg,#1C8BDF,#139E92);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+  .grad-light{background:linear-gradient(90deg,#9FD8FF,#7FE7D6);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+  .mc{border-top:0 !important;}
+  .sec-head{border-top:0;border-bottom:0;-webkit-mask-image:linear-gradient(180deg,#000 70%,transparent);mask-image:linear-gradient(180deg,#000 70%,transparent);}
+
+  /* ===== one continuous background: no visible section edges ===== */
+  body{background:#EDF6FE;background-image:radial-gradient(60vw 60vh at 85% 15%,rgba(59,167,242,.10),transparent 70%),
+    radial-gradient(55vw 55vh at 10% 70%,rgba(127,231,214,.10),transparent 70%);background-attachment:fixed;}
+  .mc,.wcu,.hero,.sec-head,.sd-hero,.section{background:transparent !important;}
+  .mc-deco{display:none;}
+  /* ===== small titles are gold, with a gold rule ===== */
+  .sec-kicker.blue,.hero .sec-kicker.blue,.nl-kicker,.wcu-kicker,.sd-kicker,.vg-count{color:var(--gold-ink) !important;}
+  .sec-kicker.blue:after,.hero .sec-kicker.blue:after,.nl-kicker.line:after,.sd-kicker:after,.vg-count:after{background:var(--gold) !important;width:46px !important;height:2px !important;}
+  .wcu-kicker:before,.wcu-kicker:after{background:var(--gold) !important;}
+  .nl-kicker .sep{background:rgba(217,165,58,.5);}
+  .cx-card .h .lbl{color:var(--gold-ink);}
+  /* ===== every section title the same size ===== */
+  .mc-title,.mc-title.plain,.nl-head h2,.wcu-title,.about-txt h2,.contactx h1,.cta-band h2,.sec-head h1,.sec-head h2,.sd-hero h1,.sd-sec h2{
+    font-size:2.15rem !important;font-weight:700 !important;line-height:1.2 !important;letter-spacing:-.2px !important;text-transform:none !important;}
+  .wcu-title .grad{display:inline;}
+  @media(max-width:600px){.mc-title,.mc-title.plain,.nl-head h2,.wcu-title,.about-txt h2,.contactx h1,.cta-band h2,.sec-head h1,.sec-head h2,.sd-hero h1,.sd-sec h2{font-size:1.6rem !important;}}
+  /* ===== footer: soft top, dark blue bottom bar ===== */
+  footer{background:transparent !important;padding-bottom:0 !important;}
+  footer::before{display:none !important;}
+  .foot-bottom{position:relative;margin-top:30px;padding:26px 0 22px;background:linear-gradient(90deg,#051D47,#0B3D91 50%,#072A66);}
+  .foot-bottom .social{margin:0 0 14px;}
+  .foot-bottom .social:before,.foot-bottom .social:after{background:linear-gradient(90deg,transparent,rgba(127,231,214,.5)) !important;}
+  .foot-bottom .social:after{background:linear-gradient(90deg,rgba(127,231,214,.5),transparent) !important;}
+  .foot-bottom .foot-copy{color:#C9DAF2;padding-top:0;}
+  .foot-bottom .social a:hover{background:#fff;color:var(--primary);}
+  .foot-bottom .social a:nth-child(6n+1),.foot-bottom .social a:nth-child(6n){background:#1C8BDF;}
+  .sec-head:before,.sec-head:after{display:none !important;}
+  /* header band sits right on top of its content */
+  .sec-head{padding-bottom:18px !important;}
+  .sec-head + .section{padding-top:14px !important;}
+  .sec-head{-webkit-mask-image:none !important;mask-image:none !important;}
+
+  /* ===== shared-element page transition (card photo <-> service page photo) ===== */
+  @view-transition{navigation:auto;}
+  ::view-transition-group(*){animation-duration:500ms;animation-timing-function:cubic-bezier(.32,.72,0,1);}
+  ::view-transition-old(root){animation:vtOut 220ms ease both;}
+  ::view-transition-new(root){animation:vtIn 360ms cubic-bezier(.32,.72,0,1) 120ms both;}
+  /* keep photos cropped, not stretched, while they change shape */
+  ::view-transition-old(svc-tax),::view-transition-new(svc-tax),::view-transition-old(svc-books),::view-transition-new(svc-books),
+  ::view-transition-old(svc-consult),::view-transition-new(svc-consult),::view-transition-old(svc-future),::view-transition-new(svc-future){
+    height:100%;width:100%;object-fit:cover;overflow:clip;animation-duration:500ms;}
+  @keyframes vtOut{to{opacity:0;}}
+  @keyframes vtIn{from{opacity:0;transform:translateY(8px);}}
+  @media(prefers-reduced-motion:reduce){@view-transition{navigation:none;}}
+
+  /* ===== dropdown navigation: the next page zooms up from card size ===== */
+  html:active-view-transition-type(zoom)::view-transition-old(root){animation:vtShrink 420ms cubic-bezier(.32,.72,0,1) both;}
+  html:active-view-transition-type(zoom)::view-transition-new(root){animation:vtZoom 560ms cubic-bezier(.32,.72,0,1) both;}
+  html:active-view-transition-type(zoom) [style*="view-transition-name"]{view-transition-name:none !important;}
+  @keyframes vtShrink{to{opacity:0;transform:scale(.9);}}
+  @keyframes vtZoom{from{transform:scale(.42);opacity:.5;clip-path:inset(0 round 60px);filter:drop-shadow(0 30px 60px rgba(11,61,145,.3));}
+    to{clip-path:inset(0 round 0);}}
+
+  /* ----- Request a consultation ----- */
+  .form-card{max-width:640px;margin:0 auto;background:#fff;color:var(--text);border-radius:14px;
+    padding:30px;border:1px solid var(--border);box-shadow:var(--shadow-lg);}
+  .form-card .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .fld{margin-bottom:16px;}
+  .fld.full{grid-column:1 / -1;}
+  .fld label{display:block;font-size:.8rem;font-weight:700;color:var(--navy);margin-bottom:6px;text-transform:uppercase;letter-spacing:.3px;}
+  .fld input,.fld select,.fld textarea{width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:8px;font-size:1rem;font-family:inherit;}
+  .fld input:focus,.fld select:focus,.fld textarea:focus{outline:2px solid var(--secondary);border-color:transparent;box-shadow:0 0 0 5px rgba(59,167,242,.15);}
+  /* multi-select as tick-box chips */
+  .fld-group{border:0;padding:0;margin:0 0 16px;min-width:0;}
+  .fld-group legend{display:block;font-size:.8rem;font-weight:700;color:var(--navy);margin-bottom:8px;text-transform:uppercase;letter-spacing:.3px;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{position:relative;cursor:pointer;}
+  .chip input{position:absolute;opacity:0;width:1px;height:1px;}
+  .chip span{display:inline-flex;align-items:center;gap:9px;padding:9px 15px;border:1px solid var(--border);border-radius:999px;
+    background:#fff;color:var(--text);font-size:.92rem;line-height:1.3;transition:border-color .15s,background .15s,color .15s;}
+  .chip span:before{content:"";flex:none;width:17px;height:17px;border-radius:5px;border:1.5px solid #9DB8D6;background:#fff center/12px no-repeat;
+    transition:background-color .15s,border-color .15s;}
+  .chip:hover span{border-color:var(--secondary);}
+  .chip input:checked + span{background:var(--bg);border-color:var(--primary);color:var(--primary);font-weight:600;}
+  .chip input:checked + span:before{border-color:var(--primary);background-color:var(--primary);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.3l2.3 2.3 4.7-5' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");}
+  .chip input:focus-visible + span{outline:2px solid var(--secondary);outline-offset:2px;}
+  .fld-group.invalid .chip span{border-color:#c0392b;}
+  .fld-optional{text-transform:none;font-weight:400;color:var(--muted);letter-spacing:0;}
+  .fld-error{display:block;color:#c0392b;font-size:.78rem;margin-top:5px;min-height:0;}
+  .fld input.invalid,.fld select.invalid,.fld textarea.invalid{border-color:#c0392b;}
+  .form-error-banner{background:#fff0f0;color:#c0392b;border:1px solid #f5c6cb;border-radius:8px;
+    padding:12px 16px;font-size:.9rem;margin-bottom:18px;}
+  /* Honeypot: off-screen, not display:none (some bots specifically skip
+     display:none fields), never focusable/autofillable by real visitors. */
+  .hp-field{position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;}
+  .form-intro{text-align:center;color:var(--muted);max-width:620px;margin:0 auto 28px;}
+  .step-head{font-size:1.25rem;font-weight:800;color:var(--navy);display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+  .step-head .num{width:30px;height:30px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;font-size:.95rem;}
+  .step-head .of{margin-left:auto;font-size:.78rem;color:var(--muted);font-weight:600;}
+  .schedule-embed{max-width:900px;margin:0 auto;background:#fff;border-radius:14px;overflow:hidden;
+    box-shadow:var(--shadow-lg);border:1px solid var(--border);border-top:5px solid var(--secondary);}
+  .sched-head{background:var(--navy);color:#fff;font-weight:700;font-size:1.05rem;letter-spacing:.3px;
+    padding:16px 22px;display:flex;align-items:center;gap:10px;}
+  .sched-head .ic{width:34px;height:34px;border-radius:8px;background:rgba(127,231,214,.18);color:var(--tertiary);display:grid;place-items:center;font-size:1.1rem;}
+  .sched-head small{display:block;font-weight:400;font-size:.78rem;color:var(--on-dark);}
+  .schedule-embed iframe{display:block;width:100%;border:0;background:#fff;}
+  @media(max-width:560px){.form-card .grid2{grid-template-columns:1fr;}}
+  /* "Book Your Free Strategy Call" form */
+  .bookcall-title{font-size:1.7rem;color:var(--navy);font-weight:800;margin-bottom:8px;}
+  .bookcall-sub{color:var(--muted);font-size:.95rem;margin-bottom:26px;}
+  .bookcall-note{color:var(--muted);font-size:.82rem;text-align:center;margin-top:14px;}
+  .btn.btn-dark{background:linear-gradient(135deg,var(--primary),#1560C9);color:#fff;text-transform:uppercase;letter-spacing:.6px;padding:15px 26px;font-size:.95rem;border-radius:10px;}
+  .btn.btn-dark:hover{filter:brightness(1.08);box-shadow:0 12px 26px rgba(11,61,145,.35);}
+
+  /* ===== request form: fields on the left, booking picker on the right ===== */
+  .form-card{max-width:none;padding:34px 38px;}
+  .bookcall-title,.bookcall-sub{text-align:center;}
+  #leadForm{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(330px,1fr);gap:22px 32px;align-items:start;}
+  .lf-fields{display:grid;grid-template-columns:repeat(3,1fr);gap:0 16px;align-items:start;}
+  .lf-fields .grid2{display:contents;}
+  .lf-fields .fld-group,.lf-fields .fld.full{grid-column:1/-1;}
+  .lf-fields .fld.full textarea{height:48px;min-height:48px;resize:vertical;}
+  .lf-fields .cf-turnstile{grid-column:1/-1;margin:2px 0 0 !important;}
+  #leadForm .bookcall-note{grid-column:1/-1;margin-top:0;}
+  .bk{background:#fff;border:1px solid var(--border);border-radius:20px;padding:22px 22px 20px;
+    box-shadow:0 2px 4px rgba(11,61,145,.04),0 24px 54px rgba(11,61,145,.13);}
+  .bk.invalid{border-color:#c0392b;}
+  .bk-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px;}
+  .bk-title{color:var(--primary);font-size:1.3rem;font-weight:800;line-height:1.2;margin-bottom:8px;}
+  .bk-pill{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:var(--bg);color:var(--primary);font-size:.85rem;font-weight:600;border:1px solid #CFE5F6;}
+  .bk-pill i{color:#1C8BDF;}
+  .bk-nav{display:flex;gap:6px;}
+  .bk-arrow{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:#fff;color:var(--primary);cursor:pointer;transition:background .2s,transform 90ms;}
+  .bk-arrow:hover:not(:disabled){background:var(--bg);}
+  .bk-arrow:active:not(:disabled){transform:scale(.94);}
+  .bk-arrow:disabled{opacity:.35;cursor:default;}
+  .bk-month{color:var(--text);font-weight:800;font-size:1.05rem;margin-bottom:6px;}
+  .bk-dow,.bk-days{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;text-align:center;}
+  .bk-dow span{font-size:.78rem;font-weight:700;color:var(--muted);padding:4px 0;}
+  .bk-day{height:42px;border:0;border-radius:12px;background:transparent;color:var(--text);font:inherit;font-weight:600;font-size:.95rem;cursor:pointer;
+    transition:transform 600ms var(--spring,cubic-bezier(.32,.72,0,1)),background .2s,color .2s,box-shadow .2s;}
+  .bk-day:hover:not(:disabled){background:var(--bg);}
+  .bk-day:active:not(:disabled){transform:scale(.94);transition-duration:90ms;}
+  .bk-day:disabled{color:#B5C7DC;cursor:default;}
+  .bk-day[aria-pressed="true"]{background:linear-gradient(135deg,var(--primary),#1C6FD1);color:#fff;transform:scale(1.1);box-shadow:0 8px 18px rgba(11,61,145,.3);}
+  .bk-day:focus-visible,.bk-slot:focus-visible,.bk-arrow:focus-visible,.bk-confirm:focus-visible{outline:3px solid var(--secondary);outline-offset:2px;}
+  .bk-slots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px;min-height:46px;}
+  .bk-hint{grid-column:1/-1;color:var(--muted);font-size:.88rem;text-align:center;padding:12px 0;}
+  .bk-slot{height:42px;border-radius:999px;border:1.5px solid var(--border);background:#fff;color:var(--text);font:inherit;font-weight:600;font-size:.9rem;cursor:pointer;
+    opacity:0;transform:translateY(6px);transition:opacity .4s ease,transform 600ms var(--spring,cubic-bezier(.32,.72,0,1)),border-color .2s,background .2s,color .2s;
+    transition-delay:calc(var(--i,0) * 80ms);}
+  .bk-slots.in .bk-slot{opacity:1;transform:none;}
+  .bk-slot:hover{border-color:var(--secondary);}
+  .bk-slot:active{transform:scale(.94) !important;transition-duration:90ms;transition-delay:0s;}
+  .bk-slot[aria-pressed="true"]{border-color:var(--primary);background:#E3F0FD;color:var(--primary);}
+  .bk-tz{color:var(--muted);font-size:.78rem;margin:10px 0 0;}
+  .bk .fld-error{display:block;margin:4px 0 0;}
+  .bk-confirm{width:100%;margin-top:12px;height:52px;border:0;border-radius:999px;font:inherit;font-weight:800;font-size:1rem;cursor:pointer;
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;background:#E6EEF6;color:#7C8EA6;transition:background .3s,color .3s,box-shadow .3s,transform 90ms;}
+  .bk-confirm.ready{background:linear-gradient(90deg,var(--primary),#1C6FD1 55%,#25B7C6);color:#fff;box-shadow:0 12px 26px rgba(11,61,145,.28);}
+  .bk-confirm:active{transform:scale(.97);}
+  .bk-confirm:disabled{opacity:.7;}
+  @media(prefers-reduced-motion:reduce){.bk-slot{transition-delay:0s !important;transform:none !important;}.bk-day[aria-pressed="true"]{transform:none;}}
+  @media(max-width:1000px){#leadForm{grid-template-columns:1fr;}.lf-fields{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.lf-fields{grid-template-columns:1fr;}.form-card{padding:26px 18px;}.bk{padding:18px 14px;}.bk-day{height:38px;font-size:.88rem;}}
+  [data-curtain-focus]:focus{outline:none;}
+
+  /* ===== curtain wipe: a blue panel covers the page on the way to and from the request form ===== */
+  .curtain{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;pointer-events:none;visibility:hidden;transform:translateX(-101%);
+    background:linear-gradient(120deg,var(--primary) 0%,#1560C9 55%,var(--secondary) 100%);}
+  .curtain img{width:min(260px,52vw);height:auto;}
+  html.curtain-cover .curtain{visibility:visible;transform:none;}
+  html.curtain-moving .curtain{visibility:visible;pointer-events:auto;}
+</style>
+<script>/* links in the Services dropdown (and Switch service) mark the next navigation as a zoom */(function(){var K='vtZoom',RE=/(tax-preparation-planning|bookkeeping-payroll|business-consulting|future-security)\.html$/;function tag(e){try{if(e.viewTransition&&sessionStorage.getItem(K))e.viewTransition.types.add('zoom');}catch(_){}}addEventListener('pageswap',tag);addEventListener('pagereveal',function(e){tag(e);try{sessionStorage.removeItem(K);}catch(_){}});document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('.submenu a');if(a&&RE.test(a.getAttribute('href')||'')){try{sessionStorage.setItem(K,'1');}catch(_){}}},true);})();</script>
+<script>
+  /* Curtain wipe to and from the request form: the panel slides in over this page, the next page
+     opens covered, then the panel slides off it. Reduced motion gets a quick fade instead. */
+  (function(){
+    var K = 'curtain', FORM = 'request-consultation.html', d = document, html = d.documentElement;
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)'), EASE = 'cubic-bezier(.32,.72,0,1)';
+    function ms(){ return reduce.matches ? 150 : 450; }
+    function frames(entering){
+      if (reduce.matches) return entering ? [{opacity:0, transform:'none'}, {opacity:1, transform:'none'}] : [{opacity:1, transform:'none'}, {opacity:0, transform:'none'}];
+      return entering ? [{transform:'translateX(-101%)'}, {transform:'translateX(0)'}] : [{transform:'translateX(0)'}, {transform:'translateX(101%)'}];
+    }
+    function page(u){ return u.pathname.split('/').pop() || 'index.html'; }
+
+    var arriving = false;
+    try{ if (sessionStorage.getItem(K)){ sessionStorage.removeItem(K); arriving = true; html.classList.add('curtain-cover'); } }catch(_){}
+    // the panel is the transition, so skip the browser's own cross-fade between pages
+    addEventListener('pagereveal', function(e){ if (arriving && e.viewTransition) e.viewTransition.skipTransition(); });
+    if (arriving) d.addEventListener('DOMContentLoaded', function(){
+      var c = d.querySelector('.curtain'), started = false;
+      function reveal(){
+        if (started) return; started = true;
+        html.classList.add('curtain-moving'); html.classList.remove('curtain-cover');
+        if (!c || !c.animate){ html.classList.remove('curtain-moving'); return; }
+        c.animate(frames(false), {duration:ms(), easing:EASE}).finished.then(function(){ html.classList.remove('curtain-moving'); });
+        var h = d.querySelector('[data-curtain-focus]');
+        if (h) h.focus({preventScroll:true});
+      }
+      // wait briefly for the web font so the page doesn't reflow as it's revealed
+      if (d.fonts) d.fonts.ready.then(reveal);
+      setTimeout(reveal, 400);
+    });
+
+    d.addEventListener('click', function(e){
+      if (e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var a = e.target.closest && e.target.closest('a[href]');
+      if (!a || a.target === '_blank' || a.hasAttribute('download')) return;
+      var to = new URL(a.href, location.href), from = page(location), dest = page(to);
+      if (to.origin !== location.origin || dest === from || (dest !== FORM && from !== FORM)) return;
+      var c = d.querySelector('.curtain');
+      if (!c || !c.animate) return;
+      e.preventDefault();
+      try{ sessionStorage.setItem(K, '1'); }catch(_){}
+      html.classList.add('curtain-moving');
+      var gone = false;
+      function go(){ if (!gone){ gone = true; location.href = a.href; } }
+      // swap pages only once the screen is fully covered
+      c.animate(frames(true), {duration:ms(), easing:EASE, fill:'forwards'}).finished.then(go);
+      setTimeout(go, ms() + 150);
+    });
+
+    // back/forward cache brings this page back still covered: lift the panel
+    addEventListener('pageshow', function(e){
+      if (!e.persisted) return;
+      html.classList.remove('curtain-moving', 'curtain-cover');
+      var c = d.querySelector('.curtain');
+      if (c && c.getAnimations) c.getAnimations().forEach(function(x){ x.cancel(); });
+      try{ sessionStorage.removeItem(K); }catch(_){}
+    });
+  })();
+</script>
+</head>
+<body>
+<div class="curtain" aria-hidden="true"><img src="images/logo-light.webp" width="840" height="180" alt=""></div>
+
+<!-- ===== Top contact bar ===== -->
+<div class="topbar">
+  <div class="container">
+    <span>📞 (916) 616-1789 &nbsp;·&nbsp; ✉️ ask@magnumcpa.com</span>
+    <span>🕘 Mon–Fri 9:00am – 5:00pm &nbsp;·&nbsp; Sat–Sun 2:00pm – 6:00pm</span>
+  </div>
+</div>
+
+<!-- ===== Header / Navigation ===== -->
+<header class="site-header">
+  <div class="container nav-inner">
+    <a href="index.html#home" class="brand"><picture><source srcset="images/logo.webp" type="image/webp"><img src="images/logo.png" width="840" height="180" alt="Magnum CPA PC — Tax · Accounting · Advisory" fetchpriority="high"></picture></a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="main-nav" id="mainNav">
+      <ul>
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#about">About Us</a></li>
+        <li class="has-sub">
+          <a href="index.html#services" class="sub-toggle">Services ▾</a>
+          <ul class="submenu">
+            <li><a href="tax-preparation-planning.html">Tax Preparation &amp; Planning</a></li>
+            <li><a href="bookkeeping-payroll.html">Bookkeeping &amp; Payroll</a></li>
+            <li><a href="business-consulting.html">Business Consulting</a></li>
+            <li><a href="future-security.html">Future Security</a></li>
+            <li><a href="index.html#services">All Services</a></li>
+          </ul>
+        </li>
+        <li class="has-sub">
+          <a href="#" class="sub-toggle">Resources ▾</a>
+          <ul class="submenu">
+            <li><a href="index.html#client-newsletter">Client Newsletter</a></li>
+            <li><a href="index.html#tax-planning-newsletter">Tax Planning Newsletter</a></li>
+            <li><a href="index.html#tax-videos">Tax Videos</a></li>
+            <li><a href="financial-calculators.html">Financial Calculators</a></li>
+          </ul>
+        </li>
+        <li><a href="https://magnumcpa.clientportal.com/#/login" target="_blank" rel="noopener">Client Portal</a></li>
+        <li><a href="request-consultation.html" class="active" aria-current="page">Request Consultation</a></li>
+        <li><a href="index.html#contact">Contact Us</a></li>
+        <li class="search-li"><a href="#" class="search-btn" aria-label="Search the site">🔍</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<!-- ===== Request a Consultation ===== -->
+<section id="request">
+  <div class="sec-head">
+    <div class="container">
+      <div class="sec-kicker">Request a Consultation</div>
+      <h1 tabindex="-1" data-curtain-focus>Let's Talk About <span class="grad">Your Taxes and Financial Goals</span></h1>
+      <p>Book a free strategy call with Max Drew, CPA.</p>
+    </div>
+  </div>
+  <div class="section">
+    <div class="container">
+
+      <!-- Step 1: Book Your Free Strategy Call -->
+      <div id="step1" class="form-card">
+        <h2 class="bookcall-title">Book Your <span class="grad">Free Strategy Call</span></h2>
+        <p class="bookcall-sub">Available slots: Mon–Fri, 9:00am–5:00pm EST · Sat–Sun 2:00pm – 6:00pm </p>
+        <div class="form-error-banner" id="formError" style="display:none;"></div>
+        <form id="leadForm" onsubmit="return submitLeadForm(event)" novalidate>
+          <div class="lf-fields">
+          <div class="grid2">
+            <div class="fld"><label>First Name</label><input type="text" id="dcFirst" placeholder="First" required><span class="fld-error" id="err-dcFirst"></span></div>
+            <div class="fld"><label>Last Name</label><input type="text" id="dcLast" placeholder="Last" required><span class="fld-error" id="err-dcLast"></span></div>
+          </div>
+          <div class="fld"><label>Business Email</label><input type="email" id="dcEmail" placeholder="you@company.com" required><span class="fld-error" id="err-dcEmail"></span></div>
+          <div class="fld"><label>Phone Number</label><input type="tel" id="dcPhone" placeholder="(555) 555-5555" required><span class="fld-error" id="err-dcPhone"></span></div>
+          <div class="grid2">
+            <div class="fld"><label>Business Name <span class="fld-optional">(optional)</span></label><input type="text" id="dcBusiness" placeholder="Your business name"></div>
+            <div class="fld"><label>State</label>
+              <select id="dcState" required>
+                <option value="">Select your state</option>
+                <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option>
+                <option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option>
+                <option>District of Columbia</option><option>Florida</option><option>Georgia</option><option>Hawaii</option>
+                <option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option>
+                <option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option>
+                <option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option>
+                <option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option>
+                <option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option>
+                <option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option>
+                <option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option>
+                <option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option>
+                <option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option>
+                <option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option>
+              </select>
+              <span class="fld-error" id="err-dcState"></span>
+            </div>
+          </div>
+          <fieldset class="fld-group" id="dcHelp" aria-describedby="err-dcHelp">
+            <legend>I Need Help With <span class="fld-optional">(choose all that apply)</span></legend>
+            <div class="chips">
+              <label class="chip"><input type="checkbox" name="dcHelp" value="Tax Strategy &amp; Planning"><span>Tax Strategy &amp; Planning</span></label>
+              <label class="chip"><input type="checkbox" name="dcHelp" value="Tax Preparation"><span>Tax Preparation</span></label>
+              <label class="chip"><input type="checkbox" name="dcHelp" value="Bookkeeping &amp; Payroll"><span>Bookkeeping &amp; Payroll</span></label>
+              <label class="chip"><input type="checkbox" name="dcHelp" value="Business Consulting"><span>Business Consulting</span></label>
+              <label class="chip"><input type="checkbox" name="dcHelp" value="Wealth, Retirement &amp; Estate Planning"><span>Wealth, Retirement &amp; Estate Planning</span></label>
+              <label class="chip"><input type="checkbox" name="dcHelp" value="Something Else"><span>Something Else</span></label>
+            </div>
+            <span class="fld-error" id="err-dcHelp"></span>
+          </fieldset>
+          <div class="fld"><label>Annual Revenue (Approximate)</label>
+            <select id="dcRevenue">
+              <option>Under $250K</option>
+              <option>$250K – $500K</option>
+              <option>$500K – $1M</option>
+              <option>$1M – $5M</option>
+              <option>$5M+</option>
+              <option>Not applicable / Individual</option>
+            </select>
+          </div>
+          <div class="grid2">
+            <div class="fld"><label>Preferred Contact Method</label>
+              <select id="dcContactMethod">
+                <option>Email</option>
+                <option>Phone Call</option>
+                <option>Text Message</option>
+              </select>
+            </div>
+          </div>
+          <div class="fld full"><label>Message <span class="fld-optional">(optional)</span></label>
+            <textarea id="dcMessage" rows="1" maxlength="2000" placeholder="Anything else we should know?"></textarea>
+            <span class="fld-error" id="err-dcMessage"></span>
+          </div>
+
+          <!-- Honeypot: invisible to real visitors, left blank by them; bots
+               that auto-fill every field trip it. Positioned off-screen
+               (not display:none) and unfocusable/unautofillable. -->
+          <div class="hp-field" aria-hidden="true">
+            <label for="dcCompanyWebsite">Company Website</label>
+            <input type="text" id="dcCompanyWebsite" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAFjBF0tBUp8jYNPY" data-theme="light" style="margin-bottom:16px;"></div>
+          <script>
+            /* The normal Turnstile widget is a fixed 300px wide; use the compact one where that won't fit. */
+            if (window.innerWidth < 380) document.querySelector('#leadForm .cf-turnstile').setAttribute('data-size', 'compact');
+          </script>
+
+          </div>
+
+          <!-- Preferred day + time. Not live availability: the exact slot is confirmed in the scheduler on the next step. -->
+          <div class="bk" id="dcSlot" aria-describedby="err-dcSlot">
+            <div class="bk-head">
+              <div>
+                <div class="bk-title">Book a time that <span class="grad">works</span></div>
+                <span class="bk-pill"><i class="fa-regular fa-clock" aria-hidden="true"></i> Free 30-minute call</span>
+              </div>
+              <div class="bk-nav">
+                <button type="button" class="bk-arrow" id="bkPrev" aria-label="Earlier dates"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+                <button type="button" class="bk-arrow" id="bkNext" aria-label="Later dates"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+              </div>
+            </div>
+            <div class="bk-month" id="bkMonth" aria-live="polite"></div>
+            <div class="bk-dow" aria-hidden="true"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div>
+            <div class="bk-days" id="bkDays" role="group" aria-label="Choose a day"></div>
+            <div class="bk-slots" id="bkSlots" role="group" aria-label="Choose a time"></div>
+            <p class="bk-tz">Times shown in Eastern Time (ET).</p>
+            <span class="fld-error" id="err-dcSlot"></span>
+            <button type="submit" class="bk-confirm" id="leadSubmitBtn" aria-disabled="true">Reserve My Free Call <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+          </div>
+          <p class="bookcall-note">🔒 Your information is private and never sold. We'll confirm within 2 hours.</p>
+        </form>
+      </div>
+
+      <!-- Step 2: scheduler (revealed after Step 1) -->
+      <div id="step2" style="display:none;">
+        <p class="form-intro">Great, <span id="dcGreet"></span>! Pick a date and time that works for you — instantly confirmed online.<span id="dcPicked"></span></p>
+        <div class="schedule-embed">
+          <div class="sched-head">
+            <span class="ic">📅</span>
+            <span>Book Your Appointment<small>Choose a date &amp; time — instantly confirmed</small></span>
+          </div>
+          <iframe id="schedFrame" title="Schedule a consultation with Magnum CPA PC" width="100%" height="900" frameborder="0"></iframe>
+        </div>
+        <p style="text-align:center;color:var(--muted);font-size:.9rem;margin-top:16px;">
+          <a href="#" onclick="backToDetails();return false;" style="color:var(--primary);font-weight:700;">← Edit your details</a>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="brand" style="margin-bottom:12px;"><picture><source srcset="images/logo.webp" type="image/webp"><img src="images/logo.png" width="840" height="180" alt="Magnum CPA PC" loading="lazy"></picture></div>
+        <p style="font-size:.9rem;">Max Drew, CPA &amp; Financial Coach.<br>Trusted by Ramsey for 10+ years.</p>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="index.html#about">About Us</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#contact">Contact Us</a></li>
+          <li><a href="request-consultation.html">Request Consultation</a></li>
+          <li><a href="https://magnumcpa.clientportal.com/#/login" target="_blank" rel="noopener">Client Portal</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="index.html#client-newsletter">Client Newsletter</a></li>
+          <li><a href="index.html#tax-planning-newsletter">Tax Planning Newsletter</a></li>
+          <li><a href="index.html#tax-videos">Tax Videos</a></li>
+          <li><a href="financial-calculators.html">Financial Calculators</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bottom"><div class="container">
+    <div class="social">
+      <a href="https://www.facebook.com/max.drew.522" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/magnumcpa11/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.youtube.com/@MaxDrew" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <a href="https://www.threads.com/@magnumcpa11?xmt=AQG0ulpk6R3kK_t4bDitznWtQA3G7iO-LKH2PQMVhY07s6E" target="_blank" rel="noopener" aria-label="Threads"><i class="fa-brands fa-threads"></i></a>
+      <a href="https://x.com/MagnumCPA11" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="https://www.quora.com/profile/Magnum-CPA" target="_blank" rel="noopener" aria-label="Quora"><i class="fa-brands fa-quora"></i></a>
+    </div>
+    <div class="foot-copy">© <span id="year"></span> Magnum CPA PC. All rights reserved.</div>
+  </div></div>
+</footer>
+
+<script>
+  /* ===== Request form: preferred day + time picker ===== */
+  // Office hours from the form header: Mon–Fri 9–5, Sat–Sun 2–6 (ET). Earliest day is tomorrow.
+  var BK_SLOTS = { weekday: ['9:30 am', '11:00 am', '1:00 pm', '2:30 pm', '4:00 pm'], weekend: ['2:00 pm', '3:30 pm', '5:00 pm'] };
+  var bkState = { start: null, day: null, slot: null };
+  function bkChoice(){
+    if (!bkState.day || !bkState.slot) return '';
+    return bkState.day.toLocaleDateString('en-US', {weekday: 'short', month: 'short', day: 'numeric'}) + ', ' + bkState.slot;
+  }
+  (function(){
+    var daysEl = document.getElementById('bkDays'), slotsEl = document.getElementById('bkSlots');
+    if (!daysEl) return;
+    var monthEl = document.getElementById('bkMonth'), btn = document.getElementById('leadSubmitBtn');
+    var today = new Date(); today.setHours(0, 0, 0, 0);
+    var first = new Date(today); first.setDate(first.getDate() - ((first.getDay() + 6) % 7));   // Monday of this week
+    var MAX_WEEKS = 6;
+    bkState.start = new Date(first);
+    function same(a, b){ return a && b && a.getTime() === b.getTime(); }
+    function addDays(d, n){ var x = new Date(d); x.setDate(x.getDate() + n); return x; }
+    function updateBtn(){
+      var ready = !!bkChoice();
+      btn.setAttribute('aria-disabled', ready ? 'false' : 'true');
+      btn.classList.toggle('ready', ready);
+      if (ready){ var e = document.getElementById('err-dcSlot'); e.textContent = ''; document.getElementById('dcSlot').classList.remove('invalid'); }
+    }
+    function renderSlots(){
+      slotsEl.innerHTML = '';
+      if (!bkState.day){ slotsEl.innerHTML = '<p class="bk-hint">Pick a day to see times.</p>'; return; }
+      var wk = bkState.day.getDay() % 6 === 0 ? 'weekend' : 'weekday';
+      BK_SLOTS[wk].forEach(function(t, i){
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'bk-slot'; b.textContent = t;
+        b.style.setProperty('--i', i);
+        b.setAttribute('aria-pressed', t === bkState.slot ? 'true' : 'false');
+        b.addEventListener('click', function(){
+          bkState.slot = t;
+          slotsEl.querySelectorAll('.bk-slot').forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+          updateBtn();
+        });
+        slotsEl.appendChild(b);
+      });
+      requestAnimationFrame(function(){ slotsEl.classList.add('in'); });
+    }
+    function renderDays(){
+      daysEl.innerHTML = '';
+      var end = addDays(bkState.start, 13);
+      var m1 = bkState.start.toLocaleDateString('en-US', {month: 'long'}), m2 = end.toLocaleDateString('en-US', {month: 'long', year: 'numeric'});
+      monthEl.textContent = m1 === end.toLocaleDateString('en-US', {month: 'long'}) ? m2 : m1 + ' – ' + m2;
+      for (var i = 0; i < 14; i++){
+        (function(d){
+          var b = document.createElement('button');
+          b.type = 'button'; b.className = 'bk-day'; b.textContent = d.getDate();
+          b.setAttribute('aria-label', d.toLocaleDateString('en-US', {weekday: 'long', month: 'long', day: 'numeric'}));
+          if (d <= today){ b.disabled = true; }
+          b.setAttribute('aria-pressed', same(d, bkState.day) ? 'true' : 'false');
+          b.addEventListener('click', function(){
+            bkState.day = d; bkState.slot = null;
+            daysEl.querySelectorAll('.bk-day').forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+            slotsEl.classList.remove('in'); void slotsEl.offsetWidth;
+            renderSlots(); updateBtn();
+          });
+          daysEl.appendChild(b);
+        })(addDays(bkState.start, i));
+      }
+      document.getElementById('bkPrev').disabled = same(bkState.start, first);
+      document.getElementById('bkNext').disabled = bkState.start >= addDays(first, (MAX_WEEKS - 2) * 7);
+    }
+    document.getElementById('bkPrev').addEventListener('click', function(){ bkState.start = addDays(bkState.start, -14); if (bkState.start < first) bkState.start = new Date(first); renderDays(); });
+    document.getElementById('bkNext').addEventListener('click', function(){ bkState.start = addDays(bkState.start, 14); renderDays(); });
+    renderDays(); renderSlots(); updateBtn();
+  })();
+
+  /* ===== Request a consultation: secure lead capture, then Acuity ===== */
+  var ACUITY_BASE = 'https://magnumcpa.as.me/schedule/c78873bb/appointment/7960861?appointmentTypeIds%5B%5D=7960861';
+
+  // Fill in once the Worker is deployed (see SETUP-CLOUDFLARE.md). Until
+  // then the form fails closed with a friendly message rather than silently
+  // skipping validation/spam checks.
+  var LEAD_API_URL = 'https://magnum-cpa-lead-worker.glenn-c44.workers.dev/lead';
+
+  function revealScheduler(first, last, email, phone){
+    var url = ACUITY_BASE +
+      '&firstName=' + encodeURIComponent(first) +
+      '&lastName='  + encodeURIComponent(last) +
+      '&email='     + encodeURIComponent(email) +
+      '&phone='     + encodeURIComponent(phone);
+    document.getElementById('schedFrame').src = url;
+    document.getElementById('dcGreet').textContent = (first || 'there');
+    var pk = bkChoice(); document.getElementById('dcPicked').textContent = pk ? ' You asked for ' + pk + ' ET.' : '';
+    document.getElementById('step1').style.display = 'none';
+    document.getElementById('step2').style.display = 'block';
+    document.getElementById('request').scrollIntoView({behavior:'smooth'});
+  }
+  function backToDetails(){
+    document.getElementById('step2').style.display = 'none';
+    document.getElementById('step1').style.display = 'block';
+  }
+
+  /* ---- client-side validation / sanitization ----
+     UX politeness only — the real security boundary is the Worker, which
+     never trusts anything the browser claims to have already checked. */
+  var LEAD_EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  var LEAD_PHONE_RE = /^\+?1?[\s.-]?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
+
+  function leadStripTags(s){ return (s || '').replace(/<[^>]*>/g, ''); }
+
+  function clearLeadErrors(){
+    document.querySelectorAll('#leadForm .fld-error').forEach(function(el){ el.textContent = ''; });
+    document.querySelectorAll('#leadForm .invalid').forEach(function(el){ el.classList.remove('invalid'); });
+    var banner = document.getElementById('formError');
+    banner.style.display = 'none';
+    banner.textContent = '';
+  }
+  function showLeadFieldError(id, message){
+    var input = document.getElementById(id);
+    var err = document.getElementById('err-' + id);
+    if (input) input.classList.add('invalid');
+    if (err) err.textContent = message;
+  }
+  function showLeadFormBanner(message){
+    var banner = document.getElementById('formError');
+    banner.textContent = message;
+    banner.style.display = 'block';
+    banner.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+
+  function collectLeadFields(){
+    return {
+      firstName: leadStripTags(document.getElementById('dcFirst').value.trim()),
+      lastName: leadStripTags(document.getElementById('dcLast').value.trim()),
+      email: leadStripTags(document.getElementById('dcEmail').value.trim()),
+      phone: leadStripTags(document.getElementById('dcPhone').value.trim()),
+      businessName: leadStripTags(document.getElementById('dcBusiness').value.trim()),
+      state: document.getElementById('dcState').value,
+      serviceNeeded: [].map.call(document.querySelectorAll('#dcHelp input:checked'), function(i){ return i.value; }).join('; '),
+      revenue: document.getElementById('dcRevenue').value,
+      preferredContact: document.getElementById('dcContactMethod').value,
+      bestTimeToCall: bkChoice() || 'Anytime',
+      message: leadStripTags(document.getElementById('dcMessage').value.trim())
+    };
+  }
+
+  function validateLeadClientSide(lead){
+    var ok = true;
+    if (!lead.firstName){ showLeadFieldError('dcFirst', 'First name is required.'); ok = false; }
+    if (!lead.lastName){ showLeadFieldError('dcLast', 'Last name is required.'); ok = false; }
+    if (!lead.email){ showLeadFieldError('dcEmail', 'Email is required.'); ok = false; }
+    else if (!LEAD_EMAIL_RE.test(lead.email)){ showLeadFieldError('dcEmail', 'Enter a valid email address.'); ok = false; }
+    if (!lead.phone){ showLeadFieldError('dcPhone', 'Phone number is required.'); ok = false; }
+    else if (!LEAD_PHONE_RE.test(lead.phone)){ showLeadFieldError('dcPhone', 'Enter a valid US phone number.'); ok = false; }
+    if (!lead.state){ showLeadFieldError('dcState', 'Please select your state.'); ok = false; }
+    if (!lead.serviceNeeded){ showLeadFieldError('dcHelp', 'Choose at least one.'); ok = false; }
+    if (!bkChoice()){ showLeadFieldError('dcSlot', 'Pick a day and time.'); ok = false; }
+    if (lead.message.length > 2000){ showLeadFieldError('dcMessage', 'Message is too long.'); ok = false; }
+    return ok;
+  }
+
+  function getTurnstileToken(){
+    var el = document.querySelector('#leadForm [name="cf-turnstile-response"]');
+    return el ? el.value : '';
+  }
+
+  // Arriving from a service page (request-consultation.html?service=...): tick that service
+  (function(){
+    var want = new URLSearchParams(location.search).get('service');
+    if (!want) return;
+    document.querySelectorAll('#dcHelp input').forEach(function(cb){
+      if (cb.value === want && !cb.checked){ cb.checked = true; cb.dispatchEvent(new Event('change')); }
+    });
+  })();
+
+  // clear the "choose at least one" error as soon as something is ticked
+  document.querySelectorAll('#dcHelp input').forEach(function(cb){
+    cb.addEventListener('change', function(){
+      var g = document.getElementById('dcHelp');
+      if (g.querySelector('input:checked')){ g.classList.remove('invalid'); document.getElementById('err-dcHelp').textContent = ''; }
+    });
+  });
+
+  function submitLeadForm(e){
+    e.preventDefault();
+    clearLeadErrors();
+    var lead = collectLeadFields();
+    if (!validateLeadClientSide(lead)) return false;
+
+    var btn = document.getElementById('leadSubmitBtn');
+    btn.disabled = true;
+    var originalLabel = btn.innerHTML;
+    btn.textContent = 'Sending…';
+
+    var payload = {
+      meta: {
+        turnstileToken: getTurnstileToken(),
+        ts: Date.now(),
+        hp: document.getElementById('dcCompanyWebsite').value
+      },
+      lead: lead
+    };
+
+    fetch(LEAD_API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function(resp){
+      return resp.json().catch(function(){ return {}; }).then(function(data){
+        return { status: resp.status, data: data };
+      });
+    }).then(function(result){
+      if (result.data && result.data.ok){
+        revealScheduler(lead.firstName, lead.lastName, lead.email, lead.phone);
+        return;
+      }
+      if (result.data && result.data.error === 'validation' && result.data.fields){
+        var fieldMap = { firstName:'dcFirst', lastName:'dcLast', email:'dcEmail', phone:'dcPhone', state:'dcState', serviceNeeded:'dcHelp', message:'dcMessage' };
+        Object.keys(result.data.fields).forEach(function(f){
+          if (fieldMap[f]) showLeadFieldError(fieldMap[f], result.data.fields[f]);
+        });
+        showLeadFormBanner('Please check the highlighted fields and try again.');
+      } else if (result.status === 429 || (result.data && result.data.error === 'rate_limited')){
+        showLeadFormBanner('Too many submissions — please wait a few minutes and try again.');
+      } else {
+        showLeadFormBanner('Something went wrong — please try again or call us at (916) 616-1789.');
+      }
+    }).catch(function(){
+      showLeadFormBanner('Something went wrong — please try again or call us at (916) 616-1789.');
+    }).finally(function(){
+      btn.disabled = false;
+      btn.innerHTML = originalLabel;
+    });
+
+    return false;
+  }
+</script>
+<script>
+  /* Nav: mobile toggle + dropdown + year */
+  (function(){
+    var toggle = document.getElementById('navToggle');
+    var nav = document.getElementById('mainNav');
+    if (toggle && nav){
+      toggle.addEventListener('click', function(){
+        nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', nav.classList.contains('open'));
+      });
+    }
+    document.querySelectorAll('.has-sub > .sub-toggle').forEach(function(a){
+      a.addEventListener('click', function(e){
+        if (window.matchMedia('(max-width:980px)').matches){
+          e.preventDefault();
+          a.parentNode.classList.toggle('open');
+        }
+      });
+    });
+    var y = document.getElementById('year');
+    if (y) y.textContent = new Date().getFullYear();
+  })();
+
+  /* Site search (links back to the single page's sections) */
+  (function(){
+    var INDEX = [
+      {title:'Home', url:'index.html#home',
+       snippet:"California's premier partner for strategic growth & tax advantage.",
+       text:'home magnum cpa pc max drew strategic growth tax advantage proactive accounting expert tax planning financial coaching ramsey trusted consultation california'},
+      {title:'About Us', url:'index.html#about',
+       snippet:'Our story, founder Max Drew, and The Magnum Advantage.',
+       text:'about us max magnum drew founder california professional corporation financial partners magnum advantage bbb accredited better business bureau trusted by ramsey best business rate sacramento history mission'},
+      {title:'Services', url:'index.html#services',
+       snippet:'Tax preparation & planning, bookkeeping, consulting, future security.',
+       text:'services tax preparation planning bookkeeping payroll business consulting future security wealth management retirement estate planning filings liabilities growth efficiency'},
+      {title:'Tax Preparation and Planning', url:'tax-preparation-planning.html',
+       snippet:'We help you stay compliant and maximize your tax savings with strategic, year-round planning.',
+       text:'tax preparation and planning tax preparation individual & business tax returns tax planning and projections irs representation and support year-round tax advisory'},
+      {title:'Bookkeeping and Payroll Services', url:'bookkeeping-payroll.html',
+       snippet:'Accurate records and timely payroll so you can focus on what matters most — your business.',
+       text:'bookkeeping and payroll services bookkeeping & payroll daily/monthly bookkeeping payroll processing & tax filings financial statement preparation clean-up and catch-up services'},
+      {title:'Business Consulting', url:'business-consulting.html',
+       snippet:'Strategic insights and practical solutions to drive growth, improve efficiency, and increase profitability.',
+       text:'business consulting business consulting business strategy and planning operational improvement financial analysis and forecasting succession and growth planning'},
+      {title:'Future Security', url:'future-security.html',
+       snippet:'Build, protect, and grow your wealth with a holistic approach to retirement, wealth management, and estate planning.',
+       text:'future security future security retirement planning wealth management estate and legacy planning life and business protection'},
+      {title:'Client Newsletter', url:'index.html#client-newsletter',
+       snippet:'Monthly updates, firm news, and money tips.',
+       text:'client newsletter mid-year money check-in refund last-minute filing tips updates subscribe firm news'},
+      {title:'Tax Planning Newsletter', url:'index.html#tax-planning-newsletter',
+       snippet:'Strategy articles for proactive tax savings.',
+       text:'tax planning newsletter retirement contributions 401k ira hsa small business entity llc s-corp sole proprietor charitable giving donor advised capital gains harvesting'},
+      {title:'Tax Videos', url:'index.html#tax-videos',
+       snippet:'Plain-English videos on key tax topics.',
+       text:'tax videos understanding w-2 deductions credits quarterly taxes freelancers small business watch learn'},
+      {title:'Financial Calculators', url:'financial-calculators.html',
+       snippet:'Tax, retirement, mortgage, loan, savings & business calculators.',
+       text:'financial calculators tax payroll 1040 marginal estate retirement roth ira 401k social security rmd mortgage piti arm loan amortization auto savings college net worth business cash flow breakeven valuation rent vs buy'},
+      {title:'Client Portal', url:'https://magnumcpa.clientportal.com/#/login', target:true,
+       snippet:'Secure client portal (Canopy) for documents and messages.',
+       text:'client portal canopy login documents upload messages secure account'},
+      {title:'Contact Us', url:'index.html#contact',
+       snippet:'Phone, email, and our Sacramento office location.',
+       text:'contact us phone 916 616 1789 email info ask magnumcpa find us 907 green moss drive sacramento ca 95831 map directions location office hours'},
+      {title:'Request a Consultation', url:'request-consultation.html',
+       snippet:'Request your free consultation with Max Drew, CPA.',
+       text:'request consultation free appointment schedule book meeting max drew cpa tax planning preparation bookkeeping financial coaching preferred date service'}
+    ];
+
+    function escapeHtml(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+    var ov = document.createElement('div');
+    ov.className = 'search-overlay';
+    ov.innerHTML =
+      '<div class="search-box">' +
+        '<div class="search-top">' +
+          '<span class="search-ic">🔍</span>' +
+          '<input type="text" id="siteSearchInput" placeholder="Search the site..." autocomplete="off">' +
+          '<button class="search-close" aria-label="Close search">&times;</button>' +
+        '</div>' +
+        '<div class="search-results" id="siteSearchResults"></div>' +
+      '</div>';
+    document.body.appendChild(ov);
+
+    var input = ov.querySelector('#siteSearchInput');
+    var results = ov.querySelector('#siteSearchResults');
+
+    function openSearch(){ ov.classList.add('open'); input.value=''; render(''); setTimeout(function(){ input.focus(); }, 40); }
+    function closeSearch(){ ov.classList.remove('open'); }
+
+    function render(q){
+      q = q.trim().toLowerCase();
+      if (!q){ results.innerHTML = '<div class="search-none">Type a keyword to search across the website.</div>'; return; }
+      var terms = q.split(/\s+/);
+      var matches = INDEX.map(function(p){
+        var hay = (p.title + ' ' + p.text + ' ' + p.snippet).toLowerCase();
+        var score = 0;
+        terms.forEach(function(t){ if (hay.indexOf(t) > -1) score++; });
+        return {p:p, score:score};
+      }).filter(function(m){ return m.score > 0; })
+        .sort(function(a,b){ return b.score - a.score; });
+
+      if (!matches.length){ results.innerHTML = '<div class="search-none">No results for &ldquo;' + escapeHtml(q) + '&rdquo;.</div>'; return; }
+      results.innerHTML = matches.map(function(m){
+        var tgt = m.p.target ? ' target="_blank" rel="noopener"' : '';
+        return '<a href="' + m.p.url + '"' + tgt + '><b>' + escapeHtml(m.p.title) + '</b><span>' + escapeHtml(m.p.snippet) + '</span></a>';
+      }).join('');
+    }
+
+    input.addEventListener('input', function(){ render(input.value); });
+    ov.querySelector('.search-close').addEventListener('click', closeSearch);
+    ov.addEventListener('click', function(e){ if (e.target === ov) closeSearch(); });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeSearch(); });
+
+    document.querySelectorAll('.search-btn').forEach(function(b){
+      b.addEventListener('click', function(e){ e.preventDefault(); openSearch(); });
+    });
+  })();
+</script>
+<script src="https://embed.acuityscheduling.com/js/embed.js" type="text/javascript"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</body>
+</html>

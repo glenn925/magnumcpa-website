@@ -289,6 +289,13 @@
   @keyframes vtZoom{from{transform:scale(.42);opacity:.5;clip-path:inset(0 round 60px);filter:drop-shadow(0 30px 60px rgba(11,61,145,.3));}
     to{clip-path:inset(0 round 0);}}
 
+  /* ===== curtain wipe: a blue panel covers the page on the way to and from the request form ===== */
+  .curtain{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;pointer-events:none;visibility:hidden;transform:translateX(-101%);
+    background:linear-gradient(120deg,var(--primary) 0%,#1560C9 55%,var(--secondary) 100%);}
+  .curtain img{width:min(260px,52vw);height:auto;}
+  html.curtain-cover .curtain{visibility:visible;transform:none;}
+  html.curtain-moving .curtain{visibility:visible;pointer-events:auto;}
+
   /* ===== service detail page ===== */
   .sd-hero{position:relative;overflow:hidden;padding:30px 0 70px;background:linear-gradient(180deg,#F5FBFF 0%,#E1F0FC 100%);}
   .sd-back{display:inline-flex;align-items:center;gap:8px;color:var(--primary);font-weight:700;font-size:.92rem;padding:8px 14px 8px 10px;border-radius:999px;transition:background .2s;}
@@ -349,8 +356,69 @@
   @media(max-width:600px){.sd-hero h1{font-size:2rem;}.sd-sec{padding:50px 0;}.sd-sec h2{font-size:1.6rem;}.sd-item{padding:20px;}}
 </style>
 <script>/* links in the Services dropdown (and Switch service) mark the next navigation as a zoom */(function(){var K='vtZoom',RE=/(tax-preparation-planning|bookkeeping-payroll|business-consulting|future-security)\.html$/;function tag(e){try{if(e.viewTransition&&sessionStorage.getItem(K))e.viewTransition.types.add('zoom');}catch(_){}}addEventListener('pageswap',tag);addEventListener('pagereveal',function(e){tag(e);try{sessionStorage.removeItem(K);}catch(_){}});document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('.submenu a');if(a&&RE.test(a.getAttribute('href')||'')){try{sessionStorage.setItem(K,'1');}catch(_){}}},true);})();</script>
+<script>
+  /* Curtain wipe to and from the request form: the panel slides in over this page, the next page
+     opens covered, then the panel slides off it. Reduced motion gets a quick fade instead. */
+  (function(){
+    var K = 'curtain', FORM = 'request-consultation.html', d = document, html = d.documentElement;
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)'), EASE = 'cubic-bezier(.32,.72,0,1)';
+    function ms(){ return reduce.matches ? 150 : 450; }
+    function frames(entering){
+      if (reduce.matches) return entering ? [{opacity:0, transform:'none'}, {opacity:1, transform:'none'}] : [{opacity:1, transform:'none'}, {opacity:0, transform:'none'}];
+      return entering ? [{transform:'translateX(-101%)'}, {transform:'translateX(0)'}] : [{transform:'translateX(0)'}, {transform:'translateX(101%)'}];
+    }
+    function page(u){ return u.pathname.split('/').pop() || 'index.html'; }
+
+    var arriving = false;
+    try{ if (sessionStorage.getItem(K)){ sessionStorage.removeItem(K); arriving = true; html.classList.add('curtain-cover'); } }catch(_){}
+    // the panel is the transition, so skip the browser's own cross-fade between pages
+    addEventListener('pagereveal', function(e){ if (arriving && e.viewTransition) e.viewTransition.skipTransition(); });
+    if (arriving) d.addEventListener('DOMContentLoaded', function(){
+      var c = d.querySelector('.curtain'), started = false;
+      function reveal(){
+        if (started) return; started = true;
+        html.classList.add('curtain-moving'); html.classList.remove('curtain-cover');
+        if (!c || !c.animate){ html.classList.remove('curtain-moving'); return; }
+        c.animate(frames(false), {duration:ms(), easing:EASE}).finished.then(function(){ html.classList.remove('curtain-moving'); });
+        var h = d.querySelector('[data-curtain-focus]');
+        if (h) h.focus({preventScroll:true});
+      }
+      // wait briefly for the web font so the page doesn't reflow as it's revealed
+      if (d.fonts) d.fonts.ready.then(reveal);
+      setTimeout(reveal, 400);
+    });
+
+    d.addEventListener('click', function(e){
+      if (e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var a = e.target.closest && e.target.closest('a[href]');
+      if (!a || a.target === '_blank' || a.hasAttribute('download')) return;
+      var to = new URL(a.href, location.href), from = page(location), dest = page(to);
+      if (to.origin !== location.origin || dest === from || (dest !== FORM && from !== FORM)) return;
+      var c = d.querySelector('.curtain');
+      if (!c || !c.animate) return;
+      e.preventDefault();
+      try{ sessionStorage.setItem(K, '1'); }catch(_){}
+      html.classList.add('curtain-moving');
+      var gone = false;
+      function go(){ if (!gone){ gone = true; location.href = a.href; } }
+      // swap pages only once the screen is fully covered
+      c.animate(frames(true), {duration:ms(), easing:EASE, fill:'forwards'}).finished.then(go);
+      setTimeout(go, ms() + 150);
+    });
+
+    // back/forward cache brings this page back still covered: lift the panel
+    addEventListener('pageshow', function(e){
+      if (!e.persisted) return;
+      html.classList.remove('curtain-moving', 'curtain-cover');
+      var c = d.querySelector('.curtain');
+      if (c && c.getAnimations) c.getAnimations().forEach(function(x){ x.cancel(); });
+      try{ sessionStorage.removeItem(K); }catch(_){}
+    });
+  })();
+</script>
 </head>
 <body>
+<div class="curtain" aria-hidden="true"><img src="images/logo-light.webp" width="840" height="180" alt=""></div>
 
 <!-- ===== Top contact bar ===== -->
 <div class="topbar">
@@ -393,7 +461,7 @@
           </ul>
         </li>
         <li><a href="https://magnumcpa.clientportal.com/#/login" target="_blank" rel="noopener">Client Portal</a></li>
-        <li><a href="index.html#request">Request Consultation</a></li>
+        <li><a href="request-consultation.html">Request Consultation</a></li>
         <li><a href="index.html#contact">Contact Us</a></li>
         <li class="search-li"><a href="#" class="search-btn" aria-label="Search the site">🔍</a></li>
       </ul>
@@ -437,7 +505,7 @@
           <li><a href="index.html#about">About Us</a></li>
           <li><a href="index.html#services">Services</a></li>
           <li><a href="index.html#contact">Contact Us</a></li>
-          <li><a href="index.html#request">Request Consultation</a></li>
+          <li><a href="request-consultation.html">Request Consultation</a></li>
           <li><a href="https://magnumcpa.clientportal.com/#/login" target="_blank" rel="noopener">Client Portal</a></li>
         </ul>
       </div>
@@ -466,7 +534,7 @@
 </footer>
 
 <!-- ===== Floating Book a Consultation CTA ===== -->
-<a class="book-fab" href="index.html#request">📅 Book a Consultation</a>
+<a class="book-fab" href="request-consultation.html">📅 Book a Consultation</a>
 
 <script>
   /* Nav: mobile toggle + dropdown + year */
@@ -533,7 +601,7 @@
       {title:'Contact Us', url:'index.html#contact',
        snippet:'Phone, email, and our Sacramento office location.',
        text:'contact us phone 916 616 1789 email info ask magnumcpa find us 907 green moss drive sacramento ca 95831 map directions location office hours'},
-      {title:'Request a Consultation', url:'index.html#request',
+      {title:'Request a Consultation', url:'request-consultation.html',
        snippet:'Request your free consultation with Max Drew, CPA.',
        text:'request consultation free appointment schedule book meeting max drew cpa tax planning preparation bookkeeping financial coaching preferred date service'}
     ];

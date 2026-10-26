@@ -13,6 +13,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link id="fa-cdn" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
+  /* ===== COLORS AND SIZES (variables) =====
+     Change a value here and it updates everywhere it is used, for example var(--primary). */
   :root{
     /* Palette: Primary #0B3D91 · Secondary #3BA7F2 · Tertiary #7FE7D6 · Background #E8F6FF.
        Everything else here is a shade of those four, for text and the dark bands. */
@@ -27,6 +29,8 @@
     --on-dark:#D6E9FB;
     --gold:#D9A53A;--gold-ink:#9A6B10;   /* the logo's gold, used only as a small accent */
   }
+  /* ===== BASE / RESET =====
+     Removes the browser's default spacing and sets the page's base font, text color and background. */
   *{box-sizing:border-box;margin:0;padding:0;}
   html{font-size:17px;scroll-behavior:smooth;}
   body{
@@ -34,16 +38,20 @@
     color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;
     background:var(--bg);
   }
+  /* pictures never overflow their box; links have no underline and take the surrounding text color */
   img{max-width:100%;height:auto;display:block;}
   a{color:inherit;text-decoration:none;}
   /* content fills the screen at any width, with a proportional side margin */
   .container{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,6vw,140px);}
 
+  /* ===== TOP BAR ===== */
   /* top bar */
   .topbar{background:var(--primary-900);color:var(--on-dark);font-size:.98rem;font-weight:500;}
   .topbar .container{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center;justify-content:space-between;padding:8px clamp(20px,6vw,140px);}
 
+  /* ===== HEADER AND MENU ===== */
   /* header / nav */
+  /* the white bar with the logo and menu; it sticks to the top while you scroll */
   header.site-header{background:rgba(255,255,255,.94);-webkit-backdrop-filter:saturate(1.4) blur(12px);backdrop-filter:saturate(1.4) blur(12px);
     position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border);box-shadow:0 4px 18px rgba(11,61,145,.08);}
   .nav-inner{display:flex;align-items:center;justify-content:space-between;padding-top:12px;padding-bottom:12px;gap:16px;}
@@ -51,13 +59,16 @@
   /* Logo files are 840px wide (about 3x display size) so they stay sharp on high-density screens. */
   .brand img{display:block;height:58px;width:auto;transition:transform .25s,filter .25s;}
   .brand:hover img{transform:scale(1.03);filter:drop-shadow(0 4px 14px rgba(59,167,242,.35));}
+  /* hamburger button (three lines): hidden on wide screens, shown by the 980px rule in RESPONSIVE below */
   .nav-toggle{display:none;background:transparent;border:0;cursor:pointer;padding:8px;border-radius:6px;}
   .nav-toggle span{display:block;width:24px;height:2px;background:var(--primary);margin:5px 0;transition:.3s;}
+  /* desktop menu: one row of small uppercase links; .active paints the current section's link blue */
   nav.main-nav > ul{list-style:none;display:flex;flex-wrap:nowrap;gap:2px;justify-content:flex-end;align-items:center;}
   nav.main-nav a{color:var(--primary-800);font-size:.76rem;font-weight:600;letter-spacing:.2px;padding:8px 8px;border-radius:6px;
     text-transform:uppercase;transition:background .2s,color .2s;white-space:nowrap;display:inline-block;}
   nav.main-nav a:hover{background:var(--bg);color:var(--primary);}
   nav.main-nav a.active{background:var(--primary);color:#fff;}
+  /* drop-down menus (Services, Resources): hidden until you hover over the menu item */
   .has-sub{position:relative;}
   .submenu{position:absolute;top:100%;left:0;min-width:230px;background:#fff;border-radius:10px;border:1px solid var(--border);
     box-shadow:var(--shadow-lg);padding:6px;display:none;flex-direction:column;gap:2px;z-index:60;list-style:none;}
@@ -65,78 +76,106 @@
   .submenu li{width:100%;}
   .submenu a{display:block;text-align:left;border-radius:5px;}
 
+  /* ===== PAGE TITLE BAND ===== */
   /* light section band: kicker + headline + subtitle, faded globe and gold stripe on the right */
   .sec-head{position:relative;overflow:hidden;padding:46px 0 42px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);
     background:linear-gradient(100deg,#fff 0%,var(--bg-alt) 45%,#D6ECFB 100%);}
+  /* :before = faded globe picture, :after = slanted gold stripe.
+     NOTE: both are switched off further down (display:none in the FOOTER: SOFT TOP block). */
   .sec-head:before{content:"";position:absolute;right:4%;top:50%;width:380px;aspect-ratio:600/546;transform:translateY(-50%);
     background:url('images/globe.webp') center/contain no-repeat;opacity:.16;pointer-events:none;}
   .sec-head:after{content:"";position:absolute;top:-10px;bottom:-10px;right:-70px;width:150px;transform:skewX(-32deg);pointer-events:none;
     background:linear-gradient(90deg,var(--gold) 0 7px,rgba(11,61,145,.1) 7px);}
   .sec-head .container{position:relative;z-index:1;}
+  /* small uppercase label above the title (the word Resources) with a short line after it */
   .sec-kicker{display:flex;align-items:center;gap:12px;color:var(--gold-ink);font-weight:800;font-size:1.1rem;letter-spacing:.6px;text-transform:uppercase;}
   .sec-kicker:after{content:"";width:46px;height:2px;background:var(--gold);}
   .sec-kicker.blue{color:var(--secondary-ink);font-size:.9rem;letter-spacing:1.2px;}
   .sec-kicker.blue:after{background:linear-gradient(90deg,var(--secondary),var(--tertiary));}
+  /* the big page title and the gray line under it */
   .sec-head h1,.sec-head h2{color:var(--primary);font-size:2.15rem;line-height:1.2;margin:6px 0 8px;}
   .sec-head p{color:var(--muted);font-size:1.12rem;}
+  /* phones: less padding and a smaller title */
   @media(max-width:600px){.sec-head{padding:34px 0 30px;}.sec-head h1,.sec-head h2{font-size:1.6rem;}.sec-head:before{opacity:.1;right:-80px;}.sec-head:after{display:none;}}
 
+  /* ===== SECTION SPACING ===== */
   /* sections */
   .section{padding:60px 0;}
 
+  /* ===== BUTTONS ===== */
   /* buttons */
   .btn{display:inline-block;background:linear-gradient(135deg,var(--primary),#1560C9);color:#fff;font-weight:700;padding:12px 26px;border-radius:8px;
     border:0;cursor:pointer;letter-spacing:.4px;font-size:.95rem;transition:transform .15s,box-shadow .2s,filter .2s;
     box-shadow:0 6px 16px rgba(11,61,145,.22);}
+  /* hover: lifts slightly; focus-visible: outline shown when using the keyboard */
   .btn:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(11,61,145,.32);filter:brightness(1.08);}
   .btn:focus-visible{outline:3px solid var(--secondary);outline-offset:3px;}
+  /* NOTE: the two .cta-band .btn rules below are overridden by the CALL-TO-ACTION BAND block further down */
   /* on dark bands the button flips to tertiary mint so it stands out */
   .cta-band .btn{background:var(--tertiary);color:var(--primary-900);box-shadow:0 8px 22px rgba(127,231,214,.28);}
   .cta-band .btn:hover{box-shadow:0 14px 32px rgba(127,231,214,.42);filter:brightness(1.04);}
 
+  /* ===== CALCULATOR CARDS ===== */
   /* calculators */
+  /* one category: a heading (gradient text with a short colored underline) and its grid of cards */
   .calc-cat{margin-bottom:34px;}
   .calc-cat h2{color:var(--primary);background:linear-gradient(90deg,#0B3D91,#1C8BDF 55%,#139E92);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;width:fit-content;font-size:1.3rem;margin-bottom:6px;}
   .calc-cat h2:after{content:"";display:block;width:54px;height:4px;background:linear-gradient(90deg,var(--secondary),var(--tertiary));margin-top:10px;border-radius:2px;}
+  /* grid of cards: 3 per row on wide screens */
   .calc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px;}
+  /* one white calculator card with a blue left edge; b = name, span = gray description */
   .calc-card{background:#fff;color:var(--text);border-radius:10px;padding:16px 18px;border-left:4px solid var(--secondary);
     box-shadow:var(--shadow);transition:transform .15s,box-shadow .2s,border-color .2s;}
   .calc-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-left-color:var(--tertiary);}
   .calc-card b{display:block;color:var(--navy);font-size:.98rem;}
   .calc-card span{color:var(--muted);font-size:.85rem;}
+  /* tablets: 2 cards per row; phones: 1 card per row */
   @media(max-width:860px){.calc-grid{grid-template-columns:repeat(2,1fr);}}
   @media(max-width:560px){.calc-grid{grid-template-columns:1fr;}}
 
+  /* ===== CTA BAND (older version) =====
+     Mostly overridden by the CALL-TO-ACTION BAND block further down; edit that one instead. */
   /* CTA band */
   .cta-band{position:relative;overflow:hidden;color:#fff;text-align:center;padding:62px 0;
     background:radial-gradient(90% 160% at 100% 0%,rgba(59,167,242,.45),transparent 60%),radial-gradient(70% 120% at 0% 100%,rgba(127,231,214,.22),transparent 60%),linear-gradient(120deg,var(--primary-800),var(--primary));}
   .cta-band h2{font-size:1.9rem;margin-bottom:10px;}
   .cta-band p{color:var(--on-dark);margin-bottom:24px;}
 
+  /* ===== SEARCH ===== */
   /* search */
+  /* the magnifier icon in the menu */
   .search-li a{font-size:1.05rem;}
+  /* dark see-through backdrop over the whole page; hidden until the .open class is added by the SEARCH script */
   .search-overlay{position:fixed;inset:0;background:rgba(5,29,71,.62);display:none;z-index:200;padding:84px 16px 16px;}
   .search-overlay.open{display:block;}
+  /* the white search box: top row = icon, typing field and close X */
   .search-box{max-width:640px;margin:0 auto;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 30px 70px rgba(5,29,71,.4);}
   .search-top{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--border);}
   .search-ic{font-size:1.2rem;}
   .search-top input{flex:1;border:0;outline:none;font-size:1.1rem;color:var(--text);font-family:inherit;background:transparent;}
   .search-close{background:transparent;border:0;font-size:1.7rem;line-height:1;cursor:pointer;color:var(--muted);padding:0 4px;}
+  /* the list of results (scrolls if long); each result shows a bold title and a gray snippet */
   .search-results{max-height:62vh;overflow:auto;}
   .search-results a{display:block;padding:14px 18px;border-bottom:1px solid var(--border);color:var(--primary);}
   .search-results a:hover{background:var(--bg-alt);}
   .search-results a b{display:block;font-size:1rem;}
   .search-results a span{font-size:.86rem;color:var(--muted);}
+  /* the hint / no-results message */
   .search-none{padding:20px 18px;color:var(--muted);}
 
+  /* ===== FLOATING BOOK BUTTON ===== */
   /* floating "Book a Consultation" CTA */
   .book-fab{position:fixed;right:22px;bottom:22px;z-index:90;background:linear-gradient(135deg,var(--primary),#1560C9);color:#fff;
     font-weight:800;padding:14px 24px;border-radius:40px;display:inline-flex;align-items:center;gap:8px;letter-spacing:.3px;
     box-shadow:0 12px 30px rgba(11,61,145,.35);transition:transform .15s,box-shadow .2s;animation:bookpulse 2.8s ease-in-out infinite;}
   .book-fab:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(11,61,145,.45);}
+  /* the slow glowing pulse around the button */
   @keyframes bookpulse{0%,100%{box-shadow:0 12px 30px rgba(11,61,145,.3),0 0 0 0 rgba(59,167,242,.5);}50%{box-shadow:0 14px 36px rgba(11,61,145,.38),0 0 0 12px rgba(59,167,242,0);}}
+  /* phones: smaller button, closer to the corner */
   @media(max-width:560px){.book-fab{right:14px;bottom:14px;padding:12px 18px;font-size:.92rem;}}
 
+  /* ===== FOOTER (older dark version) =====
+     Most of these rules are overridden by the FOOTER (LIGHT) and FOOTER: SOFT TOP blocks below. */
   /* footer */
   footer{position:relative;background:var(--primary-900);color:#B8CBE6;padding:50px 0 22px;margin-top:20px;}
   footer::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--primary),var(--secondary),var(--tertiary));}
@@ -146,13 +185,17 @@
   footer ul{list-style:none;}
   footer li{margin-bottom:8px;font-size:.9rem;}
   footer a:hover{color:var(--tertiary);}
+  /* row of round social media icons, and the copyright line */
   .social{display:flex;gap:12px;justify-content:center;margin:6px 0 22px;}
   .social a{width:40px;height:40px;border-radius:50%;background:var(--tertiary);color:var(--primary-900);display:grid;place-items:center;font-size:1.05rem;transition:transform .15s,background .2s,color .2s;}
   .social a:hover{transform:translateY(-3px);background:var(--secondary);color:#fff;}
   .foot-copy{border-top:1px solid rgba(255,255,255,.12);padding-top:18px;font-size:.82rem;text-align:center;}
 
+  /* ===== RESPONSIVE (tablets and phones) ===== */
   /* responsive */
+  /* 980px and narrower: footer columns two across */
   @media (max-width:980px){.foot-grid{grid-template-columns:1fr 1fr;}}
+  /* 980px and narrower: the menu becomes a hamburger drop-down that slides open (.open is added by the NAV script) */
   @media (max-width:980px){
     .nav-toggle{display:block;}
     nav.main-nav{position:absolute;top:100%;left:0;right:0;background:#fff;box-shadow:0 18px 30px rgba(11,61,145,.12);max-height:0;overflow:hidden;transition:max-height .35s ease;}
@@ -160,10 +203,12 @@
     nav.main-nav > ul{flex-direction:column;gap:0;padding:8px 0;align-items:stretch;}
     nav.main-nav li{width:100%;}
     nav.main-nav a{display:block;padding:13px 24px;border-radius:0;border-bottom:1px solid var(--border);text-align:left;}
+    /* sub-menus open in place (tap to open) instead of floating on hover */
     .submenu{position:static;display:none;box-shadow:none;border:0;border-radius:0;background:var(--bg-alt);padding:0;min-width:0;}
     .has-sub.open .submenu{display:flex;}
     .submenu a{padding-left:40px;}
   }
+  /* 600px and narrower (phones): tighter margins, centered top bar, one footer column, smaller logo */
   @media (max-width:600px){
     .container{padding:0 16px;}
     .topbar .container{justify-content:center;text-align:center;gap:2px 14px;font-size:.74rem;padding:7px 14px;}
@@ -173,36 +218,45 @@
   }
 
   /* ===== call-to-action band ===== */
+  /* the blue band with the Book a Free Consultation button; the long url(...) draws the wavy teal shapes */
   .cta-band{position:relative;overflow:hidden;color:#fff;text-align:center;padding:70px 0 76px;
     background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 300' preserveAspectRatio='none'%3E%3Cpath d='M0 120C260 200 420 290 640 300H0Z' fill='%237FE7D6' opacity='.35'/%3E%3Cpath d='M0 170C300 230 470 280 700 300' fill='none' stroke='%23BFF3EC' stroke-width='2' opacity='.7'/%3E%3Cpath d='M1600 150C1350 230 1180 280 980 300H1600Z' fill='%233BA7F2' opacity='.35'/%3E%3Cpath d='M1600 190C1380 250 1200 285 1020 300' fill='none' stroke='%23BFE6FF' stroke-width='2' opacity='.7'/%3E%3C/svg%3E") bottom/100% 100% no-repeat,
       radial-gradient(60% 120% at 100% 0%,rgba(79,195,255,.55),transparent 60%),linear-gradient(120deg,#062C74,#0B3D91 45%,#1561C9);}
   .cta-band h2{font-size:2.5rem;font-weight:800;line-height:1.15;margin-bottom:10px;}
   .cta-band p{color:#E3EEFF;font-size:1.2rem;margin-bottom:28px;}
+  /* the mint pill button; its arrow slides right on hover */
   .cta-band .btn{display:inline-flex;align-items:center;gap:12px;padding:16px 34px;border-radius:999px;font-size:1.02rem;
     background:linear-gradient(90deg,#7FE7D6,#5EEAD4);color:#0A2A6B;box-shadow:0 12px 30px rgba(127,231,214,.35);}
   .cta-band .btn i{transition:transform .2s;}
   .cta-band .btn:hover i{transform:translateX(4px);}
+  /* phones: smaller heading and text */
   @media(max-width:600px){.cta-band h2{font-size:1.7rem;}.cta-band p{font-size:1rem;}}
 
   /* ===== footer (light) ===== */
+  /* light blue footer background (the wave drawing is later hidden by FOOTER: SOFT TOP) */
   footer{position:relative;overflow:hidden;background:linear-gradient(180deg,#F7FBFF,#EAF5FF);color:var(--primary);padding:64px 0 26px;margin-top:0;}
   footer::before{content:"";position:absolute;left:0;right:0;bottom:0;top:auto;height:260px;pointer-events:none;
     background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 300' preserveAspectRatio='none'%3E%3Cpath d='M0 120C260 200 420 290 640 300H0Z' fill='%237FE7D6' opacity='.35'/%3E%3Cpath d='M0 170C300 230 470 280 700 300' fill='none' stroke='%23BFF3EC' stroke-width='2' opacity='.7'/%3E%3Cpath d='M1600 150C1350 230 1180 280 980 300H1600Z' fill='%233BA7F2' opacity='.35'/%3E%3Cpath d='M1600 190C1380 250 1200 285 1020 300' fill='none' stroke='%23BFE6FF' stroke-width='2' opacity='.7'/%3E%3C/svg%3E") bottom/100% 100% no-repeat;opacity:.9;}
   footer .container{position:relative;z-index:1;max-width:var(--maxw);}
   footer .brand img{height:76px;}
+  /* three columns: logo and bio, Company links, Resources links; thin blue lines between them */
   .foot-grid{grid-template-columns:1.45fr 1fr 1.05fr;gap:0;margin-bottom:30px;align-items:start;}
   .foot-grid > div{padding:0 34px;}
   .foot-grid > div:first-child{padding-left:0;}
   .foot-grid > div + div:not(.foot-cta){border-left:1px solid rgba(59,167,242,.3);}
   .foot-grid > div:nth-child(2),.foot-grid > div:nth-child(3){padding-bottom:8px;}
+  /* the bio text in the first column, with a short gradient bar above it */
   .foot-grid > div:first-child p{color:var(--primary);font-size:1.02rem !important;line-height:1.6;}
   .foot-grid > div:first-child p:before{content:"";display:block;width:76px;height:3px;border-radius:2px;margin:0 0 16px;background:linear-gradient(90deg,#1C8BDF,#5FD3E2);}
+  /* column headings (Company, Resources) with a small colored bar above */
   footer h4{color:var(--primary);font-size:1.15rem;margin-bottom:16px;}
   footer h4:before{content:"";display:block;width:34px;height:3px;border-radius:2px;margin-bottom:14px;background:linear-gradient(90deg,#3BA7F2,#7FE7D6);}
+  /* footer links; content "\f054" is the Font Awesome small arrow icon shown before each link */
   footer li{margin-bottom:12px;font-size:.98rem;}
   footer li a{white-space:nowrap;display:inline-flex;align-items:center;gap:12px;color:#1D3F75;transition:color .2s,transform .2s;}
   footer li a:before{content:"\f054";font-family:"Font Awesome 6 Free";font-weight:900;font-size:.72rem;color:#1CA9D6;}
   footer li a:hover{color:#1C8BDF;transform:translateX(3px);}
+  /* optional fourth column with a big Book button (.foot-cta / .foot-book); not used in this page's footer */
   .foot-cta{align-self:center;padding:0 0 0 34px !important;border-left:1px solid rgba(59,167,242,.3);}
   .foot-book{display:inline-flex;align-items:center;gap:16px;white-space:nowrap;padding:18px 30px;border-radius:999px;color:#fff !important;font-weight:700;
     background:linear-gradient(90deg,#0B3D91,#1560C9);box-shadow:0 14px 34px rgba(11,61,145,.3),0 0 0 3px rgba(59,167,242,.35);transition:transform .2s,box-shadow .2s;}
@@ -211,6 +265,7 @@
   .foot-book .fa-arrow-right{font-size:.85rem;transition:transform .2s;}
   .foot-book:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(11,61,145,.38),0 0 0 3px rgba(59,167,242,.5);}
   .foot-book:hover .fa-arrow-right{transform:translateX(4px);}
+  /* social icons row: fading lines on both sides, and each icon a different shade of blue/teal */
   .social{position:relative;gap:16px;margin:10px 0 22px;align-items:center;}
   .social:before,.social:after{content:"";width:min(340px,22vw);height:1px;background:linear-gradient(90deg,transparent,rgba(59,167,242,.45));}
   .social:after{background:linear-gradient(90deg,rgba(59,167,242,.45),transparent);}
@@ -222,6 +277,7 @@
   .social a:hover{transform:translateY(-3px);background:#0A2A6B;color:#fff;}
   .foot-copy{border-top:0;color:#1D3F75;font-size:.95rem;}
   footer a:hover{color:#1C8BDF;}
+  /* 1100px and narrower: footer columns two across; 600px and narrower: one column */
   @media(max-width:1100px){.foot-grid{grid-template-columns:1fr 1fr;row-gap:34px;}.foot-grid > div{padding:0 24px;}
     .foot-grid > div:nth-child(3){border-left:1px solid rgba(59,167,242,.3);}.foot-grid > div:nth-child(2){border-left:0;padding-left:0;}
     .foot-cta{grid-column:1/-1;border-left:0 !important;padding:0 !important;}}
@@ -233,12 +289,16 @@
   /* ===== two-tone gradient headings ===== */
   .grad{background:linear-gradient(90deg,#1C8BDF,#139E92);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
   .grad-light{background:linear-gradient(90deg,#9FD8FF,#7FE7D6);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+  /* Class names like .mc, .wcu, .hero, .nl-... and .cx-... in the blocks below belong to the home page.
+     They do nothing here; they are kept so the shared styles match index.html. */
   .mc{border-top:0 !important;}
+  /* title band fades out at the bottom (switched off again in FOOTER: SOFT TOP below) */
   .sec-head{border-top:0;border-bottom:0;-webkit-mask-image:linear-gradient(180deg,#000 70%,transparent);mask-image:linear-gradient(180deg,#000 70%,transparent);}
 
   /* ===== one continuous background: no visible section edges ===== */
   body{background:#EDF6FE;background-image:radial-gradient(60vw 60vh at 85% 15%,rgba(59,167,242,.10),transparent 70%),
     radial-gradient(55vw 55vh at 10% 70%,rgba(127,231,214,.10),transparent 70%);background-attachment:fixed;}
+  /* make these sections see-through so the page background above shows through */
   .mc,.wcu,.hero,.sec-head,.sd-hero,.section{background:transparent !important;}
   .mc-deco{display:none;}
   /* ===== small titles are gold, with a gold rule ===== */
@@ -251,10 +311,12 @@
   .mc-title,.mc-title.plain,.nl-head h2,.wcu-title,.about-txt h2,.contactx h1,.cta-band h2,.sec-head h1,.sec-head h2,.sd-hero h1,.sd-sec h2{
     font-size:2.15rem !important;font-weight:700 !important;line-height:1.2 !important;letter-spacing:-.2px !important;text-transform:none !important;}
   .wcu-title .grad{display:inline;}
+  /* phones: all section titles a bit smaller */
   @media(max-width:600px){.mc-title,.mc-title.plain,.nl-head h2,.wcu-title,.about-txt h2,.contactx h1,.cta-band h2,.sec-head h1,.sec-head h2,.sd-hero h1,.sd-sec h2{font-size:1.6rem !important;}}
   /* ===== footer: soft top, dark blue bottom bar ===== */
   footer{background:transparent !important;padding-bottom:0 !important;}
   footer::before{display:none !important;}
+  /* the dark blue bar at the very bottom holding the social icons and the copyright line */
   .foot-bottom{position:relative;margin-top:30px;padding:26px 0 22px;background:linear-gradient(90deg,#051D47,#0B3D91 50%,#072A66);}
   .foot-bottom .social{margin:0 0 14px;}
   .foot-bottom .social:before,.foot-bottom .social:after{background:linear-gradient(90deg,transparent,rgba(127,231,214,.5)) !important;}
@@ -262,6 +324,7 @@
   .foot-bottom .foot-copy{color:#C9DAF2;padding-top:0;}
   .foot-bottom .social a:hover{background:#fff;color:var(--primary);}
   .foot-bottom .social a:nth-child(6n+1),.foot-bottom .social a:nth-child(6n){background:#1C8BDF;}
+  /* hides the globe and gold stripe of the title band */
   .sec-head:before,.sec-head:after{display:none !important;}
   /* header band sits right on top of its content */
   .sec-head{padding-bottom:18px !important;}
@@ -288,10 +351,78 @@
   @keyframes vtShrink{to{opacity:0;transform:scale(.9);}}
   @keyframes vtZoom{from{transform:scale(.42);opacity:.5;clip-path:inset(0 round 60px);filter:drop-shadow(0 30px 60px rgba(11,61,145,.3));}
     to{clip-path:inset(0 round 0);}}
+
+  /* ===== curtain wipe: a blue panel covers the page on the way to and from the request form ===== */
+  .curtain{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;pointer-events:none;visibility:hidden;transform:translateX(-101%);
+    background:linear-gradient(120deg,var(--primary) 0%,#1560C9 55%,var(--secondary) 100%);}
+  .curtain img{width:min(260px,52vw);height:auto;}
+  html.curtain-cover .curtain{visibility:visible;transform:none;}
+  html.curtain-moving .curtain{visibility:visible;pointer-events:auto;}
 </style>
 <script>/* links in the Services dropdown (and Switch service) mark the next navigation as a zoom */(function(){var K='vtZoom',RE=/(tax-preparation-planning|bookkeeping-payroll|business-consulting|future-security)\.html$/;function tag(e){try{if(e.viewTransition&&sessionStorage.getItem(K))e.viewTransition.types.add('zoom');}catch(_){}}addEventListener('pageswap',tag);addEventListener('pagereveal',function(e){tag(e);try{sessionStorage.removeItem(K);}catch(_){}});document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('.submenu a');if(a&&RE.test(a.getAttribute('href')||'')){try{sessionStorage.setItem(K,'1');}catch(_){}}},true);})();</script>
+<script>
+  /* Curtain wipe to and from the request form: the panel slides in over this page, the next page
+     opens covered, then the panel slides off it. Reduced motion gets a quick fade instead. */
+  (function(){
+    var K = 'curtain', FORM = 'request-consultation.html', d = document, html = d.documentElement;
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)'), EASE = 'cubic-bezier(.32,.72,0,1)';
+    function ms(){ return reduce.matches ? 150 : 450; }
+    function frames(entering){
+      if (reduce.matches) return entering ? [{opacity:0, transform:'none'}, {opacity:1, transform:'none'}] : [{opacity:1, transform:'none'}, {opacity:0, transform:'none'}];
+      return entering ? [{transform:'translateX(-101%)'}, {transform:'translateX(0)'}] : [{transform:'translateX(0)'}, {transform:'translateX(101%)'}];
+    }
+    function page(u){ return u.pathname.split('/').pop() || 'index.html'; }
+
+    var arriving = false;
+    try{ if (sessionStorage.getItem(K)){ sessionStorage.removeItem(K); arriving = true; html.classList.add('curtain-cover'); } }catch(_){}
+    // the panel is the transition, so skip the browser's own cross-fade between pages
+    addEventListener('pagereveal', function(e){ if (arriving && e.viewTransition) e.viewTransition.skipTransition(); });
+    if (arriving) d.addEventListener('DOMContentLoaded', function(){
+      var c = d.querySelector('.curtain'), started = false;
+      function reveal(){
+        if (started) return; started = true;
+        html.classList.add('curtain-moving'); html.classList.remove('curtain-cover');
+        if (!c || !c.animate){ html.classList.remove('curtain-moving'); return; }
+        c.animate(frames(false), {duration:ms(), easing:EASE}).finished.then(function(){ html.classList.remove('curtain-moving'); });
+        var h = d.querySelector('[data-curtain-focus]');
+        if (h) h.focus({preventScroll:true});
+      }
+      // wait briefly for the web font so the page doesn't reflow as it's revealed
+      if (d.fonts) d.fonts.ready.then(reveal);
+      setTimeout(reveal, 400);
+    });
+
+    d.addEventListener('click', function(e){
+      if (e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var a = e.target.closest && e.target.closest('a[href]');
+      if (!a || a.target === '_blank' || a.hasAttribute('download')) return;
+      var to = new URL(a.href, location.href), from = page(location), dest = page(to);
+      if (to.origin !== location.origin || dest === from || (dest !== FORM && from !== FORM)) return;
+      var c = d.querySelector('.curtain');
+      if (!c || !c.animate) return;
+      e.preventDefault();
+      try{ sessionStorage.setItem(K, '1'); }catch(_){}
+      html.classList.add('curtain-moving');
+      var gone = false;
+      function go(){ if (!gone){ gone = true; location.href = a.href; } }
+      // swap pages only once the screen is fully covered
+      c.animate(frames(true), {duration:ms(), easing:EASE, fill:'forwards'}).finished.then(go);
+      setTimeout(go, ms() + 150);
+    });
+
+    // back/forward cache brings this page back still covered: lift the panel
+    addEventListener('pageshow', function(e){
+      if (!e.persisted) return;
+      html.classList.remove('curtain-moving', 'curtain-cover');
+      var c = d.querySelector('.curtain');
+      if (c && c.getAnimations) c.getAnimations().forEach(function(x){ x.cancel(); });
+      try{ sessionStorage.removeItem(K); }catch(_){}
+    });
+  })();
+</script>
 </head>
 <body>
+<div class="curtain" aria-hidden="true"><img src="images/logo-light.webp" width="840" height="180" alt=""></div>
 
 <!-- ===== Top contact bar ===== -->
 <div class="topbar">
@@ -334,7 +465,7 @@
           </ul>
         </li>
         <li><a href="https://magnumcpa.clientportal.com/#/login" target="_blank" rel="noopener">Client Portal</a></li>
-        <li><a href="index.html#request">Request Consultation</a></li>
+        <li><a href="request-consultation.html">Request Consultation</a></li>
         <li><a href="index.html#contact">Contact Us</a></li>
         <li class="search-li"><a href="#" class="search-btn" aria-label="Search the site">🔍</a></li>
       </ul>
@@ -455,7 +586,7 @@
       <div class="container">
         <h2>Want a <span class="grad-light">personalized analysis?</span></h2>
         <p>Our team will run the numbers with you and build a plan around your goals.</p>
-        <a href="index.html#request" class="btn">Book a Free Consultation <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        <a href="request-consultation.html" class="btn">Book a Free Consultation <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
       </div>
     </div>
 
@@ -475,7 +606,7 @@
           <li><a href="index.html#about">About Us</a></li>
           <li><a href="index.html#services">Services</a></li>
           <li><a href="index.html#contact">Contact Us</a></li>
-          <li><a href="index.html#request">Request Consultation</a></li>
+          <li><a href="request-consultation.html">Request Consultation</a></li>
           <li><a href="https://magnumcpa.clientportal.com/#/login" target="_blank" rel="noopener">Client Portal</a></li>
         </ul>
       </div>
@@ -504,7 +635,7 @@
 </footer>
 
 <!-- ===== Floating Book a Consultation CTA ===== -->
-<a class="book-fab" href="index.html#request">📅 Book a Consultation</a>
+<a class="book-fab" href="request-consultation.html">📅 Book a Consultation</a>
 
 <script>
   /* Nav: mobile toggle + dropdown + year */
@@ -571,7 +702,7 @@
       {title:'Contact Us', url:'index.html#contact',
        snippet:'Phone, email, and our Sacramento office location.',
        text:'contact us phone 916 616 1789 email info ask magnumcpa find us 907 green moss drive sacramento ca 95831 map directions location office hours'},
-      {title:'Request a Consultation', url:'index.html#request',
+      {title:'Request a Consultation', url:'request-consultation.html',
        snippet:'Request your free consultation with Max Drew, CPA.',
        text:'request consultation free appointment schedule book meeting max drew cpa tax planning preparation bookkeeping financial coaching preferred date service'}
     ];
