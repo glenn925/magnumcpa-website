@@ -3,16 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ===== PAGE OVERVIEW ===== Request a Consultation page. Order on the page: TOP BAR, HEADER / NAV, PAGE HEADING, -->
+<!-- FORM (STEP 1, with FORM FIELDS, TURNSTILE and FORM SUBMIT), SCHEDULER (STEP 2), FOOTER. The same banner names are used -->
+<!-- in the CSS, the HTML and the JavaScript, so search this file for a name to find every part of that feature. -->
+<!-- Browser tab title, and the summary search engines show (edit the text inside content=) -->
 <title>Request a Consultation — Magnum CPA PC</title>
 <meta name="description" content="Request a free consultation with Max Drew, CPA — Magnum CPA PC. Tax planning, preparation, bookkeeping, consulting and financial coaching.">
+<!-- Color of the phone browser's address bar -->
 <meta name="theme-color" content="#0B3D91">
+<!-- Small site icons for browser tabs and iPhone home screens (files in the images folder) -->
 <link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<!-- Loads the Plus Jakarta Sans font from Google Fonts, and the Font Awesome icon set (arrow and social icons) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link id="fa-cdn" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<!-- ===== STYLES (CSS) ===== everything inside the style block below controls how the page looks -->
 <style>
+  /* ===== COLORS AND BASICS ===== site-wide colors and sizes. Change a color here (e.g. --primary) and it updates everywhere on this page. */
   :root{
     /* Palette: Primary #0B3D91 · Secondary #3BA7F2 · Tertiary #7FE7D6 · Background #E8F6FF.
        Everything else here is a shade of those four, for text and the dark bands. */
@@ -27,22 +36,30 @@
     --on-dark:#D6E9FB;
     --gold:#D9A53A;--gold-ink:#9A6B10;   /* the logo's gold, used only as a small accent */
   }
+  /* Reset: removes browser default spacing so every browser starts the same */
   *{box-sizing:border-box;margin:0;padding:0;}
+  /* Base text size for the whole page; raising 17px makes all text bigger */
   html{font-size:17px;scroll-behavior:smooth;}
+  /* Default font, text color and page background (the background is overridden in ONE CONTINUOUS BACKGROUND below) */
   body{
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;
     background:var(--bg);
   }
+  /* Images never overflow their box */
   img{max-width:100%;height:auto;display:block;}
+  /* Links look like normal text unless styled elsewhere */
   a{color:inherit;text-decoration:none;}
+  /* ===== LAYOUT ===== */
   /* content fills the screen at any width, with a proportional side margin */
   .container{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,6vw,140px);}
 
+  /* ===== TOP BAR ===== dark strip at the very top with phone, email and hours */
   /* top bar */
   .topbar{background:var(--primary-900);color:var(--on-dark);font-size:.98rem;font-weight:500;}
   .topbar .container{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center;justify-content:space-between;padding:8px clamp(20px,6vw,140px);}
 
+  /* ===== HEADER / NAV ===== white sticky bar with the logo and the menu */
   /* header / nav */
   header.site-header{background:rgba(255,255,255,.94);-webkit-backdrop-filter:saturate(1.4) blur(12px);backdrop-filter:saturate(1.4) blur(12px);
     position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border);box-shadow:0 4px 18px rgba(11,61,145,.08);}
@@ -51,13 +68,16 @@
   /* Logo files are 840px wide (about 3x display size) so they stay sharp on high-density screens. */
   .brand img{display:block;height:58px;width:auto;transition:transform .25s,filter .25s;}
   .brand:hover img{transform:scale(1.03);filter:drop-shadow(0 4px 14px rgba(59,167,242,.35));}
+  /* Hamburger button: hidden on desktop, shown on tablets and phones (see MOBILE / RESPONSIVE) */
   .nav-toggle{display:none;background:transparent;border:0;cursor:pointer;padding:8px;border-radius:6px;}
   .nav-toggle span{display:block;width:24px;height:2px;background:var(--primary);margin:5px 0;transition:.3s;}
+  /* Menu links: change font-size or padding here to resize the menu */
   nav.main-nav > ul{list-style:none;display:flex;flex-wrap:nowrap;gap:2px;justify-content:flex-end;align-items:center;}
   nav.main-nav a{color:var(--primary-800);font-size:.76rem;font-weight:600;letter-spacing:.2px;padding:8px 8px;border-radius:6px;
     text-transform:uppercase;transition:background .2s,color .2s;white-space:nowrap;display:inline-block;}
   nav.main-nav a:hover{background:var(--bg);color:var(--primary);}
   nav.main-nav a.active{background:var(--primary);color:#fff;}
+  /* Dropdown menus (Services, Resources): hidden until the mouse hovers the parent item */
   .has-sub{position:relative;}
   .submenu{position:absolute;top:100%;left:0;min-width:230px;background:#fff;border-radius:10px;border:1px solid var(--border);
     box-shadow:var(--shadow-lg);padding:6px;display:none;flex-direction:column;gap:2px;z-index:60;list-style:none;}
@@ -65,6 +85,7 @@
   .submenu li{width:100%;}
   .submenu a{display:block;text-align:left;border-radius:5px;}
 
+  /* ===== PAGE HEADING ===== the band with the gold kicker, big headline and subtitle */
   /* light section band: kicker + headline + subtitle, faded globe and gold stripe on the right */
   .sec-head{position:relative;overflow:hidden;padding:46px 0 42px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);
     background:linear-gradient(100deg,#fff 0%,var(--bg-alt) 45%,#D6ECFB 100%);}
@@ -73,17 +94,22 @@
   .sec-head:after{content:"";position:absolute;top:-10px;bottom:-10px;right:-70px;width:150px;transform:skewX(-32deg);pointer-events:none;
     background:linear-gradient(90deg,var(--gold) 0 7px,rgba(11,61,145,.1) 7px);}
   .sec-head .container{position:relative;z-index:1;}
+  /* Small gold label above the headline (REQUEST A CONSULTATION) */
   .sec-kicker{display:flex;align-items:center;gap:12px;color:var(--gold-ink);font-weight:800;font-size:1.1rem;letter-spacing:.6px;text-transform:uppercase;}
   .sec-kicker:after{content:"";width:46px;height:2px;background:var(--gold);}
   .sec-kicker.blue{color:var(--secondary-ink);font-size:.9rem;letter-spacing:1.2px;}
   .sec-kicker.blue:after{background:linear-gradient(90deg,var(--secondary),var(--tertiary));}
+  /* Headline size and color; the size is overridden again in EVERY SECTION TITLE THE SAME SIZE below */
   .sec-head h1,.sec-head h2{color:var(--primary);font-size:2.15rem;line-height:1.2;margin:6px 0 8px;}
   .sec-head p{color:var(--muted);font-size:1.12rem;}
+  /* Phones (600px and narrower): smaller heading band, decorations toned down */
   @media(max-width:600px){.sec-head{padding:34px 0 30px;}.sec-head h1,.sec-head h2{font-size:1.6rem;}.sec-head:before{opacity:.1;right:-80px;}.sec-head:after{display:none;}}
 
+  /* ===== SECTIONS ===== space above and below each content area */
   /* sections */
   .section{padding:60px 0;}
 
+  /* ===== BUTTONS ===== */
   /* buttons */
   .btn{display:inline-block;background:linear-gradient(135deg,var(--primary),#1560C9);color:#fff;font-weight:700;padding:12px 26px;border-radius:8px;
     border:0;cursor:pointer;letter-spacing:.4px;font-size:.95rem;transition:transform .15s,box-shadow .2s,filter .2s;
@@ -94,6 +120,7 @@
   .cta-band .btn{background:var(--tertiary);color:var(--primary-900);box-shadow:0 8px 22px rgba(127,231,214,.28);}
   .cta-band .btn:hover{box-shadow:0 14px 32px rgba(127,231,214,.42);filter:brightness(1.04);}
 
+  /* ===== CALCULATORS (shared style, not used on this page) ===== copied from the calculators page; safe to leave */
   /* calculators */
   .calc-cat{margin-bottom:34px;}
   .calc-cat h2{color:var(--primary);background:linear-gradient(90deg,#0B3D91,#1C8BDF 55%,#139E92);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;width:fit-content;font-size:1.3rem;margin-bottom:6px;}
@@ -104,15 +131,18 @@
   .calc-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-left-color:var(--tertiary);}
   .calc-card b{display:block;color:var(--navy);font-size:.98rem;}
   .calc-card span{color:var(--muted);font-size:.85rem;}
+  /* Narrower screens: fewer calculator columns */
   @media(max-width:860px){.calc-grid{grid-template-columns:repeat(2,1fr);}}
   @media(max-width:560px){.calc-grid{grid-template-columns:1fr;}}
 
+  /* ===== CTA BAND (shared style, not used on this page) ===== redefined again further down */
   /* CTA band */
   .cta-band{position:relative;overflow:hidden;color:#fff;text-align:center;padding:62px 0;
     background:radial-gradient(90% 160% at 100% 0%,rgba(59,167,242,.45),transparent 60%),radial-gradient(70% 120% at 0% 100%,rgba(127,231,214,.22),transparent 60%),linear-gradient(120deg,var(--primary-800),var(--primary));}
   .cta-band h2{font-size:1.9rem;margin-bottom:10px;}
   .cta-band p{color:var(--on-dark);margin-bottom:24px;}
 
+  /* ===== SEARCH ===== the pop-up search box opened by the magnifying glass in the menu */
   /* search */
   .search-li a{font-size:1.05rem;}
   .search-overlay{position:fixed;inset:0;background:rgba(5,29,71,.62);display:none;z-index:200;padding:84px 16px 16px;}
@@ -129,14 +159,18 @@
   .search-results a span{font-size:.86rem;color:var(--muted);}
   .search-none{padding:20px 18px;color:var(--muted);}
 
+  /* ===== FLOATING BOOK BUTTON (shared style, not used on this page) ===== */
   /* floating "Book a Consultation" CTA */
   .book-fab{position:fixed;right:22px;bottom:22px;z-index:90;background:linear-gradient(135deg,var(--primary),#1560C9);color:#fff;
     font-weight:800;padding:14px 24px;border-radius:40px;display:inline-flex;align-items:center;gap:8px;letter-spacing:.3px;
     box-shadow:0 12px 30px rgba(11,61,145,.35);transition:transform .15s,box-shadow .2s;animation:bookpulse 2.8s ease-in-out infinite;}
   .book-fab:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(11,61,145,.45);}
+  /* Slow pulsing glow around the floating button */
   @keyframes bookpulse{0%,100%{box-shadow:0 12px 30px rgba(11,61,145,.3),0 0 0 0 rgba(59,167,242,.5);}50%{box-shadow:0 14px 36px rgba(11,61,145,.38),0 0 0 12px rgba(59,167,242,0);}}
+  /* Phones: smaller floating button */
   @media(max-width:560px){.book-fab{right:14px;bottom:14px;padding:12px 18px;font-size:.92rem;}}
 
+  /* ===== FOOTER ===== base footer styles; the FOOTER (light version) rules further down override most of these */
   /* footer */
   footer{position:relative;background:var(--primary-900);color:#B8CBE6;padding:50px 0 22px;margin-top:20px;}
   footer::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--primary),var(--secondary),var(--tertiary));}
@@ -146,24 +180,32 @@
   footer ul{list-style:none;}
   footer li{margin-bottom:8px;font-size:.9rem;}
   footer a:hover{color:var(--tertiary);}
+  /* Row of round social media icons */
   .social{display:flex;gap:12px;justify-content:center;margin:6px 0 22px;}
   .social a{width:40px;height:40px;border-radius:50%;background:var(--tertiary);color:var(--primary-900);display:grid;place-items:center;font-size:1.05rem;transition:transform .15s,background .2s,color .2s;}
   .social a:hover{transform:translateY(-3px);background:var(--secondary);color:#fff;}
+  /* Copyright line */
   .foot-copy{border-top:1px solid rgba(255,255,255,.12);padding-top:18px;font-size:.82rem;text-align:center;}
 
+  /* ===== MOBILE / RESPONSIVE ===== */
   /* responsive */
+  /* Tablets (980px and narrower): footer goes to two columns */
   @media (max-width:980px){.foot-grid{grid-template-columns:1fr 1fr;}}
+  /* Tablets and phones (980px and narrower): the menu folds away behind the hamburger button */
   @media (max-width:980px){
     .nav-toggle{display:block;}
+    /* Menu panel starts closed (height 0); the open class added by the NAV script lets it expand */
     nav.main-nav{position:absolute;top:100%;left:0;right:0;background:#fff;box-shadow:0 18px 30px rgba(11,61,145,.12);max-height:0;overflow:hidden;transition:max-height .35s ease;}
     nav.main-nav.open{max-height:760px;overflow:auto;}
     nav.main-nav > ul{flex-direction:column;gap:0;padding:8px 0;align-items:stretch;}
     nav.main-nav li{width:100%;}
     nav.main-nav a{display:block;padding:13px 24px;border-radius:0;border-bottom:1px solid var(--border);text-align:left;}
+    /* Dropdowns open on tap instead of hover */
     .submenu{position:static;display:none;box-shadow:none;border:0;border-radius:0;background:var(--bg-alt);padding:0;min-width:0;}
     .has-sub.open .submenu{display:flex;}
     .submenu a{padding-left:40px;}
   }
+  /* Phones (600px and narrower): tighter side margins, smaller top bar and logo */
   @media (max-width:600px){
     .container{padding:0 16px;}
     .topbar .container{justify-content:center;text-align:center;gap:2px 14px;font-size:.74rem;padding:7px 14px;}
@@ -172,6 +214,7 @@
     .brand img{height:46px;}
   }
 
+  /* ===== CTA BAND (second version, not used on this page) ===== overrides the earlier CTA BAND rules */
   /* ===== call-to-action band ===== */
   .cta-band{position:relative;overflow:hidden;color:#fff;text-align:center;padding:70px 0 76px;
     background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 300' preserveAspectRatio='none'%3E%3Cpath d='M0 120C260 200 420 290 640 300H0Z' fill='%237FE7D6' opacity='.35'/%3E%3Cpath d='M0 170C300 230 470 280 700 300' fill='none' stroke='%23BFF3EC' stroke-width='2' opacity='.7'/%3E%3Cpath d='M1600 150C1350 230 1180 280 980 300H1600Z' fill='%233BA7F2' opacity='.35'/%3E%3Cpath d='M1600 190C1380 250 1200 285 1020 300' fill='none' stroke='%23BFE6FF' stroke-width='2' opacity='.7'/%3E%3C/svg%3E") bottom/100% 100% no-repeat,
@@ -182,8 +225,10 @@
     background:linear-gradient(90deg,#7FE7D6,#5EEAD4);color:#0A2A6B;box-shadow:0 12px 30px rgba(127,231,214,.35);}
   .cta-band .btn i{transition:transform .2s;}
   .cta-band .btn:hover i{transform:translateX(4px);}
+  /* Phones: smaller CTA text */
   @media(max-width:600px){.cta-band h2{font-size:1.7rem;}.cta-band p{font-size:1rem;}}
 
+  /* ===== FOOTER (light version) ===== these rules override the earlier FOOTER rules */
   /* ===== footer (light) ===== */
   footer{position:relative;overflow:hidden;background:linear-gradient(180deg,#F7FBFF,#EAF5FF);color:var(--primary);padding:64px 0 26px;margin-top:0;}
   footer::before{content:"";position:absolute;left:0;right:0;bottom:0;top:auto;height:260px;pointer-events:none;
@@ -191,18 +236,22 @@
   footer .container{position:relative;z-index:1;max-width:var(--maxw);}
   footer .brand img{height:76px;}
   .foot-grid{grid-template-columns:1.45fr 1fr 1.05fr;gap:0;margin-bottom:30px;align-items:start;}
+  /* The footer columns: spacing and the thin divider lines between them */
   .foot-grid > div{padding:0 34px;}
   .foot-grid > div:first-child{padding-left:0;}
   .foot-grid > div + div:not(.foot-cta){border-left:1px solid rgba(59,167,242,.3);}
   .foot-grid > div:nth-child(2),.foot-grid > div:nth-child(3){padding-bottom:8px;}
   .foot-grid > div:first-child p{color:var(--primary);font-size:1.02rem !important;line-height:1.6;}
   .foot-grid > div:first-child p:before{content:"";display:block;width:76px;height:3px;border-radius:2px;margin:0 0 16px;background:linear-gradient(90deg,#1C8BDF,#5FD3E2);}
+  /* Footer column headings (Company, Resources) with a short colored bar above */
   footer h4{color:var(--primary);font-size:1.15rem;margin-bottom:16px;}
   footer h4:before{content:"";display:block;width:34px;height:3px;border-radius:2px;margin-bottom:14px;background:linear-gradient(90deg,#3BA7F2,#7FE7D6);}
+  /* Footer links, each with a small arrow icon in front */
   footer li{margin-bottom:12px;font-size:.98rem;}
   footer li a{white-space:nowrap;display:inline-flex;align-items:center;gap:12px;color:#1D3F75;transition:color .2s,transform .2s;}
   footer li a:before{content:"\f054";font-family:"Font Awesome 6 Free";font-weight:900;font-size:.72rem;color:#1CA9D6;}
   footer li a:hover{color:#1C8BDF;transform:translateX(3px);}
+  /* Footer booking button (kept for other pages; this page's footer has no booking button) */
   .foot-cta{align-self:center;padding:0 0 0 34px !important;border-left:1px solid rgba(59,167,242,.3);}
   .foot-book{display:inline-flex;align-items:center;gap:16px;white-space:nowrap;padding:18px 30px;border-radius:999px;color:#fff !important;font-weight:700;
     background:linear-gradient(90deg,#0B3D91,#1560C9);box-shadow:0 14px 34px rgba(11,61,145,.3),0 0 0 3px rgba(59,167,242,.35);transition:transform .2s,box-shadow .2s;}
@@ -211,6 +260,7 @@
   .foot-book .fa-arrow-right{font-size:.85rem;transition:transform .2s;}
   .foot-book:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(11,61,145,.38),0 0 0 3px rgba(59,167,242,.5);}
   .foot-book:hover .fa-arrow-right{transform:translateX(4px);}
+  /* Social icons row with fading lines on each side; each icon gets its own blue or teal shade */
   .social{position:relative;gap:16px;margin:10px 0 22px;align-items:center;}
   .social:before,.social:after{content:"";width:min(340px,22vw);height:1px;background:linear-gradient(90deg,transparent,rgba(59,167,242,.45));}
   .social:after{background:linear-gradient(90deg,rgba(59,167,242,.45),transparent);}
@@ -220,25 +270,31 @@
   .social a:nth-child(6n+4){background:#3BA7F2;}
   .social a:nth-child(6n+5){background:#5FD3C8;}
   .social a:hover{transform:translateY(-3px);background:#0A2A6B;color:#fff;}
+  /* Copyright line color and size */
   .foot-copy{border-top:0;color:#1D3F75;font-size:.95rem;}
   footer a:hover{color:#1C8BDF;}
+  /* Tablets (1100px and narrower): footer goes to two columns */
   @media(max-width:1100px){.foot-grid{grid-template-columns:1fr 1fr;row-gap:34px;}.foot-grid > div{padding:0 24px;}
     .foot-grid > div:nth-child(3){border-left:1px solid rgba(59,167,242,.3);}.foot-grid > div:nth-child(2){border-left:0;padding-left:0;}
     .foot-cta{grid-column:1/-1;border-left:0 !important;padding:0 !important;}}
+  /* Phones (600px and narrower): footer stacks into one column */
   @media(max-width:600px){.foot-grid{grid-template-columns:1fr;}.foot-grid > div{padding:0 !important;border-left:0 !important;}
     .social{flex-wrap:wrap;gap:12px;}.social:before,.social:after{display:none;}.foot-book{padding:15px 24px;}}
 
   /* ===== one typeface everywhere ===== */
+  /* To change the site font, edit the font name here and the Google Fonts link in the head */
   body,button,input,select,textarea{font-family:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
   /* ===== two-tone gradient headings ===== */
   .grad{background:linear-gradient(90deg,#1C8BDF,#139E92);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
   .grad-light{background:linear-gradient(90deg,#9FD8FF,#7FE7D6);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+  /* Shared clean-up rules: no borders or fade-out edge on section bands */
   .mc{border-top:0 !important;}
   .sec-head{border-top:0;border-bottom:0;-webkit-mask-image:linear-gradient(180deg,#000 70%,transparent);mask-image:linear-gradient(180deg,#000 70%,transparent);}
 
   /* ===== one continuous background: no visible section edges ===== */
   body{background:#EDF6FE;background-image:radial-gradient(60vw 60vh at 85% 15%,rgba(59,167,242,.10),transparent 70%),
     radial-gradient(55vw 55vh at 10% 70%,rgba(127,231,214,.10),transparent 70%);background-attachment:fixed;}
+  /* Makes section backgrounds see-through so the page background shows through */
   .mc,.wcu,.hero,.sec-head,.sd-hero,.section{background:transparent !important;}
   .mc-deco{display:none;}
   /* ===== small titles are gold, with a gold rule ===== */
@@ -251,10 +307,12 @@
   .mc-title,.mc-title.plain,.nl-head h2,.wcu-title,.about-txt h2,.contactx h1,.cta-band h2,.sec-head h1,.sec-head h2,.sd-hero h1,.sd-sec h2{
     font-size:2.15rem !important;font-weight:700 !important;line-height:1.2 !important;letter-spacing:-.2px !important;text-transform:none !important;}
   .wcu-title .grad{display:inline;}
+  /* Phones: smaller section titles */
   @media(max-width:600px){.mc-title,.mc-title.plain,.nl-head h2,.wcu-title,.about-txt h2,.contactx h1,.cta-band h2,.sec-head h1,.sec-head h2,.sd-hero h1,.sd-sec h2{font-size:1.6rem !important;}}
   /* ===== footer: soft top, dark blue bottom bar ===== */
   footer{background:transparent !important;padding-bottom:0 !important;}
   footer::before{display:none !important;}
+  /* Dark blue bottom strip holding the social icons and copyright */
   .foot-bottom{position:relative;margin-top:30px;padding:26px 0 22px;background:linear-gradient(90deg,#051D47,#0B3D91 50%,#072A66);}
   .foot-bottom .social{margin:0 0 14px;}
   .foot-bottom .social:before,.foot-bottom .social:after{background:linear-gradient(90deg,transparent,rgba(127,231,214,.5)) !important;}
@@ -262,13 +320,16 @@
   .foot-bottom .foot-copy{color:#C9DAF2;padding-top:0;}
   .foot-bottom .social a:hover{background:#fff;color:var(--primary);}
   .foot-bottom .social a:nth-child(6n+1),.foot-bottom .social a:nth-child(6n){background:#1C8BDF;}
+  /* Hides the globe and gold stripe decorations on the PAGE HEADING band */
   .sec-head:before,.sec-head:after{display:none !important;}
   /* header band sits right on top of its content */
   .sec-head{padding-bottom:18px !important;}
   .sec-head + .section{padding-top:14px !important;}
   .sec-head{-webkit-mask-image:none !important;mask-image:none !important;}
 
+  /* ===== PAGE TRANSITIONS ===== */
   /* ===== shared-element page transition (card photo <-> service page photo) ===== */
+  /* Turns on smooth cross-fades between pages of this site in browsers that support it */
   @view-transition{navigation:auto;}
   ::view-transition-group(*){animation-duration:500ms;animation-timing-function:cubic-bezier(.32,.72,0,1);}
   ::view-transition-old(root){animation:vtOut 220ms ease both;}
@@ -277,11 +338,14 @@
   ::view-transition-old(svc-tax),::view-transition-new(svc-tax),::view-transition-old(svc-books),::view-transition-new(svc-books),
   ::view-transition-old(svc-consult),::view-transition-new(svc-consult),::view-transition-old(svc-future),::view-transition-new(svc-future){
     height:100%;width:100%;object-fit:cover;overflow:clip;animation-duration:500ms;}
+  /* The fade-out and fade-in animations used above */
   @keyframes vtOut{to{opacity:0;}}
   @keyframes vtIn{from{opacity:0;transform:translateY(8px);}}
+  /* Visitors who ask for less motion get no page animation */
   @media(prefers-reduced-motion:reduce){@view-transition{navigation:none;}}
 
   /* ===== dropdown navigation: the next page zooms up from card size ===== */
+  /* Only applies after a Services dropdown link was clicked (flagged by the small script right after this style block) */
   html:active-view-transition-type(zoom)::view-transition-old(root){animation:vtShrink 420ms cubic-bezier(.32,.72,0,1) both;}
   html:active-view-transition-type(zoom)::view-transition-new(root){animation:vtZoom 560ms cubic-bezier(.32,.72,0,1) both;}
   html:active-view-transition-type(zoom) [style*="view-transition-name"]{view-transition-name:none !important;}
@@ -289,10 +353,13 @@
   @keyframes vtZoom{from{transform:scale(.42);opacity:.5;clip-path:inset(0 round 60px);filter:drop-shadow(0 30px 60px rgba(11,61,145,.3));}
     to{clip-path:inset(0 round 0);}}
 
+  /* ===== FORM ===== the white card holding the request form: fields, chips, errors and messages */
   /* ----- Request a consultation ----- */
   .form-card{max-width:640px;margin:0 auto;background:#fff;color:var(--text);border-radius:14px;
     padding:30px;border:1px solid var(--border);box-shadow:var(--shadow-lg);}
+  /* Two fields side by side (e.g. First Name and Last Name) */
   .form-card .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  /* One field: its label, its input box, and the blue outline while typing */
   .fld{margin-bottom:16px;}
   .fld.full{grid-column:1 / -1;}
   .fld label{display:block;font-size:.8rem;font-weight:700;color:var(--navy);margin-bottom:6px;text-transform:uppercase;letter-spacing:.3px;}
@@ -306,15 +373,20 @@
   .chip input{position:absolute;opacity:0;width:1px;height:1px;}
   .chip span{display:inline-flex;align-items:center;gap:9px;padding:9px 15px;border:1px solid var(--border);border-radius:999px;
     background:#fff;color:var(--text);font-size:.92rem;line-height:1.3;transition:border-color .15s,background .15s,color .15s;}
+  /* The little tick box drawn inside each chip */
   .chip span:before{content:"";flex:none;width:17px;height:17px;border-radius:5px;border:1.5px solid #9DB8D6;background:#fff center/12px no-repeat;
     transition:background-color .15s,border-color .15s;}
   .chip:hover span{border-color:var(--secondary);}
+  /* A ticked chip turns blue with a white check mark */
   .chip input:checked + span{background:var(--bg);border-color:var(--primary);color:var(--primary);font-weight:600;}
   .chip input:checked + span:before{border-color:var(--primary);background-color:var(--primary);
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.3l2.3 2.3 4.7-5' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");}
   .chip input:focus-visible + span{outline:2px solid var(--secondary);outline-offset:2px;}
+  /* Red outline on the chips when none was chosen */
   .fld-group.invalid .chip span{border-color:#c0392b;}
+  /* Grey (optional) text next to some labels */
   .fld-optional{text-transform:none;font-weight:400;color:var(--muted);letter-spacing:0;}
+  /* ===== FORM ERRORS ===== red message under a field, red field border, and the red banner at the top of the form */
   .fld-error{display:block;color:#c0392b;font-size:.78rem;margin-top:5px;min-height:0;}
   .fld input.invalid,.fld select.invalid,.fld textarea.invalid{border-color:#c0392b;}
   .form-error-banner{background:#fff0f0;color:#c0392b;border:1px solid #f5c6cb;border-radius:8px;
@@ -322,33 +394,45 @@
   /* Honeypot: off-screen, not display:none (some bots specifically skip
      display:none fields), never focusable/autofillable by real visitors. */
   .hp-field{position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;}
+  /* Step 2 intro sentence (Great, NAME! Pick a date ...) */
   .form-intro{text-align:center;color:var(--muted);max-width:620px;margin:0 auto 28px;}
+  /* Numbered step heading styles (not used in the current markup) */
   .step-head{font-size:1.25rem;font-weight:800;color:var(--navy);display:flex;align-items:center;gap:10px;margin-bottom:6px;}
   .step-head .num{width:30px;height:30px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;font-size:.95rem;}
   .step-head .of{margin-left:auto;font-size:.78rem;color:var(--muted);font-weight:600;}
+  /* ===== SCHEDULER (STEP 2) ===== the box that holds the Acuity booking calendar */
   .schedule-embed{max-width:900px;margin:0 auto;background:#fff;border-radius:14px;overflow:hidden;
     box-shadow:var(--shadow-lg);border:1px solid var(--border);border-top:5px solid var(--secondary);}
   .sched-head{background:var(--navy);color:#fff;font-weight:700;font-size:1.05rem;letter-spacing:.3px;
     padding:16px 22px;display:flex;align-items:center;gap:10px;}
   .sched-head .ic{width:34px;height:34px;border-radius:8px;background:rgba(127,231,214,.18);color:var(--tertiary);display:grid;place-items:center;font-size:1.1rem;}
   .sched-head small{display:block;font-weight:400;font-size:.78rem;color:var(--on-dark);}
+  /* The Acuity iframe itself; its height is set in the HTML (height=900) */
   .schedule-embed iframe{display:block;width:100%;border:0;background:#fff;}
+  /* Phones: form fields stack one per row */
   @media(max-width:560px){.form-card .grid2{grid-template-columns:1fr;}}
   /* "Book Your Free Strategy Call" form */
   .bookcall-title{font-size:1.7rem;color:var(--navy);font-weight:800;margin-bottom:8px;}
   .bookcall-sub{color:var(--muted);font-size:.95rem;margin-bottom:26px;}
   .bookcall-note{color:var(--muted);font-size:.82rem;text-align:center;margin-top:14px;}
+  /* Dark button style (not used by the current form, kept for reuse) */
   .btn.btn-dark{background:linear-gradient(135deg,var(--primary),#1560C9);color:#fff;text-transform:uppercase;letter-spacing:.6px;padding:15px 26px;font-size:.95rem;border-radius:10px;}
   .btn.btn-dark:hover{filter:brightness(1.08);box-shadow:0 12px 26px rgba(11,61,145,.35);}
 
   /* ===== request form: fields across the card, send button centred below ===== */
+  /* These override the FORM rules above: the card goes full width */
   .form-card{max-width:none;padding:34px 38px;}
   .bookcall-title,.bookcall-sub{text-align:center;}
+  /* ===== FORM FIELDS ===== a 3-column grid; the grid2 wrappers are ignored so their fields flow straight into it */
   .lf-fields{display:grid;grid-template-columns:repeat(3,1fr);gap:0 16px;align-items:start;}
   .lf-fields .grid2{display:contents;}
+  /* The chips and the Message box span the full width */
   .lf-fields .fld-group,.lf-fields .fld.full{grid-column:1/-1;}
+  /* Message box height */
   .lf-fields .fld.full textarea{height:48px;min-height:48px;resize:vertical;}
+  /* ===== TURNSTILE ===== spacing for the Cloudflare are-you-human box */
   .lf-fields .cf-turnstile{grid-column:1/-1;margin:2px 0 0 !important;}
+  /* ===== FORM SUBMIT ===== the Reserve My Free Call button, centred under the fields; change max-width or colors here */
   .lf-submit{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;max-width:380px;height:54px;margin:22px auto 0;border:0;border-radius:999px;
     font:inherit;font-weight:800;font-size:1rem;cursor:pointer;color:#fff;background:linear-gradient(90deg,var(--primary),#1C6FD1 55%,#25B7C6);
     box-shadow:0 12px 26px rgba(11,61,145,.28);transition:box-shadow .3s,transform 90ms,filter .2s;}
@@ -356,35 +440,49 @@
   .lf-submit:active{transform:scale(.97);}
   .lf-submit:disabled{opacity:.7;}
   .lf-submit:focus-visible{outline:3px solid var(--secondary);outline-offset:2px;}
+  /* Tablets (1000px and narrower): fields go to 2 columns */
   @media(max-width:1000px){.lf-fields{grid-template-columns:repeat(2,1fr);}}
+  /* Phones (560px and narrower): one column and smaller card padding */
   @media(max-width:560px){.lf-fields{grid-template-columns:1fr;}.form-card{padding:26px 18px;}}
+  /* No focus ring on the page headline when the CURTAIN WIPE gives it keyboard focus */
   [data-curtain-focus]:focus{outline:none;}
 
+  /* ===== CURTAIN WIPE ===== */
   /* ===== curtain wipe: a blue panel covers the page on the way to and from the request form ===== */
+  /* Hidden off to the left by default; the CURTAIN WIPE script slides it across. Change the gradient to recolor it. */
   .curtain{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;pointer-events:none;visibility:hidden;transform:translateX(-101%);
     background:linear-gradient(120deg,var(--primary) 0%,#1560C9 55%,var(--secondary) 100%);}
   .curtain img{width:min(260px,52vw);height:auto;}
+  /* curtain-cover = page opens fully covered; curtain-moving = panel visible while it animates */
   html.curtain-cover .curtain{visibility:visible;transform:none;}
   html.curtain-moving .curtain{visibility:visible;pointer-events:auto;}
 </style>
+<!-- ===== PAGE TRANSITIONS ===== remembers when a Services dropdown link was clicked so the next page zooms in -->
 <script>/* links in the Services dropdown (and Switch service) mark the next navigation as a zoom */(function(){var K='vtZoom',RE=/(tax-preparation-planning|bookkeeping-payroll|business-consulting|future-security)\.html$/;function tag(e){try{if(e.viewTransition&&sessionStorage.getItem(K))e.viewTransition.types.add('zoom');}catch(_){}}addEventListener('pageswap',tag);addEventListener('pagereveal',function(e){tag(e);try{sessionStorage.removeItem(K);}catch(_){}});document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('.submenu a');if(a&&RE.test(a.getAttribute('href')||'')){try{sessionStorage.setItem(K,'1');}catch(_){}}},true);})();</script>
+<!-- ===== CURTAIN WIPE ===== script for the blue panel that slides across when going to or from this page -->
 <script>
   /* Curtain wipe to and from the request form: the panel slides in over this page, the next page
      opens covered, then the panel slides off it. Reduced motion gets a quick fade instead. */
   (function(){
+    // K = the browser-memory key that tells the next page to open covered; FORM = this page's file name
     var K = 'curtain', FORM = 'request-consultation.html', d = document, html = d.documentElement;
     var reduce = matchMedia('(prefers-reduced-motion: reduce)'), EASE = 'cubic-bezier(.32,.72,0,1)';
+    // ms() = how long the slide takes in milliseconds (450 normally, 150 for less-motion visitors)
     function ms(){ return reduce.matches ? 150 : 450; }
+    // frames() = start and end positions of the panel: slide in from the left, or slide off to the right
     function frames(entering){
       if (reduce.matches) return entering ? [{opacity:0, transform:'none'}, {opacity:1, transform:'none'}] : [{opacity:1, transform:'none'}, {opacity:0, transform:'none'}];
       return entering ? [{transform:'translateX(-101%)'}, {transform:'translateX(0)'}] : [{transform:'translateX(0)'}, {transform:'translateX(101%)'}];
     }
+    // page() = just the file name from a web address, e.g. index.html
     function page(u){ return u.pathname.split('/').pop() || 'index.html'; }
 
+    // ON ARRIVAL: if the previous page set the key, start this page fully covered
     var arriving = false;
     try{ if (sessionStorage.getItem(K)){ sessionStorage.removeItem(K); arriving = true; html.classList.add('curtain-cover'); } }catch(_){}
     // the panel is the transition, so skip the browser's own cross-fade between pages
     addEventListener('pagereveal', function(e){ if (arriving && e.viewTransition) e.viewTransition.skipTransition(); });
+    // once the page is built, slide the panel off (reveal runs only once, whichever trigger fires first)
     if (arriving) d.addEventListener('DOMContentLoaded', function(){
       var c = d.querySelector('.curtain'), started = false;
       function reveal(){
@@ -400,11 +498,14 @@
       setTimeout(reveal, 400);
     });
 
+    // ON LEAVING: clicks on links between this page and the request form play the slide first, then change page
     d.addEventListener('click', function(e){
+      // ignore new-tab style clicks (ctrl, cmd, shift, middle button) and clicks other code already handled
       if (e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
       var a = e.target.closest && e.target.closest('a[href]');
       if (!a || a.target === '_blank' || a.hasAttribute('download')) return;
       var to = new URL(a.href, location.href), from = page(location), dest = page(to);
+      // only animate when going to or from the request form, on this same website
       if (to.origin !== location.origin || dest === from || (dest !== FORM && from !== FORM)) return;
       var c = d.querySelector('.curtain');
       if (!c || !c.animate) return;
@@ -415,6 +516,7 @@
       function go(){ if (!gone){ gone = true; location.href = a.href; } }
       // swap pages only once the screen is fully covered
       c.animate(frames(true), {duration:ms(), easing:EASE, fill:'forwards'}).finished.then(go);
+      // backup: change page anyway if the animation never reports finishing
       setTimeout(go, ms() + 150);
     });
 
@@ -430,9 +532,11 @@
 </script>
 </head>
 <body>
+<!-- ===== CURTAIN WIPE ===== the blue panel with the white logo; hidden until a page change -->
 <div class="curtain" aria-hidden="true"><img src="images/logo-light.webp" width="840" height="180" alt=""></div>
 
 <!-- ===== Top contact bar ===== -->
+<!-- ===== TOP BAR ===== edit phone, email and office hours here; the phone number also appears in FORM SUBMIT error messages -->
 <div class="topbar">
   <div class="container">
     <span>📞 (916) 616-1789 &nbsp;·&nbsp; ✉️ ask@magnumcpa.com</span>
@@ -441,18 +545,23 @@
 </div>
 
 <!-- ===== Header / Navigation ===== -->
+<!-- ===== HEADER / NAV ===== logo, menu links and the search button -->
 <header class="site-header">
   <div class="container nav-inner">
+    <!-- Logo: links back to the home page -->
     <a href="index.html#home" class="brand"><picture><source srcset="images/logo.webp" type="image/webp"><img src="images/logo.png" width="840" height="180" alt="Magnum CPA PC — Tax · Accounting · Advisory" fetchpriority="high"></picture></a>
 
+    <!-- Hamburger button, shown on tablets and phones only -->
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
 
+    <!-- Main menu. To add a page: copy one li line and change the link and the text -->
     <nav class="main-nav" id="mainNav">
       <ul>
         <li><a href="index.html#home">Home</a></li>
         <li><a href="index.html#about">About Us</a></li>
+        <!-- Services dropdown -->
         <li class="has-sub">
           <a href="index.html#services" class="sub-toggle">Services ▾</a>
           <ul class="submenu">
@@ -463,6 +572,7 @@
             <li><a href="index.html#services">All Services</a></li>
           </ul>
         </li>
+        <!-- Resources dropdown -->
         <li class="has-sub">
           <a href="#" class="sub-toggle">Resources ▾</a>
           <ul class="submenu">
@@ -473,40 +583,55 @@
           </ul>
         </li>
         <li><a href="https://magnumcpa.clientportal.com/#/login" target="_blank" rel="noopener">Client Portal</a></li>
+        <!-- This page's own menu item, highlighted by class active -->
         <li><a href="request-consultation.html" class="active" aria-current="page">Request Consultation</a></li>
         <li><a href="index.html#contact">Contact Us</a></li>
+        <!-- Magnifying glass: opens the SEARCH pop-up -->
         <li class="search-li"><a href="#" class="search-btn" aria-label="Search the site">🔍</a></li>
       </ul>
     </nav>
   </div>
 </header>
 
+<!-- ===== MAIN CONTENT ===== -->
 <main id="main">
 <!-- ===== Request a Consultation ===== -->
 <section id="request">
+  <!-- ===== PAGE HEADING ===== gold kicker, headline and subtitle; edit the wording here -->
   <div class="sec-head">
     <div class="container">
       <div class="sec-kicker">Request a Consultation</div>
+      <!-- data-curtain-focus: the CURTAIN WIPE moves keyboard focus to this headline after the page appears -->
       <h1 tabindex="-1" data-curtain-focus>Let's Talk About <span class="grad">Your Taxes and Financial Goals</span></h1>
       <p>Book a free strategy call with Max Drew, CPA.</p>
     </div>
   </div>
+  <!-- Content area holding step 1 (the form) and step 2 (the scheduler) -->
   <div class="section">
     <div class="container">
 
+      <!-- ===== FORM (STEP 1) ===== -->
       <!-- Step 1: Book Your Free Strategy Call -->
       <div id="step1" class="form-card">
+        <!-- Form title and subtitle (the hours shown here are text only; real availability is set in Acuity) -->
         <h2 class="bookcall-title">Book Your <span class="grad">Free Strategy Call</span></h2>
         <p class="bookcall-sub">Available slots: Mon–Fri, 9:00am–5:00pm EST · Sat–Sun 2:00pm – 6:00pm </p>
+        <!-- ===== FORM ERRORS ===== red banner at the top, hidden until showLeadFormBanner() fills it -->
         <div class="form-error-banner" id="formError" style="display:none;"></div>
+        <!-- The form. Pressing Reserve runs submitLeadForm() (see FORM SUBMIT); novalidate turns off the browser's own pop-up checks -->
         <form id="leadForm" onsubmit="return submitLeadForm(event)" novalidate>
+          <!-- ===== FORM FIELDS ===== Each field's id is read in collectLeadFields() and sent to the Worker under the name given below. -->
           <div class="lf-fields">
+          <!-- First and last name: sent as firstName and lastName (both required) -->
           <div class="grid2">
             <div class="fld"><label>First Name</label><input type="text" id="dcFirst" placeholder="First" required><span class="fld-error" id="err-dcFirst"></span></div>
             <div class="fld"><label>Last Name</label><input type="text" id="dcLast" placeholder="Last" required><span class="fld-error" id="err-dcLast"></span></div>
           </div>
+          <!-- Email: sent as email (required, format checked by LEAD_EMAIL_RE) -->
           <div class="fld"><label>Business Email</label><input type="email" id="dcEmail" placeholder="you@company.com" required><span class="fld-error" id="err-dcEmail"></span></div>
+          <!-- Phone: sent as phone (required, must look like a US number, see LEAD_PHONE_RE) -->
           <div class="fld"><label>Phone Number</label><input type="tel" id="dcPhone" placeholder="(555) 555-5555" required><span class="fld-error" id="err-dcPhone"></span></div>
+          <!-- Business name: sent as businessName (optional). State: sent as state (required); the option text is what gets sent. -->
           <div class="grid2">
             <div class="fld"><label>Business Name <span class="fld-optional">(optional)</span></label><input type="text" id="dcBusiness" placeholder="Your business name"></div>
             <div class="fld"><label>State</label>
@@ -529,6 +654,8 @@
               <span class="fld-error" id="err-dcState"></span>
             </div>
           </div>
+          <!-- I Need Help With chips: ticked values are joined with semicolons and sent as serviceNeeded (at least one required). -->
+          <!-- To add a service, copy a chip line and change both texts. A link like request-consultation.html?service=Tax Preparation pre-ticks a chip. -->
           <fieldset class="fld-group" id="dcHelp" aria-describedby="err-dcHelp">
             <legend>I Need Help With <span class="fld-optional">(choose all that apply)</span></legend>
             <div class="chips">
@@ -541,6 +668,7 @@
             </div>
             <span class="fld-error" id="err-dcHelp"></span>
           </fieldset>
+          <!-- Annual revenue dropdown: sent as revenue; the option text itself is what gets sent -->
           <div class="fld"><label>Annual Revenue (Approximate)</label>
             <select id="dcRevenue">
               <option>Under $250K</option>
@@ -551,6 +679,7 @@
               <option>Not applicable / Individual</option>
             </select>
           </div>
+          <!-- Preferred contact method dropdown: sent as preferredContact -->
           <div class="grid2">
             <div class="fld"><label>Preferred Contact Method</label>
               <select id="dcContactMethod">
@@ -560,11 +689,13 @@
               </select>
             </div>
           </div>
+          <!-- Message box: sent as message (optional, up to 2000 characters, also enforced by the Worker) -->
           <div class="fld full"><label>Message <span class="fld-optional">(optional)</span></label>
             <textarea id="dcMessage" rows="1" maxlength="2000" placeholder="Anything else we should know?"></textarea>
             <span class="fld-error" id="err-dcMessage"></span>
           </div>
 
+          <!-- ===== HONEYPOT ===== sent as meta.hp; if a bot fills it in, the Worker pretends success and quietly drops the lead -->
           <!-- Honeypot: invisible to real visitors, left blank by them; bots
                that auto-fill every field trip it. Positioned off-screen
                (not display:none) and unfocusable/unautofillable. -->
@@ -573,7 +704,11 @@
             <input type="text" id="dcCompanyWebsite" tabindex="-1" autocomplete="off">
           </div>
 
+          <!-- ===== TURNSTILE ===== Cloudflare's are-you-human check. data-sitekey is the PUBLIC site key (safe to show); the secret key lives in the Worker. -->
+          <!-- Allowed hostnames (magnumcpa.com etc.) are managed under Turnstile in the company Cloudflare account glenn@magnumcpa.com. -->
+          <!-- If the box shows an error on a new domain, add that domain there. The box is drawn by the Turnstile script at the bottom of the page. -->
           <div class="cf-turnstile" data-sitekey="0x4AAAAAAFjBF0tBUp8jYNPY" data-theme="light" style="margin-bottom:16px;"></div>
+          <!-- Small script: switches to the compact Turnstile box on very narrow phones -->
           <script>
             /* The normal Turnstile widget is a fixed 300px wide; use the compact one where that won't fit. */
             if (window.innerWidth < 380) document.querySelector('#leadForm .cf-turnstile').setAttribute('data-size', 'compact');
@@ -581,22 +716,28 @@
 
           </div>
 
+          <!-- ===== FORM SUBMIT ===== the Reserve My Free Call button; it sends the whole form (see FORM SUBMIT in the script) -->
           <button type="submit" class="lf-submit" id="leadSubmitBtn">Reserve My Free Call <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+          <!-- Privacy note under the form -->
           <p class="bookcall-note">🔒 Your information is private and never sold. We'll confirm within 2 hours.</p>
         </form>
       </div>
 
+      <!-- ===== SCHEDULER (STEP 2) ===== hidden until the Worker accepts the form; revealScheduler() shows it -->
       <!-- Step 2: scheduler (revealed after Step 1) -->
       <div id="step2" style="display:none;">
+        <!-- Greeting: dcGreet gets the visitor's first name -->
         <p class="form-intro">Great, <span id="dcGreet"></span>! Pick a date and time that works for you — instantly confirmed online.</p>
         <div class="schedule-embed">
           <div class="sched-head">
             <span class="ic">📅</span>
             <span>Book Your Appointment<small>Choose a date &amp; time — instantly confirmed</small></span>
           </div>
+          <!-- Acuity booking calendar. Its address (src) is set by revealScheduler() from ACUITY_BASE plus the visitor's details. Raise height=900 if it gets cut off. -->
           <iframe id="schedFrame" title="Schedule a consultation with Magnum CPA PC" width="100%" height="900" frameborder="0"></iframe>
         </div>
         <p style="text-align:center;color:var(--muted);font-size:.9rem;margin-top:16px;">
+          <!-- Edit your details link: goes back to step 1 (backToDetails) -->
           <a href="#" onclick="backToDetails();return false;" style="color:var(--primary);font-weight:700;">← Edit your details</a>
         </p>
       </div>
@@ -606,13 +747,16 @@
 </section>
 </main>
 
+<!-- ===== FOOTER ===== logo, link columns, social icons and copyright -->
 <footer>
   <div class="container">
     <div class="foot-grid">
+      <!-- Footer column 1: logo and tagline -->
       <div>
         <div class="brand" style="margin-bottom:12px;"><picture><source srcset="images/logo.webp" type="image/webp"><img src="images/logo.png" width="840" height="180" alt="Magnum CPA PC" loading="lazy"></picture></div>
         <p style="font-size:.9rem;">Max Drew, CPA &amp; Financial Coach.<br>Trusted by Ramsey for 10+ years.</p>
       </div>
+      <!-- Footer column 2: Company links -->
       <div>
         <h4>Company</h4>
         <ul>
@@ -623,6 +767,7 @@
           <li><a href="https://magnumcpa.clientportal.com/#/login" target="_blank" rel="noopener">Client Portal</a></li>
         </ul>
       </div>
+      <!-- Footer column 3: Resources links -->
       <div>
         <h4>Resources</h4>
         <ul>
@@ -634,7 +779,9 @@
       </div>
     </div>
   </div>
+  <!-- Dark bottom strip: social icons and copyright -->
   <div class="foot-bottom"><div class="container">
+    <!-- Social media links; to add one, copy a line and change the link, the label and the Font Awesome icon class -->
     <div class="social">
       <a href="https://www.facebook.com/max.drew.522" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
       <a href="https://www.instagram.com/magnumcpa11/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
@@ -643,19 +790,28 @@
       <a href="https://x.com/MagnumCPA11" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
       <a href="https://www.quora.com/profile/Magnum-CPA" target="_blank" rel="noopener" aria-label="Quora"><i class="fa-brands fa-quora"></i></a>
     </div>
+    <!-- Copyright; the year is filled in automatically by the NAV script -->
     <div class="foot-copy">© <span id="year"></span> Magnum CPA PC. All rights reserved.</div>
   </div></div>
 </footer>
 
+<!-- ===== MAIN PAGE SCRIPTS ===== FORM SETTINGS, SCHEDULER (STEP 2), FORM VALIDATION, SERVICE PRESELECT, FORM SUBMIT -->
 <script>
+  // ===== FORM SETTINGS =====
   /* ===== Request a consultation: secure lead capture, then Acuity ===== */
+  // ACUITY_BASE = the Acuity scheduler link for the free consultation appointment type (7960861).
+  // To use a different appointment type, copy its link from Acuity. The visitor's details are added to it in revealScheduler().
   var ACUITY_BASE = 'https://magnumcpa.as.me/schedule/c78873bb/appointment/7960861?appointmentTypeIds%5B%5D=7960861';
 
   // Fill in once the Worker is deployed (see SETUP-CLOUDFLARE.md). Until
   // then the form fails closed with a friendly message rather than silently
   // skipping validation/spam checks.
+  // LEAD_API_URL = the form's backend address: the company Cloudflare Worker magnum-cpa-lead-worker.glenn-c44.workers.dev, path /lead.
+  // The Worker re-checks every field, checks spam and Turnstile, then saves and forwards the lead (code: worker/src/routes/lead.ts).
   var LEAD_API_URL = 'https://magnum-cpa-lead-worker.glenn-c44.workers.dev/lead';
 
+  // ===== SCHEDULER (STEP 2) =====
+  // revealScheduler() = load Acuity with the visitor's name, email and phone filled in, hide the form, and show step 2
   function revealScheduler(first, last, email, phone){
     var url = ACUITY_BASE +
       '&firstName=' + encodeURIComponent(first) +
@@ -663,24 +819,31 @@
       '&email='     + encodeURIComponent(email) +
       '&phone='     + encodeURIComponent(phone);
     document.getElementById('schedFrame').src = url;
+    // fill in the greeting with the first name
     document.getElementById('dcGreet').textContent = (first || 'there');
+    // swap step 1 for step 2 and scroll up to it
     document.getElementById('step1').style.display = 'none';
     document.getElementById('step2').style.display = 'block';
     document.getElementById('request').scrollIntoView({behavior:'smooth'});
   }
+  // backToDetails() = the Edit your details link: show the form again (fields keep what was typed)
   function backToDetails(){
     document.getElementById('step2').style.display = 'none';
     document.getElementById('step1').style.display = 'block';
   }
 
+  // ===== FORM VALIDATION =====
   /* ---- client-side validation / sanitization ----
      UX politeness only — the real security boundary is the Worker, which
      never trusts anything the browser claims to have already checked. */
+  // Email must look like name@domain.ext; phone must look like a 10-digit US number, with optional +1
   var LEAD_EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   var LEAD_PHONE_RE = /^\+?1?[\s.-]?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
 
+  // leadStripTags() = remove anything that looks like an HTML tag from typed text
   function leadStripTags(s){ return (s || '').replace(/<[^>]*>/g, ''); }
 
+  // clearLeadErrors() = wipe all red messages, red borders and the top banner before a new check
   function clearLeadErrors(){
     document.querySelectorAll('#leadForm .fld-error').forEach(function(el){ el.textContent = ''; });
     document.querySelectorAll('#leadForm .invalid').forEach(function(el){ el.classList.remove('invalid'); });
@@ -688,12 +851,14 @@
     banner.style.display = 'none';
     banner.textContent = '';
   }
+  // showLeadFieldError(id, message) = mark one field red and put the message in its matching err- span
   function showLeadFieldError(id, message){
     var input = document.getElementById(id);
     var err = document.getElementById('err-' + id);
     if (input) input.classList.add('invalid');
     if (err) err.textContent = message;
   }
+  // showLeadFormBanner(message) = show the red banner at the top of the form and scroll to it
   function showLeadFormBanner(message){
     var banner = document.getElementById('formError');
     banner.textContent = message;
@@ -701,6 +866,9 @@
     banner.scrollIntoView({behavior:'smooth', block:'nearest'});
   }
 
+  // collectLeadFields() = read every field into one object. The names on the left are what the Worker receives.
+  // To add a field end-to-end: add it in the HTML, add a line here, check it in validateLeadClientSide(),
+  // and allow it in the Worker (worker/src/validate.ts and routes/lead.ts), then redeploy the Worker.
   function collectLeadFields(){
     return {
       firstName: leadStripTags(document.getElementById('dcFirst').value.trim()),
@@ -709,6 +877,7 @@
       phone: leadStripTags(document.getElementById('dcPhone').value.trim()),
       businessName: leadStripTags(document.getElementById('dcBusiness').value.trim()),
       state: document.getElementById('dcState').value,
+      // all ticked chips, joined with semicolons
       serviceNeeded: [].map.call(document.querySelectorAll('#dcHelp input:checked'), function(i){ return i.value; }).join('; '),
       revenue: document.getElementById('dcRevenue').value,
       preferredContact: document.getElementById('dcContactMethod').value,
@@ -717,6 +886,7 @@
     };
   }
 
+  // validateLeadClientSide() = check required fields and formats; returns false if anything is wrong. Edit the error wording here.
   function validateLeadClientSide(lead){
     var ok = true;
     if (!lead.firstName){ showLeadFieldError('dcFirst', 'First name is required.'); ok = false; }
@@ -731,11 +901,13 @@
     return ok;
   }
 
+  // getTurnstileToken() = the pass token the Turnstile box puts in a hidden field once the visitor is verified (empty if not yet)
   function getTurnstileToken(){
     var el = document.querySelector('#leadForm [name="cf-turnstile-response"]');
     return el ? el.value : '';
   }
 
+  // ===== SERVICE PRESELECT =====
   // Arriving from a service page (request-consultation.html?service=...): tick that service
   (function(){
     var want = new URLSearchParams(location.search).get('service');
@@ -753,17 +925,24 @@
     });
   });
 
+  // ===== FORM SUBMIT =====
+  // Order of events when the visitor presses Reserve My Free Call:
+  // 1) stop the normal page reload, 2) clear old errors, 3) collect and check the fields (stop here if any are wrong),
+  // 4) disable the button and show Sending, 5) POST the fields plus Turnstile token, time and honeypot to LEAD_API_URL,
+  // 6) if the Worker says ok, show the SCHEDULER; otherwise show field errors or a banner, 7) always restore the button.
   function submitLeadForm(e){
     e.preventDefault();
     clearLeadErrors();
     var lead = collectLeadFields();
     if (!validateLeadClientSide(lead)) return false;
 
+    // step 4: lock the button so it cannot be pressed twice
     var btn = document.getElementById('leadSubmitBtn');
     btn.disabled = true;
     var originalLabel = btn.innerHTML;
     btn.textContent = 'Sending…';
 
+    // step 5: what gets sent. meta = anti-spam info the Worker checks (ts must be close to the server's clock); lead = the form fields
     var payload = {
       meta: {
         turnstileToken: getTurnstileToken(),
@@ -773,19 +952,23 @@
       lead: lead
     };
 
+    // send it to the Worker as JSON
     fetch(LEAD_API_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     }).then(function(resp){
+      // read the reply as JSON (an empty object if it is not JSON) and keep the HTTP status code
       return resp.json().catch(function(){ return {}; }).then(function(data){
         return { status: resp.status, data: data };
       });
     }).then(function(result){
+      // step 6: success, so move on to the Acuity scheduler
       if (result.data && result.data.ok){
         revealScheduler(lead.firstName, lead.lastName, lead.email, lead.phone);
         return;
       }
+      // the Worker rejected some fields: show its messages under the matching inputs (Worker field name to HTML id)
       if (result.data && result.data.error === 'validation' && result.data.fields){
         var fieldMap = { firstName:'dcFirst', lastName:'dcLast', email:'dcEmail', phone:'dcPhone', state:'dcState', serviceNeeded:'dcHelp', message:'dcMessage' };
         Object.keys(result.data.fields).forEach(function(f){
@@ -793,31 +976,40 @@
         });
         showLeadFormBanner('Please check the highlighted fields and try again.');
       } else if (result.status === 429 || (result.data && result.data.error === 'rate_limited')){
+        // HTTP 429 = too many tries from this visitor
         showLeadFormBanner('Too many submissions — please wait a few minutes and try again.');
       } else {
+        // any other problem (Turnstile failed, server error, etc.)
         showLeadFormBanner('Something went wrong — please try again or call us at (916) 616-1789.');
       }
     }).catch(function(){
+      // network failure, or the Worker could not be reached
       showLeadFormBanner('Something went wrong — please try again or call us at (916) 616-1789.');
     }).finally(function(){
+      // step 7: re-enable the button and put its label back
       btn.disabled = false;
       btn.innerHTML = originalLabel;
     });
 
+    // returning false also stops the browser's normal submit
     return false;
   }
 </script>
+<!-- ===== NAV AND SEARCH SCRIPTS ===== -->
 <script>
+  // ===== NAV =====
   /* Nav: mobile toggle + dropdown + year */
   (function(){
     var toggle = document.getElementById('navToggle');
     var nav = document.getElementById('mainNav');
+    // hamburger button opens and closes the menu on phones
     if (toggle && nav){
       toggle.addEventListener('click', function(){
         nav.classList.toggle('open');
         toggle.setAttribute('aria-expanded', nav.classList.contains('open'));
       });
     }
+    // on phones, tapping Services or Resources opens its dropdown instead of following the link
     document.querySelectorAll('.has-sub > .sub-toggle').forEach(function(a){
       a.addEventListener('click', function(e){
         if (window.matchMedia('(max-width:980px)').matches){
@@ -826,12 +1018,15 @@
         }
       });
     });
+    // put the current year in the footer copyright
     var y = document.getElementById('year');
     if (y) y.textContent = new Date().getFullYear();
   })();
 
+  // ===== SEARCH =====
   /* Site search (links back to the single page's sections) */
   (function(){
+    // INDEX = what the search box can find: title, link, the short line shown, and extra keywords (text). Add an entry to make a new page searchable.
     var INDEX = [
       {title:'Home', url:'index.html#home',
        snippet:"California's premier partner for strategic growth & tax advantage.",
@@ -877,8 +1072,10 @@
        text:'request consultation free appointment schedule book meeting max drew cpa tax planning preparation bookkeeping financial coaching preferred date service'}
     ];
 
+    // escapeHtml() = make typed text safe to show on the page
     function escapeHtml(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
+    // build the search pop-up and add it to the page
     var ov = document.createElement('div');
     ov.className = 'search-overlay';
     ov.innerHTML =
@@ -895,9 +1092,11 @@
     var input = ov.querySelector('#siteSearchInput');
     var results = ov.querySelector('#siteSearchResults');
 
+    // open the pop-up (clears and focuses the box), or close it
     function openSearch(){ ov.classList.add('open'); input.value=''; render(''); setTimeout(function(){ input.focus(); }, 40); }
     function closeSearch(){ ov.classList.remove('open'); }
 
+    // render() = score each INDEX entry by how many typed words it contains, best matches first
     function render(q){
       q = q.trim().toLowerCase();
       if (!q){ results.innerHTML = '<div class="search-none">Type a keyword to search across the website.</div>'; return; }
@@ -917,16 +1116,19 @@
       }).join('');
     }
 
+    // typing searches; the X button, clicking outside the box, or Escape closes it
     input.addEventListener('input', function(){ render(input.value); });
     ov.querySelector('.search-close').addEventListener('click', closeSearch);
     ov.addEventListener('click', function(e){ if (e.target === ov) closeSearch(); });
     document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeSearch(); });
 
+    // every magnifying-glass button opens the search
     document.querySelectorAll('.search-btn').forEach(function(b){
       b.addEventListener('click', function(e){ e.preventDefault(); openSearch(); });
     });
   })();
 </script>
+<!-- ===== EXTERNAL SCRIPTS ===== Acuity's embed helper for the scheduler iframe, and Cloudflare's Turnstile script (draws the TURNSTILE box) -->
 <script src="https://embed.acuityscheduling.com/js/embed.js" type="text/javascript"></script>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </body>

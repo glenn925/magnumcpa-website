@@ -1,17 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- ===== PAGE SETTINGS (head) =====
+     Everything from the top of this file down to the calculators title band is also copied
+     into the four service pages by tools/gen_services.py. Re-run it after editing. -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Browser tab title and Google description. The generator swaps these two lines for each
+     service page by exact text, so if you reword them, update the same text in tools/gen_services.py. -->
 <title>Financial Calculators — Magnum CPA PC</title>
 <meta name="description" content="Handy financial calculators from Magnum CPA PC — tax, retirement, personal finance, savings, business, mortgage, loan, and vehicle calculators.">
+<!-- color of the phone browser's address bar, then the tab icon and the iPhone home-screen icon -->
 <meta name="theme-color" content="#0B3D91">
 <link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<!-- fonts: Plus Jakarta Sans from Google Fonts, and Font Awesome for the small icons (class names starting fa-) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link id="fa-cdn" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<!-- ===== STYLES =====
+     All colors, sizes and layout. Later rules win over earlier ones with the same selector.
+     The generator adds the service-page styles at the end of this block. -->
 <style>
   /* ===== COLORS AND SIZES (variables) =====
      Change a value here and it updates everywhere it is used, for example var(--primary). */
@@ -329,9 +339,11 @@
   /* header band sits right on top of its content */
   .sec-head{padding-bottom:18px !important;}
   .sec-head + .section{padding-top:14px !important;}
+  /* turns off the fade-out at the bottom of the title band */
   .sec-head{-webkit-mask-image:none !important;mask-image:none !important;}
 
   /* ===== shared-element page transition (card photo <-> service page photo) ===== */
+  /* In browsers that support it (Chrome, Edge, Safari 18+), pages fade into each other instead of a hard cut. */
   @view-transition{navigation:auto;}
   ::view-transition-group(*){animation-duration:500ms;animation-timing-function:cubic-bezier(.32,.72,0,1);}
   ::view-transition-old(root){animation:vtOut 220ms ease both;}
@@ -340,43 +352,59 @@
   ::view-transition-old(svc-tax),::view-transition-new(svc-tax),::view-transition-old(svc-books),::view-transition-new(svc-books),
   ::view-transition-old(svc-consult),::view-transition-new(svc-consult),::view-transition-old(svc-future),::view-transition-new(svc-future){
     height:100%;width:100%;object-fit:cover;overflow:clip;animation-duration:500ms;}
+  /* vtOut = old page fades away; vtIn = new page fades in while rising slightly */
   @keyframes vtOut{to{opacity:0;}}
   @keyframes vtIn{from{opacity:0;transform:translateY(8px);}}
+  /* visitors who turned on reduced motion in their device settings get no page animation */
   @media(prefers-reduced-motion:reduce){@view-transition{navigation:none;}}
 
   /* ===== dropdown navigation: the next page zooms up from card size ===== */
+  /* used only when the PAGE-ZOOM HELPER script tagged the navigation as a zoom: old page shrinks, new page grows */
   html:active-view-transition-type(zoom)::view-transition-old(root){animation:vtShrink 420ms cubic-bezier(.32,.72,0,1) both;}
   html:active-view-transition-type(zoom)::view-transition-new(root){animation:vtZoom 560ms cubic-bezier(.32,.72,0,1) both;}
+  /* during a zoom, switch off the photo morph so only the zoom plays */
   html:active-view-transition-type(zoom) [style*="view-transition-name"]{view-transition-name:none !important;}
+  /* the shrink and zoom movements themselves */
   @keyframes vtShrink{to{opacity:0;transform:scale(.9);}}
   @keyframes vtZoom{from{transform:scale(.42);opacity:.5;clip-path:inset(0 round 60px);filter:drop-shadow(0 30px 60px rgba(11,61,145,.3));}
     to{clip-path:inset(0 round 0);}}
 
   /* ===== curtain wipe: a blue panel covers the page on the way to and from the request form ===== */
+  /* the panel itself: covers the whole screen, parked off to the left and invisible until needed */
   .curtain{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;pointer-events:none;visibility:hidden;transform:translateX(-101%);
     background:linear-gradient(120deg,var(--primary) 0%,#1560C9 55%,var(--secondary) 100%);}
   .curtain img{width:min(260px,52vw);height:auto;}
+  /* curtain-cover = panel covering the page; curtain-moving = panel sliding (classes set by the CURTAIN script) */
   html.curtain-cover .curtain{visibility:visible;transform:none;}
   html.curtain-moving .curtain{visibility:visible;pointer-events:auto;}
 </style>
+<!-- ===== PAGE-ZOOM HELPER (one-line script) =====
+     When you click a service in the Services menu, it remembers that, so the next page zooms in. -->
 <script>/* links in the Services dropdown (and Switch service) mark the next navigation as a zoom */(function(){var K='vtZoom',RE=/(tax-preparation-planning|bookkeeping-payroll|business-consulting|future-security)\.html$/;function tag(e){try{if(e.viewTransition&&sessionStorage.getItem(K))e.viewTransition.types.add('zoom');}catch(_){}}addEventListener('pageswap',tag);addEventListener('pagereveal',function(e){tag(e);try{sessionStorage.removeItem(K);}catch(_){}});document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('.submenu a');if(a&&RE.test(a.getAttribute('href')||'')){try{sessionStorage.setItem(K,'1');}catch(_){}}},true);})();</script>
+<!-- ===== CURTAIN SCRIPT ===== the blue panel wipe when going to or leaving the request form page -->
 <script>
   /* Curtain wipe to and from the request form: the panel slides in over this page, the next page
      opens covered, then the panel slides off it. Reduced motion gets a quick fade instead. */
   (function(){
+    // K = the browser-memory key that says "arrive covered"; FORM = the request form page's file name
     var K = 'curtain', FORM = 'request-consultation.html', d = document, html = d.documentElement;
     var reduce = matchMedia('(prefers-reduced-motion: reduce)'), EASE = 'cubic-bezier(.32,.72,0,1)';
+    // ms() = how long the wipe takes (shorter with reduced motion)
     function ms(){ return reduce.matches ? 150 : 450; }
+    // frames(): the movement of the panel, sliding in (entering) or sliding off; a plain fade with reduced motion
     function frames(entering){
       if (reduce.matches) return entering ? [{opacity:0, transform:'none'}, {opacity:1, transform:'none'}] : [{opacity:1, transform:'none'}, {opacity:0, transform:'none'}];
       return entering ? [{transform:'translateX(-101%)'}, {transform:'translateX(0)'}] : [{transform:'translateX(0)'}, {transform:'translateX(101%)'}];
     }
+    // page(): the file name part of an address, e.g. index.html
     function page(u){ return u.pathname.split('/').pop() || 'index.html'; }
 
+    // ARRIVING: if the previous page set the memory key, start with the panel covering this page
     var arriving = false;
     try{ if (sessionStorage.getItem(K)){ sessionStorage.removeItem(K); arriving = true; html.classList.add('curtain-cover'); } }catch(_){}
     // the panel is the transition, so skip the browser's own cross-fade between pages
     addEventListener('pagereveal', function(e){ if (arriving && e.viewTransition) e.viewTransition.skipTransition(); });
+    // once the page has loaded, slide the panel off (reveal)
     if (arriving) d.addEventListener('DOMContentLoaded', function(){
       var c = d.querySelector('.curtain'), started = false;
       function reveal(){
@@ -392,6 +420,8 @@
       setTimeout(reveal, 400);
     });
 
+    // LEAVING: a click on a link to or from the request form slides the panel in, then opens the link.
+    // Other links (new tab, other sites, other pages) are left alone.
     d.addEventListener('click', function(e){
       if (e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
       var a = e.target.closest && e.target.closest('a[href]');
@@ -422,11 +452,13 @@
 </script>
 </head>
 <body>
+<!-- ===== CURTAIN PANEL ===== the blue panel with the white logo used by the CURTAIN SCRIPT; hidden normally -->
 <div class="curtain" aria-hidden="true"><img src="images/logo-light.webp" width="840" height="180" alt=""></div>
 
 <!-- ===== Top contact bar ===== -->
 <div class="topbar">
   <div class="container">
+    <!-- phone and email on the left, office hours on the right: edit the text here -->
     <span>📞 (916) 616-1789 &nbsp;·&nbsp; ✉️ ask@magnumcpa.com</span>
     <span>🕘 Mon–Fri 9:00am – 5:00pm &nbsp;·&nbsp; Sat–Sun 2:00pm – 6:00pm</span>
   </div>
@@ -435,16 +467,21 @@
 <!-- ===== Header / Navigation ===== -->
 <header class="site-header">
   <div class="container nav-inner">
+    <!-- logo (links to the home page) -->
     <a href="index.html#home" class="brand"><picture><source srcset="images/logo.webp" type="image/webp"><img src="images/logo.png" width="840" height="180" alt="Magnum CPA PC — Tax · Accounting · Advisory" fetchpriority="high"></picture></a>
 
+    <!-- hamburger button: only shows on small screens; opens and closes the menu -->
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
 
+    <!-- ===== MAIN MENU ===== the same menu is copied into the four service pages -->
     <nav class="main-nav" id="mainNav">
       <ul>
         <li><a href="index.html#home">Home</a></li>
         <li><a href="index.html#about">About Us</a></li>
+        <!-- Services drop-down. On each service page the generator highlights Services and marks that
+             page's own link as current, by exact text, so keep these link lines unchanged if you can. -->
         <li class="has-sub">
           <a href="index.html#services" class="sub-toggle">Services ▾</a>
           <ul class="submenu">
@@ -455,6 +492,8 @@
             <li><a href="index.html#services">All Services</a></li>
           </ul>
         </li>
+        <!-- Resources drop-down. It is highlighted (active) because this page is a resource;
+             the generator removes that highlight on the service pages. -->
         <li class="has-sub">
           <a href="#" class="sub-toggle active">Resources ▾</a>
           <ul class="submenu">
@@ -464,15 +503,20 @@
             <li><a href="financial-calculators.html">Financial Calculators</a></li>
           </ul>
         </li>
+        <!-- single links; Client Portal opens in a new tab -->
         <li><a href="https://magnumcpa.clientportal.com/#/login" target="_blank" rel="noopener">Client Portal</a></li>
         <li><a href="request-consultation.html">Request Consultation</a></li>
         <li><a href="index.html#contact">Contact Us</a></li>
+        <!-- magnifier icon: opens the search box (see SEARCH in the scripts at the bottom) -->
         <li class="search-li"><a href="#" class="search-btn" aria-label="Search the site">🔍</a></li>
       </ul>
     </nav>
   </div>
 </header>
 
+<!-- ===== PAGE CONTENT (unique to each page) =====
+     On the calculators page this is the title band and the calculator list. The service pages
+     replace everything from here down to the footer with their own content. -->
 <section class="sec-head" style="border-top:0;">
     <div class="container">
       <div class="sec-kicker">Resources</div>
@@ -481,9 +525,13 @@
     </div>
   </section>
 
+<!-- ===== CALCULATOR LIST =====
+     Each calc-cat block is one category: a heading plus a grid of calc-card boxes.
+     To add a calculator, copy one calc-card line and change the name and description. -->
 <section class="section">
   <div class="container">
 
+    <!-- Category: Tax -->
     <div class="calc-cat">
       <h2>Tax Calculators</h2>
       <div class="calc-grid">
@@ -496,6 +544,7 @@
       </div>
     </div>
 
+    <!-- Category: Retirement and Planning -->
     <div class="calc-cat">
       <h2>Retirement &amp; Planning</h2>
       <div class="calc-grid">
@@ -510,6 +559,7 @@
       </div>
     </div>
 
+    <!-- Category: Personal Finance -->
     <div class="calc-cat">
       <h2>Personal Finance</h2>
       <div class="calc-grid">
@@ -524,6 +574,7 @@
       </div>
     </div>
 
+    <!-- Category: Savings and Investments -->
     <div class="calc-cat">
       <h2>Savings &amp; Investments</h2>
       <div class="calc-grid">
@@ -537,6 +588,7 @@
       </div>
     </div>
 
+    <!-- Category: Business -->
     <div class="calc-cat">
       <h2>Business Calculators</h2>
       <div class="calc-grid">
@@ -549,6 +601,7 @@
       </div>
     </div>
 
+    <!-- Category: Home Ownership -->
     <div class="calc-cat">
       <h2>Home Ownership</h2>
       <div class="calc-grid">
@@ -563,6 +616,7 @@
       </div>
     </div>
 
+    <!-- Category: Loans -->
     <div class="calc-cat">
       <h2>Loan Calculators</h2>
       <div class="calc-grid">
@@ -572,6 +626,7 @@
       </div>
     </div>
 
+    <!-- Category: Vehicle Financing -->
     <div class="calc-cat">
       <h2>Vehicle Financing</h2>
       <div class="calc-grid">
@@ -582,6 +637,7 @@
       </div>
     </div>
 
+    <!-- ===== CALL-TO-ACTION BAND ===== blue box with the Book a Free Consultation button -->
     <div class="cta-band" style="border-radius:14px;">
       <div class="container">
         <h2>Want a <span class="grad-light">personalized analysis?</span></h2>
@@ -593,13 +649,19 @@
   </div>
 </section>
 
+<!-- ===== FOOTER =====
+     From the footer down to the end of this file (footer, floating button, scripts, search list)
+     is copied into the four service pages by tools/gen_services.py. -->
 <footer>
   <div class="container">
+    <!-- three columns side by side (stack on small screens) -->
     <div class="foot-grid">
+      <!-- Column 1: logo and short bio -->
       <div>
         <div class="brand" style="margin-bottom:12px;"><picture><source srcset="images/logo.webp" type="image/webp"><img src="images/logo.png" width="840" height="180" alt="Magnum CPA PC" loading="lazy"></picture></div>
         <p style="font-size:.9rem;">Max Drew, CPA &amp; Financial Coach.<br>Trusted by Ramsey for 10+ years.</p>
       </div>
+      <!-- Column 2: Company links -->
       <div>
         <h4>Company</h4>
         <ul>
@@ -610,6 +672,7 @@
           <li><a href="https://magnumcpa.clientportal.com/#/login" target="_blank" rel="noopener">Client Portal</a></li>
         </ul>
       </div>
+      <!-- Column 3: Resources links -->
       <div>
         <h4>Resources</h4>
         <ul>
@@ -621,7 +684,9 @@
       </div>
     </div>
   </div>
+  <!-- dark blue bottom bar: social media icons, then the copyright line -->
   <div class="foot-bottom"><div class="container">
+    <!-- social media links (each opens in a new tab); change an address in its href -->
     <div class="social">
       <a href="https://www.facebook.com/max.drew.522" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
       <a href="https://www.instagram.com/magnumcpa11/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
@@ -630,6 +695,7 @@
       <a href="https://x.com/MagnumCPA11" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
       <a href="https://www.quora.com/profile/Magnum-CPA" target="_blank" rel="noopener" aria-label="Quora"><i class="fa-brands fa-quora"></i></a>
     </div>
+    <!-- copyright line; the year is filled in automatically by the NAV script below -->
     <div class="foot-copy">© <span id="year"></span> Magnum CPA PC. All rights reserved.</div>
   </div></div>
 </footer>
@@ -637,17 +703,22 @@
 <!-- ===== Floating Book a Consultation CTA ===== -->
 <a class="book-fab" href="request-consultation.html">📅 Book a Consultation</a>
 
+<!-- ===== SCRIPTS: NAV and SEARCH ===== -->
 <script>
+  // ===== NAV =====
   /* Nav: mobile toggle + dropdown + year */
   (function(){
+    // find the hamburger button and the menu
     var toggle = document.getElementById('navToggle');
     var nav = document.getElementById('mainNav');
+    // hamburger click: open or close the menu (the .open class shows it) and tell screen readers
     if (toggle && nav){
       toggle.addEventListener('click', function(){
         nav.classList.toggle('open');
         toggle.setAttribute('aria-expanded', nav.classList.contains('open'));
       });
     }
+    // on small screens, tapping Services or Resources opens its sub-menu instead of following the link
     document.querySelectorAll('.has-sub > .sub-toggle').forEach(function(a){
       a.addEventListener('click', function(e){
         if (window.matchMedia('(max-width:980px)').matches){
@@ -656,12 +727,17 @@
         }
       });
     });
+    // put the current year into the footer copyright line
     var y = document.getElementById('year');
     if (y) y.textContent = new Date().getFullYear();
   })();
 
+  // ===== SEARCH =====
   /* Site search (links back to the single page's sections) */
   (function(){
+    // The pages the search box can find. title = result heading, url = where the result goes,
+    // snippet = gray line under it, text = extra keywords (lowercase). To add a page, copy one entry.
+    // Copies of this list also live in index.html and request-consultation.html; keep them in step.
     var INDEX = [
       {title:'Home', url:'index.html#home',
        snippet:"California's premier partner for strategic growth & tax advantage.",
@@ -672,6 +748,7 @@
       {title:'Services', url:'index.html#services',
        snippet:'Tax preparation & planning, bookkeeping, consulting, future security.',
        text:'services tax preparation planning bookkeeping payroll business consulting future security wealth management retirement estate planning filings liabilities growth efficiency'},
+      // the four service pages (first added by tools/gen_services.py; it will not update them later)
       {title:'Tax Preparation and Planning', url:'tax-preparation-planning.html',
        snippet:'We help you stay compliant and maximize your tax savings with strategic, year-round planning.',
        text:'tax preparation and planning tax preparation individual & business tax returns tax planning and projections irs representation and support year-round tax advisory'},
@@ -707,8 +784,10 @@
        text:'request consultation free appointment schedule book meeting max drew cpa tax planning preparation bookkeeping financial coaching preferred date service'}
     ];
 
+    // makes typed text safe to show in the results (turns special HTML characters into plain text)
     function escapeHtml(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
+    // build the search pop-up (dark backdrop, white box, typing field, close X, results list) and add it to the page
     var ov = document.createElement('div');
     ov.className = 'search-overlay';
     ov.innerHTML =
@@ -722,14 +801,19 @@
       '</div>';
     document.body.appendChild(ov);
 
+    // the typing field and the results list inside the pop-up
     var input = ov.querySelector('#siteSearchInput');
     var results = ov.querySelector('#siteSearchResults');
 
+    // show the pop-up (empty, with the cursor in the field) / hide it
     function openSearch(){ ov.classList.add('open'); input.value=''; render(''); setTimeout(function(){ input.focus(); }, 40); }
     function closeSearch(){ ov.classList.remove('open'); }
 
+    // render(): show the pages matching what was typed. Each typed word found in a page
+    // scores 1 point; pages with at least 1 point are listed, best first.
     function render(q){
       q = q.trim().toLowerCase();
+      // nothing typed yet: show a hint
       if (!q){ results.innerHTML = '<div class="search-none">Type a keyword to search across the website.</div>'; return; }
       var terms = q.split(/\s+/);
       var matches = INDEX.map(function(p){
@@ -740,18 +824,22 @@
       }).filter(function(m){ return m.score > 0; })
         .sort(function(a,b){ return b.score - a.score; });
 
+      // no matches: say so
       if (!matches.length){ results.innerHTML = '<div class="search-none">No results for &ldquo;' + escapeHtml(q) + '&rdquo;.</div>'; return; }
+      // turn each match into a clickable result (entries marked target open in a new tab)
       results.innerHTML = matches.map(function(m){
         var tgt = m.p.target ? ' target="_blank" rel="noopener"' : '';
         return '<a href="' + m.p.url + '"' + tgt + '><b>' + escapeHtml(m.p.title) + '</b><span>' + escapeHtml(m.p.snippet) + '</span></a>';
       }).join('');
     }
 
+    // update results while typing; close on the X, on a click outside the box, or with the Esc key
     input.addEventListener('input', function(){ render(input.value); });
     ov.querySelector('.search-close').addEventListener('click', closeSearch);
     ov.addEventListener('click', function(e){ if (e.target === ov) closeSearch(); });
     document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeSearch(); });
 
+    // the magnifier icon in the menu opens the search pop-up
     document.querySelectorAll('.search-btn').forEach(function(b){
       b.addEventListener('click', function(e){ e.preventDefault(); openSearch(); });
     });

@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- ===== PAGE SETUP ===== -->
+<!-- Basic page info: character set, phone scaling, tab title, Google description, icons, fonts. -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Browser tab title and the description Google shows in search results. Edit the text between the quotes. -->
 <title>Magnum CPA PC — Max Drew, CPA | Trusted by Ramsey</title>
 <meta name="description" content="Magnum CPA PC — Max Drew, CPA &amp; Financial Coach. Ramsey Trusted for 10+ years. Tax planning, preparation, and financial coaching.">
 <meta name="theme-color" content="#0B3D91">
+<!-- Tab icon and iPhone home-screen icon (files in the images folder). -->
 <link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<!-- Fonts: Plus Jakarta Sans from Google Fonts; icons from Font Awesome (the fa-solid / fa-brands classes). -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link id="fa-cdn" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<!-- ===== HOW THIS FILE IS ORGANIZED ===== -->
+<!-- 1) STYLES (the style block below): colors, sizes, layout. 2) PAGE CONTENT (after the body tag). 3) SCRIPTS (near the bottom): menus, sliders, search, videos. -->
+<!-- Each part has a banner like ===== HERO =====. Search for the same name to find its styles, content and script. -->
+<!-- Many sections get a second, later set of styles further down; when two rules clash, the later one wins. -->
+<!-- The consultation form is NOT in this file: it lives on request-consultation.html. -->
 <style>
   /* ===== Magnum CPA — shared styles ===== */
+  /* ===== SITE-WIDE SETUP: COLORS AND BASICS ===== */
+  /* Color and size settings. Change a value here (e.g. primary) and it changes everywhere it is used. */
   :root{
     /* Palette: Primary #0B3D91 · Secondary #3BA7F2 · Tertiary #7FE7D6 · Background #E8F6FF.
        Everything else here is a shade of those four, for text and the dark bands. */
@@ -28,51 +40,69 @@
     --on-dark:#D6E9FB;
     --gold:#D9A53A;--gold-ink:#9A6B10;   /* the logo's gold, used only as a small accent */
   }
+  /* Reset: removes browser default spacing so sizes are predictable. */
   *{box-sizing:border-box;margin:0;padding:0;}
+  /* Base text size for the whole site (17px); raising it makes everything sized in rem bigger. Smooth scrolling for menu links. */
   html{font-size:17px;scroll-behavior:smooth;}
+  /* Page text color and line spacing. The final font and background are set later under SITE-WIDE OVERRIDES. */
   body{
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;
     background:var(--bg);
   }
+  /* Images never overflow their box; links have no underline by default. */
   img{max-width:100%;height:auto;display:block;}
   a{color:inherit;text-decoration:none;}
   /* content fills the screen at any width, with a proportional side margin */
   .container{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,6vw,140px);}
+  /* Size of the small globe image (not used on this page). */
   .globe{width:58px;height:58px;flex:none;display:block;}
   /* anchor offset so sticky header doesn't cover section tops */
   section[id]{scroll-margin-top:118px;}
 
+  /* ===== ANNOUNCEMENT BANNER ===== */
+  /* Thin dark-blue strip at the very top. Text is in the HTML ANNOUNCEMENT BANNER section. */
   /* ---------- Announcement / booking banner ---------- */
   .announce{background:linear-gradient(90deg,var(--primary-800),var(--primary));color:#fff;text-align:center;
     font-size:.9rem;padding:9px 16px;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;}
+  /* Bold words in the banner are mint. */
   .announce b{color:var(--tertiary);}
+  /* The mint Book Now pill button in the banner. */
   .announce a{background:var(--tertiary);color:var(--primary-900);font-weight:800;padding:5px 15px;border-radius:20px;font-size:.82rem;white-space:nowrap;}
   .announce a:hover{filter:brightness(1.05);}
 
+  /* ===== TOP BAR ===== */
+  /* Dark navy strip with phone, email and hours. Edit the text in the HTML TOP BAR section. */
   /* ---------- Top bar ---------- */
   .topbar{background:var(--primary-900);color:var(--on-dark);font-size:.98rem;font-weight:500;}
   .topbar .container{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center;justify-content:space-between;padding:8px clamp(20px,6vw,140px);}
   .topbar a{display:inline-flex;align-items:center;gap:6px;}
   .topbar a:hover{color:#fff;}
 
+  /* ===== HEADER / NAV ===== */
+  /* White header with the logo and menu; it sticks to the top while scrolling. */
   /* ---------- Header / Nav ---------- */
   header.site-header{background:rgba(255,255,255,.94);-webkit-backdrop-filter:saturate(1.4) blur(12px);backdrop-filter:saturate(1.4) blur(12px);
     position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border);box-shadow:0 4px 18px rgba(11,61,145,.08);}
+  /* Logo on the left, menu on the right; the padding sets the header height. */
   .nav-inner{display:flex;align-items:center;justify-content:space-between;padding-top:12px;padding-bottom:12px;gap:16px;}
   .brand{display:flex;align-items:center;gap:12px;color:#fff;}
   /* Logo files are 840px wide (about 3x display size) so they stay sharp on high-density screens. */
   .brand img{display:block;height:58px;width:auto;transition:transform .25s,filter .25s;}
   .brand:hover img{transform:scale(1.03);filter:drop-shadow(0 4px 14px rgba(59,167,242,.35));}
+  /* Hamburger (three lines) button: hidden on desktop, shown on tablets/phones (see RESPONSIVE). */
   .nav-toggle{display:none;background:transparent;border:0;cursor:pointer;padding:8px;border-radius:6px;}
   .nav-toggle span{display:block;width:24px;height:2px;background:var(--primary);margin:5px 0;transition:.3s;}
+  /* Menu links: one row, small uppercase text. Change font-size here to make the menu text bigger. */
   nav.main-nav > ul{list-style:none;display:flex;flex-wrap:nowrap;gap:2px;justify-content:flex-end;align-items:center;}
   nav.main-nav a{color:var(--primary-800);font-size:.76rem;font-weight:600;letter-spacing:.2px;padding:8px 8px;border-radius:6px;
     text-transform:uppercase;transition:background .2s,color .2s;white-space:nowrap;display:inline-block;}
+  /* Hover color, and the highlighted link for the section you are looking at. */
   nav.main-nav a:hover{background:var(--bg);color:var(--primary);}
   nav.main-nav a.active{background:var(--primary);color:#fff;}
 
   /* dropdown */
+  /* Services and Resources drop-down lists: hidden until you hover the menu item. */
   .has-sub{position:relative;}
   .submenu{position:absolute;top:100%;left:0;min-width:230px;background:#fff;border-radius:10px;border:1px solid var(--border);
     box-shadow:var(--shadow-lg);padding:6px;display:none;flex-direction:column;gap:2px;z-index:60;list-style:none;}
@@ -80,24 +110,35 @@
   .submenu li{width:100%;}
   .submenu a{display:block;text-align:left;border-radius:5px;}
 
+  /* ===== HERO ===== */
+  /* Big first screen: headline on the left, photo of Max on the right. Later HERO rules further down override some of these. */
   /* ---------- Hero (home) ---------- */
   .hero{position:relative;overflow:hidden;background:linear-gradient(180deg,#F5FBFF 0%,#E1F0FC 100%);}
+  /* Photo on the right; width sets how much of the hero it covers. */
   .hero-photo{position:absolute;top:0;right:0;bottom:0;width:60%;}
+  /* object-position picks which part of the photo stays visible; the mask fades its left edge. */
   .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:38% 30%;
     -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 34%);mask-image:linear-gradient(90deg,transparent 0,#000 34%);}
   /* diagonal blue panel with a gold edge, carrying the script tagline */
   .hero-slash{position:absolute;top:0;bottom:0;right:-170px;width:300px;transform:skewX(-22deg);pointer-events:none;
     background:linear-gradient(180deg,rgba(11,61,145,.94),rgba(21,96,201,.82));border-left:6px solid var(--gold);}
+  /* Text column: top spacing and max width. */
   .hero-wrap{position:relative;z-index:2;padding:52px 0 0;}
   .hero-info{max-width:600px;}
+  /* Main headline size and color. */
   .hero-info h1{color:var(--primary);font-size:clamp(2rem,2.75vw,2.45rem);line-height:1.15;font-weight:800;letter-spacing:-.4px;margin:14px 0 18px;}
+  /* On wide screens keep the headline on one line. */
   @media(min-width:1100px){.hero-info h1{white-space:nowrap;}}
+  /* nw = no-wrap helper: keeps those words together on one line. */
   .nw{white-space:nowrap;}
+  /* Highlighted word color, and the intro paragraph under the headline. */
   .hero-info h1 .accent{color:var(--secondary-ink);}
   .hero-info p.lede{color:var(--text);max-width:480px;font-size:1.06rem;margin-bottom:28px;}
+  /* The hero booking button; its arrow nudges right on hover. */
   .hero-cta .btn{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:14px 28px;}
   .hero-cta .btn i{transition:transform .2s;}
   .hero-cta .btn:hover i{transform:translateX(4px);}
+  /* Feature-highlights strip (hero-feats): not in the current hero content, kept for reuse. */
   .hero-feats{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);margin:34px 0 34px;max-width:1060px;padding:22px 8px;
     background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
     border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow-lg);}
@@ -108,16 +149,22 @@
   .hero-feat:hover .ic{background:var(--primary);color:#fff;transform:translateY(-2px);}
   .hero-feat b{display:block;color:var(--primary);font-size:.98rem;line-height:1.25;margin-bottom:4px;}
   .hero-feat span{display:block;color:var(--muted);font-size:.84rem;line-height:1.45;}
+  /* Spacing for the hero button row. Note: this rule is written twice on one line (harmless). */
   .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px;}  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px;}
 
+  /* ===== WHY GET TAX HELP ===== */
+  /* Frame around the YouTube video (home-section rules are not used on this page). Its framed look is set under WHY GET TAX HELP (video frame). */
   /* ---------- Home video section ---------- */
   .home-section .section-head h2{color:var(--primary);}
   .home-section .section-head p{color:var(--muted);}
+  /* Video box: max-width sets the video width; rounded corners, shadow, blue top edge. */
   .why-video{max-width:900px;margin:0 auto;border-radius:14px;overflow:hidden;
     box-shadow:var(--shadow-lg);border-top:5px solid var(--secondary);background:#000;}
   .why-video video{display:block;width:100%;height:auto;}
   .why-video iframe{display:block;width:100%;aspect-ratio:16/9;border:0;}
 
+  /* ===== SECTION HEADINGS (shared) ===== */
+  /* Title band at the top of SERVICES: small label (kicker), big title, subtitle. */
   /* light section band: kicker + headline + subtitle, faded globe and gold stripe on the right */
   .sec-head{position:relative;overflow:hidden;padding:46px 0 42px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);
     background:linear-gradient(100deg,#fff 0%,var(--bg-alt) 45%,#D6ECFB 100%);}
@@ -126,16 +173,22 @@
   .sec-head:after{content:"";position:absolute;top:-10px;bottom:-10px;right:-70px;width:150px;transform:skewX(-32deg);pointer-events:none;
     background:linear-gradient(90deg,var(--gold) 0 7px,rgba(11,61,145,.1) 7px);}
   .sec-head .container{position:relative;z-index:1;}
+  /* Small gold label above a title (the kicker, e.g. OUR SERVICES). */
   .sec-kicker{display:flex;align-items:center;gap:12px;color:var(--gold-ink);font-weight:800;font-size:1.1rem;letter-spacing:.6px;text-transform:uppercase;}
   .sec-kicker:after{content:"";width:46px;height:2px;background:var(--gold);}
+  /* Blue kicker variant (turned gold later under SITE-WIDE OVERRIDES). */
   .sec-kicker.blue{color:var(--secondary-ink);font-size:.9rem;letter-spacing:1.2px;}
   .sec-kicker.blue:after{background:linear-gradient(90deg,var(--secondary),var(--tertiary));}
+  /* Title and subtitle sizes in the band. */
   .sec-head h1,.sec-head h2{color:var(--primary);font-size:2.15rem;line-height:1.2;margin:6px 0 8px;}
   .sec-head p{color:var(--muted);font-size:1.12rem;}
+  /* Phones: smaller band and title. */
   @media(max-width:600px){.sec-head{padding:34px 0 30px;}.sec-head h1,.sec-head h2{font-size:1.6rem;}.sec-head:before{opacity:.1;right:-80px;}.sec-head:after{display:none;}}
 
   /* sections */
+  /* padding = empty space above and below each section. Lower 60px for a tighter page. */
   .section{padding:60px 0;}
+  /* Centered section title block with a small gradient bar under the title. */
   .section-head{text-align:center;max-width:760px;margin:0 auto 40px;}
   .section-head .kicker{color:var(--secondary-ink);font-weight:700;letter-spacing:2px;text-transform:uppercase;font-size:.78rem;}
   .section-head h2{font-size:2rem;color:var(--primary);margin:8px 0 10px;}
@@ -147,29 +200,39 @@
   .panel{background:#fff;color:var(--text);border-radius:14px;box-shadow:var(--shadow-lg);}
 
   /* services */
+  /* ===== SERVICES ===== */
+  /* The four service cards. Content: HTML SERVICES section. */
+  /* sr-only: text read aloud by screen readers but invisible on screen (used in the Learn More links). */
   .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
   /* gold is the logo's, used only as a small accent here */
   #services .container{max-width:var(--maxw);}
+  /* Card grid: 4 across on desktop (2 on tablets, 1 on phones, see RESPONSIVE). */
   .svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+  /* One service card; the hover rule below lifts it slightly. */
   .svc-card{position:relative;display:flex;flex-direction:column;background:#fff;color:var(--text);border-radius:14px;overflow:hidden;
     border:1px solid var(--border);box-shadow:var(--shadow);transition:transform .25s,box-shadow .25s;}
   .svc-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);}
   /* corner accent: gold stripe, then a primary blue triangle */
   .svc-card:after{content:"";position:absolute;right:0;bottom:0;width:78px;height:78px;pointer-events:none;
     background:linear-gradient(135deg,transparent 54%,var(--gold) 54% 61%,var(--primary) 61%);}
+  /* Card photo area: height sets how tall the picture is. */
   .svc-img{position:relative;height:180px;}
   .svc-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.8,.2,1);}
   .svc-img-wrap{height:100%;overflow:hidden;}
   .svc-card:hover .svc-img img{transform:scale(1.05);}
+  /* Blue square icon that overlaps the bottom of the photo. */
   .svc-ic{position:absolute;left:20px;bottom:-26px;width:58px;height:58px;border-radius:14px;display:grid;place-items:center;
     background:linear-gradient(135deg,var(--primary),#1560C9);color:#fff;font-size:1.55rem;box-shadow:0 10px 22px rgba(11,61,145,.3);
     border:3px solid #fff;}
+  /* Card text area, title and description. */
   .svc-body{flex:1;display:flex;flex-direction:column;padding:42px 22px 26px;}
   .svc-card h3{color:var(--primary);font-size:1.2rem;line-height:1.25;margin-bottom:10px;}
   .svc-card p{color:var(--muted);font-size:.93rem;line-height:1.5;margin-bottom:14px;}
+  /* Bullet list with gold check marks (the check is a Font Awesome icon). */
   .svc-list{list-style:none;margin:0 0 22px;flex:1;}
   .svc-list li{position:relative;padding-left:26px;margin-bottom:7px;font-size:.88rem;color:#33475F;}
   .svc-list li:before{content:"\f00c";font-family:"Font Awesome 6 Free";font-weight:900;position:absolute;left:0;top:1px;color:var(--gold);font-size:.85rem;}
+  /* Blue Learn More pill button at the bottom of each card. */
   .svc-more{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;padding:10px 22px;border-radius:999px;
     background:var(--primary);color:#fff;font-weight:700;font-size:.88rem;transition:background .2s,box-shadow .2s;position:relative;z-index:1;}
   .svc-more i{font-size:.75rem;transition:transform .2s;}
@@ -178,27 +241,36 @@
   .svc-more:focus-visible{outline:3px solid var(--secondary);outline-offset:3px;}
 
   /* about */
+  /* ===== ABOUT US ===== */
+  /* Photo of Max on the left; welcome text and four value icons on the right. Two columns; gap is the space between them. */
   .about-wrap{display:grid;grid-template-columns:minmax(0,420px) 1fr;gap:56px;align-items:center;}
+  /* Photo card; lifts slightly on hover. */
   .about-card{position:relative;border-radius:20px;overflow:hidden;background:var(--primary-900);box-shadow:var(--shadow-lg);
     transition:transform .35s,box-shadow .35s;}
   .about-card:hover{transform:translateY(-4px);box-shadow:0 30px 64px rgba(11,61,145,.24);}
+  /* Keeps the photo square (aspect-ratio 1). */
   .about-card img{width:100%;aspect-ratio:1;object-fit:cover;}
+  /* Name strip under the photo (not used on this page). */
   .about-name{position:relative;padding:16px 20px 18px;text-align:center;color:#fff;
     background:linear-gradient(120deg,var(--primary-800),var(--primary));border-top:3px solid var(--gold);}
   .about-name b{display:block;font-size:1.12rem;}
   .about-name span{display:block;font-size:.74rem;letter-spacing:1.6px;text-transform:uppercase;color:var(--on-dark);margin-top:2px;}
+  /* Welcome headline and paragraph. */
   .about-txt h2{color:var(--primary);font-size:2.35rem;line-height:1.15;margin:10px 0 16px;}
   .about-txt h2 span{color:var(--secondary-ink);}
   .about-txt > p{color:var(--text);font-size:1.06rem;line-height:1.7;margin-bottom:30px;}
+  /* Row of four value items (Expert Guidance, Client First, ...). */
   .about-vals{display:grid;grid-template-columns:repeat(4,1fr);}
   .about-val{padding:0 18px;}
   .about-val:first-child{padding-left:0;}
   .about-val + .about-val{border-left:1px solid var(--border);}
+  /* Round icon bubble; its colors come from the --tint values set in the HTML. */
   .about-val .ic{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-size:1.1rem;margin-bottom:12px;
     background:var(--tint,#E3F0FD);color:var(--tint-ink,var(--primary));transition:transform .2s;}
   .about-val:hover .ic{transform:translateY(-3px) scale(1.05);}
   .about-val b{display:block;color:var(--primary);font-size:.95rem;margin-bottom:4px;}
   .about-val span{display:block;color:var(--muted);font-size:.84rem;line-height:1.45;}
+  /* Badge cards grid (adv-card): not used on this page. */
   .adv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:10px;}
   .adv-card{background:#fff;color:var(--text);border-radius:14px;padding:26px;text-align:center;box-shadow:var(--shadow);}
   .adv-card .badge-img{height:120px;display:grid;place-items:center;margin-bottom:16px;}
@@ -207,19 +279,25 @@
   .adv-card p{color:var(--muted);font-size:.95rem;}
 
   /* why choose us */
+  /* ===== WHY CHOOSE US ===== */
+  /* Award badges section. Restyled twice further down (search WHY CHOOSE US). */
   .wcu .container{max-width:var(--maxw);}
   .wcu{position:relative;padding:20px 0 0;background:linear-gradient(180deg,transparent,#EAF5FF 40%);}
+  /* Section title and the small subtitle line under it. */
   .wcu-title{color:var(--primary);font-size:2.9rem;font-weight:800;letter-spacing:-.4px;line-height:1.1;}
   .wcu-sub{display:flex;align-items:center;gap:10px;margin:10px 0 28px;color:var(--primary);font-size:.8rem;font-weight:700;letter-spacing:2.4px;text-transform:uppercase;}
   .wcu-sub:before{content:"";width:40px;height:3px;border-radius:2px;background:var(--primary);}
   .wcu-sub i{font-style:normal;color:#1C8BDF;}
+  /* Badge cards: 4 across on desktop. */
   .wcu-grid{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  /* One badge card: image on the left, title and text on the right. */
   .wcu-card{display:flex;gap:16px;align-items:center;padding:18px 18px;background:#fff;border:1px solid rgba(207,229,246,.8);border-radius:14px;
     box-shadow:0 2px 4px rgba(11,61,145,.04),0 14px 34px rgba(11,61,145,.09);transition:transform .25s,box-shadow .25s;}
   .wcu-card:hover{transform:translateY(-4px);box-shadow:0 4px 8px rgba(11,61,145,.05),0 22px 46px rgba(11,61,145,.15);}
   .wcu-card img{flex:none;width:80px;height:92px;object-fit:contain;}
   .wcu-card h3{color:var(--primary);font-size:1rem;line-height:1.25;margin-bottom:6px;}
   .wcu-card p{color:var(--muted);font-size:.8rem;line-height:1.5;}
+  /* Dark precision band (wcu-band): not used on this page. */
   .wcu-band{position:relative;margin-top:-40px;padding:66px 0 30px;color:#fff;overflow:hidden;
     background:url('images/precision-desk.webp') right center/34% auto no-repeat,linear-gradient(100deg,var(--primary-900) 0%,var(--primary) 45%,#1560C9 64%);}
   .wcu-band:before{content:"";position:absolute;inset:0;pointer-events:none;
@@ -229,89 +307,117 @@
   .wcu-band h3{font-size:1.7rem;line-height:1.2;}
   .wcu-band h3 span{font-weight:500;}
   .wcu-band p{color:var(--on-dark);max-width:560px;font-size:.95rem;}
+  /* No extra gap when About follows Why Choose Us. */
   .wcu + #about{margin-top:0;}
+  /* Smaller screens: badge grid drops to 2 columns, then 1 on phones. */
   @media(max-width:1100px){.wcu-grid{grid-template-columns:repeat(2,1fr);}}
   @media(max-width:900px){.wcu-band{background:linear-gradient(100deg,var(--primary-900),var(--primary) 70%,#1560C9);}.wcu-band:before{display:none;}}
   @media(max-width:600px){.wcu-title{font-size:2rem;}.wcu-sub{font-size:.66rem;letter-spacing:1.4px;flex-wrap:wrap;}.wcu-grid{grid-template-columns:1fr;}
     .wcu-band .container{flex-direction:column;align-items:flex-start;gap:14px;}}
 
   /* buttons */
+  /* ===== BUTTONS ===== */
+  /* Standard blue rounded button (class btn) used across the page. Change background to recolor all of them. */
   .btn{display:inline-block;background:linear-gradient(135deg,var(--primary),#1560C9);color:#fff;font-weight:700;padding:12px 26px;border-radius:8px;
     border:0;cursor:pointer;letter-spacing:.4px;font-size:.95rem;transition:transform .15s,box-shadow .2s,filter .2s;
     box-shadow:0 6px 16px rgba(11,61,145,.22);}
+  /* Hover lift and keyboard-focus outline. */
   .btn:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(11,61,145,.32);filter:brightness(1.08);}
   .btn:focus-visible{outline:3px solid var(--secondary);outline-offset:3px;}
   /* on dark bands the button flips to tertiary mint so it stands out */
   .cta-band .btn{background:var(--tertiary);color:var(--primary-900);box-shadow:0 8px 22px rgba(127,231,214,.28);}
   .cta-band .btn:hover{box-shadow:0 14px 32px rgba(127,231,214,.42);filter:brightness(1.04);}
+  /* Extra button styles (outline, green): not used on this page. */
   .btn.outline{background:transparent;border:2px solid #fff;color:#fff;}
   .btn.green{background:var(--tertiary);color:var(--primary-900);}
 
   /* mission + client reviews: one soft panel with wave and dot-grid decorations */
+  /* ===== MISSION + REVIEWS ===== */
+  /* The .mc panel is also reused by WHY GET TAX HELP, the newsletters, TAX VIDEOS and CONTACT. */
   .mc{position:relative;overflow:hidden;padding:76px 0 84px;background:linear-gradient(180deg,#F4FAFF 0%,#EAF5FF 100%);}
+  /* Decorative wave shapes in the corners (hidden later under SITE-WIDE OVERRIDES). */
   .mc-deco{position:absolute;pointer-events:none;}
   .mc-deco.tl{top:0;left:0;width:340px;}
   .mc-deco.bl{bottom:0;left:0;width:520px;}
   .mc-deco.br{bottom:0;right:0;width:460px;}
+  /* Small dot-grid decorations. */
   .mc-dots{position:absolute;width:84px;height:52px;pointer-events:none;opacity:.55;
     background:radial-gradient(circle,#9CCBF0 2.4px,transparent 2.8px) 0 0/21px 17px;}
   .mc-dots.tr{top:38px;right:5%;}
   .mc-dots.br2{bottom:56px;right:6.5%;}
   .mc .container{position:relative;z-index:1;}
+  /* Big centered titles (Our Mission, What Our Clients Say) with a teal bar under them. */
   .mc-title{text-align:center;color:var(--primary);font-size:2.6rem;font-weight:800;letter-spacing:.5px;line-height:1.15;text-transform:uppercase;}
   .mc-title span{color:#1C8BDF;}
   .mc-title:after{content:"";display:block;width:72px;height:5px;border-radius:3px;margin:16px auto 0;background:#3CCFC0;}
+  /* Mission paragraph text. */
   .mc-mission{max-width:880px;margin:22px auto 64px;text-align:center;color:#1D3F75;font-size:1.14rem;line-height:1.75;}
+  /* Review slider: viewport is the white card window, track slides left/right, each .review is one slide. */
   .reviews{position:relative;max-width:1040px;margin:30px auto 0;}
   .review-viewport{overflow:hidden;border-radius:18px;background:#fff;box-shadow:0 2px 4px rgba(11,61,145,.04),0 24px 60px rgba(11,61,145,.12);}
   .review-track{display:flex;transition:transform .55s cubic-bezier(.32,.72,0,1);}
   .review{min-width:100%;box-sizing:border-box;color:var(--text);padding:40px 46px 42px;}
+  /* Stars, review headline and review text. */
   .review .stars{color:#1C8BDF;font-size:1.55rem;letter-spacing:4px;line-height:1;margin-bottom:14px;}
   .review h4{color:var(--primary);font-size:1.45rem;line-height:1.3;margin-bottom:12px;}
   .review p{color:#2A4A7A;font-size:1.04rem;line-height:1.8;}
+  /* Round left/right arrow buttons on each side of the review card. */
   .rev-nav{position:absolute;top:calc(50% - 22px);transform:translateY(-50%);width:58px;height:58px;border-radius:50%;border:0;z-index:2;cursor:pointer;
     display:grid;place-items:center;color:#fff;font-size:1.05rem;background:linear-gradient(135deg,#2B9BEA,#0B57C2);
     box-shadow:0 10px 24px rgba(11,87,194,.35),0 0 0 6px rgba(255,255,255,.7);transition:transform .2s,box-shadow .2s;}
   .rev-nav:hover{transform:translateY(-50%) scale(1.06);box-shadow:0 14px 30px rgba(11,87,194,.45),0 0 0 6px rgba(255,255,255,.85);}
   .rev-nav:focus-visible{outline:3px solid var(--secondary);outline-offset:4px;}
   .rev-nav.prev{left:-29px;}.rev-nav.next{right:-29px;}
+  /* Little dots under the slider (one per review, created by the script). */
   .rev-dots{display:flex;gap:10px;justify-content:center;align-items:center;margin-top:28px;}
   .rev-dots button{width:10px;height:10px;border-radius:50%;border:0;background:#9CCBF0;cursor:pointer;padding:0;transition:background .2s,transform .2s;}
   .rev-dots button:hover{background:#5DB0EE;}
   .rev-dots button.active{background:#0B57C2;transform:scale(1.4);}
   .rev-dots button:focus-visible{outline:2px solid var(--secondary);outline-offset:3px;}
+  /* Late tweaks: panel border, extra dot position, plain-title variant. */
   .mc{border-top:1px solid rgba(207,229,246,.7);}
   .mc-dots.bl2{bottom:48px;left:2.5%;}
   .mc-title.plain{text-transform:none;font-size:2.9rem;letter-spacing:-.3px;}
   .mc-title.plain:after,.mc-title.grad-bar:after{background:linear-gradient(90deg,#1C8BDF,#3CCFC0);width:84px;}
 
+  /* ===== NEWSLETTER + VIDEO HEADINGS (shared) ===== */
+  /* Left-aligned heading block used by CLIENT NEWSLETTER, TAX PLANNING NEWSLETTER and TAX VIDEOS. */
   /* in-section header (newsletters, tax videos) */
   .nl-head{margin-bottom:42px;max-width:980px;}
+  /* Small blue label with an icon above the heading. */
   .nl-kicker{display:flex;align-items:center;gap:14px;color:#1C8BDF;font-weight:800;font-size:.95rem;letter-spacing:1.6px;text-transform:uppercase;}
   .nl-kicker .ic{font-size:1.75rem;color:var(--primary);}
   .nl-kicker .sep{width:1px;height:26px;background:#B9D9F2;}
   .nl-kicker.line:after{content:"";width:44px;height:2px;background:linear-gradient(90deg,#3BA7F2,#7FE7D6);}
+  /* Heading size and color. */
   .nl-head h2{color:var(--primary);font-size:2.7rem;font-weight:800;line-height:1.15;letter-spacing:-.3px;margin:12px 0 10px;}
+  /* grad: blue-to-teal gradient text used on highlighted words in titles. */
   .grad{background:linear-gradient(90deg,#1C8BDF,#139E92);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
   .nl-head p{color:var(--muted);font-size:1.14rem;}
+  /* Short gradient bar under a heading. */
   .nl-bar{display:block;width:76px;height:4px;border-radius:2px;margin-top:16px;background:linear-gradient(90deg,#1C8BDF,#3CCFC0);}
+  /* soft-card: white rounded card with a soft shadow that lifts on hover. */
   .soft-card{background:#fff;border:1px solid rgba(207,229,246,.75);border-radius:18px;
     box-shadow:0 2px 4px rgba(11,61,145,.04),0 18px 44px rgba(11,61,145,.10);transition:transform .25s,box-shadow .25s;}
   .soft-card:hover{transform:translateY(-4px);box-shadow:0 4px 8px rgba(11,61,145,.05),0 26px 56px rgba(11,61,145,.15);}
+  /* ===== CLIENT NEWSLETTER (cards) ===== */
   /* client newsletter cards */
   .news-card.soft-card{position:relative;overflow:hidden;padding:28px 30px 30px;border-top:1px solid rgba(207,229,246,.75);}
   .news-card.soft-card:before{content:"";position:absolute;top:-70px;right:-70px;width:190px;height:190px;border-radius:50%;
     background:radial-gradient(circle,#DCF3FA 0,rgba(220,243,250,0) 70%);pointer-events:none;}
+  /* Top row of a card: date box on the left, icon on the right. */
   .news-top{position:relative;display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px;}
   .news-card.soft-card .date{background:#E3F0FD;color:var(--primary);border-radius:12px;padding:10px 14px;min-width:66px;margin:0;}
   .news-card.soft-card .date b{font-size:1.65rem;font-weight:800;line-height:1.1;}
   .news-card.soft-card .date span{display:block;font-size:.78rem;font-weight:700;letter-spacing:1px;}
+  /* Big icon with a small teal badge in the corner. */
   .news-art{position:relative;font-size:2.7rem;line-height:1;color:#1C8BDF;margin:4px 10px 0 0;}
   .news-art .bdg{position:absolute;right:-12px;bottom:-8px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;
     background:#3CCFC0;color:#fff;font-size:.8rem;border:2px solid #fff;}
   .news-card.soft-card h3{color:var(--primary);font-size:1.3rem;font-weight:800;line-height:1.25;margin-bottom:10px;}
   .news-card.soft-card p{color:var(--muted);font-size:.98rem;line-height:1.6;}
   .news-card.soft-card .nl-bar{width:56px;margin-top:20px;}
+  /* Pill button: Subscribe to the Newsletter. */
   .btn-pill{display:inline-flex;align-items:center;gap:16px;padding:16px 32px;border-radius:999px;color:#fff;font-weight:700;font-size:.95rem;
     background:linear-gradient(90deg,var(--primary),#1C8BDF);box-shadow:0 12px 28px rgba(11,61,145,.28);transition:transform .2s,box-shadow .2s;}
   .btn-pill .sep{width:1px;height:22px;background:rgba(255,255,255,.4);}
@@ -320,23 +426,29 @@
   .btn-pill:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(11,61,145,.36);}
   .btn-pill:hover .fa-arrow-right{transform:translateX(4px);}
   .btn-pill:focus-visible{outline:3px solid var(--secondary);outline-offset:4px;}
+  /* ===== TAX PLANNING NEWSLETTER (cards) ===== */
   /* tax planning cards */
   .art-card.soft-card{display:flex;align-items:center;gap:26px;padding:30px 32px;border-top:1px solid rgba(207,229,246,.75);}
+  /* Round icon on the left of each article card. */
   .art-ic{flex:none;width:96px;height:96px;border-radius:50%;display:grid;place-items:center;font-size:2.2rem;color:#1C8BDF;
     background:radial-gradient(circle at 35% 30%,#F0FBFD,#D3EEF7);}
+  /* Article text with a teal line on its left. */
   .art-body{border-left:2px solid #3CCFC0;padding-left:24px;}
   .art-card.soft-card h3{color:var(--primary);font-size:1.3rem;font-weight:800;line-height:1.25;margin-bottom:8px;}
   .art-card.soft-card p{color:var(--muted);font-size:.98rem;line-height:1.6;}
+  /* ===== WHY GET TAX HELP (video frame) ===== */
   /* why get tax help video frame */
   .why-video.framed{max-width:860px;padding:8px;background:#fff;border-radius:18px;border-top:5px solid #2B9BEA;
     box-shadow:0 2px 4px rgba(11,61,145,.05),0 26px 60px rgba(11,61,145,.16);}
   .why-video.framed iframe{border-radius:12px;}
+  /* Phones: smaller newsletter headings and stacked article cards. */
   @media(max-width:600px){
     .nl-head h2{font-size:1.75rem;}.nl-kicker{font-size:.8rem;}.mc-title.plain{font-size:1.9rem;}
     .art-card.soft-card{flex-direction:column;align-items:flex-start;gap:18px;padding:24px;}
     .art-ic{width:68px;height:68px;font-size:1.6rem;}
     .btn-pill{padding:14px 22px;gap:12px;}
   }
+  /* MISSION + REVIEWS on smaller screens: */
   /* smaller screens: arrows sit beside the dots instead of over the review text */
   @media(max-width:880px){
     .rev-dots{min-height:44px;align-items:center;margin-top:14px;}
@@ -346,17 +458,23 @@
     .mc-title{font-size:1.9rem;}
     .mc-deco.bl,.mc-deco.br{width:300px;}
   }
+  /* Phones: tighter review card and smaller titles. */
   @media(max-width:560px){.review{padding:28px 22px;}.review h4{font-size:1.15rem;}.review p{font-size:.97rem;}.mc{padding:54px 0 60px;}.mc-dots{display:none;}.mc-title{font-size:1.5rem;}}
 
+  /* ===== SEARCH ===== */
+  /* Pop-up search box opened by the magnifier icon in the menu. The box itself is built by the SEARCH script. */
   /* search */
   .search-li a{font-size:1.05rem;}
+  /* Dark see-through layer covering the page while search is open. */
   .search-overlay{position:fixed;inset:0;background:rgba(5,29,71,.62);display:none;z-index:200;padding:84px 16px 16px;}
   .search-overlay.open{display:block;}
+  /* White search box, input row and close X. */
   .search-box{max-width:640px;margin:0 auto;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 30px 70px rgba(5,29,71,.4);}
   .search-top{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--border);}
   .search-ic{font-size:1.2rem;}
   .search-top input{flex:1;border:0;outline:none;font-size:1.1rem;color:var(--text);font-family:inherit;background:transparent;}
   .search-close{background:transparent;border:0;font-size:1.7rem;line-height:1;cursor:pointer;color:var(--muted);padding:0 4px;}
+  /* Results list; max-height limits how tall it gets before it scrolls. */
   .search-results{max-height:62vh;overflow:auto;}
   .search-results a{display:block;padding:14px 18px;border-bottom:1px solid var(--border);color:var(--primary);}
   .search-results a:hover{background:var(--bg-alt);}
@@ -364,49 +482,68 @@
   .search-results a span{font-size:.86rem;color:var(--muted);}
   .search-none{padding:20px 18px;color:var(--muted);}
 
+  /* ===== FLOATING BOOK BUTTON ===== */
+  /* Blue 'Book a Consultation' button that floats bottom-right. Change 'bottom'/'right' to move it. */
   /* floating "Book a Consultation" CTA */
   .book-fab{position:fixed;right:22px;bottom:22px;z-index:90;background:linear-gradient(135deg,var(--primary),#1560C9);color:#fff;
     font-weight:800;padding:14px 24px;border-radius:40px;display:inline-flex;align-items:center;gap:8px;letter-spacing:.3px;
     box-shadow:0 12px 30px rgba(11,61,145,.35);transition:transform .15s,box-shadow .2s;animation:bookpulse 2.8s ease-in-out infinite;}
   .book-fab:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(11,61,145,.45);}
+  /* Gentle pulsing glow around the floating button. */
   @keyframes bookpulse{0%,100%{box-shadow:0 12px 30px rgba(11,61,145,.3),0 0 0 0 rgba(59,167,242,.5);}50%{box-shadow:0 14px 36px rgba(11,61,145,.38),0 0 0 12px rgba(59,167,242,0);}}
+  /* Phones: smaller and closer to the corner. */
   @media(max-width:560px){.book-fab{right:14px;bottom:14px;padding:12px 18px;font-size:.92rem;}}
   /* hidden while the hero's own booking button is on screen, so it never covers it */
   .book-fab{transition:transform .15s,box-shadow .2s,opacity .3s,visibility .3s;}
   .book-fab.away{opacity:0;visibility:hidden;transform:translateY(16px);}
 
+  /* ===== BOOKING POPUP ===== */
+  /* One-time pop-up inviting visitors to book. Text: HTML BOOKING POPUP. Timing: BOOKING POPUP script. */
   /* booking popup */
   .bookpop-overlay{position:fixed;inset:0;background:rgba(5,29,71,.62);z-index:120;display:none;align-items:center;justify-content:center;padding:18px;}
+  /* The popup only appears when the script adds the show class. */
   .bookpop-overlay.show{display:flex;}
+  /* White popup card and its slide-in animation. */
   .bookpop{background:#fff;border-radius:16px;max-width:440px;width:100%;overflow:hidden;box-shadow:0 30px 70px rgba(5,29,71,.4);position:relative;animation:popin .3s ease;}
   @keyframes popin{from{transform:translateY(20px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+  /* Blue top area with the headline. */
   .bookpop .top{background:linear-gradient(120deg,var(--navy-dark),var(--navy));color:#fff;padding:28px 26px 24px;text-align:center;}
   .bookpop .top h3{font-size:1.45rem;line-height:1.2;margin-bottom:8px;}
   .bookpop .top p{color:var(--on-dark);font-size:.95rem;}
+  /* Bottom area with the button; .x is the close button. */
   .bookpop .body{padding:24px;text-align:center;}
   .bookpop .x{position:absolute;top:8px;right:14px;background:0;border:0;color:#fff;font-size:1.7rem;line-height:1;cursor:pointer;}
 
+  /* ===== CTA BAND ===== */
+  /* Dark blue Ready to take control of your taxes strip at the end of SERVICES. Restyled further down (search CTA BAND). */
   /* CTA band */
   .cta-band{position:relative;overflow:hidden;color:#fff;text-align:center;padding:62px 0;
     background:radial-gradient(90% 160% at 100% 0%,rgba(59,167,242,.45),transparent 60%),radial-gradient(70% 120% at 0% 100%,rgba(127,231,214,.22),transparent 60%),linear-gradient(120deg,var(--primary-800),var(--primary));}
   .cta-band h2{font-size:1.9rem;margin-bottom:10px;}
   .cta-band p{color:var(--on-dark);margin-bottom:24px;}
 
+  /* ===== FOOTER ===== */
+  /* Bottom of the page: logo, link columns, social icons, copyright. Restyled further down (search FOOTER). */
   /* footer */
   footer{position:relative;background:var(--primary-900);color:#B8CBE6;padding:50px 0 22px;margin-top:20px;}
   footer::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--primary),var(--secondary),var(--tertiary));}
   footer .brand img{height:60px;}
+  /* Widths of the three footer columns. */
   .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:30px;margin-bottom:28px;}
   footer h4{color:#fff;font-size:1rem;margin-bottom:13px;}
   footer ul{list-style:none;}
   footer li{margin-bottom:8px;font-size:.9rem;}
   footer a:hover{color:var(--tertiary);}
+  /* Round social media icons. */
   .social{display:flex;gap:12px;justify-content:center;margin:6px 0 22px;}
   .social a{width:40px;height:40px;border-radius:50%;background:var(--tertiary);color:var(--primary-900);display:grid;place-items:center;font-size:1.05rem;transition:transform .15s,background .2s,color .2s;}
   .social a:hover{transform:translateY(-3px);background:var(--secondary);color:#fff;}
+  /* Copyright line. */
   .foot-copy{border-top:1px solid rgba(255,255,255,.12);padding-top:18px;font-size:.82rem;text-align:center;}
 
+  /* ===== CLIENT NEWSLETTER (base styles) ===== */
   /* ----- Resources: client newsletter ----- */
+  /* Three cards across; the soft-card look above refines these. */
   .news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
   .news-card{background:#fff;color:var(--text);border-radius:12px;padding:24px;box-shadow:var(--shadow);border-top:4px solid var(--secondary);transition:transform .2s,box-shadow .2s;}
   .news-card:hover,.art-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);}
@@ -414,44 +551,58 @@
   .news-card .date b{display:block;font-size:1.2rem;}.news-card .date span{font-size:.7rem;}
   .news-card h3{color:var(--navy);font-size:1.1rem;margin-bottom:8px;}
   .news-card p{color:var(--muted);font-size:.95rem;}
+  /* Tablets and phones: one card per row. */
   @media(max-width:860px){.news-grid{grid-template-columns:1fr;}}
 
+  /* ===== TAX PLANNING NEWSLETTER (base styles) ===== */
   /* ----- Resources: tax planning newsletter ----- */
+  /* Two article cards per row. */
   .art-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
   .art-card{background:#fff;color:var(--text);border-radius:12px;padding:26px;box-shadow:var(--shadow);border-top:4px solid var(--tertiary);transition:transform .2s,box-shadow .2s;}
   .art-card h3{color:var(--navy);font-size:1.15rem;margin-bottom:8px;}
   .art-card p{color:var(--muted);font-size:.95rem;}
+  /* Tablets and phones: one card per row. */
   @media(max-width:860px){.art-grid{grid-template-columns:1fr;}}
 
+  /* ===== TAX VIDEOS ===== */
+  /* Video gallery: big cover/player on the left, title and buttons on the right, thumbnail strip below. The video list is in the TAX VIDEOS script. */
   /* ----- Resources: tax videos ----- */
   /* Gallery: stacked slides crossfade on top, thumbnail tablist below with one
      shared outline that slides to the active thumb. */
+  /* Gallery settings: cols = thumbnails visible at once, gap = space between them, spring = bouncy animation curve. */
   .vg{--cols:5;--gap:6px;--pad:6px;
     --spring:linear(0, 0.0941 5.6%, 0.2736 11.1%, 0.4548 16.7%, 0.6076 22.2%, 0.7255 27.8%, 0.8119 33.3%, 0.8732 38.9%, 0.9156 44.4%, 0.9444 50.0%, 0.9636 55.6%, 0.9764 61.1%, 0.9848 66.7%, 0.9902 72.2%, 0.9938 77.8%, 0.9960 83.3%, 0.9975 88.9%, 0.9984 94.4%, 1 100%);
     max-width:860px;margin:0 auto;}
+  /* Top area: cover on the left (max 340px wide), text on the right. */
   .vg-top{display:grid;grid-template-columns:minmax(0,340px) 1fr;gap:36px;align-items:center;}
+  /* The tall 9:16 box that shows the active video cover or player. */
   .vg-stage{position:relative;aspect-ratio:9/16;border-radius:14px;overflow:hidden;background:var(--navy-3);
     box-shadow:var(--shadow-lg);touch-action:pan-y;}
+  /* One slide per video; only the active one is visible (it fades in). */
   .vg-slide{position:absolute;inset:0;opacity:0;transform:scale(1.06);
     transition:opacity .6s ease,transform .9s cubic-bezier(.32,.72,0,1);}
   .vg-slide{transition:opacity .6s ease,transform .9s var(--spring);}
   .vg-slide.is-active{opacity:1;transform:none;z-index:1;}
   .vg-slide img{display:block;width:100%;height:100%;object-fit:cover;}
   .vg-slide iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000;}
+  /* Round mint play button on the cover. */
   .vg-play{position:absolute;inset:0;margin:auto;width:76px;height:76px;border:0;border-radius:50%;cursor:pointer;
     background:var(--tertiary);color:var(--primary-900);font-size:1.5rem;box-shadow:0 8px 24px rgba(5,29,71,.45);transition:transform .15s;}
   .vg-play:before{content:"\25B6";margin-left:5px;}
   .vg-play:hover{transform:scale(1.07);}
   .vg-play:focus-visible{outline:3px solid #fff;outline-offset:4px;}
+  /* Title shown instead of a picture when a thumbnail fails to load. */
   .vg-fallback{display:none;position:absolute;inset:0;padding:24px;place-items:center;text-align:center;
     color:#fff;font-size:1.3rem;font-weight:700;background:var(--navy);}
   .is-missing .vg-fallback{display:grid;}
   .is-missing img{visibility:hidden;}
+  /* Right-hand text: video counter, title, description. */
   .vg-info{color:var(--text);}
   .vg-info h2{color:var(--primary);}
   .vg-count{color:var(--secondary-ink);font-size:.82rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;}
   .vg-info h2{font-size:2rem;line-height:1.2;margin:10px 0 12px;}
   .vg-info p{color:var(--muted);}
+  /* Prev / Next / pause / Ask Us About This buttons. */
   .vg-nav{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;}
   .vg-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;font:inherit;font-size:.92rem;font-weight:600;
     cursor:pointer;border:2px solid rgba(11,61,145,.2);background:#fff;color:var(--primary);text-decoration:none;transition:border-color .15s,background .15s,color .15s;}
@@ -459,9 +610,11 @@
   .vg-btn.solid{background:var(--primary);border-color:var(--primary);color:#fff;}
   .vg-btn.solid:hover{background:var(--primary-700);border-color:var(--primary-700);}
   .vg-btn:focus-visible{outline:3px solid var(--secondary);outline-offset:3px;}
+  /* Scrolling strip of thumbnails under the player. */
   .vg-strip{position:relative;display:grid;grid-auto-flow:column;gap:var(--gap);padding:var(--pad);margin-top:30px;
     grid-auto-columns:calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols));
     overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:var(--secondary) transparent;}
+  /* One thumbnail button; the selected one is fully opaque. */
   .vg-thumb{position:relative;aspect-ratio:9/16;padding:0;border:0;border-radius:8px;overflow:hidden;cursor:pointer;
     background:var(--navy);opacity:.6;transition:opacity .3s ease;scroll-snap-align:start;}
   .vg-thumb:hover{opacity:.85;}
@@ -469,6 +622,7 @@
   .vg-thumb:focus-visible{outline:3px solid #fff;outline-offset:-3px;}
   .vg-thumb img{display:block;width:100%;height:100%;object-fit:cover;}
   .vg-thumb .vg-fallback{font-size:.78rem;padding:8px;}
+  /* Video number badge on each thumbnail. */
   .vg-num{position:absolute;top:6px;left:6px;z-index:1;padding:1px 7px;border-radius:6px;font-size:.72rem;font-weight:700;
     background:rgba(5,29,71,.85);color:#fff;}
   /* One cell plus one gap wide, so translateX(n * 100%) lands exactly on thumb n. */
@@ -480,6 +634,7 @@
   .vg-ind:before{content:"";display:block;width:calc(100% - var(--gap));aspect-ratio:9/16;border-radius:8px;
     outline:2px solid var(--secondary);outline-offset:1px;}
   /* ---- Interactive motion ---- */
+  /* Tilt, pulse, progress bar and entrance animations for the gallery. */
   .vg-stage{transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
     transition:transform .5s var(--spring),box-shadow .3s;}
   .vg-stage:hover{box-shadow:0 28px 60px rgba(11,61,145,.28);}
@@ -487,6 +642,7 @@
     animation:vgPulse 2s ease-out infinite;pointer-events:none;}
   .vg-play:active{transform:scale(.93);}
   .vg-slide iframe{animation:vgFade .4s ease;}
+  /* Thin progress bar at the bottom of the cover; when it fills, the next video comes up. */
   .vg-progress{position:absolute;left:0;right:0;bottom:0;height:4px;z-index:3;background:rgba(255,255,255,.18);transition:opacity .3s;}
   .vg-progress i{display:block;height:100%;background:linear-gradient(90deg,var(--secondary),var(--tertiary));transform-origin:left;transform:scaleX(0);}
   .vg-progress i.run{animation:vgFill 4s linear forwards;}
@@ -501,23 +657,29 @@
     font-size:.7rem;line-height:1.25;font-weight:600;color:#fff;background:linear-gradient(transparent,rgba(5,29,71,.95) 45%);
     transform:translateY(101%);transition:transform .45s var(--spring);}
   .vg-thumb:hover .vg-cap,.vg-thumb:focus-visible .vg-cap{transform:none;}
+  /* Pause/play auto-advance button. */
   .vg-auto{width:44px;padding:10px 0;justify-content:center;}
+  /* Fade/rise-in when the gallery first scrolls into view. */
   .vg.pre .vg-stage,.vg.pre .vg-info,.vg.pre .vg-thumb{opacity:0;}
   .vg.is-in .vg-stage,.vg.is-in .vg-info{animation:vgRise .8s var(--spring) backwards;}
   .vg.is-in .vg-info{animation-delay:.12s;}
   .vg.is-in .vg-thumb{animation:vgRise .7s var(--spring) backwards;animation-delay:calc(.25s + var(--i,0) * 55ms);}
+  /* Animation definitions used above. */
   @keyframes vgPulse{from{transform:scale(1);opacity:.85}to{transform:scale(1.7);opacity:0}}
   @keyframes vgFill{to{transform:scaleX(1)}}
   @keyframes vgIn{from{opacity:0;transform:translateY(12px)}}
   @keyframes vgRise{from{opacity:0;transform:translateY(24px)}}
   @keyframes vgFade{from{opacity:0}}
+  /* Touch screens: hide hover captions. */
   @media(hover:none){.vg-cap{display:none;}}
+  /* Visitors whose device asks for less motion get no animations. */
   @media(prefers-reduced-motion:reduce){
     .vg-slide,.vg-ind,.vg-stage,.vg-thumb,.vg-cap{transition:none;}
     .vg *,.vg *:before,.vg *:after{animation:none!important;}
     .vg-stage{transform:none;}
     .vg-progress,.vg-auto{display:none;}
   }
+  /* Phones: stack the cover above the text. */
   @media(max-width:760px){
     .vg-top{grid-template-columns:1fr;gap:24px;text-align:center;}
     .vg-stage{width:min(340px,100%);margin:0 auto;}
@@ -525,6 +687,7 @@
     .vg-info h2{font-size:1.6rem;}
     .vg-num{display:none;}
   }
+  /* Later restyle of the gallery (wins over the rules above): 6 thumbnails, bigger title, white thumbnail cards. */
   .vg{--cols:6;--gap:14px;--pad:8px;max-width:none;}
   .vg-top{grid-template-columns:minmax(0,340px) minmax(0,560px);justify-content:center;gap:64px;}
   .vg-count{display:flex;align-items:center;gap:14px;color:#1C8BDF;font-size:.98rem;font-weight:800;letter-spacing:2px;}
@@ -537,29 +700,36 @@
   .vg-btn.solid{padding:12px 24px;background:linear-gradient(90deg,var(--primary),#1560C9);border-color:transparent;
     box-shadow:0 12px 26px rgba(11,61,145,.28);}
   .vg-btn.solid:hover{background:linear-gradient(90deg,var(--primary-700),#1257B8);}
+  /* Wrapper around the thumbnail strip that holds the side arrows. */
   .vg-stripwrap{position:relative;margin-top:44px;}
   .vg-strip{margin-top:0;padding-bottom:14px;}
   .vg-thumb{aspect-ratio:auto;display:flex;flex-direction:column;background:#fff;border-radius:14px;opacity:.72;
     box-shadow:0 2px 4px rgba(11,61,145,.05),0 12px 26px rgba(11,61,145,.10);}
   .vg-thumb:focus-visible{outline:3px solid var(--secondary);outline-offset:-3px;}
+  /* Thumbnail picture area and the caption under it. */
   .vg-tthumb{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--navy);}
   .vg-tthumb img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 14%;}
   .vg-tthumb .vg-fallback{font-size:.78rem;padding:8px;}
   .vg-tcap{display:block;padding:10px 12px 12px;text-align:left;color:var(--primary);font-size:.8rem;font-weight:600;line-height:1.3;}
   .vg-tcap small{display:block;color:#1C8BDF;font-size:.72rem;font-weight:600;margin-bottom:2px;}
   .vg-tcap .t{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  /* The moving outline that marks the selected thumbnail. */
   .vg-ind{bottom:calc(var(--pad) + 14px);}
   .vg-ind:before{aspect-ratio:auto;height:100%;border-radius:14px;outline-offset:2px;}
+  /* Round arrows at the ends of the thumbnail strip. */
   .vg-sarrow{position:absolute;top:calc(50% - 7px);transform:translateY(-50%);z-index:3;width:50px;height:50px;border-radius:50%;cursor:pointer;
     display:grid;place-items:center;background:#fff;color:#0B57C2;font-size:1rem;border:1px solid var(--border);
     box-shadow:0 8px 20px rgba(11,61,145,.16);transition:transform .2s,background .2s,color .2s;}
   .vg-sarrow:hover{background:#0B57C2;color:#fff;}
   .vg-sarrow:focus-visible{outline:3px solid var(--secondary);outline-offset:3px;}
   .vg-sarrow.prev{left:-26px;}.vg-sarrow.next{right:-26px;}
+  /* Fewer thumbnails per row as the screen narrows; arrows hidden on phones. */
   @media(max-width:1240px){.vg-sarrow.prev{left:-6px;}.vg-sarrow.next{right:-6px;}}
   @media(max-width:980px){.vg{--cols:4;}.vg-top{gap:36px;}}
   @media(max-width:760px){.vg{--cols:3;--gap:10px;}.vg-top{grid-template-columns:1fr;gap:28px;}.vg-info h2{font-size:1.8rem;}.vg-count{justify-content:center;}.vg-sarrow{display:none;}}
 
+  /* ===== FINANCIAL CALCULATORS ===== */
+  /* Not used on this page (the calculators live on financial-calculators.html). */
   /* ----- Resources: financial calculators ----- */
   .calc-cat{margin-bottom:34px;}
   .calc-cat h2{color:var(--primary);font-size:1.3rem;margin-bottom:6px;}
@@ -573,17 +743,23 @@
   @media(max-width:860px){.calc-grid{grid-template-columns:repeat(2,1fr);}}
   @media(max-width:560px){.calc-grid{grid-template-columns:1fr;}}
 
+  /* ===== CONTACT ===== */
+  /* White contact card: photo of Max, phone/email and address cards, Google map. A later block below repeats some rules with new values; the later ones win. */
   /* ----- Contact ----- */
   .contactx{background:#fff;color:var(--primary);border-radius:18px;max-width:none;margin:0 auto;
     padding:48px 42px 42px;border:1px solid var(--border);box-shadow:var(--shadow-lg);position:relative;overflow:hidden;}
   .contactx:before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--primary),var(--secondary),var(--tertiary));}
+  /* Card title and subtitle. */
   .contactx h1{text-align:center;font-size:2.6rem;font-weight:800;color:var(--primary);letter-spacing:1px;margin:0;}
   .contactx .sub{text-align:center;color:var(--muted);max-width:560px;margin:12px auto 38px;line-height:1.6;}
+  /* Two columns: photo on the left, details on the right. */
   .cx-grid{display:grid;grid-template-columns:1fr 1.18fr;gap:34px;align-items:center;}
   .cx-photo{position:relative;border-radius:12px;overflow:hidden;box-shadow:var(--shadow-lg);}
   .cx-photo img{width:100%;display:block;}
+  /* Name and job title next to the photo. */
   .cx-name b{font-size:1.55rem;color:var(--primary);}
   .cx-name span{display:block;color:var(--muted);margin:2px 0 20px;}
+  /* The two info cards (Get In Touch, Find Us). */
   .cx-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px;}
   .cx-card{border:1px solid var(--border);border-radius:12px;padding:18px 20px;box-shadow:0 10px 24px rgba(11,61,145,.08);}
   .cx-card .h{display:flex;align-items:center;gap:9px;font-weight:800;color:var(--primary);text-transform:uppercase;font-size:.82rem;letter-spacing:.5px;margin-bottom:14px;}
@@ -591,9 +767,12 @@
   .cx-card p{font-size:.88rem;color:#33475F;margin-bottom:12px;line-height:1.45;}
   .cx-card p:last-child{margin-bottom:0;}
   .cx-card p b{color:var(--primary);display:block;}
+  /* Map frame height. */
   .cx-map iframe{width:100%;height:200px;border:0;border-radius:12px;box-shadow:0 10px 24px rgba(11,61,145,.12);}
+  /* Tablets and phones: stack the columns. */
   @media(max-width:860px){.cx-grid{grid-template-columns:1fr;}.cx-cards{grid-template-columns:1fr;}}
   @media(max-width:600px){.contactx{padding:32px 20px;}.contactx h1{font-size:2rem;}}
+  /* CONTACT restyle (wins over the rules above). */
   .contactx{border-radius:22px;border-color:rgba(207,229,246,.75);box-shadow:0 2px 4px rgba(11,61,145,.04),0 26px 64px rgba(11,61,145,.12);}
   .contactx:before{top:26px;left:50%;right:auto;width:120px;height:3px;border-radius:2px;transform:translateX(-50%);
     background:linear-gradient(90deg,#1C6FD1 0 55%,#BDE6F2 55%);}
@@ -608,19 +787,24 @@
   .cx-card .h{gap:14px;font-size:.9rem;letter-spacing:1.2px;white-space:nowrap;color:#1C8BDF;margin-bottom:20px;}
   .cx-card .h .dot{width:56px;height:56px;font-size:1.25rem;background:#DDF1FD;color:var(--primary);}
   .cx-card .h .lbl:after{content:"";display:block;width:34px;height:3px;border-radius:2px;background:#3CCFC0;margin-top:8px;}
+  /* One icon + text row inside an info card. */
   .cx-row{display:flex;gap:14px;align-items:flex-start;margin-bottom:16px;}
   .cx-row:last-child{margin-bottom:0;}
   .cx-row > i{flex:none;width:22px;margin-top:3px;color:#1C8BDF;font-size:1.15rem;text-align:center;}
   .cx-row p{margin:0;font-size:.96rem;color:#1D3F75;}
+  /* White frame around the map; its height is on the next line. */
   .cx-map{padding:4px;background:#fff;border-radius:16px;border:1px solid rgba(207,229,246,.8);box-shadow:0 14px 34px rgba(11,61,145,.10);}
   .cx-map iframe{height:210px;box-shadow:none;}
   @media(max-width:600px){.contactx h1{font-size:2.1rem;}.cx-name b{font-size:1.9rem;}}
 
+  /* ===== RESPONSIVE ===== */
+  /* Rules inside @media(max-width:980px) apply to tablets and smaller; max-width:600px to phones. */
   /* ---------- Responsive ---------- */
   @media (max-width:980px){
     .svc-grid{grid-template-columns:repeat(2,1fr);}
     .foot-grid{grid-template-columns:1fr 1fr;}
   }
+  /* Tablets: the menu becomes a slide-down list opened by the hamburger button. */
   @media (max-width:980px){
     .nav-toggle{display:block;}
     nav.main-nav{position:absolute;top:100%;left:0;right:0;background:#fff;box-shadow:0 18px 30px rgba(11,61,145,.12);max-height:0;overflow:hidden;transition:max-height .35s ease;}
@@ -646,6 +830,7 @@
     .about-val:nth-child(3){border-left:0;padding-left:0;}
     .adv-grid{grid-template-columns:repeat(2,1fr);}
   }
+  /* Phones: single-column layouts and smaller text. */
   @media (max-width:600px){
     .container{padding:0 16px;}
     .topbar .container{justify-content:center;text-align:center;gap:2px 14px;font-size:.74rem;padding:7px 14px;}
@@ -671,24 +856,30 @@
   }
 
 
+  /* ===== CTA BAND (restyle: wins over the earlier CTA BAND rules) ===== */
   /* ===== call-to-action band ===== */
+  /* Background = wave picture plus blue gradients. Change the h2 / p font-size below to resize the text. */
   .cta-band{position:relative;overflow:hidden;color:#fff;text-align:center;padding:70px 0 76px;
     background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 300' preserveAspectRatio='none'%3E%3Cpath d='M0 120C260 200 420 290 640 300H0Z' fill='%237FE7D6' opacity='.35'/%3E%3Cpath d='M0 170C300 230 470 280 700 300' fill='none' stroke='%23BFF3EC' stroke-width='2' opacity='.7'/%3E%3Cpath d='M1600 150C1350 230 1180 280 980 300H1600Z' fill='%233BA7F2' opacity='.35'/%3E%3Cpath d='M1600 190C1380 250 1200 285 1020 300' fill='none' stroke='%23BFE6FF' stroke-width='2' opacity='.7'/%3E%3C/svg%3E") bottom/100% 100% no-repeat,
       radial-gradient(60% 120% at 100% 0%,rgba(79,195,255,.55),transparent 60%),linear-gradient(120deg,#062C74,#0B3D91 45%,#1561C9);}
+  /* Headline, subline and the mint button. */
   .cta-band h2{font-size:2.5rem;font-weight:800;line-height:1.15;margin-bottom:10px;}
   .cta-band p{color:#E3EEFF;font-size:1.2rem;margin-bottom:28px;}
   .cta-band .btn{display:inline-flex;align-items:center;gap:12px;padding:16px 34px;border-radius:999px;font-size:1.02rem;
     background:linear-gradient(90deg,#7FE7D6,#5EEAD4);color:#0A2A6B;box-shadow:0 12px 30px rgba(127,231,214,.35);}
   .cta-band .btn i{transition:transform .2s;}
   .cta-band .btn:hover i{transform:translateX(4px);}
+  /* Phones: smaller text. */
   @media(max-width:600px){.cta-band h2{font-size:1.7rem;}.cta-band p{font-size:1rem;}}
 
+  /* ===== FOOTER (restyle: wins over the earlier FOOTER rules) ===== */
   /* ===== footer (light) ===== */
   footer{position:relative;overflow:hidden;background:linear-gradient(180deg,#F7FBFF,#EAF5FF);color:var(--primary);padding:64px 0 26px;margin-top:0;}
   footer::before{content:"";position:absolute;left:0;right:0;bottom:0;top:auto;height:260px;pointer-events:none;
     background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 300' preserveAspectRatio='none'%3E%3Cpath d='M0 120C260 200 420 290 640 300H0Z' fill='%237FE7D6' opacity='.35'/%3E%3Cpath d='M0 170C300 230 470 280 700 300' fill='none' stroke='%23BFF3EC' stroke-width='2' opacity='.7'/%3E%3Cpath d='M1600 150C1350 230 1180 280 980 300H1600Z' fill='%233BA7F2' opacity='.35'/%3E%3Cpath d='M1600 190C1380 250 1200 285 1020 300' fill='none' stroke='%23BFE6FF' stroke-width='2' opacity='.7'/%3E%3C/svg%3E") bottom/100% 100% no-repeat;opacity:.9;}
   footer .container{position:relative;z-index:1;max-width:var(--maxw);}
   footer .brand img{height:76px;}
+  /* Footer columns with thin dividing lines. */
   .foot-grid{grid-template-columns:1.45fr 1fr 1.05fr;gap:0;margin-bottom:30px;align-items:start;}
   .foot-grid > div{padding:0 34px;}
   .foot-grid > div:first-child{padding-left:0;}
@@ -696,12 +887,14 @@
   .foot-grid > div:nth-child(2),.foot-grid > div:nth-child(3){padding-bottom:8px;}
   .foot-grid > div:first-child p{color:var(--primary);font-size:1.02rem !important;line-height:1.6;}
   .foot-grid > div:first-child p:before{content:"";display:block;width:76px;height:3px;border-radius:2px;margin:0 0 16px;background:linear-gradient(90deg,#1C8BDF,#5FD3E2);}
+  /* Column headings and link lists (with arrow icons). */
   footer h4{color:var(--primary);font-size:1.15rem;margin-bottom:16px;}
   footer h4:before{content:"";display:block;width:34px;height:3px;border-radius:2px;margin-bottom:14px;background:linear-gradient(90deg,#3BA7F2,#7FE7D6);}
   footer li{margin-bottom:12px;font-size:.98rem;}
   footer li a{white-space:nowrap;display:inline-flex;align-items:center;gap:12px;color:#1D3F75;transition:color .2s,transform .2s;}
   footer li a:before{content:"\f054";font-family:"Font Awesome 6 Free";font-weight:900;font-size:.72rem;color:#1CA9D6;}
   footer li a:hover{color:#1C8BDF;transform:translateX(3px);}
+  /* Footer booking button (foot-cta, foot-book): not in the current footer content. */
   .foot-cta{align-self:center;padding:0 0 0 34px !important;border-left:1px solid rgba(59,167,242,.3);}
   .foot-book{display:inline-flex;align-items:center;gap:16px;white-space:nowrap;padding:18px 30px;border-radius:999px;color:#fff !important;font-weight:700;
     background:linear-gradient(90deg,#0B3D91,#1560C9);box-shadow:0 14px 34px rgba(11,61,145,.3),0 0 0 3px rgba(59,167,242,.35);transition:transform .2s,box-shadow .2s;}
@@ -710,6 +903,7 @@
   .foot-book .fa-arrow-right{font-size:.85rem;transition:transform .2s;}
   .foot-book:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(11,61,145,.38),0 0 0 3px rgba(59,167,242,.5);}
   .foot-book:hover .fa-arrow-right{transform:translateX(4px);}
+  /* Social icon row with fading lines on each side; each icon gets a different blue/teal. */
   .social{position:relative;gap:16px;margin:10px 0 22px;align-items:center;}
   .social:before,.social:after{content:"";width:min(340px,22vw);height:1px;background:linear-gradient(90deg,transparent,rgba(59,167,242,.45));}
   .social:after{background:linear-gradient(90deg,rgba(59,167,242,.45),transparent);}
@@ -721,42 +915,54 @@
   .social a:hover{transform:translateY(-3px);background:#0A2A6B;color:#fff;}
   .foot-copy{border-top:0;color:#1D3F75;font-size:.95rem;}
   footer a:hover{color:#1C8BDF;}
+  /* Tablets and phones: fewer footer columns. */
   @media(max-width:1100px){.foot-grid{grid-template-columns:1fr 1fr;row-gap:34px;}.foot-grid > div{padding:0 24px;}
     .foot-grid > div:nth-child(3){border-left:1px solid rgba(59,167,242,.3);}.foot-grid > div:nth-child(2){border-left:0;padding-left:0;}
     .foot-cta{grid-column:1/-1;border-left:0 !important;padding:0 !important;}}
   @media(max-width:600px){.foot-grid{grid-template-columns:1fr;}.foot-grid > div{padding:0 !important;border-left:0 !important;}
     .social{flex-wrap:wrap;gap:12px;}.social:before,.social:after{display:none;}.foot-book{padding:15px 24px;}}
 
+  /* ===== HERO (restyle: wins over the earlier HERO rules) ===== */
   /* ===== hero (light photo banner) ===== */
   .hero{background:linear-gradient(100deg,#F3F9FF 0%,#EAF4FD 45%,#DDEEFB 100%);}
   .hero:before{content:"";position:absolute;left:0;bottom:0;width:360px;height:150px;z-index:1;pointer-events:none;
     background:linear-gradient(160deg,transparent 48%,rgba(127,231,214,.55) 48% 56%,rgba(59,167,242,.55) 56%);clip-path:polygon(0 0,100% 100%,0 100%);}
+  /* Photo takes the right half; object-position picks the visible part. */
   .hero-photo{width:50%;}
   .hero-photo img{object-position:30% 28%;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 24%);mask-image:linear-gradient(90deg,transparent 0,#000 24%);}
+  /* Headline size and the gradient on highlighted words. */
   .hero-info h1{font-size:clamp(2.1rem,2.9vw,2.9rem);letter-spacing:-.6px;}
   .hero-info h1 .accent{background:linear-gradient(90deg,#1C8BDF,#2EC4C9);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  /* Small label above the headline, and its underline. */
   .hero .sec-kicker.blue{color:#1CA9D6;}
   .hero .sec-kicker.blue:after{width:150px;height:3px;border-radius:2px;background:linear-gradient(90deg,#0B3D91,#1C8BDF 30%,#7FE7D6);}
+  /* Hero button colors and size. */
   .hero-cta .btn{background:linear-gradient(90deg,#0B3D91,#1C6FD1 55%,#25B7C6);padding:16px 32px;font-size:1.02rem;box-shadow:0 12px 28px rgba(11,61,145,.28);}
+  /* Tablets and phones: photo becomes a full-width banner. */
   @media(max-width:980px){.hero:before{display:none;}.hero-photo{width:100%;}.hero-photo img{-webkit-mask-image:linear-gradient(180deg,#000 70%,transparent);mask-image:linear-gradient(180deg,#000 70%,transparent);}}
 
+  /* ===== WHY CHOOSE US (restyle: wins over the earlier WHY CHOOSE US rules) ===== */
   /* ===== why choose us (glass cards over an office scene) ===== */
   .wcu{position:relative;overflow:hidden;padding:64px 0 70px;background:linear-gradient(110deg,#F2F9FF 0%,#E6F3FE 55%,#D6ECFB 100%);}
   .wcu:before{content:"";position:absolute;left:-120px;top:-60px;width:520px;height:420px;border-radius:50%;pointer-events:none;
     background:radial-gradient(circle,rgba(255,255,255,.9),rgba(255,255,255,0) 70%);}
+  /* Desk image on the right (hidden later). */
   .wcu-desk{position:absolute;right:0;top:0;bottom:0;width:24%;max-width:420px;pointer-events:none;}
   .wcu-desk img{width:100%;height:100%;object-fit:cover;object-position:30% 50%;
     -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 40%);mask-image:linear-gradient(90deg,transparent 0,#000 40%);}
   .wcu .container{position:relative;z-index:1;}
+  /* WHY CHOOSE US? label with lines on both sides. */
   .wcu-kicker{display:flex;align-items:center;justify-content:center;gap:22px;color:var(--primary);font-weight:700;font-size:.95rem;letter-spacing:4px;text-transform:uppercase;}
   .wcu-kicker:before,.wcu-kicker:after{content:"";width:130px;height:2px;background:linear-gradient(90deg,#0B3D91,#5FD3E2);}
   .wcu-kicker:after{background:linear-gradient(90deg,#5FD3E2,#0B3D91);}
+  /* Title and subtitle. */
   .wcu-title{text-align:center;font-size:3.3rem;line-height:1.05;margin-top:16px;}
   .wcu-title .grad{display:block;background:linear-gradient(90deg,#1C8BDF,#2EC4C9);-webkit-background-clip:text;background-clip:text;color:transparent;}
   .wcu-sub{justify-content:center;gap:14px;margin:14px 0 34px;color:#33475F;font-size:1.15rem;font-weight:500;letter-spacing:.6px;text-transform:none;}
   .wcu-sub:before{display:none;}
   .wcu-sub i{color:#1CA9D6;}
   .wcu-grid{max-width:none;}
+  /* Frosted badge cards. */
   .wcu-card{position:relative;align-items:flex-start;padding:22px 20px 30px;background:rgba(255,255,255,.66);
     -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.9);border-radius:18px;
     box-shadow:0 2px 6px rgba(11,61,145,.05),0 18px 44px rgba(11,61,145,.10);}
@@ -764,6 +970,7 @@
   .wcu-card img{width:92px;height:104px;padding:6px;border-radius:14px;background:#fff;box-shadow:0 8px 20px rgba(11,61,145,.12);}
   .wcu-card h3{font-size:1.08rem;}
   .wcu-card p{font-size:.86rem;}
+  /* Passion for Precision strip under the cards. */
   .wcu-prec{position:relative;z-index:1;display:flex;align-items:center;gap:26px;max-width:860px;margin-top:22px;padding:22px 30px;
     background:rgba(255,255,255,.6);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.9);
     border-radius:18px;box-shadow:0 18px 44px rgba(11,61,145,.10);}
@@ -772,24 +979,32 @@
   .wcu-prec > div{border-left:2px solid rgba(59,167,242,.35);padding-left:26px;}
   .wcu-prec h3{color:var(--primary);font-size:1.35rem;margin-bottom:4px;}
   .wcu-prec p{color:#33475F;font-size:.95rem;line-height:1.6;}
+  /* Smaller screens. */
   @media(max-width:1100px){.wcu-desk{display:none;}}
   @media(max-width:600px){.wcu-title{font-size:2.2rem;}.wcu-kicker{font-size:.78rem;letter-spacing:2.5px;gap:12px;}.wcu-kicker:before,.wcu-kicker:after{width:44px;}
     .wcu-sub{font-size:.92rem;flex-wrap:wrap;}.wcu-prec{flex-direction:column;align-items:flex-start;padding:22px;}.wcu-prec > div{border-left:0;padding-left:0;}}
 
+  /* ===== SITE-WIDE OVERRIDES ===== */
+  /* Late rules that apply across all sections: font, gradient text, background, gold labels, title sizes. */
   /* ===== one typeface everywhere ===== */
+  /* Change the font name here to change the font everywhere (it is loaded from Google Fonts in the head). */
   body,button,input,select,textarea{font-family:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
   /* ===== two-tone gradient headings ===== */
   .grad{background:linear-gradient(90deg,#1C8BDF,#139E92);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
   .grad-light{background:linear-gradient(90deg,#9FD8FF,#7FE7D6);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+  /* Remove borders and fade masks between section bands. */
   .mc{border-top:0 !important;}
   .sec-head{border-top:0;border-bottom:0;-webkit-mask-image:linear-gradient(180deg,#000 70%,transparent);mask-image:linear-gradient(180deg,#000 70%,transparent);}
   /* the full-width dark band melts into the light sections above and below */
   #services .cta-band{-webkit-mask-image:linear-gradient(180deg,transparent,#000 16%,#000 84%,transparent);mask-image:linear-gradient(180deg,transparent,#000 16%,#000 84%,transparent);padding:96px 0 104px;}
 
   /* ===== one continuous background: no visible section edges ===== */
+  /* Page background color plus two soft colored glows. */
   body{background:#EDF6FE;background-image:radial-gradient(60vw 60vh at 85% 15%,rgba(59,167,242,.10),transparent 70%),
     radial-gradient(55vw 55vh at 10% 70%,rgba(127,231,214,.10),transparent 70%);background-attachment:fixed;}
+  /* Sections are see-through so the page background shows. */
   .mc,.wcu,.hero,.sec-head,.sd-hero,.section{background:transparent !important;}
+  /* Hide the corner wave decorations. */
   .mc-deco{display:none;}
   /* ===== small titles are gold, with a gold rule ===== */
   .sec-kicker.blue,.hero .sec-kicker.blue,.nl-kicker,.wcu-kicker,.sd-kicker,.vg-count{color:var(--gold-ink) !important;}
@@ -801,10 +1016,12 @@
   .mc-title,.mc-title.plain,.nl-head h2,.wcu-title,.about-txt h2,.contactx h1,.cta-band h2,.sec-head h1,.sec-head h2,.sd-hero h1,.sd-sec h2{
     font-size:2.15rem !important;font-weight:700 !important;line-height:1.2 !important;letter-spacing:-.2px !important;text-transform:none !important;}
   .wcu-title .grad{display:inline;}
+  /* Phones: all section titles 1.6rem. */
   @media(max-width:600px){.mc-title,.mc-title.plain,.nl-head h2,.wcu-title,.about-txt h2,.contactx h1,.cta-band h2,.sec-head h1,.sec-head h2,.sd-hero h1,.sd-sec h2{font-size:1.6rem !important;}}
   /* ===== footer: soft top, dark blue bottom bar ===== */
   footer{background:transparent !important;padding-bottom:0 !important;}
   footer::before{display:none !important;}
+  /* Dark blue bottom bar (foot-bottom) holding social icons and copyright. */
   .foot-bottom{position:relative;margin-top:30px;padding:26px 0 22px;background:linear-gradient(90deg,#051D47,#0B3D91 50%,#072A66);}
   .foot-bottom .social{margin:0 0 14px;}
   .foot-bottom .social:before,.foot-bottom .social:after{background:linear-gradient(90deg,transparent,rgba(127,231,214,.5)) !important;}
@@ -812,13 +1029,16 @@
   .foot-bottom .foot-copy{color:#C9DAF2;padding-top:0;}
   .foot-bottom .social a:hover{background:#fff;color:var(--primary);}
   .foot-bottom .social a:nth-child(6n+1),.foot-bottom .social a:nth-child(6n){background:#1C8BDF;}
+  /* Hide the globe and gold stripe decorations of the heading bands. */
   .sec-head:before,.sec-head:after{display:none !important;}
   /* header band sits right on top of its content */
   .sec-head{padding-bottom:18px !important;}
   .sec-head + .section{padding-top:14px !important;}
   .sec-head{-webkit-mask-image:none !important;mask-image:none !important;}
 
+  /* ===== HERO (fills first screen; final overrides) ===== */
   /* ===== hero fills the first screen ===== */
+  /* min-height makes the hero at least the screen height minus the header. */
   .hero{display:flex;align-items:center;min-height:max(600px,calc(100vh - 175px));}
   .hero:before{display:none;}
   .hero > .container{width:100%;}
@@ -826,19 +1046,26 @@
   .hero-info{max-width:none;}
   /* sized to the viewport so the headline always ends before the photo's subject */
   .hero-info h1{font-size:clamp(2rem,3.7vw,5.5rem) !important;margin:18px 0 22px;}
+  /* Intro paragraph size and width. */
   .hero-info p.lede{font-size:clamp(1.05rem,1.15vw,1.5rem);max-width:min(38vw,760px);line-height:1.7;margin-bottom:34px;}
   .hero .sec-kicker{font-size:1rem;}
+  /* Hero button size. */
   .hero-cta .btn{padding:18px 36px;font-size:1.08rem;}
+  /* Photo fades out on its left and bottom edges. */
   .hero-photo img{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 24%),linear-gradient(180deg,#000 78%,transparent);
     -webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 0,#000 24%),linear-gradient(180deg,#000 78%,transparent);mask-composite:intersect;}
+  /* Tablets and phones. */
   @media(max-width:980px){.hero{display:block;min-height:0;}.hero-wrap{padding:10px 0 40px;}.hero-photo img{-webkit-mask-image:linear-gradient(180deg,#000 70%,transparent);mask-image:linear-gradient(180deg,#000 70%,transparent);}}
   @media(max-width:600px){.hero-info p.lede{font-size:1.02rem;}.hero-cta .btn{padding:15px 24px;}}
 
+  /* ===== WHY CHOOSE US (glass look; final overrides) ===== */
   /* ===== why choose us: real glass — bright scene behind, translucent cards with a lit rim ===== */
+  /* Background: white/blue wave shapes on top of the office photo images/why-bg.webp. */
   .wcu{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 700' preserveAspectRatio='none'%3E%3Cpath d='M0 0H330C190 160 120 360 0 520Z' fill='%23fff' opacity='.55'/%3E%3Cpath d='M0 560C240 500 420 560 560 700H0Z' fill='%233BA7F2' opacity='.55'/%3E%3Cpath d='M0 610C220 570 380 620 480 700H0Z' fill='%231C6FD1' opacity='.55'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat,url('images/why-bg.webp') right center/cover no-repeat !important;
     -webkit-mask-image:linear-gradient(180deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(180deg,transparent,#000 7%,#000 93%,transparent);
     padding:90px 0 100px;}
   .wcu-desk,.wcu:before{display:none;}
+  /* Glass cards: see-through white with blur and a bright rim. */
   .wcu-card,.wcu-prec{position:relative;overflow:hidden;isolation:isolate;
     background:linear-gradient(135deg,rgba(255,255,255,.42) 0%,rgba(255,255,255,.14) 55%,rgba(255,255,255,.26) 100%) !important;
     -webkit-backdrop-filter:blur(14px) saturate(180%) brightness(1.06);backdrop-filter:blur(14px) saturate(180%) brightness(1.06);
@@ -848,13 +1075,17 @@
   /* glossy sheen across the top of each pane */
   .wcu-card:before,.wcu-prec:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;border-radius:inherit;
     background:linear-gradient(160deg,rgba(255,255,255,.75) 0%,rgba(255,255,255,.18) 28%,rgba(255,255,255,0) 45%);}
+  /* Badge picture frame. */
   .wcu-card img{background:linear-gradient(145deg,rgba(255,255,255,.85),rgba(255,255,255,.45)) !important;border:1px solid rgba(255,255,255,.95);
     box-shadow:inset 0 1px 1px #fff,0 10px 22px rgba(11,61,145,.14) !important;}
+  /* Precision strip fades slightly on its right side. */
   .wcu-prec{-webkit-mask-image:linear-gradient(90deg,#000 80%,rgba(0,0,0,.35));mask-image:linear-gradient(90deg,#000 80%,rgba(0,0,0,.35));}
   .wcu-prec .wcu-target{background:linear-gradient(145deg,rgba(255,255,255,.95),rgba(214,238,251,.7)) !important;border:1px solid #fff !important;}
+  /* Hover lift. */
   .wcu-card:hover{transform:translateY(-5px);box-shadow:inset 0 1px 1px #fff,0 14px 30px rgba(11,61,145,.12),0 36px 70px rgba(11,61,145,.16) !important;}
   @media(max-width:1100px){.wcu{background-position:0 0,right center !important;}}
 
+  /* ===== RESPONSIVE (final phone and tablet fixes) ===== */
   /* ===== phones and tablets: every line readable and uncut (desktop untouched) ===== */
   @media(max-width:980px){
     .hero-info p.lede{max-width:640px;}
@@ -862,42 +1093,59 @@
     .wcu-card,.wcu-prec{background:linear-gradient(135deg,rgba(255,255,255,.82),rgba(255,255,255,.6)) !important;}
     .wcu-card p,.wcu-prec p{color:#33475F;}
     .wcu-prec{-webkit-mask-image:none;mask-image:none;}
+    /* Extra space at the bottom so the floating button does not cover the copyright. */
     .foot-bottom{padding-bottom:96px;}
   }
   @media(max-width:600px){
     .hero .sec-kicker{font-size:.8rem;letter-spacing:.3px;gap:10px;}
     .wcu-sub{row-gap:2px;}
+    /* Forces a line break after the second dot in the subtitle. */
     .wcu-sub i:nth-of-type(2){flex-basis:100%;height:0;overflow:hidden;visibility:hidden;}
     .cta-band .btn{padding:15px 22px;font-size:.95rem;gap:10px;}
   }
 
 
+  /* ===== PAGE TRANSITIONS ===== */
+  /* Blue curtain that wipes across the screen when going to or from request-consultation.html. Script: PAGE TRANSITIONS. */
   /* ===== curtain wipe: a blue panel covers the page on the way to and from the request form ===== */
+  /* The panel: parked off to the left until the script moves it. Change the background colors to recolor it. */
   .curtain{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;pointer-events:none;visibility:hidden;transform:translateX(-101%);
     background:linear-gradient(120deg,var(--primary) 0%,#1560C9 55%,var(--secondary) 100%);}
+  /* Logo shown in the middle of the curtain. */
   .curtain img{width:min(260px,52vw);height:auto;}
+  /* Classes the script adds: curtain-cover = page starts covered, curtain-moving = curtain is animating. */
   html.curtain-cover .curtain{visibility:visible;transform:none;}
   html.curtain-moving .curtain{visibility:visible;pointer-events:auto;}
 </style>
+<!-- ===== PAGE TRANSITIONS ===== -->
+<!-- Script 1: zoom animation when opening a service page from the Services menu (browsers that support it). -->
 <script>/* links in the Services dropdown (and Switch service) mark the next navigation as a zoom */(function(){var K='vtZoom',RE=/(tax-preparation-planning|bookkeeping-payroll|business-consulting|future-security)\.html$/;function tag(e){try{if(e.viewTransition&&sessionStorage.getItem(K))e.viewTransition.types.add('zoom');}catch(_){}}addEventListener('pageswap',tag);addEventListener('pagereveal',function(e){tag(e);try{sessionStorage.removeItem(K);}catch(_){}});document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('.submenu a');if(a&&RE.test(a.getAttribute('href')||'')){try{sessionStorage.setItem(K,'1');}catch(_){}}},true);})();</script>
+<!-- ===== #request REDIRECT ===== -->
+<!-- Script 2: the form moved to request-consultation.html; old links ending in #request are sent there. -->
 <script>/* the request form moved to its own page; keep old #request links working */if(location.hash==='#request')location.replace('request-consultation.html'+location.search);</script>
+<!-- Script 3: the curtain wipe between this page and request-consultation.html (styles: PAGE TRANSITIONS). -->
 <script>
   /* Curtain wipe to and from the request form: the panel slides in over this page, the next page
      opens covered, then the panel slides off it. Reduced motion gets a quick fade instead. */
   (function(){
+    // K = memory key; FORM = the page that gets the curtain effect; d and html are shortcuts.
     var K = 'curtain', FORM = 'request-consultation.html', d = document, html = d.documentElement;
     var reduce = matchMedia('(prefers-reduced-motion: reduce)'), EASE = 'cubic-bezier(.32,.72,0,1)';
+    // ms: animation length in milliseconds (450, or 150 for reduced motion). frames: the slide (or fade) steps.
     function ms(){ return reduce.matches ? 150 : 450; }
     function frames(entering){
       if (reduce.matches) return entering ? [{opacity:0, transform:'none'}, {opacity:1, transform:'none'}] : [{opacity:1, transform:'none'}, {opacity:0, transform:'none'}];
       return entering ? [{transform:'translateX(-101%)'}, {transform:'translateX(0)'}] : [{transform:'translateX(0)'}, {transform:'translateX(101%)'}];
     }
+    // page: the file name of an address, e.g. index.html.
     function page(u){ return u.pathname.split('/').pop() || 'index.html'; }
 
+    // If the previous page set the memory key, this page starts covered and then uncovers itself.
     var arriving = false;
     try{ if (sessionStorage.getItem(K)){ sessionStorage.removeItem(K); arriving = true; html.classList.add('curtain-cover'); } }catch(_){}
     // the panel is the transition, so skip the browser's own cross-fade between pages
     addEventListener('pagereveal', function(e){ if (arriving && e.viewTransition) e.viewTransition.skipTransition(); });
+    // Once the page is built, slide the curtain off (after fonts load, or 400 ms at most).
     if (arriving) d.addEventListener('DOMContentLoaded', function(){
       var c = d.querySelector('.curtain'), started = false;
       function reveal(){
@@ -913,6 +1161,7 @@
       setTimeout(reveal, 400);
     });
 
+    // Clicking a link to or from the form page: slide the curtain in, then open the new page.
     d.addEventListener('click', function(e){
       if (e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
       var a = e.target.closest && e.target.closest('a[href]');
@@ -943,14 +1192,20 @@
 </script>
 </head>
 <body>
+<!-- PAGE TRANSITIONS: the curtain panel itself (hidden until the script uses it). -->
 <div class="curtain" aria-hidden="true"><img src="images/logo-light.webp" width="840" height="180" alt=""></div>
 
+<!-- ===== PAGE CONTENT STARTS HERE (everything visitors see) ===== -->
+<!-- ===== ANNOUNCEMENT BANNER ===== -->
+<!-- Edit the offer text below; Book Now opens the form on request-consultation.html. Styles: ANNOUNCEMENT BANNER. -->
 <!-- ===== Announcement / booking banner ===== -->
 <div class="announce">
   <span>🎯 New clients: your <b>first consultation is free</b> — limited weekly spots.</span>
   <a href="request-consultation.html">Book Now →</a>
 </div>
 
+<!-- ===== TOP BAR ===== -->
+<!-- Phone, email and office hours. Styles: TOP BAR. -->
 <!-- ===== Top contact bar ===== -->
 <div class="topbar">
   <div class="container">
@@ -959,19 +1214,25 @@
   </div>
 </div>
 
+<!-- ===== HEADER / NAV ===== -->
+<!-- Logo + main menu. Styles: HEADER / NAV (and RESPONSIVE for phones). Script: HEADER / NAV. -->
 <!-- ===== Header / Navigation ===== -->
 <header class="site-header">
   <div class="container nav-inner">
+    <!-- Logo (click goes to the top). Replace images/logo.webp and logo.png to change it. -->
     <a href="#home" class="brand"><picture><source srcset="images/logo.webp" type="image/webp"><img src="images/logo.png" width="840" height="180" alt="Magnum CPA PC — Tax · Accounting · Advisory" fetchpriority="high"></picture></a>
 
+    <!-- Hamburger button, only visible on tablets and phones. -->
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
 
+    <!-- Menu items: each li is one link. Copy an li line to add a menu item. -->
     <nav class="main-nav" id="mainNav">
       <ul>
         <li><a href="#home" class="active">Home</a></li>
         <li><a href="#about">About Us</a></li>
+        <!-- Services drop-down: links to the four service pages. -->
         <li class="has-sub">
           <a href="#services" class="sub-toggle">Services ▾</a>
           <ul class="submenu">
@@ -982,6 +1243,7 @@
             <li><a href="#services">All Services</a></li>
           </ul>
         </li>
+        <!-- Resources drop-down. -->
         <li class="has-sub">
           <a href="#" class="sub-toggle">Resources ▾</a>
           <ul class="submenu">
@@ -991,17 +1253,23 @@
             <li><a href="financial-calculators.html">Financial Calculators</a></li>
           </ul>
         </li>
+        <!-- Opens the Canopy client portal in a new tab. -->
         <li><a href="https://magnumcpa.clientportal.com/#/login" target="_blank" rel="noopener">Client Portal</a></li>
+        <!-- Opens the consultation form page (request-consultation.html). -->
         <li><a href="request-consultation.html">Request Consultation</a></li>
         <li><a href="#contact">Contact Us</a></li>
+        <!-- Magnifier icon that opens the SEARCH box. -->
         <li class="search-li"><a href="#" class="search-btn" aria-label="Search the site">🔍</a></li>
       </ul>
     </nav>
   </div>
 </header>
 
+<!-- ===== HERO ===== -->
+<!-- First screen: photo, headline, intro text and main booking button. Styles: HERO. -->
 <!-- ===== Hero (Home) ===== -->
 <section class="hero" id="home">
+  <!-- Hero photo: webp versions load first, the jpg is a fallback. Replace the files in images to change it. -->
   <div class="hero-photo">
     <picture>
       <source type="image/webp" srcset="images/hero-photo2-700.webp 700w, images/hero-photo2.webp 1032w" sizes="(max-width:980px) 100vw, 56vw">
@@ -1011,9 +1279,11 @@
   <div class="container">
     <div class="hero-wrap">
       <div class="hero-info">
+        <!-- Small label, headline (words in the grad span get the gradient color) and intro paragraph. -->
         <div class="sec-kicker blue">Your Trusted Financial Partner</div>
         <h1>More Than <span class="nw">Accounting</span><br><span class="grad">We're Your Strategic Partner</span></h1>
         <p class="lede">At Magnum CPA PC, we provide more than numbers. We deliver personalized tax, accounting, and advisory solutions that help you grow, protect, and build a stronger financial future.</p>
+        <!-- Main booking button; opens the form on request-consultation.html. -->
         <div class="hero-cta">
           <a href="request-consultation.html" class="btn">Schedule a Consultation <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
         </div>
@@ -1022,6 +1292,8 @@
   </div>
 </section>
 
+<!-- ===== WHY CHOOSE US ===== -->
+<!-- Award badges. Styles: WHY CHOOSE US (three places in the style block). -->
 <!-- ===== Why Choose Us ===== -->
 <section id="why-choose-us" class="wcu">
   <div class="wcu-desk" aria-hidden="true"><img src="images/why-desk.webp" width="332" height="725" alt="" loading="lazy"></div>
@@ -1029,6 +1301,7 @@
     <div class="wcu-kicker">Why Choose Us?</div>
     <h2 class="wcu-title">Your Success <span class="grad">Is Our Priority</span></h2>
     <p class="wcu-sub">Trusted <i>•</i> Experienced <i>•</i> Committed to Your Success</p>
+    <!-- Each wcu-card is one badge: image, title, text. Copy one to add another. -->
     <div class="wcu-grid">
       <div class="wcu-card"><img src="images/badge-bbb.webp" width="195" height="235" alt="BBB Accredited Business plaque" loading="lazy">
         <div><h3>BBB Accredited</h3><p>Our commitment to transparency and ethical service is verified through our Better Business Bureau accreditation.</p></div></div>
@@ -1039,6 +1312,7 @@
       <div class="wcu-card"><img src="images/badge-best.webp" width="225" height="202" alt="Best of 2026 BusinessRate badge" loading="lazy">
         <div><h3>2026 Ranked 1 by Momentum Score</h3><p>Showcasing excellence in customer satisfaction and review performance.</p></div></div>
     </div>
+    <!-- Passion for Precision strip. -->
     <div class="wcu-prec">
       <span class="wcu-target" aria-hidden="true"><i class="fa-solid fa-bullseye"></i></span>
       <div><h3>Passion for Precision</h3><p>Our team combines a passion for professional design with strict procedural compliance to ensure your reports are as clear as they are accurate.</p></div>
@@ -1046,22 +1320,27 @@
   </div>
 </section>
 
+<!-- ===== ABOUT US ===== -->
+<!-- Max's photo, welcome text and values, then MISSION + REVIEWS. Styles: ABOUT US. -->
 <!-- ===== About Us ===== -->
 <section id="about">
   <!-- intro -->
   <div class="section">
     <div class="container">
       <div class="about-wrap">
+        <!-- Photo of Max. -->
         <figure class="about-card" style="margin:0;">
           <picture>
             <source type="image/webp" srcset="images/Max-contact-new-700.webp 700w, images/Max-contact-new.webp 1254w" sizes="(max-width:980px) 92vw, 420px">
             <img src="images/Max-contact-new.jpg" width="1254" height="1254" loading="lazy" alt="Max (Magnum) Drew, Founder and CEO of Magnum CPA PC, smiling with arms crossed">
           </picture>
         </figure>
+        <!-- Welcome text; edit the paragraph to change the story. -->
         <div class="about-txt">
           <div class="sec-kicker blue">About Us</div>
           <h2>Welcome to <span class="grad">Magnum CPA PC</span></h2>
           <p>Our story began 10 years ago right here in California, established by our founder, Max (Magnum) Drew. We have grown from a small practice into a trusted professional corporation with a clear vision: to be more than just accountants—we aim to be true financial partners.</p>
+          <!-- Four value items: each about-val is one icon + title + line. The tint values in its style attribute set the bubble colors. -->
           <div class="about-vals">
             <div class="about-val"><span class="ic" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></span>
               <b>Expert Guidance</b><span>Trusted expertise and personalized solutions.</span></div>
@@ -1077,16 +1356,21 @@
     </div>
   </div>
 
+    <!-- ===== MISSION + REVIEWS ===== -->
     <!-- Our Mission + What Our Clients Say -->
+  <!-- Styles: MISSION + REVIEWS. Script: MISSION + REVIEWS (auto-rotating review slider). -->
   <div class="mc">
+    <!-- Decorative corner waves and dots (purely visual). -->
     <svg class="mc-deco tl" viewBox="0 0 340 150" aria-hidden="true"><path d="M0 0h250C190 40 120 70 0 118Z" fill="#CFE8FB" opacity=".55"/><path d="M0 104C95 72 160 38 215 0" fill="none" stroke="#5FD3E2" stroke-width="2" opacity=".7"/></svg>
     <svg class="mc-deco bl" viewBox="0 0 520 230" aria-hidden="true"><path d="M0 70C120 70 230 150 330 230H0Z" fill="#CFE8FB" opacity=".6"/><path d="M0 20C150 30 260 120 360 230" fill="none" stroke="#5FD3E2" stroke-width="2" opacity=".7"/></svg>
     <svg class="mc-deco br" viewBox="0 0 460 170" aria-hidden="true"><path d="M460 30C350 70 250 120 130 170H460Z" fill="#CFE8FB" opacity=".6"/><path d="M460 70C370 110 300 140 220 170" fill="none" stroke="#7FE7D6" stroke-width="2" opacity=".8"/></svg>
     <span class="mc-dots tr" aria-hidden="true"></span><span class="mc-dots br2" aria-hidden="true"></span>
     <div class="container">
+      <!-- Mission statement: edit the paragraph text. -->
       <h2 class="mc-title">Our <span class="grad">Mission</span></h2>
       <p class="mc-mission">Our mission is to be the trusted financial partner for individuals and businesses, delivering accurate tax compliance, proactive financial planning, and strategic advisory services that secure and grow their wealth.</p>
 
+      <!-- REVIEWS: each div with class review is one client review card; copy one whole review block to add another. Dots are added automatically. -->
       <h2 class="mc-title">What Our <span class="grad">Clients Say</span></h2>
       <div class="reviews">
         <div class="review-viewport">
@@ -1108,6 +1392,7 @@
             </div>
           </div>
         </div>
+        <!-- Previous/next arrows and the dots row (dots are filled in by the script). -->
         <button class="rev-nav prev" onclick="revMove(-1)" aria-label="Previous review"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
         <button class="rev-nav next" onclick="revMove(1)" aria-label="Next review"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
         <div class="rev-dots" id="revDots"></div>
@@ -1116,8 +1401,11 @@
   </div>
 </section>
 
+<!-- ===== WHY GET TAX HELP ===== -->
+<!-- YouTube video. To change it, replace the video code after embed/ in the src address. Styles: WHY GET TAX HELP. -->
 <!-- ===== Why Get Tax Help ===== -->
 <section class="mc" style="padding:72px 0 80px;">
+    <!-- Decorative corner waves and dots. -->
     <svg class="mc-deco tl" viewBox="0 0 340 150" aria-hidden="true"><path d="M0 0h250C190 40 120 70 0 118Z" fill="#CFE8FB" opacity=".55"/><path d="M0 104C95 72 160 38 215 0" fill="none" stroke="#5FD3E2" stroke-width="2" opacity=".7"/></svg>
     <svg class="mc-deco br" viewBox="0 0 460 170" aria-hidden="true"><path d="M460 30C350 70 250 120 130 170H460Z" fill="#CFE8FB" opacity=".6"/><path d="M460 70C370 110 300 140 220 170" fill="none" stroke="#7FE7D6" stroke-width="2" opacity=".8"/></svg>
     <span class="mc-dots tr" aria-hidden="true"></span><span class="mc-dots bl2" aria-hidden="true"></span>
@@ -1132,8 +1420,11 @@
   </div>
 </section>
 
+<!-- ===== SERVICES ===== -->
+<!-- Heading band, four service cards, then the CTA BAND. Styles: SERVICES and SECTION HEADINGS. -->
 <!-- ===== Services ===== -->
 <section id="services">
+  <!-- Heading band: small label, title, subtitle. -->
   <div class="sec-head">
     <div class="container">
       <div class="sec-kicker">Our Services</div>
@@ -1144,7 +1435,9 @@
 
   <div class="section">
     <div class="container">
+      <!-- SERVICE CARDS: each article is one card (photo, icon, title, text, bullet list, Learn More link to its own page). -->
       <div class="svc-grid">
+        <!-- Card 1: Tax Preparation and Planning -->
         <article class="svc-card">
           <div class="svc-img">
             <div class="svc-img-wrap"><img src="images/tax.jpg" style="view-transition-name:svc-tax" alt="Tax forms and a calculator on a desk" loading="lazy"></div>
@@ -1162,6 +1455,7 @@
             <a class="svc-more" href="tax-preparation-planning.html">Learn More <i class="fa-solid fa-chevron-right" aria-hidden="true"></i><span class="sr-only"> about Tax Preparation and Planning</span></a>
           </div>
         </article>
+        <!-- Card 2: Bookkeeping and Payroll -->
         <article class="svc-card">
           <div class="svc-img">
             <div class="svc-img-wrap"><img src="images/bk-payroll.jpg" style="view-transition-name:svc-books" alt="Hands working on a laptop and calculator" loading="lazy"></div>
@@ -1179,6 +1473,7 @@
             <a class="svc-more" href="bookkeeping-payroll.html">Learn More <i class="fa-solid fa-chevron-right" aria-hidden="true"></i><span class="sr-only"> about Bookkeeping and Payroll Services</span></a>
           </div>
         </article>
+        <!-- Card 3: Business Consulting -->
         <article class="svc-card">
           <div class="svc-img">
             <div class="svc-img-wrap"><img src="images/consulting.jpg" style="view-transition-name:svc-consult" alt="Reviewing business charts on a laptop" loading="lazy"></div>
@@ -1196,6 +1491,7 @@
             <a class="svc-more" href="business-consulting.html">Learn More <i class="fa-solid fa-chevron-right" aria-hidden="true"></i><span class="sr-only"> about Business Consulting</span></a>
           </div>
         </article>
+        <!-- Card 4: Future Security -->
         <article class="svc-card">
           <div class="svc-img">
             <div class="svc-img-wrap"><img src="images/security.jpg" style="view-transition-name:svc-future" alt="Hands sheltering a piggy bank" loading="lazy"></div>
@@ -1217,6 +1513,8 @@
     </div>
   </div>
 
+  <!-- ===== CTA BAND ===== -->
+  <!-- Dark blue call-to-action strip; the button opens request-consultation.html. Styles: CTA BAND. -->
   <div class="cta-band">
     <div class="container">
       <h2>Ready to take control of <span class="grad-light">your taxes?</span></h2>
@@ -1226,18 +1524,22 @@
   </div>
 </section>
 
+<!-- ===== CLIENT NEWSLETTER ===== -->
+<!-- Styles: CLIENT NEWSLETTER and NEWSLETTER + VIDEO HEADINGS. Also listed in the SEARCH script. -->
 <!-- ===== Resources: Client Newsletter ===== -->
 <section id="client-newsletter" class="mc">
     <svg class="mc-deco tl" viewBox="0 0 340 150" aria-hidden="true"><path d="M0 0h250C190 40 120 70 0 118Z" fill="#CFE8FB" opacity=".55"/><path d="M0 104C95 72 160 38 215 0" fill="none" stroke="#5FD3E2" stroke-width="2" opacity=".7"/></svg>
     <svg class="mc-deco br" viewBox="0 0 460 170" aria-hidden="true"><path d="M460 30C350 70 250 120 130 170H460Z" fill="#CFE8FB" opacity=".6"/><path d="M460 70C370 110 300 140 220 170" fill="none" stroke="#7FE7D6" stroke-width="2" opacity=".8"/></svg>
     <span class="mc-dots tr" aria-hidden="true"></span><span class="mc-dots bl2" aria-hidden="true"></span>
   <div class="container">
+    <!-- Heading: label, title, subtitle. -->
     <div class="nl-head">
       <div class="nl-kicker"><i class="fa-solid fa-newspaper ic" aria-hidden="true"></i><span class="sep" aria-hidden="true"></span>Client Newsletter</div>
       <h2>Monthly Updates, <span class="grad">Firm News &amp; Money Tips</span></h2>
       <p>Practical insights to keep your finances on track all year.</p>
       <span class="nl-bar" aria-hidden="true"></span>
     </div>
+    <!-- NEWSLETTER CARDS: each news-card is one issue (date box, icon, title, short text). Copy one to add another. -->
     <div class="news-grid">
       <div class="news-card soft-card"><div class="news-top"><div class="date"><b>15</b><span>JUN</span></div>
         <span class="news-art" aria-hidden="true"><i class="fa-regular fa-calendar-days"></i><span class="bdg"><i class="fa-solid fa-dollar-sign"></i></span></span></div>
@@ -1249,10 +1551,13 @@
         <span class="news-art" aria-hidden="true"><i class="fa-regular fa-file-lines"></i><span class="bdg"><i class="fa-regular fa-clock"></i></span></span></div>
         <h3>Last-Minute Filing Tips</h3><p>Avoid the most common mistakes before the deadline.</p><span class="nl-bar" aria-hidden="true"></span></div>
     </div>
+    <!-- Subscribe button (currently just jumps to the CONTACT section). -->
     <div style="text-align:center;margin-top:44px;"><a href="#contact" class="btn-pill"><i class="fa-solid fa-envelope" aria-hidden="true"></i><span class="sep" aria-hidden="true"></span>Subscribe to the Newsletter <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div>
   </div>
 </section>
 
+<!-- ===== TAX PLANNING NEWSLETTER ===== -->
+<!-- Styles: TAX PLANNING NEWSLETTER. -->
 <!-- ===== Resources: Tax Planning Newsletter ===== -->
 <section id="tax-planning-newsletter" class="mc">
     <svg class="mc-deco tl" viewBox="0 0 340 150" aria-hidden="true"><path d="M0 0h250C190 40 120 70 0 118Z" fill="#CFE8FB" opacity=".55"/><path d="M0 104C95 72 160 38 215 0" fill="none" stroke="#5FD3E2" stroke-width="2" opacity=".7"/></svg>
@@ -1264,6 +1569,7 @@
       <h2>Strategies for <span class="grad">Proactive Tax Savings</span></h2>
       <p>Strategy-focused articles for proactive tax savings all year long.</p>
     </div>
+    <!-- ARTICLE CARDS: each art-card is one article (icon, title, text). Copy one to add another. -->
     <div class="art-grid">
       <div class="art-card soft-card"><span class="art-ic" aria-hidden="true"><i class="fa-solid fa-seedling"></i></span><div class="art-body"><h3>Maximizing Retirement Contributions</h3><p>How to use 401(k)s, IRAs, and HSAs to lower this year's tax bill while building wealth.</p></div></div>
       <div class="art-card soft-card"><span class="art-ic" aria-hidden="true"><i class="fa-solid fa-store"></i></span><div class="art-body"><h3>Small Business Entity Choices</h3><p>LLC, S-Corp, or sole proprietor? Understand the tax impact of each structure.</p></div></div>
@@ -1273,6 +1579,8 @@
   </div>
 </section>
 
+<!-- ===== TAX VIDEOS ===== -->
+<!-- The empty boxes below are filled by the TAX VIDEOS script; add or remove videos in its VIDEOS list, not here. Styles: TAX VIDEOS. -->
 <!-- ===== Resources: Tax Videos ===== -->
 <section id="tax-videos" class="mc">
     <svg class="mc-deco tl" viewBox="0 0 340 150" aria-hidden="true"><path d="M0 0h250C190 40 120 70 0 118Z" fill="#CFE8FB" opacity=".55"/><path d="M0 104C95 72 160 38 215 0" fill="none" stroke="#5FD3E2" stroke-width="2" opacity=".7"/></svg>
@@ -1284,6 +1592,7 @@
         <h2>Plain-English Answers to<br><span class="grad">Your Tax Questions</span></h2>
         <p>Short videos on the tax topics that matter most.</p>
       </div>
+      <!-- Gallery: cover/player stage (left), info and buttons (right), thumbnail strip (below). -->
       <div class="vg" id="videoGallery">
         <div class="vg-top">
           <div class="vg-stage" id="vgStage" role="tabpanel"></div>
@@ -1291,6 +1600,7 @@
             <div class="vg-count" id="vgCount"></div>
             <h2 id="vgTitle"></h2>
             <p>Plain-English answers from Max Drew, CPA. Press play, or browse every topic below.</p>
+            <!-- Prev, Next, pause auto-advance, and Ask Us About This (opens request-consultation.html). -->
             <div class="vg-nav">
               <button type="button" class="vg-btn" id="vgPrev" aria-label="Previous video"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Prev</button>
               <button type="button" class="vg-btn" id="vgNext" aria-label="Next video">Next <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
@@ -1299,6 +1609,7 @@
             </div>
           </div>
         </div>
+        <!-- Thumbnail strip with arrows; the thumbnails are added by the script. -->
         <div class="vg-stripwrap">
           <button type="button" class="vg-sarrow prev" id="vgSPrev" aria-label="Previous video"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
           <div class="vg-strip" id="vgStrip" role="tablist" aria-label="Tax videos">
@@ -1310,6 +1621,8 @@
   </div>
 </section>
 
+<!-- ===== CONTACT ===== -->
+<!-- Contact card: photo, phone, email, address and Google map. Styles: CONTACT. -->
 <!-- ===== Contact Us ===== -->
 <section id="contact" class="mc" style="padding:72px 0 84px;">
     <svg class="mc-deco tl" viewBox="0 0 340 150" aria-hidden="true"><path d="M0 0h250C190 40 120 70 0 118Z" fill="#CFE8FB" opacity=".55"/><path d="M0 104C95 72 160 38 215 0" fill="none" stroke="#5FD3E2" stroke-width="2" opacity=".7"/></svg>
@@ -1317,10 +1630,12 @@
     <span class="mc-dots tr" aria-hidden="true"></span><span class="mc-dots bl2" aria-hidden="true"></span>
     <div class="container">
       <div class="contactx">
+        <!-- Title and subtitle. -->
         <h1>Contact <span class="grad">Us</span></h1>
         <p class="sub">Have questions about your accounting needs? We are here to help. Reach out to our dedicated team today.</p>
 
         <div class="cx-grid">
+          <!-- Photo of Max at his desk (webp first, png fallback). -->
           <div class="cx-photo">
             <picture>
               <source type="image/webp" srcset="images/Max-contact-desk-700.webp 700w, images/Max-contact-desk.webp 1327w" sizes="(max-width:860px) 92vw, 46vw">
@@ -1332,17 +1647,20 @@
             <div class="cx-name"><b>Max Drew</b><span>Founder &amp; CPA</span></div>
 
             <div class="cx-cards">
+              <!-- Get In Touch card: edit phone and email here (and in the TOP BAR). -->
               <div class="cx-card">
                 <div class="h"><span class="dot"><i class="fa-solid fa-phone" aria-hidden="true"></i></span><span class="lbl">Get In Touch</span></div>
                 <div class="cx-row"><i class="fa-solid fa-phone" aria-hidden="true"></i><p><b>Phone:</b> 916-616-1789</p></div>
                 <div class="cx-row"><i class="fa-solid fa-envelope" aria-hidden="true"></i><p><b>Email:</b> ask@magnumcpa.com</p></div>
               </div>
+              <!-- Find Us card: office address. -->
               <div class="cx-card">
                 <div class="h"><span class="dot"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></span><span class="lbl">Find Us</span></div>
                 <div class="cx-row"><i class="fa-solid fa-location-dot" aria-hidden="true"></i><p><b>Address:</b> 907 Green Moss Drive, Sacramento, CA 95831</p></div>
               </div>
             </div>
 
+            <!-- Google map: change the address after q= in the src to move the pin. -->
             <div class="cx-map">
               <iframe title="Magnum CPA PC location map" loading="lazy"
                 src="https://www.google.com/maps?q=907%20Green%20Moss%20Drive%2C%20Sacramento%2C%20CA%2095831&output=embed"></iframe>
@@ -1354,14 +1672,18 @@
     </div>
 </section>
 
+<!-- ===== FOOTER ===== -->
+<!-- Logo, link columns, social icons, copyright (the year is filled in by the HEADER / NAV script). Styles: FOOTER. -->
 <!-- ===== Footer ===== -->
 <footer>
   <div class="container">
     <div class="foot-grid">
+      <!-- Column 1: logo and tagline. -->
       <div>
         <div class="brand" style="margin-bottom:14px;"><picture><source srcset="images/logo.webp" type="image/webp"><img src="images/logo.png" width="840" height="180" alt="Magnum CPA PC" loading="lazy"></picture></div>
         <p style="font-size:.9rem;">Max Drew, CPA &amp; Financial Coach.<br>Trusted by Ramsey for 10+ years.</p>
       </div>
+      <!-- Column 2: Company links. -->
       <div>
         <h4>Company</h4>
         <ul>
@@ -1371,6 +1693,7 @@
           <li><a href="https://magnumcpa.clientportal.com/#/login" target="_blank" rel="noopener">Client Portal</a></li>
         </ul>
       </div>
+      <!-- Column 3: Resources links. -->
       <div>
         <h4>Resources</h4>
         <ul>
@@ -1382,7 +1705,9 @@
       </div>
     </div>
   </div>
+  <!-- Dark bottom bar: social icons and copyright. -->
   <div class="foot-bottom"><div class="container">
+    <!-- Social links: each link is one round icon; copy one to add another network. -->
     <div class="social">
       <a href="https://www.facebook.com/max.drew.522" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
       <a href="https://www.instagram.com/magnumcpa11/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
@@ -1395,9 +1720,13 @@
   </div></div>
 </footer>
 
+<!-- ===== FLOATING BOOK BUTTON ===== -->
+<!-- Opens request-consultation.html; hidden while the hero button is on screen (HEADER / NAV script). Styles: FLOATING BOOK BUTTON. -->
 <!-- ===== Floating Book a Consultation CTA ===== -->
 <a class="book-fab" href="request-consultation.html">📅 Book a Consultation</a>
 
+<!-- ===== BOOKING POPUP ===== -->
+<!-- Shown once per visit (BOOKING POPUP script); clicking outside the card closes it. Styles: BOOKING POPUP. -->
 <!-- ===== One-time booking popup ===== -->
 <div class="bookpop-overlay" id="bookPop" onclick="if(event.target===this)closeBookPop()">
   <div class="bookpop">
@@ -1413,11 +1742,16 @@
   </div>
 </div>
 
+<!-- ===== SCRIPTS ===== -->
+<!-- The interactive parts of the page. Each part starts with a ===== NAME ===== banner matching the section names above. -->
 <script>
+  // ===== HEADER / NAV =====
   /* ===== Nav: mobile toggle + dropdown ===== */
+  // Runs once on page load: hamburger menu, mobile drop-downs, footer year, hiding the floating button.
   (function(){
     var toggle = document.getElementById('navToggle');
     var nav = document.getElementById('mainNav');
+    // Hamburger button opens/closes the menu on tablets and phones.
     if (toggle && nav){
       toggle.addEventListener('click', function(){
         nav.classList.toggle('open');
@@ -1453,7 +1787,9 @@
     }
   })();
 
+  // ===== HEADER / NAV: highlight current section =====
   /* ===== Highlight active nav link while scrolling ===== */
+  // Collects the menu links that point to sections on this page.
   (function(){
     var map = {};
     document.querySelectorAll('nav.main-nav a[href^="#"]').forEach(function(a){
@@ -1462,6 +1798,7 @@
     });
     var ids = Object.keys(map);
     if (!ids.length) return;
+    // On every scroll: find the last section whose top has passed the header line (140px) and highlight its menu link.
     function onScroll(){
       var pos = window.scrollY + 140, current = 'home';
       ids.forEach(function(id){
@@ -1475,11 +1812,14 @@
     onScroll();
   })();
 
+  // ===== MISSION + REVIEWS: review slider =====
   /* ===== Client reviews (About) — auto-rotating slideshow ===== */
+  // revIndex = review currently shown; the number of reviews is counted automatically from the HTML.
   var revIndex = 0;
   var revTrack = document.getElementById('reviewTrack');
   var revSlides = revTrack ? revTrack.children.length : 0;
   var revDotsWrap = document.getElementById('revDots');
+  // Create one dot button per review.
   if (revTrack && revSlides){
     for (var i=0;i<revSlides;i++){
       var d = document.createElement('button');
@@ -1488,6 +1828,7 @@
       revDotsWrap.appendChild(d);
     }
   }
+  // revShow(i): slide to review number i (wraps around) and highlight its dot.
   function revShow(i){
     if(!revSlides) return;
     revIndex = (i % revSlides + revSlides) % revSlides;
@@ -1495,13 +1836,18 @@
     var dots = revDotsWrap.children;
     for (var k=0;k<dots.length;k++){ dots[k].classList.toggle('active', k===revIndex); }
   }
+  // revMove(1) = next, revMove(-1) = previous; used by the arrow buttons.
   function revMove(d){ revShow(revIndex + d); }
   revShow(0);
+  // Auto-advance every 7000 ms (7 seconds). Change the number to speed up or slow down.
   if (revSlides > 1){ setInterval(function(){ revMove(1); }, 7000); }
 
 
+  // ===== BOOKING POPUP =====
   /* ===== One-time booking popup (once per browser session) ===== */
+  // Closes the popup (used by the X, the No thanks link and clicking the dark background).
   function closeBookPop(){ document.getElementById('bookPop').classList.remove('show'); }
+  // Shows the popup once per browser session: after scrolling 35% down the page, or after 25 seconds.
   (function(){
     if (sessionStorage.getItem('magnum_bookpop')) return;
     var shown = false;
@@ -1516,8 +1862,10 @@
     setTimeout(show, 25000); // fallback if they don't scroll far
   })();
 
+  // ===== SEARCH =====
   /* ===== Site search (anchors within this single page) ===== */
   (function(){
+    // INDEX: every searchable page or section. title = result heading, url = where it goes, snippet = grey line, text = extra keywords. Copy an entry to add one.
     var INDEX = [
       {title:'Home', url:'#home',
        snippet:"More than accounting — we're your strategic partner.",
@@ -1566,8 +1914,10 @@
        text:'request consultation free appointment schedule book meeting max drew cpa tax planning preparation bookkeeping financial coaching preferred date service'}
     ];
 
+    // Makes typed text safe to show inside the results.
     function escapeHtml(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
+    // Builds the search pop-up box and adds it to the page.
     var ov = document.createElement('div');
     ov.className = 'search-overlay';
     ov.innerHTML =
@@ -1584,9 +1934,11 @@
     var input = ov.querySelector('#siteSearchInput');
     var results = ov.querySelector('#siteSearchResults');
 
+    // Open (clears the box and focuses the input) and close.
     function openSearch(){ ov.classList.add('open'); input.value=''; render(''); setTimeout(function(){ input.focus(); }, 40); }
     function closeSearch(){ ov.classList.remove('open'); }
 
+    // render: scores each INDEX entry by how many typed words it contains and lists the matches, best first.
     function render(q){
       q = q.trim().toLowerCase();
       if (!q){ results.innerHTML = '<div class="search-none">Type a keyword to search across the website.</div>'; return; }
@@ -1606,6 +1958,7 @@
       }).join('');
     }
 
+    // Typing, the X button, clicking outside, and the Escape key.
     input.addEventListener('input', function(){ render(input.value); });
     ov.querySelector('.search-close').addEventListener('click', closeSearch);
     ov.addEventListener('click', function(e){ if (e.target === ov) closeSearch(); });
@@ -1616,13 +1969,16 @@
       if (a && a.getAttribute('href').charAt(0) === '#') closeSearch();
     });
 
+    // Every magnifier button in the menu opens the search.
     document.querySelectorAll('.search-btn').forEach(function(b){
       b.addEventListener('click', function(e){ e.preventDefault(); openSearch(); });
     });
   })();
 
+  // ===== TAX VIDEOS =====
   /* ===== Tax Videos gallery ===== */
   (function(){
+    // Find the gallery boxes in the HTML TAX VIDEOS section; stop if they are missing.
     var gallery = document.getElementById('videoGallery');
     var stage = document.getElementById('vgStage');
     var strip = document.getElementById('vgStrip');
@@ -1631,6 +1987,7 @@
 
     // [number, title, Google Drive file id]. Files must stay shared as
     // "Anyone with the link" or the thumbnail and player render blank.
+    // To add a video: copy a line and change the number, title and Drive file id. Order here = order shown.
     var VIDEOS = [
       ['01','Alternative Minimum Tax','1x0Dm__ntt5S04ydgcmL6n74hWmZpq5YL'],
       ['02','Audits','1bi86JDzXojyaCaSzzAHeVfNyYwkTis34'],
@@ -1678,6 +2035,7 @@
       ['47','How the IRS Contacts Taxpayers','1N92pz4iNoczwaCPnt5uZLj9JMWde6Cmk'],
       ['49','Withholding: Filling Out Form W-4','15_1MDamIXyW8rLGwysFX5-3SEDy-5IhQ']
     ];
+    // Helpers: number of videos, Google Drive thumbnail address, reduced-motion setting, text boxes, current state.
     var total = VIDEOS.length;
     var thumbUrl = function(id, w){ return 'https://drive.google.com/thumbnail?id=' + id + '&sz=w' + w; };
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -1685,12 +2043,14 @@
     var titleEl = document.getElementById('vgTitle');
     var slides = [], tabs = [], current = -1;
 
+    // el: makes a page element; withFallback: shows the title if an image fails to load.
     function el(tag, cls){ var n = document.createElement(tag); if (cls) n.className = cls; return n; }
     function withFallback(img, box, title){
       var fb = el('span', 'vg-fallback'); fb.textContent = title; box.appendChild(fb);
       img.addEventListener('error', function(){ box.classList.add('is-missing'); });
     }
 
+    // For each video, build a big slide (cover + play button) and a thumbnail button in the strip.
     VIDEOS.forEach(function(v, i){
       var title = v[1];
 
@@ -1710,6 +2070,7 @@
       stage.appendChild(slide);
       slides.push(slide);
 
+      // Thumbnail button for this video.
       var tab = el('button', 'vg-thumb');
       tab.type = 'button';
       tab.id = 'vg-tab-' + i;
@@ -1743,6 +2104,7 @@
       if (img.dataset.src){ img.src = img.dataset.src; delete img.dataset.src; }
     }
 
+    // startVideo: replaces the cover with the Google Drive player for video i.
     function startVideo(i){
       var slide = slides[i];
       if (slide.querySelector('iframe')) return;
@@ -1765,6 +2127,7 @@
       node.classList.add(cls);
     }
 
+    // select(i): switch to video i: stop any playing video, show the new cover, update title, counter and highlight.
     function select(i, focusTab){
       i = (i + total) % total;
       if (i === current) return;
@@ -1802,6 +2165,7 @@
       if (focusTab) t.focus({preventScroll: true});
     }
 
+    // Keyboard: arrow keys, Home and End move between videos.
     strip.addEventListener('keydown', function(e){
       var next = {ArrowLeft: current - 1, ArrowRight: current + 1, Home: 0, End: total - 1}[e.key];
       if (next === undefined) return;
@@ -1812,6 +2176,7 @@
       if (e.key === 'ArrowLeft'){ e.preventDefault(); select(current - 1); }
       if (e.key === 'ArrowRight'){ e.preventDefault(); select(current + 1); }
     });
+    // Prev/Next buttons (beside the title and at the ends of the strip).
     document.getElementById('vgPrev').addEventListener('click', function(){ select(current - 1); });
     document.getElementById('vgNext').addEventListener('click', function(){ select(current + 1); });
     document.getElementById('vgSPrev').addEventListener('click', function(){ select(current - 1); });
@@ -1852,6 +2217,7 @@
     prog.appendChild(bar);
     stage.appendChild(prog);
 
+    // updatePause: pauses the auto-advance timer while a video plays, the mouse is over the gallery, it is off screen, etc.
     function updatePause(){
       var playing = !!stage.querySelector('iframe');
       gallery.classList.toggle('is-playing', playing);
@@ -1859,8 +2225,10 @@
       gallery.classList.toggle('is-paused', playing || stopped || hovering || !onScreen || document.hidden ||
         !!gallery.querySelector(':focus-visible') || performance.now() < holdUntil);
     }
+    // When the progress bar fills up, go to the next video.
     bar.addEventListener('animationend', function(){ select(current + 1); });
 
+    // After a click or key press, hold auto-advance for 2.5 seconds.
     ['pointerdown', 'keydown'].forEach(function(ev){
       gallery.addEventListener(ev, function(){
         holdUntil = performance.now() + 2500;
@@ -1868,11 +2236,13 @@
         setTimeout(updatePause, 2550);
       });
     });
+    // Pause while hovering or focused, or when the browser tab is hidden.
     gallery.addEventListener('mouseenter', function(){ hovering = true; updatePause(); });
     gallery.addEventListener('mouseleave', function(){ hovering = false; updatePause(); });
     gallery.addEventListener('focusin', updatePause);
     gallery.addEventListener('focusout', function(){ setTimeout(updatePause, 0); });
     document.addEventListener('visibilitychange', updatePause);
+    // Pause/resume button.
     autoBtn.addEventListener('click', function(){
       stopped = !stopped;
       autoBtn.setAttribute('aria-pressed', stopped);
@@ -1895,6 +2265,7 @@
       }, {rootMargin: '0px 0px -20% 0px'}).observe(gallery); // fires once the top reaches 80% of the screen, however tall the gallery is
     }
 
+    // Show the first video when the page loads.
     select(0);
   })();
 </script>
