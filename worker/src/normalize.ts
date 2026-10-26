@@ -1,3 +1,12 @@
+// FILE: normalize.ts
+// WEBSITE FEATURE: tidies up names, emails and phone numbers from the
+// consultation form and the video library gate form so leads look consistent
+// (and duplicates match). Runs AFTER validate.ts and sanitize.ts.
+// USED BY: routes/lead.ts and routes/library.ts.
+//
+// Capitalizes each word and squashes extra spaces: "  jOHN   smith" -> "John Smith".
+// Input: a name. Returns: the tidied name. Caution: also turns "McDonald" into
+// "Mcdonald" and "DeShawn" into "Deshawn".
 export function normalizeName(raw: string): string {
   return raw
     .trim()
@@ -7,6 +16,7 @@ export function normalizeName(raw: string): string {
     .join(' ');
 }
 
+// Lowercases and trims an email so "Bob@X.com " and "bob@x.com" count as the same.
 export function normalizeEmail(raw: string): string {
   return raw.trim().toLowerCase();
 }
@@ -15,6 +25,8 @@ export function normalizeEmail(raw: string): string {
 // a US-focused CPA firm's contact form; a full international phone library
 // would be overkill here and isn't justified by the spec's "US phone number
 // format" requirement.
+// Input: phone as typed. Returns: "+1" + 10 digits, or the original text if it
+// isn't a 10- or 11-digit US number.
 export function normalizePhoneE164(raw: string): string {
   const digits = raw.replace(/\D/g, '');
   if (digits.length === 10) return '+1' + digits;

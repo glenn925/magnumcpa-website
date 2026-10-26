@@ -1,3 +1,11 @@
+// FILE: canopy-client.ts
+// WEBSITE FEATURE: sends each "Request a Consultation" lead (and, via
+// library-delivery.ts, video library gate leads) into Canopy, the firm's
+// practice-management software, as a new prospect.
+// USED BY: routes/lead.ts (right after a form is accepted), index.ts (the
+// 15-minute retry cron), library-delivery.ts. Does nothing until the
+// CANOPY_CLIENT_ID and CANOPY_CLIENT_SECRET secrets are set.
+//
 // Dormant-until-configured Canopy Tax client — successor to the old
 // Supabase-based supabase/functions/_shared/canopy.ts (retired; that scaffold
 // served a different feature, the client document portal, and depended on
@@ -11,10 +19,14 @@
 // This mirrors the same honest caveat the retired scaffold carried.
 import type { Env } from './kv';
 
+// The on/off switch: true only when both Canopy secrets are set. While false,
+// leads simply wait in the KV "pending:" queue. Input: env. Returns: boolean.
 export function canopyConfigured(env: Env): boolean {
   return !!(env.CANOPY_CLIENT_ID && env.CANOPY_CLIENT_SECRET);
 }
 
+// A consultation lead after it has been validated, sanitized and tidied up
+// (see routes/lead.ts). This is also what is stored in the retry queue.
 export interface NormalizedLead {
   firstName: string;
   lastName: string;
@@ -30,6 +42,9 @@ export interface NormalizedLead {
   submittedAt: string;
 }
 
+// Logs in to Canopy with the client id/secret and gets a short-lived access
+// token. Input: env. Returns: the token. Throws if Canopy refuses.
+// SIDE EFFECT: one network call to Canopy (made fresh for every lead).
 async function getToken(env: Env): Promise<string> {
   const tokenUrl = env.CANOPY_TOKEN_URL || 'https://app.canopytax.com/oauth/token'; // CONFIRM
   const resp = await fetch(tokenUrl, {
@@ -49,6 +64,8 @@ async function getToken(env: Env): Promise<string> {
 // Throws on any failure — caller is responsible for falling back to the
 // pending-KV queue so a lead is never lost just because Canopy is
 // unreachable or a call fails transiently.
+// Input: env + the lead. Returns: { canopyId } of the new prospect.
+// SIDE EFFECT: creates a real prospect record in Canopy.
 export async function createProspect(env: Env, lead: NormalizedLead): Promise<{ canopyId: string }> {
   if (!canopyConfigured(env)) throw new Error('canopy_not_configured');
 
@@ -66,6 +83,8 @@ export async function createProspect(env: Env, lead: NormalizedLead): Promise<{ 
       phone: lead.phone,
       company_name: lead.businessName || undefined,
       state: lead.state || undefined,
+      // Everything without its own Canopy field is written into the notes,
+      // one line each; empty optional lines are dropped by filter(Boolean).
       notes: [
         `Lead source: Magnum CPA website — Request a Consultation form`,
         `Submitted: ${lead.submittedAt}`,

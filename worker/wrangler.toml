@@ -1,5 +1,18 @@
+# FILE: wrangler.toml — settings Cloudflare uses when deploying this Worker
+# (the backend for the consultation form and the gated video library).
+# DEPLOY: open a terminal in the worker/ folder, run `npm test`, then
+# `npx wrangler deploy`. You must be logged in to the COMPANY Cloudflare account
+# (glenn@magnumcpa.com) — check with `npx wrangler whoami`.
+# To check this file without deploying: `npx wrangler deploy --dry-run`.
+#
+# The Worker's name in the Cloudflare dashboard; also part of its
+# *.workers.dev address. Renaming it creates a NEW Worker (the website's form
+# would still point at the old address).
 name = "magnum-cpa-lead-worker"
+# The code file Cloudflare starts from (the request router + cron handler).
 main = "src/index.ts"
+# Locks the Workers runtime behaviour to this date so Cloudflare updates can't
+# change how the code runs. Only bump it deliberately, then re-test.
 compatibility_date = "2026-01-01"
 
 # LEADS_KV  — the main site's consultation form. Do not repoint this.
@@ -7,6 +20,8 @@ compatibility_date = "2026-01-01"
 #
 # Both live in the company Cloudflare account (glenn@magnumcpa.com). The old
 # personal account's LEADS_KV (363eb08d…) was not migrated.
+# "binding" is the name the code uses (env.LEADS_KV); "id" is the database in
+# Cloudflare. Changing an id points the Worker at a different (possibly empty) database.
 kv_namespaces = [
   { binding = "LEADS_KV", id = "1dcf445a11b343ad8b73d761cd32d44c" },
   { binding = "LIBRARY_KV", id = "b11d57f561e14aec85ad3ea67a1c7e42" }
@@ -14,9 +29,13 @@ kv_namespaces = [
 
 # Flushes the pending-Canopy retry queue and rolls up raw analytics events
 # into daily/monthly counters. Runs every 15 minutes.
+# "*/15 * * * *" is cron syntax for "every 15 minutes" (times are UTC). Running
+# less often delays Canopy retries and stats; more often costs more requests.
 [triggers]
 crons = ["*/15 * * * *"]
 
+# Plain (non-secret) settings, readable in the code as env.<NAME>.
+# Anything here is visible in the repository, so never put passwords here.
 [vars]
 # Comma-separated list of origins allowed to call this Worker: the live
 # website on magnumcpa.com (bare and www), the video library on
@@ -29,8 +48,13 @@ crons = ["*/15 * * * *"]
 # For local development, override this in .dev.vars (gitignored) rather than
 # adding localhost here; a `file://` page sends `Origin: null`, which is never
 # allowlisted, so use a real static server.
+# A website NOT in this list gets blocked by the browser when submitting forms.
+# Must match exactly: include https:// and no trailing slash. Separate with commas.
 ALLOWED_ORIGINS = "https://magnumcpa.com,https://www.magnumcpa.com,https://library.magnumcpa.com,https://glenn925.github.io,https://glennnnnnn1.github.io"
 
+# Secrets are stored encrypted in Cloudflare, not in this file. From worker/
+# run `npx wrangler secret put NAME` and paste the value when asked;
+# `npx wrangler secret list` shows which are set. Each takes effect immediately.
 # Secrets (never put these here — set via `wrangler secret put <NAME>`):
 #   TURNSTILE_SECRET_KEY   (already set — required before real launch)
 #   ADMIN_PASSWORD_HASH    (video library admin; generate with

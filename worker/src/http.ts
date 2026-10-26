@@ -2,7 +2,12 @@
 // a single /lead endpoint into a small route table, so that every response —
 // lead form, video library, admin API — goes through one CORS implementation
 // instead of three drifting copies.
+//
+// In plain English: every route file (routes/lead.ts, routes/library.ts,
+// routes/admin.ts, index.ts) calls these helpers to BUILD its reply. Edit
+// here to change response headers (CORS, caching) for the whole Worker.
 
+// ===== CORS HEADER CONSTANTS =====
 // `Vary: Origin` is mandatory on every response here, not optional politeness.
 // These handlers emit a body whose Access-Control-Allow-Origin header depends
 // on the *request's* Origin. Without Vary, any cache in front of the Worker
@@ -14,6 +19,10 @@
 const VARY_SIMPLE = 'Origin';
 const VARY_PREFLIGHT = 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers';
 
+// ===== CORS ORIGIN CHECK =====
+// SECURITY: adds the Access-Control-Allow-Origin header ONLY when the caller's
+// origin is in ALLOWED_ORIGINS (wrangler.toml). Inputs: a headers object, the
+// request Origin, the allowlist. Returns the same headers object (mutated).
 // Never '*', and never reflect an origin that isn't on the allowlist.
 function allowOrigin(
   headers: Record<string, string>,
@@ -24,6 +33,10 @@ function allowOrigin(
   return headers;
 }
 
+// ===== RESPONSE BUILDERS =====
+// Builds a JSON reply. Inputs: the body object, HTTP status code (200, 400,
+// 404...), origin + allowlist for CORS, optional extra headers (e.g.
+// Cache-Control). Returns a Response. No side effects.
 export function jsonResponse(
   body: unknown,
   status: number,
@@ -42,12 +55,15 @@ export function jsonResponse(
 // Deliberately vague — never surface which specific control (rate limit,
 // spam score, Turnstile, size cap, malformed JSON) rejected a request, so an
 // attacker can't fingerprint and route around individual defenses.
+// Returns HTTP 400 with { ok: false, error: 'submission_failed' }.
 export function genericError(origin: string | null, allowedOrigins: string[]): Response {
   return jsonResponse({ ok: false, error: 'submission_failed' }, 400, origin, allowedOrigins);
 }
 
 // A CSV download. Kept separate from jsonResponse rather than widening its
 // signature, because the Content-Disposition path has no JSON body to encode.
+// Used by the admin "Download CSV" button (GET /api/admin/leads.csv). The
+// browser saves it under `filename`; no-store stops it being cached.
 export function csvResponse(
   csv: string,
   filename: string,
@@ -63,6 +79,8 @@ export function csvResponse(
   return new Response(csv, { status: 200, headers: allowOrigin(headers, origin, allowedOrigins) });
 }
 
+// An empty "204 No Content" reply. Used by the analytics beacon
+// (POST /api/track), which never needs a body back.
 export function noContent(origin: string | null, allowedOrigins: string[]): Response {
   const headers: Record<string, string> = { Vary: VARY_SIMPLE };
   return new Response(null, { status: 204, headers: allowOrigin(headers, origin, allowedOrigins) });
@@ -72,6 +90,9 @@ export function noContent(origin: string | null, allowedOrigins: string[]): Resp
 // route table existed (POST, OPTIONS / Content-Type) so the live consultation
 // form on index.html sees zero change; only /api/* advertises the wider method
 // set and the Authorization header the admin routes need.
+// ===== CORS PREFLIGHT =====
+// Answers the browser's OPTIONS pre-check (called from index.ts). Returns 204
+// with the allowed methods/headers; the origin still has to be on the allowlist.
 export function corsPreflight(pathname: string, origin: string | null, allowedOrigins: string[]): Response {
   const isApi = pathname.startsWith('/api/');
   const headers: Record<string, string> = {
@@ -79,6 +100,8 @@ export function corsPreflight(pathname: string, origin: string | null, allowedOr
     'Access-Control-Allow-Headers': isApi ? 'Content-Type, Authorization' : 'Content-Type',
     Vary: VARY_PREFLIGHT,
   };
+  // Lets the browser remember the /api/* preflight answer for 86400 seconds
+  // (24 hours) so it doesn't re-ask before every admin call.
   if (isApi) headers['Access-Control-Max-Age'] = '86400';
   return new Response(null, { status: 204, headers: allowOrigin(headers, origin, allowedOrigins) });
 }

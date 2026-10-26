@@ -2,10 +2,22 @@
 // merging. No KV, no env, no imports — so it is directly unit-testable and the
 // I/O half (analytics.ts) stays thin enough to read in one sitting.
 
+// ===== FILE OVERVIEW (plain English) =====
+// Helper math for the video library's Analytics tab. Used by analytics.ts
+// (and routes/library.ts for bucketReferrer). Edit here to add a new traffic
+// source (SOURCE_PATTERNS) or a new event type.
+// ===== TIME BUCKETS =====
+// Events are grouped into 15-minute "buckets". Bucket number = minutes since
+// 1970 divided by 15. If you change the cron in wrangler.toml, change this too.
 export const BUCKET_MS = 15 * 60 * 1000; // must match the cron interval
 
+// The four kinds of events counted: video play, "book a call" button click,
+// category filter click, and a gate-form sign-up.
 export type EventType = 'play' | 'cta' | 'filter' | 'lead';
 
+// One stats document (used for a day, a month, or all-time totals). Each map
+// is "name -> count": plays per video id, plays per category, filter clicks
+// per category, CTA clicks per button, sign-ups per traffic source.
 export interface StatsDoc {
   plays: Record<string, number>;
   catPlays: Record<string, number>;
@@ -15,14 +27,17 @@ export interface StatsDoc {
   leads: number;
 }
 
+// Returns a new stats document with every count at zero.
 export function emptyStats(): StatsDoc {
   return { plays: {}, catPlays: {}, filters: {}, cta: {}, sources: {}, leads: 0 };
 }
 
+// Converts a timestamp (milliseconds) into its 15-minute bucket number.
 export function bucketOf(ms: number): number {
   return Math.floor(ms / BUCKET_MS);
 }
 
+// Converts a bucket number back to its UTC day / month string.
 export function dayOf(bucket: number): string {
   return new Date(bucket * BUCKET_MS).toISOString().slice(0, 10); // YYYY-MM-DD
 }
@@ -34,8 +49,11 @@ export function monthOf(bucket: number): string {
 // Targets are embedded in a KV key name, so they're restricted to a safe
 // character set — a colon in particular would corrupt the key structure that
 // parseEventKey relies on. Anything else is dropped rather than escaped.
+// ===== SECURITY: SAFE TARGET CHECK =====
+// Allowed: letters, digits, "_" and "-", 1 to 64 characters long.
 const SAFE_TARGET = /^[A-Za-z0-9_-]{1,64}$/;
 
+// Returns true if the string is safe to put inside an event key name.
 export function isSafeTarget(s: string): boolean {
   return SAFE_TARGET.test(s);
 }
@@ -43,6 +61,9 @@ export function isSafeTarget(s: string): boolean {
 // Referrers are bucketed to a fixed set before they are ever used as a key.
 // Storing raw hosts would let anyone who can reach the gate page mint
 // unbounded new KV keys just by linking to it from a domain they control.
+// ===== TRAFFIC SOURCE LIST =====
+// Each row: [pattern matching the referring website's host, label shown in
+// the admin panel]. First match wins. Add a row to track a new source.
 const SOURCE_PATTERNS: Array<[RegExp, string]> = [
   [/(^|\.)canopytax\.com$/i, 'canopy'],
   [/(^|\.)google\./i, 'google'],
@@ -56,21 +77,28 @@ const SOURCE_PATTERNS: Array<[RegExp, string]> = [
   [/(^|\.)magnumcpa\.com$/i, 'website'],
 ];
 
+// Input: the raw referrer URL the browser reported. Returns a label from
+// SOURCE_PATTERNS, or 'direct' (no referrer) / 'other' (unknown or invalid).
 export function bucketReferrer(referrer: string): string {
   const raw = (referrer || '').trim();
+  // No referrer at all = visitor typed the address or used a bookmark.
   if (!raw) return 'direct';
   let host: string;
+  // Not a valid URL -> 'other'.
   try {
     host = new URL(raw).hostname;
   } catch {
     return 'other';
   }
+  // Check the host against each known source in order.
   for (const [re, label] of SOURCE_PATTERNS) {
     if (re.test(host)) return label;
   }
   return 'other';
 }
 
+// ===== EVENT KEY PARSING =====
+// One event read back out of its KV key name.
 export interface ParsedEvent {
   bucket: number;
   type: EventType;
@@ -78,6 +106,8 @@ export interface ParsedEvent {
 }
 
 // Key shape: ev:{bucket}:{type}:{target}:{uuid}
+// Input: a key name. Returns the parsed event, or null if the key is malformed
+// (wrong number of parts, unknown type, unsafe target) so it gets ignored.
 export function parseEventKey(name: string): ParsedEvent | null {
   const parts = name.split(':');
   if (parts.length !== 5 || parts[0] !== 'ev') return null;
@@ -89,10 +119,13 @@ export function parseEventKey(name: string): ParsedEvent | null {
   return { bucket, type, target: parts[3] };
 }
 
+// ===== COUNTER MATH =====
+// Adds `by` (default 1) to map[key], starting from 0 if the key is new.
 export function bump(map: Record<string, number>, key: string, by = 1): void {
   map[key] = (map[key] || 0) + by;
 }
 
+// Adds every count in `src` onto `target` (changes `target` in place).
 export function mergeInto(target: StatsDoc, src: StatsDoc): void {
   for (const k of Object.keys(src.plays)) bump(target.plays, k, src.plays[k]);
   for (const k of Object.keys(src.catPlays)) bump(target.catPlays, k, src.catPlays[k]);
@@ -111,18 +144,22 @@ export function applyEvent(
   categoryOf: (videoId: string) => string | undefined
 ): void {
   switch (ev.type) {
+    // A video play: count it per video and per that video's category.
     case 'play': {
       bump(doc.plays, ev.target);
       const cat = categoryOf(ev.target);
       if (cat) bump(doc.catPlays, cat);
       break;
     }
+    // "Book a call" button click, per button.
     case 'cta':
       bump(doc.cta, ev.target);
       break;
+    // Category filter button click, per category.
     case 'filter':
       bump(doc.filters, ev.target);
       break;
+    // Gate-form sign-up: add to the lead total and to its traffic source.
     case 'lead':
       doc.leads += 1;
       bump(doc.sources, ev.target);

@@ -1,3 +1,11 @@
+// FILE: kv.ts
+// WEBSITE FEATURE: storage for everything — the consultation form and the video
+// library. KV is Cloudflare's simple key/value database; the two "namespaces"
+// (databases) are connected to this Worker in wrangler.toml.
+// USED BY: almost every other file (Env type + read/write helpers).
+// The key map below is the best place to look when finding data in the
+// Cloudflare dashboard (Workers & Pages > KV).
+//
 // Typed helpers over the KV namespaces.
 //
 // LEADS_KV — the main site's consultation form (unchanged):
@@ -28,6 +36,9 @@
 //   vlpending:{uuid}            gate leads awaiting delivery (library-delivery.ts)
 //   vldeadletter:{uuid}         gate leads that exhausted delivery retries
 
+// Everything the Worker receives from Cloudflare: the KV databases (bound in
+// wrangler.toml), plain settings ([vars] in wrangler.toml) and secrets (set
+// with `npx wrangler secret put NAME`). Add a field here when adding a new one.
 export interface Env {
   LEADS_KV: KVNamespace;
   LIBRARY_KV: KVNamespace;
@@ -49,6 +60,9 @@ export interface Env {
   LEAD_WEBHOOK_URL?: string;
 }
 
+// Reads one key and turns its JSON text back into an object.
+// Inputs: namespace, key, optional cache seconds. Returns: the object, or null
+// if the key is missing or not valid JSON. Read-only.
 export async function kvGetJSON<T>(kv: KVNamespace, key: string, cacheTtl?: number): Promise<T | null> {
   // cacheTtl lets hot, rarely-changing documents (settings, the video list) be
   // served from Cloudflare's edge cache instead of costing a KV read on every
@@ -59,10 +73,15 @@ export async function kvGetJSON<T>(kv: KVNamespace, key: string, cacheTtl?: numb
   try { return JSON.parse(raw) as T; } catch { return null; }
 }
 
+// Saves any value as JSON under a key. SIDE EFFECT: writes to KV.
+// ttlSeconds (optional) makes Cloudflare auto-delete the key after that many
+// seconds; Cloudflare requires at least 60. Leave it out to keep the key forever.
 export async function kvPutJSON(kv: KVNamespace, key: string, value: unknown, ttlSeconds?: number): Promise<void> {
   await kv.put(key, JSON.stringify(value), ttlSeconds ? { expirationTtl: ttlSeconds } : undefined);
 }
 
+// Lists up to `limit` (max 1000) key names starting with `prefix` — one page
+// only. Used by the cron to find pending Canopy leads. Read-only.
 export async function kvListPrefix(kv: KVNamespace, prefix: string, limit = 1000) {
   return kv.list({ prefix, limit });
 }
@@ -70,6 +89,7 @@ export async function kvListPrefix(kv: KVNamespace, prefix: string, limit = 1000
 // Lists every key under a prefix, following cursors past KV's per-call cap.
 // Each page costs a subrequest, so `maxPages` bounds the worst case rather
 // than letting one call blow the Worker's subrequest budget.
+// Returns: an array of key names (at most maxPages x 1000). Read-only.
 export async function kvListAll(kv: KVNamespace, prefix: string, maxPages = 10): Promise<string[]> {
   const names: string[] = [];
   let cursor: string | undefined;
@@ -83,6 +103,7 @@ export async function kvListAll(kv: KVNamespace, prefix: string, maxPages = 10):
   return names;
 }
 
+// Returns a new random unique id (used in key names and video ids).
 export function uuid(): string {
   return crypto.randomUUID();
 }
