@@ -47,6 +47,12 @@ if %errorlevel% equ 0 (
 set TIMESTAMP=%date% %time%
 git commit -m "Update site — %TIMESTAMP%"
 
+:: Bring in anything GitHub added on its side first (e.g. the CNAME file
+:: that connects magnumcpa.com) so the push isn't rejected
+echo.
+echo Getting latest changes from GitHub...
+git pull --ff-only origin main
+
 :: Push to GitHub
 echo.
 echo Pushing to GitHub...

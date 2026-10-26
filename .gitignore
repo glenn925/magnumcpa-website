@@ -1,2 +1,5 @@
 # Personal Claude Code settings — not part of the website
 .claude/settings.local.json
+
+# Version snapshots (zips) stay on this computer; GitHub tags are the online copy
+versions/snapshots/
