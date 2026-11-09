@@ -5,6 +5,11 @@
 <!-- Basic page info: character set, phone scaling, tab title, Google description, icons, fonts. -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ===== CLEAN ADDRESS ===== -->
+<!-- The one official address of this page, for Google. Never end it in .html. -->
+<link rel="canonical" href="https://www.magnumcpa.com/">
+<!-- Someone opened an old link ending in .html: show the clean address instead (no reload). -->
+<script>(function(){try{if(!/^https?:$/.test(location.protocol))return;var p=location.pathname,c=p.replace(/(^|\/)index\.html$/,'$1').replace(/\.html$/,'');if(c!==p)history.replaceState(history.state,'',c+location.search+location.hash);}catch(_){}})();</script>
 <!-- Browser tab title and the description Google shows in search results. Edit the text between the quotes. -->
 <title>Magnum CPA PC — Max Drew, CPA | Trusted by Ramsey</title>
 <meta name="description" content="Magnum CPA PC — Max Drew, CPA &amp; Financial Coach. Ramsey Trusted for 10+ years. Tax planning, preparation, and financial coaching.">
@@ -1119,17 +1124,17 @@
 </style>
 <!-- ===== PAGE TRANSITIONS ===== -->
 <!-- Script 1: zoom animation when opening a service page from the Services menu (browsers that support it). -->
-<script>/* links in the Services dropdown (and Switch service) mark the next navigation as a zoom */(function(){var K='vtZoom',RE=/(tax-preparation-planning|bookkeeping-payroll|business-consulting|future-security)\.html$/;function tag(e){try{if(e.viewTransition&&sessionStorage.getItem(K))e.viewTransition.types.add('zoom');}catch(_){}}addEventListener('pageswap',tag);addEventListener('pagereveal',function(e){tag(e);try{sessionStorage.removeItem(K);}catch(_){}});document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('.submenu a');if(a&&RE.test(a.getAttribute('href')||'')){try{sessionStorage.setItem(K,'1');}catch(_){}}},true);})();</script>
+<script>/* links in the Services dropdown (and Switch service) mark the next navigation as a zoom */(function(){var K='vtZoom',RE=/(tax-preparation-planning|bookkeeping-payroll|business-consulting|future-security)(\.html)?$/;function tag(e){try{if(e.viewTransition&&sessionStorage.getItem(K))e.viewTransition.types.add('zoom');}catch(_){}}addEventListener('pageswap',tag);addEventListener('pagereveal',function(e){tag(e);try{sessionStorage.removeItem(K);}catch(_){}});document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('.submenu a');if(a&&RE.test(a.getAttribute('href')||'')){try{sessionStorage.setItem(K,'1');}catch(_){}}},true);})();</script>
 <!-- ===== #request REDIRECT ===== -->
 <!-- Script 2: the form moved to request-consultation.html; old links ending in #request are sent there. -->
-<script>/* the request form moved to its own page; keep old #request links working */if(location.hash==='#request')location.replace('request-consultation.html'+location.search);</script>
+<script>/* the request form moved to its own page; keep old #request links working */if(location.hash==='#request')location.replace('request-consultation'+location.search);</script>
 <!-- Script 3: the curtain wipe between this page and request-consultation.html (styles: PAGE TRANSITIONS). -->
 <script>
   /* Curtain wipe to and from the request form: the panel slides in over this page, the next page
      opens covered, then the panel slides off it. Reduced motion gets a quick fade instead. */
   (function(){
     // K = memory key; FORM = the page that gets the curtain effect; d and html are shortcuts.
-    var K = 'curtain', FORM = 'request-consultation.html', d = document, html = d.documentElement;
+    var K = 'curtain', FORM = 'request-consultation', d = document, html = d.documentElement;
     var reduce = matchMedia('(prefers-reduced-motion: reduce)'), EASE = 'cubic-bezier(.32,.72,0,1)';
     // ms: animation length in milliseconds (450, or 150 for reduced motion). frames: the slide (or fade) steps.
     function ms(){ return reduce.matches ? 150 : 450; }
@@ -1137,8 +1142,8 @@
       if (reduce.matches) return entering ? [{opacity:0, transform:'none'}, {opacity:1, transform:'none'}] : [{opacity:1, transform:'none'}, {opacity:0, transform:'none'}];
       return entering ? [{transform:'translateX(-101%)'}, {transform:'translateX(0)'}] : [{transform:'translateX(0)'}, {transform:'translateX(101%)'}];
     }
-    // page: the file name of an address, e.g. index.html.
-    function page(u){ return u.pathname.split('/').pop() || 'index.html'; }
+    // page: the page name of an address without .html, e.g. request-consultation ('index' for the home page).
+    function page(u){ var f = u.pathname.split('/').pop().replace(/\.html$/, ''); return f && f !== 'index' ? f : 'index'; }
 
     // If the previous page set the memory key, this page starts covered and then uncovers itself.
     var arriving = false;
@@ -1201,7 +1206,7 @@
 <!-- ===== Announcement / booking banner ===== -->
 <div class="announce">
   <span>🎯 New clients: your <b>first consultation is free</b> — limited weekly spots.</span>
-  <a href="request-consultation.html">Book Now →</a>
+  <a href="request-consultation">Book Now →</a>
 </div>
 
 <!-- ===== TOP BAR ===== -->
@@ -1220,7 +1225,7 @@
 <header class="site-header">
   <div class="container nav-inner">
     <!-- Logo (click goes to the top). Replace images/logo.webp and logo.png to change it. -->
-    <a href="#home" class="brand"><picture><source srcset="images/logo.webp" type="image/webp"><img src="images/logo.png" width="840" height="180" alt="Magnum CPA PC — Tax · Accounting · Advisory" fetchpriority="high"></picture></a>
+    <a href="./" class="brand"><picture><source srcset="images/logo.webp" type="image/webp"><img src="images/logo.png" width="840" height="180" alt="Magnum CPA PC — Tax · Accounting · Advisory" fetchpriority="high"></picture></a>
 
     <!-- Hamburger button, only visible on tablets and phones. -->
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -1230,16 +1235,16 @@
     <!-- Menu items: each li is one link. Copy an li line to add a menu item. -->
     <nav class="main-nav" id="mainNav">
       <ul>
-        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="./" class="active">Home</a></li>
         <li><a href="#about">About Us</a></li>
         <!-- Services drop-down: links to the four service pages. -->
         <li class="has-sub">
           <a href="#services" class="sub-toggle">Services ▾</a>
           <ul class="submenu">
-            <li><a href="tax-preparation-planning.html">Tax Preparation &amp; Planning</a></li>
-            <li><a href="bookkeeping-payroll.html">Bookkeeping &amp; Payroll</a></li>
-            <li><a href="business-consulting.html">Business Consulting</a></li>
-            <li><a href="future-security.html">Future Security</a></li>
+            <li><a href="tax-preparation-planning">Tax Preparation &amp; Planning</a></li>
+            <li><a href="bookkeeping-payroll">Bookkeeping &amp; Payroll</a></li>
+            <li><a href="business-consulting">Business Consulting</a></li>
+            <li><a href="future-security">Future Security</a></li>
             <li><a href="#services">All Services</a></li>
           </ul>
         </li>
@@ -1252,13 +1257,13 @@
             <li><a href="#tax-videos">Tax Videos</a></li>
             <!-- The client video library: its own site, so it opens in a new tab like the Client Portal. -->
             <li><a href="https://library.magnumcpa.com" target="_blank" rel="noopener">Video Library</a></li>
-            <li><a href="financial-calculators.html">Financial Calculators</a></li>
+            <li><a href="financial-calculators">Financial Calculators</a></li>
           </ul>
         </li>
         <!-- Opens the Canopy client portal in a new tab. -->
         <li><a href="https://magnumcpa.clientportal.com/#/login" target="_blank" rel="noopener">Client Portal</a></li>
         <!-- Opens the consultation form page (request-consultation.html). -->
-        <li><a href="request-consultation.html">Request Consultation</a></li>
+        <li><a href="request-consultation">Request Consultation</a></li>
         <li><a href="#contact">Contact Us</a></li>
         <!-- Magnifier icon that opens the SEARCH box. -->
         <li class="search-li"><a href="#" class="search-btn" aria-label="Search the site">🔍</a></li>
@@ -1287,7 +1292,7 @@
         <p class="lede">At Magnum CPA PC, we provide more than numbers. We deliver personalized tax, accounting, and advisory solutions that help you grow, protect, and build a stronger financial future.</p>
         <!-- Main booking button; opens the form on request-consultation.html. -->
         <div class="hero-cta">
-          <a href="request-consultation.html" class="btn">Schedule a Consultation <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          <a href="request-consultation" class="btn">Schedule a Consultation <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
         </div>
       </div>
     </div>
@@ -1454,7 +1459,7 @@
               <li>IRS representation and support</li>
               <li>Year-round tax advisory</li>
             </ul>
-            <a class="svc-more" href="tax-preparation-planning.html">Learn More <i class="fa-solid fa-chevron-right" aria-hidden="true"></i><span class="sr-only"> about Tax Preparation and Planning</span></a>
+            <a class="svc-more" href="tax-preparation-planning">Learn More <i class="fa-solid fa-chevron-right" aria-hidden="true"></i><span class="sr-only"> about Tax Preparation and Planning</span></a>
           </div>
         </article>
         <!-- Card 2: Bookkeeping and Payroll -->
@@ -1472,7 +1477,7 @@
               <li>Financial statement preparation</li>
               <li>Clean-up and catch-up services</li>
             </ul>
-            <a class="svc-more" href="bookkeeping-payroll.html">Learn More <i class="fa-solid fa-chevron-right" aria-hidden="true"></i><span class="sr-only"> about Bookkeeping and Payroll Services</span></a>
+            <a class="svc-more" href="bookkeeping-payroll">Learn More <i class="fa-solid fa-chevron-right" aria-hidden="true"></i><span class="sr-only"> about Bookkeeping and Payroll Services</span></a>
           </div>
         </article>
         <!-- Card 3: Business Consulting -->
@@ -1490,7 +1495,7 @@
               <li>Financial analysis and forecasting</li>
               <li>Succession and growth planning</li>
             </ul>
-            <a class="svc-more" href="business-consulting.html">Learn More <i class="fa-solid fa-chevron-right" aria-hidden="true"></i><span class="sr-only"> about Business Consulting</span></a>
+            <a class="svc-more" href="business-consulting">Learn More <i class="fa-solid fa-chevron-right" aria-hidden="true"></i><span class="sr-only"> about Business Consulting</span></a>
           </div>
         </article>
         <!-- Card 4: Future Security -->
@@ -1508,7 +1513,7 @@
               <li>Estate and legacy planning</li>
               <li>Life and business protection</li>
             </ul>
-            <a class="svc-more" href="future-security.html">Learn More <i class="fa-solid fa-chevron-right" aria-hidden="true"></i><span class="sr-only"> about Future Security</span></a>
+            <a class="svc-more" href="future-security">Learn More <i class="fa-solid fa-chevron-right" aria-hidden="true"></i><span class="sr-only"> about Future Security</span></a>
           </div>
         </article>
       </div>
@@ -1521,7 +1526,7 @@
     <div class="container">
       <h2>Ready to take control of <span class="grad-light">your taxes?</span></h2>
       <p>Work with a CPA that Ramsey has trusted for over 10 years.</p>
-      <a href="request-consultation.html" class="btn">Schedule Your Free Consultation <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+      <a href="request-consultation" class="btn">Schedule Your Free Consultation <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
     </div>
   </div>
 </section>
@@ -1607,7 +1612,7 @@
               <button type="button" class="vg-btn" id="vgPrev" aria-label="Previous video"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Prev</button>
               <button type="button" class="vg-btn" id="vgNext" aria-label="Next video">Next <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
               <button type="button" class="vg-btn vg-auto" id="vgAuto" aria-pressed="false" aria-label="Pause auto-advance">&#10074;&#10074;</button>
-              <a class="vg-btn solid" href="request-consultation.html"><i class="fa-solid fa-comment-dots" aria-hidden="true"></i> Ask Us About This</a>
+              <a class="vg-btn solid" href="request-consultation"><i class="fa-solid fa-comment-dots" aria-hidden="true"></i> Ask Us About This</a>
             </div>
           </div>
         </div>
@@ -1702,7 +1707,7 @@
           <li><a href="#client-newsletter">Client Newsletter</a></li>
           <li><a href="#tax-planning-newsletter">Tax Planning Newsletter</a></li>
           <li><a href="#tax-videos">Tax Videos</a></li>
-          <li><a href="financial-calculators.html">Financial Calculators</a></li>
+          <li><a href="financial-calculators">Financial Calculators</a></li>
         </ul>
       </div>
     </div>
@@ -1725,7 +1730,7 @@
 <!-- ===== FLOATING BOOK BUTTON ===== -->
 <!-- Opens request-consultation.html; hidden while the hero button is on screen (HEADER / NAV script). Styles: FLOATING BOOK BUTTON. -->
 <!-- ===== Floating Book a Consultation CTA ===== -->
-<a class="book-fab" href="request-consultation.html">📅 Book a Consultation</a>
+<a class="book-fab" href="request-consultation">📅 Book a Consultation</a>
 
 <!-- ===== BOOKING POPUP ===== -->
 <!-- Shown once per visit (BOOKING POPUP script); clicking outside the card closes it. Styles: BOOKING POPUP. -->
@@ -1738,7 +1743,7 @@
       <p>Book a free consultation with Max Drew, CPA — Ramsey Trusted for 10+ years.</p>
     </div>
     <div class="body">
-      <a href="request-consultation.html" class="btn" style="display:inline-block;" onclick="closeBookPop()">Schedule My Free Consultation</a>
+      <a href="request-consultation" class="btn" style="display:inline-block;" onclick="closeBookPop()">Schedule My Free Consultation</a>
       <div style="margin-top:12px;"><a href="#" onclick="closeBookPop();return false;" style="color:var(--muted);font-size:.85rem;">No thanks, maybe later</a></div>
     </div>
   </div>
@@ -1769,8 +1774,8 @@
         }
       });
     });
-    // Close mobile nav after picking an in-page anchor
-    document.querySelectorAll('nav.main-nav a[href^="#"]').forEach(function(a){
+    // Close mobile nav after picking an in-page anchor (or Home, whose link is ./)
+    document.querySelectorAll('nav.main-nav a[href^="#"], nav.main-nav a[href="./"]').forEach(function(a){
       a.addEventListener('click', function(){
         if (a.classList.contains('sub-toggle') && a.getAttribute('href') === '#') return;
         nav.classList.remove('open');
@@ -1791,11 +1796,12 @@
 
   // ===== HEADER / NAV: highlight current section =====
   /* ===== Highlight active nav link while scrolling ===== */
-  // Collects the menu links that point to sections on this page.
+  // Collects the menu links that point to sections on this page (Home's link ./ counts as the hero, id home).
   (function(){
     var map = {};
-    document.querySelectorAll('nav.main-nav a[href^="#"]').forEach(function(a){
-      var id = a.getAttribute('href').slice(1);
+    document.querySelectorAll('nav.main-nav a[href^="#"], nav.main-nav a[href="./"]').forEach(function(a){
+      var href = a.getAttribute('href');
+      var id = href === './' ? 'home' : href.slice(1);
       if (id) map[id] = a;
     });
     var ids = Object.keys(map);
@@ -1812,6 +1818,49 @@
     }
     window.addEventListener('scroll', onScroll, {passive:true});
     onScroll();
+  })();
+
+  // ===== CLEAN ADDRESS: no #section in the address bar =====
+  // Links to a part of this page (#about, #contact, the logo and Home) scroll there without adding
+  // "#about" to the address. Arriving from another page with a #section (e.g. ./#contact) scrolls
+  // there, then tidies the address back to magnumcpa.com/. Old links ending in #request are handled
+  // earlier, in the head (#request REDIRECT).
+  (function(){
+    var smooth = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // where(hash): the section a #name points to (null for the top of the page)
+    function where(hash){
+      if (!hash || hash === '#' || hash === '#home') return null;
+      try{ return document.getElementById(decodeURIComponent(hash.slice(1))); }catch(_){ return null; }
+    }
+    function go(el, animate){
+      var b = animate && smooth ? 'smooth' : 'auto';
+      if (el) el.scrollIntoView({behavior:b}); else window.scrollTo({top:0, behavior:b});
+    }
+    function tidy(){
+      try{ history.replaceState(history.state, '', location.pathname + location.search); }catch(_){}
+    }
+    // Arrived with a #section: jump there (again once images have loaded, in case the page shifted).
+    if (location.hash){
+      var el = where(location.hash);
+      tidy();
+      go(el, false);
+      window.addEventListener('load', function(){ go(el, false); });
+    }
+    // same(u): true when address u is this page (/, /index or /index.html, same ?query).
+    function norm(p){ return p.replace(/(index)?(\.html)?$/, ''); }
+    function same(u){ return u.origin === location.origin && norm(u.pathname) === norm(location.pathname) && u.search === location.search; }
+    document.addEventListener('click', function(e){
+      if (e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var a = e.target.closest && e.target.closest('a[href]');
+      if (!a || a.target === '_blank') return;
+      var href = a.getAttribute('href');
+      if (href === '#'){ e.preventDefault(); return; }   // menu toggles such as Resources
+      var u = new URL(a.href, location.href);
+      if (!same(u)) return;
+      e.preventDefault();
+      go(where(u.hash), true);
+      if (location.hash) tidy();
+    });
   })();
 
   // ===== MISSION + REVIEWS: review slider =====
@@ -1869,7 +1918,7 @@
   (function(){
     // INDEX: every searchable page or section. title = result heading, url = where it goes, snippet = grey line, text = extra keywords. Copy an entry to add one.
     var INDEX = [
-      {title:'Home', url:'#home',
+      {title:'Home', url:'./',
        snippet:"More than accounting — we're your strategic partner.",
        text:'home magnum cpa pc max drew strategic growth tax advantage proactive accounting expert tax planning financial coaching ramsey trusted consultation california'},
       {title:'About Us', url:'#about',
@@ -1881,16 +1930,16 @@
       {title:'Services', url:'#services',
        snippet:'Tax preparation & planning, bookkeeping, consulting, future security.',
        text:'services tax preparation planning bookkeeping payroll business consulting future security wealth management retirement estate planning filings liabilities growth efficiency'},
-      {title:'Tax Preparation and Planning', url:'tax-preparation-planning.html',
+      {title:'Tax Preparation and Planning', url:'tax-preparation-planning',
        snippet:'We help you stay compliant and maximize your tax savings with strategic, year-round planning.',
        text:'tax preparation and planning tax preparation individual & business tax returns tax planning and projections irs representation and support year-round tax advisory'},
-      {title:'Bookkeeping and Payroll Services', url:'bookkeeping-payroll.html',
+      {title:'Bookkeeping and Payroll Services', url:'bookkeeping-payroll',
        snippet:'Accurate records and timely payroll so you can focus on what matters most — your business.',
        text:'bookkeeping and payroll services bookkeeping & payroll daily/monthly bookkeeping payroll processing & tax filings financial statement preparation clean-up and catch-up services'},
-      {title:'Business Consulting', url:'business-consulting.html',
+      {title:'Business Consulting', url:'business-consulting',
        snippet:'Strategic insights and practical solutions to drive growth, improve efficiency, and increase profitability.',
        text:'business consulting business consulting business strategy and planning operational improvement financial analysis and forecasting succession and growth planning'},
-      {title:'Future Security', url:'future-security.html',
+      {title:'Future Security', url:'future-security',
        snippet:'Build, protect, and grow your wealth with a holistic approach to retirement, wealth management, and estate planning.',
        text:'future security future security retirement planning wealth management estate and legacy planning life and business protection'},
       {title:'Client Newsletter', url:'#client-newsletter',
@@ -1902,7 +1951,7 @@
       {title:'Tax Videos', url:'#tax-videos',
        snippet:'Plain-English videos on key tax topics.',
        text:'tax videos watch learn alternative minimum tax amt audits cancellation of debt insolvency capital gains losses charitable contributions noncash recordkeeping clergy consumer credit crowdfunding dependent digital assets crypto divorce education estimated quarterly taxes extension families children filing status foreign bank accounts fbar gambling high income hobby business household employees identity theft itemized deductions casualty homeowners interest medical kiddie tax like-kind exchange moving expenses multi-state new tax law principal residence home sale standard deduction stock options tax facts figures scams social security irs notice tipped employees trump accounts irs contacts withholding w-4'},
-      {title:'Financial Calculators', url:'financial-calculators.html',
+      {title:'Financial Calculators', url:'financial-calculators',
        snippet:'Tax, retirement, mortgage, loan, savings & business calculators.',
        text:'financial calculators tax payroll 1040 marginal estate retirement roth ira 401k social security rmd mortgage piti arm loan amortization auto savings college net worth business cash flow breakeven valuation rent vs buy'},
       {title:'Client Portal', url:'https://magnumcpa.clientportal.com/#/login', target:true,
@@ -1911,7 +1960,7 @@
       {title:'Contact Us', url:'#contact',
        snippet:'Phone, email, and our Sacramento office location.',
        text:'contact us phone 916 616 1789 email info ask magnumcpa find us 907 green moss drive sacramento ca 95831 map directions location office hours'},
-      {title:'Request a Consultation', url:'request-consultation.html',
+      {title:'Request a Consultation', url:'request-consultation',
        snippet:'Request your free consultation with Max Drew, CPA.',
        text:'request consultation free appointment schedule book meeting max drew cpa tax planning preparation bookkeeping financial coaching preferred date service'}
     ];
@@ -1965,10 +2014,10 @@
     ov.querySelector('.search-close').addEventListener('click', closeSearch);
     ov.addEventListener('click', function(e){ if (e.target === ov) closeSearch(); });
     document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeSearch(); });
-    // close overlay when an in-page result is chosen
+    // close overlay when an in-page result is chosen (a #section, or ./ for Home)
     results.addEventListener('click', function(e){
-      var a = e.target.closest('a');
-      if (a && a.getAttribute('href').charAt(0) === '#') closeSearch();
+      var a = e.target.closest('a'), h = a && a.getAttribute('href');
+      if (h && (h.charAt(0) === '#' || h === './')) closeSearch();
     });
 
     // Every magnifier button in the menu opens the search.

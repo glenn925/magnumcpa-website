@@ -6,6 +6,11 @@
      into the four service pages by tools/gen_services.py. Re-run it after editing. -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ===== CLEAN ADDRESS ===== -->
+<!-- The one official address of this page, for Google. Never end it in .html. -->
+<link rel="canonical" href="https://www.magnumcpa.com/tax-preparation-planning">
+<!-- Someone opened an old link ending in .html: show the clean address instead (no reload). -->
+<script>(function(){try{if(!/^https?:$/.test(location.protocol))return;var p=location.pathname,c=p.replace(/(^|\/)index\.html$/,'$1').replace(/\.html$/,'');if(c!==p)history.replaceState(history.state,'',c+location.search+location.hash);}catch(_){}})();</script>
 <!-- Browser tab title and Google description. The generator swaps these two lines for each
      service page by exact text, so if you reword them, update the same text in tools/gen_services.py. -->
 <title>Tax Preparation and Planning — Magnum CPA PC</title>
@@ -439,14 +444,14 @@
 </style>
 <!-- ===== PAGE-ZOOM HELPER (one-line script) =====
      When you click a service in the Services menu, it remembers that, so the next page zooms in. -->
-<script>/* links in the Services dropdown (and Switch service) mark the next navigation as a zoom */(function(){var K='vtZoom',RE=/(tax-preparation-planning|bookkeeping-payroll|business-consulting|future-security)\.html$/;function tag(e){try{if(e.viewTransition&&sessionStorage.getItem(K))e.viewTransition.types.add('zoom');}catch(_){}}addEventListener('pageswap',tag);addEventListener('pagereveal',function(e){tag(e);try{sessionStorage.removeItem(K);}catch(_){}});document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('.submenu a');if(a&&RE.test(a.getAttribute('href')||'')){try{sessionStorage.setItem(K,'1');}catch(_){}}},true);})();</script>
+<script>/* links in the Services dropdown (and Switch service) mark the next navigation as a zoom */(function(){var K='vtZoom',RE=/(tax-preparation-planning|bookkeeping-payroll|business-consulting|future-security)(\.html)?$/;function tag(e){try{if(e.viewTransition&&sessionStorage.getItem(K))e.viewTransition.types.add('zoom');}catch(_){}}addEventListener('pageswap',tag);addEventListener('pagereveal',function(e){tag(e);try{sessionStorage.removeItem(K);}catch(_){}});document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('.submenu a');if(a&&RE.test(a.getAttribute('href')||'')){try{sessionStorage.setItem(K,'1');}catch(_){}}},true);})();</script>
 <!-- ===== CURTAIN SCRIPT ===== the blue panel wipe when going to or leaving the request form page -->
 <script>
   /* Curtain wipe to and from the request form: the panel slides in over this page, the next page
      opens covered, then the panel slides off it. Reduced motion gets a quick fade instead. */
   (function(){
     // K = the browser-memory key that says "arrive covered"; FORM = the request form page's file name
-    var K = 'curtain', FORM = 'request-consultation.html', d = document, html = d.documentElement;
+    var K = 'curtain', FORM = 'request-consultation', d = document, html = d.documentElement;
     var reduce = matchMedia('(prefers-reduced-motion: reduce)'), EASE = 'cubic-bezier(.32,.72,0,1)';
     // ms() = how long the wipe takes (shorter with reduced motion)
     function ms(){ return reduce.matches ? 150 : 450; }
@@ -455,8 +460,8 @@
       if (reduce.matches) return entering ? [{opacity:0, transform:'none'}, {opacity:1, transform:'none'}] : [{opacity:1, transform:'none'}, {opacity:0, transform:'none'}];
       return entering ? [{transform:'translateX(-101%)'}, {transform:'translateX(0)'}] : [{transform:'translateX(0)'}, {transform:'translateX(101%)'}];
     }
-    // page(): the file name part of an address, e.g. index.html
-    function page(u){ return u.pathname.split('/').pop() || 'index.html'; }
+    // page(): the page name of an address without .html, e.g. request-consultation ('index' for the home page)
+    function page(u){ var f = u.pathname.split('/').pop().replace(/\.html$/, ''); return f && f !== 'index' ? f : 'index'; }
 
     // ARRIVING: if the previous page set the memory key, start with the panel covering this page
     var arriving = false;
@@ -527,7 +532,7 @@
 <header class="site-header">
   <div class="container nav-inner">
     <!-- logo (links to the home page) -->
-    <a href="index.html#home" class="brand"><picture><source srcset="images/logo.webp" type="image/webp"><img src="images/logo.png" width="840" height="180" alt="Magnum CPA PC — Tax · Accounting · Advisory" fetchpriority="high"></picture></a>
+    <a href="./" class="brand"><picture><source srcset="images/logo.webp" type="image/webp"><img src="images/logo.png" width="840" height="180" alt="Magnum CPA PC — Tax · Accounting · Advisory" fetchpriority="high"></picture></a>
 
     <!-- hamburger button: only shows on small screens; opens and closes the menu -->
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -537,18 +542,18 @@
     <!-- ===== MAIN MENU ===== the same menu is copied into the four service pages -->
     <nav class="main-nav" id="mainNav">
       <ul>
-        <li><a href="index.html#home">Home</a></li>
-        <li><a href="index.html#about">About Us</a></li>
+        <li><a href="./">Home</a></li>
+        <li><a href="./#about">About Us</a></li>
         <!-- Services drop-down. On each service page the generator highlights Services and marks that
              page's own link as current, by exact text, so keep these link lines unchanged if you can. -->
         <li class="has-sub">
-          <a href="index.html#services" class="sub-toggle active">Services ▾</a>
+          <a href="./#services" class="sub-toggle active">Services ▾</a>
           <ul class="submenu">
-            <li><a href="tax-preparation-planning.html" aria-current="page">Tax Preparation &amp; Planning</a></li>
-            <li><a href="bookkeeping-payroll.html">Bookkeeping &amp; Payroll</a></li>
-            <li><a href="business-consulting.html">Business Consulting</a></li>
-            <li><a href="future-security.html">Future Security</a></li>
-            <li><a href="index.html#services">All Services</a></li>
+            <li><a href="tax-preparation-planning" aria-current="page">Tax Preparation &amp; Planning</a></li>
+            <li><a href="bookkeeping-payroll">Bookkeeping &amp; Payroll</a></li>
+            <li><a href="business-consulting">Business Consulting</a></li>
+            <li><a href="future-security">Future Security</a></li>
+            <li><a href="./#services">All Services</a></li>
           </ul>
         </li>
         <!-- Resources drop-down. It is highlighted (active) because this page is a resource;
@@ -556,18 +561,18 @@
         <li class="has-sub">
           <a href="#" class="sub-toggle">Resources ▾</a>
           <ul class="submenu">
-            <li><a href="index.html#client-newsletter">Client Newsletter</a></li>
-            <li><a href="index.html#tax-planning-newsletter">Tax Planning Newsletter</a></li>
-            <li><a href="index.html#tax-videos">Tax Videos</a></li>
+            <li><a href="./#client-newsletter">Client Newsletter</a></li>
+            <li><a href="./#tax-planning-newsletter">Tax Planning Newsletter</a></li>
+            <li><a href="./#tax-videos">Tax Videos</a></li>
             <!-- The client video library: its own site, so it opens in a new tab like the Client Portal. -->
             <li><a href="https://library.magnumcpa.com" target="_blank" rel="noopener">Video Library</a></li>
-            <li><a href="financial-calculators.html">Financial Calculators</a></li>
+            <li><a href="financial-calculators">Financial Calculators</a></li>
           </ul>
         </li>
         <!-- single links; Client Portal opens in a new tab -->
         <li><a href="https://magnumcpa.clientportal.com/#/login" target="_blank" rel="noopener">Client Portal</a></li>
-        <li><a href="request-consultation.html">Request Consultation</a></li>
-        <li><a href="index.html#contact">Contact Us</a></li>
+        <li><a href="request-consultation">Request Consultation</a></li>
+        <li><a href="./#contact">Contact Us</a></li>
         <!-- magnifier icon: opens the search box (see SEARCH in the scripts at the bottom) -->
         <li class="search-li"><a href="#" class="search-btn" aria-label="Search the site">🔍</a></li>
       </ul>
@@ -584,13 +589,13 @@
   <div class="container">
     <!-- All Services back link, and the Switch service drop-down that jumps to another service page -->
     <div class="sd-bar">
-      <a class="sd-back" href="index.html#services"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> All Services</a>
+      <a class="sd-back" href="./#services"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> All Services</a>
       <label class="sd-switch"><span>Switch service</span>
         <select onchange="try{sessionStorage.setItem('vtZoom','1')}catch(e){}if(this.value)location.href=this.value" aria-label="Switch to another service">
-          <option value="tax-preparation-planning.html" selected>Tax Preparation and Planning</option>
-          <option value="bookkeeping-payroll.html">Bookkeeping and Payroll Services</option>
-          <option value="business-consulting.html">Business Consulting</option>
-          <option value="future-security.html">Future Security</option>
+          <option value="tax-preparation-planning" selected>Tax Preparation and Planning</option>
+          <option value="bookkeeping-payroll">Bookkeeping and Payroll Services</option>
+          <option value="business-consulting">Business Consulting</option>
+          <option value="future-security">Future Security</option>
         </select>
       </label>
     </div>
@@ -618,10 +623,10 @@
       <div>
         <h4>Company</h4>
         <ul>
-          <li><a href="index.html#about">About Us</a></li>
-          <li><a href="index.html#services">Services</a></li>
-          <li><a href="index.html#contact">Contact Us</a></li>
-          <li><a href="request-consultation.html">Request Consultation</a></li>
+          <li><a href="./#about">About Us</a></li>
+          <li><a href="./#services">Services</a></li>
+          <li><a href="./#contact">Contact Us</a></li>
+          <li><a href="request-consultation">Request Consultation</a></li>
           <li><a href="https://magnumcpa.clientportal.com/#/login" target="_blank" rel="noopener">Client Portal</a></li>
         </ul>
       </div>
@@ -629,10 +634,10 @@
       <div>
         <h4>Resources</h4>
         <ul>
-          <li><a href="index.html#client-newsletter">Client Newsletter</a></li>
-          <li><a href="index.html#tax-planning-newsletter">Tax Planning Newsletter</a></li>
-          <li><a href="index.html#tax-videos">Tax Videos</a></li>
-          <li><a href="financial-calculators.html">Financial Calculators</a></li>
+          <li><a href="./#client-newsletter">Client Newsletter</a></li>
+          <li><a href="./#tax-planning-newsletter">Tax Planning Newsletter</a></li>
+          <li><a href="./#tax-videos">Tax Videos</a></li>
+          <li><a href="financial-calculators">Financial Calculators</a></li>
         </ul>
       </div>
     </div>
@@ -654,7 +659,7 @@
 </footer>
 
 <!-- ===== Floating Book a Consultation CTA ===== -->
-<a class="book-fab" href="request-consultation.html">📅 Book a Consultation</a>
+<a class="book-fab" href="request-consultation">📅 Book a Consultation</a>
 
 <!-- ===== SCRIPTS: NAV and SEARCH ===== -->
 <script>
@@ -692,47 +697,47 @@
     // snippet = gray line under it, text = extra keywords (lowercase). To add a page, copy one entry.
     // Copies of this list also live in index.html and request-consultation.html; keep them in step.
     var INDEX = [
-      {title:'Home', url:'index.html#home',
+      {title:'Home', url:'./',
        snippet:"California's premier partner for strategic growth & tax advantage.",
        text:'home magnum cpa pc max drew strategic growth tax advantage proactive accounting expert tax planning financial coaching ramsey trusted consultation california'},
-      {title:'About Us', url:'index.html#about',
+      {title:'About Us', url:'./#about',
        snippet:'Our story, founder Max Drew, and The Magnum Advantage.',
        text:'about us max magnum drew founder california professional corporation financial partners magnum advantage bbb accredited better business bureau trusted by ramsey best business rate sacramento history mission'},
-      {title:'Services', url:'index.html#services',
+      {title:'Services', url:'./#services',
        snippet:'Tax preparation & planning, bookkeeping, consulting, future security.',
        text:'services tax preparation planning bookkeeping payroll business consulting future security wealth management retirement estate planning filings liabilities growth efficiency'},
       // the four service pages (first added by tools/gen_services.py; it will not update them later)
-      {title:'Tax Preparation and Planning', url:'tax-preparation-planning.html',
+      {title:'Tax Preparation and Planning', url:'tax-preparation-planning',
        snippet:'We help you stay compliant and maximize your tax savings with strategic, year-round planning.',
        text:'tax preparation and planning tax preparation individual & business tax returns tax planning and projections irs representation and support year-round tax advisory'},
-      {title:'Bookkeeping and Payroll Services', url:'bookkeeping-payroll.html',
+      {title:'Bookkeeping and Payroll Services', url:'bookkeeping-payroll',
        snippet:'Accurate records and timely payroll so you can focus on what matters most — your business.',
        text:'bookkeeping and payroll services bookkeeping & payroll daily/monthly bookkeeping payroll processing & tax filings financial statement preparation clean-up and catch-up services'},
-      {title:'Business Consulting', url:'business-consulting.html',
+      {title:'Business Consulting', url:'business-consulting',
        snippet:'Strategic insights and practical solutions to drive growth, improve efficiency, and increase profitability.',
        text:'business consulting business consulting business strategy and planning operational improvement financial analysis and forecasting succession and growth planning'},
-      {title:'Future Security', url:'future-security.html',
+      {title:'Future Security', url:'future-security',
        snippet:'Build, protect, and grow your wealth with a holistic approach to retirement, wealth management, and estate planning.',
        text:'future security future security retirement planning wealth management estate and legacy planning life and business protection'},
-      {title:'Client Newsletter', url:'index.html#client-newsletter',
+      {title:'Client Newsletter', url:'./#client-newsletter',
        snippet:'Monthly updates, firm news, and money tips.',
        text:'client newsletter mid-year money check-in refund last-minute filing tips updates subscribe firm news'},
-      {title:'Tax Planning Newsletter', url:'index.html#tax-planning-newsletter',
+      {title:'Tax Planning Newsletter', url:'./#tax-planning-newsletter',
        snippet:'Strategy articles for proactive tax savings.',
        text:'tax planning newsletter retirement contributions 401k ira hsa small business entity llc s-corp sole proprietor charitable giving donor advised capital gains harvesting'},
-      {title:'Tax Videos', url:'index.html#tax-videos',
+      {title:'Tax Videos', url:'./#tax-videos',
        snippet:'Plain-English videos on key tax topics.',
        text:'tax videos understanding w-2 deductions credits quarterly taxes freelancers small business watch learn'},
-      {title:'Financial Calculators', url:'financial-calculators.html',
+      {title:'Financial Calculators', url:'financial-calculators',
        snippet:'Tax, retirement, mortgage, loan, savings & business calculators.',
        text:'financial calculators tax payroll 1040 marginal estate retirement roth ira 401k social security rmd mortgage piti arm loan amortization auto savings college net worth business cash flow breakeven valuation rent vs buy'},
       {title:'Client Portal', url:'https://magnumcpa.clientportal.com/#/login', target:true,
        snippet:'Secure client portal (Canopy) for documents and messages.',
        text:'client portal canopy login documents upload messages secure account'},
-      {title:'Contact Us', url:'index.html#contact',
+      {title:'Contact Us', url:'./#contact',
        snippet:'Phone, email, and our Sacramento office location.',
        text:'contact us phone 916 616 1789 email info ask magnumcpa find us 907 green moss drive sacramento ca 95831 map directions location office hours'},
-      {title:'Request a Consultation', url:'request-consultation.html',
+      {title:'Request a Consultation', url:'request-consultation',
        snippet:'Request your free consultation with Max Drew, CPA.',
        text:'request consultation free appointment schedule book meeting max drew cpa tax planning preparation bookkeeping financial coaching preferred date service'}
     ];

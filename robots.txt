@@ -1,0 +1,6 @@
+# FILE: robots.txt — tells search engines they may read every page,
+# and where the list of pages (sitemap.xml) is.
+User-agent: *
+Allow: /
+
+Sitemap: https://www.magnumcpa.com/sitemap.xml

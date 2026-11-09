@@ -72,6 +72,11 @@ SERVICES = [
               ('fa-house-shield', 'Life and business protection', 'Review the coverage that protects your family and your business from the unexpected.')]),
 ]
 
+# slug(svc): the page's clean address name, i.e. its file name without .html
+# (tax-preparation-planning.html -> tax-preparation-planning). All links use this, never the .html name.
+def slug(svc):
+    return svc['file'][:-len('.html')]
+
 # ===== EXTRA SETTINGS =====
 # VT_CSS: page-transition styles. NOT USED anywhere below; the same rules already sit in the
 # style block of financial-calculators.html, which every service page copies.
@@ -207,24 +212,28 @@ def page(svc, tpl):
                         '<meta name="viewport" content="width=device-width, initial-scale=1.0">')
     # add the service-page CSS (above) just before the closing style tag
     head = head.replace('</style>', CSS + '</style>')
+    # official address for Google (CLEAN ADDRESS block): the calculators address becomes this page's
+    head = head.replace('<link rel="canonical" href="https://www.magnumcpa.com/financial-calculators">',
+                        '<link rel="canonical" href="https://www.magnumcpa.com/%s">' % slug(svc))
     # menu: take the highlight off Resources ...
     head = head.replace('<a href="#" class="sub-toggle active">Resources ▾</a>', '<a href="#" class="sub-toggle">Resources ▾</a>')
     # ... and put it on Services instead
-    head = head.replace('<a href="index.html#services" class="sub-toggle">Services ▾</a>', '<a href="index.html#services" class="sub-toggle active">Services ▾</a>')
+    head = head.replace('<a href="./#services" class="sub-toggle">Services ▾</a>', '<a href="./#services" class="sub-toggle active">Services ▾</a>')
     # in the Services drop-down, mark this page's own link as the current page (for screen readers)
-    head = head.replace('<li><a href="%s">' % svc['file'], '<li><a href="%s" aria-current="page">' % svc['file'])
-    # safety check: stop with an AssertionError if the title tag is missing or the Services highlight failed
-    for k in ('<title>', 'sub-toggle active">Services'):
-        assert k in head
+    head = head.replace('<li><a href="%s">' % slug(svc), '<li><a href="%s" aria-current="page">' % slug(svc))
+    # safety check: stop with an AssertionError if the title tag is missing or the Services highlight,
+    # current-page mark or canonical address failed
+    for k in ('<title>', 'sub-toggle active">Services', 'aria-current="page"', 'magnumcpa.com/%s"' % slug(svc)):
+        assert k in head, k
     # form: link to the consultation form with this service pre-chosen (spaces, and, commas encoded).
-    # NOT USED by the current template, and it still points at the old form spot on index.html.
-    form = 'index.html?service=%s#request' % svc['key'].replace('&', '%26').replace(',', '%2C').replace(' ', '%20')
+    # NOT USED by the current template.
+    form = 'request-consultation?service=%s' % svc['key'].replace('&', '%26').replace(',', '%2C').replace(' ', '%20')
     # items: HTML cards for the list of offerings. NOT USED by the current template.
     items = ''.join('        <div class="sd-item"><span class="ic" aria-hidden="true"><i class="fa-solid %s"></i></span>'
                     '<div><h3>%s</h3><p>%s</p></div></div>\n' % (ic, t.replace('&', '&amp;'), d) for ic, t, d in svc['items'])
     # others: HTML links to the other three services. NOT USED by the current template.
     others = ''.join('        <a class="sd-other" href="%s"><img src="%s" alt="" loading="lazy"><div><b>%s</b><span>Learn more →</span></div></a>\n'
-                     % (o['file'], o['img'], o['title']) for o in SERVICES if o is not svc)
+                     % (slug(o), o['img'], o['title']) for o in SERVICES if o is not svc)
     # ===== PAGE CONTENT TEMPLATE =====
     # The service page's own content. Each %(name)s spot is filled from the svc dict plus the extra
     # values listed after the closing quotes (vt, switch, h1, ...). Never type a lone percent sign inside it.
@@ -234,7 +243,7 @@ def page(svc, tpl):
   <div class="container">
     <!-- All Services back link, and the Switch service drop-down that jumps to another service page -->
     <div class="sd-bar">
-      <a class="sd-back" href="index.html#services"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> All Services</a>
+      <a class="sd-back" href="./#services"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> All Services</a>
       <label class="sd-switch"><span>Switch service</span>
         <select onchange="try{sessionStorage.setItem('vtZoom','1')}catch(e){}if(this.value)location.href=this.value" aria-label="Switch to another service">
 %(switch)s        </select>
@@ -251,7 +260,7 @@ def page(svc, tpl):
 </section>
 </main>
 
-""" % dict(svc, vt=VT_NAMES[svc['img'].split('/')[-1]], switch=''.join('          <option value="%s"%s>%s</option>\n' % (o['file'], ' selected' if o is svc else '', o['title']) for o in SERVICES), h1=H1_MAP[svc['title']], items=items, others=others, form=form, short=svc['short'].replace('&', '&amp;'))
+""" % dict(svc, vt=VT_NAMES[svc['img'].split('/')[-1]], switch=''.join('          <option value="%s"%s>%s</option>\n' % (slug(o),' selected' if o is svc else '', o['title']) for o in SERVICES), h1=H1_MAP[svc['title']], items=items, others=others, form=form, short=svc['short'].replace('&', '&amp;'))
     # glue the three parts together into the finished page
     return head + main + foot
 
@@ -267,7 +276,7 @@ for svc in SERVICES:
 # The prefix_index argument is not used.
 def entries(prefix_index):
     return ''.join("      {title:%r, url:%r,\n       snippet:%r,\n       text:%r},\n"
-                   % (s['title'], s['file'], s['lede'], ' '.join([s['title'], s['short']] + [t for _, t, _ in s['items']]).lower())
+                   % (s['title'], slug(s), s['lede'],' '.join([s['title'], s['short']] + [t for _, t, _ in s['items']]).lower())
                    for s in SERVICES)
 # Add those entries to the search list of both pages, just above the Client Newsletter entry.
 # They are only added when missing, so a later change to a title or lede in SERVICES does NOT
@@ -278,7 +287,7 @@ for p in ('index.html', 'financial-calculators.html'):
     anchor = "      {title:'Client Newsletter', url:"
     assert s.count(anchor) == 1, p
     # skip if the tax page is already in this search list (then the other three are assumed to be too)
-    if "url:'tax-preparation-planning.html'" not in s:
+    if "url:'tax-preparation-planning'" not in s:
         s = s.replace(anchor, entries(p) + anchor)
     # the file is written back even when nothing changed
     wr(p, s)

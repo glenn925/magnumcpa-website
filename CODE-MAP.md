@@ -43,6 +43,17 @@ Line numbers change with every edit, so this map uses banner names.
 | Calculator list | `financial-calculators.html` | `===== CALCULATOR LIST` |
 | A service page's text, photo, heading | `tools/gen_services.py` | `===== SERVICES DATA` (then re-run the generator — see §3) |
 | Shared header/footer of service pages | `financial-calculators.html` | then re-run the generator |
+| A page's official address for Google | every page | `===== CLEAN ADDRESS` (the `canonical` line) |
+| Why `#about` doesn't show in the address bar | `index.html` | `===== CLEAN ADDRESS: no #section` (script) |
+| The list of pages Google should find | `sitemap.xml` | add a `<url>` line per new page |
+
+**Clean addresses — the one rule.** Links never end in `.html`: write `request-consultation`,
+not `request-consultation.html`; the home page is `./`; a home-page section from another page
+is `./#contact`. GitHub Pages (and Cloudflare Pages) serve `/request-consultation` from
+`request-consultation.html`, and old `.html` links still open the page. A new page also needs
+its own `CLEAN ADDRESS` block in the head (copy one, change the canonical address) and a line
+in `sitemap.xml`. Links only work through the web server (live site or a local server), not by
+double-clicking the .html file.
 
 **Watch out for "restyle" blocks.** Some parts (HERO, WHY CHOOSE US, CTA BAND,
 FOOTER) have an older style block and a later one marked *restyle* / *final
@@ -60,6 +71,7 @@ overrides*. The **later** one wins — edit that one, or your change won't show.
 | `tax-preparation-planning.html`, `bookkeeping-payroll.html`, `business-consulting.html`, `future-security.html` | Service pages — **generated, don't edit by hand** (see §3). |
 | `CNAME` | Connects the site to www.magnumcpa.com. **Never delete or edit.** |
 | `_config.yml` | Tells GitHub Pages which files to keep off the live site. |
+| `sitemap.xml`, `robots.txt` | Tell Google which pages exist (clean addresses) and that it may read them all. |
 | `images/` | All pictures. `sig-*.png` are used by Max's **email signature** — keep them. |
 
 ### Adding a field to the consultation form (end to end)
