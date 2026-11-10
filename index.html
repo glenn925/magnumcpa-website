@@ -262,6 +262,9 @@
   .wcu-card img{flex:none;width:80px;height:92px;object-fit:contain;}
   .wcu-card h3{color:var(--primary);font-size:1rem;line-height:1.25;margin-bottom:6px;}
   .wcu-card p{color:var(--muted);font-size:.8rem;line-height:1.5;}
+  /* Linked badge cards (<a class="wcu-card">): no underline, keyboard focus ring. */
+  a.wcu-card{text-decoration:none;color:inherit;}
+  a.wcu-card:focus-visible{outline:3px solid #3BA7F2;outline-offset:3px;}
   /* Dark precision band (wcu-band): not used on this page. */
   .wcu-band{position:relative;margin-top:-40px;padding:66px 0 30px;color:#fff;overflow:hidden;
     background:url('images/precision-desk.webp') right center/34% auto no-repeat,linear-gradient(100deg,var(--primary-900) 0%,var(--primary) 45%,#1560C9 64%);}
@@ -1097,16 +1100,18 @@
     <div class="wcu-kicker">Why Choose Us?</div>
     <h2 class="wcu-title">Your Success <span class="grad">Is Our Priority</span></h2>
     <p class="wcu-sub">Trusted <i>•</i> Experienced <i>•</i> Committed to Your Success</p>
-    <!-- Each wcu-card is one badge: image, title, text. Copy one to add another. -->
+    <!-- Each wcu-card is one badge: image, title, text. Copy one to add another.
+         A badge with a verification page is an <a class="wcu-card" href=...> that opens in a new tab;
+         one without a link yet (Ramsey) stays a plain <div class="wcu-card">. -->
     <div class="wcu-grid">
-      <div class="wcu-card"><img src="images/badge-bbb.webp" width="195" height="235" alt="BBB Accredited Business plaque" loading="lazy">
-        <div><h3>BBB Accredited</h3><p>Our commitment to transparency and ethical service is verified through our Better Business Bureau accreditation.</p></div></div>
-      <div class="wcu-card"><img src="images/badge-sac.webp" width="190" height="235" alt="2025 BusinessRate award plaque, Sacramento" loading="lazy">
-        <div><h3>2025 Best Business Rate in Sacramento</h3><p>We provide elite, specialized expertise and personalized rates, ensuring we are competitive in the Sacramento region.</p></div></div>
+      <a class="wcu-card" href="https://www.bbb.org/us/ca/sacramento/profile/cpa/magnum-cpa-pc-1156-90102086" target="_blank" rel="noopener" aria-label="BBB Accredited: view our Better Business Bureau profile (opens in a new tab)"><img src="images/badge-bbb.webp" width="195" height="235" alt="BBB Accredited Business plaque" loading="lazy">
+        <div><h3>BBB Accredited</h3><p>Our commitment to transparency and ethical service is verified through our Better Business Bureau accreditation.</p></div></a>
+      <a class="wcu-card" href="https://businessrate.com/report/11336748?geocatSerial=1441698653&amp;scoreType=br" target="_blank" rel="noopener" aria-label="2025 Best Business Rate in Sacramento: view our BusinessRate report (opens in a new tab)"><img src="images/badge-sac.webp" width="190" height="235" alt="2025 BusinessRate award plaque, Sacramento" loading="lazy">
+        <div><h3>2025 Best Business Rate in Sacramento</h3><p>We provide elite, specialized expertise and personalized rates, ensuring we are competitive in the Sacramento region.</p></div></a>
       <div class="wcu-card"><img src="images/badge-ramsey.webp" width="190" height="217" alt="Ramsey Trusted badge" loading="lazy">
         <div><h3>Trusted by Ramsey</h3><p>We are recognized for providing the high level of reliability and sound financial principles expected of Ramsey-trusted professionals.</p></div></div>
-      <div class="wcu-card"><img src="images/badge-best.webp" width="225" height="202" alt="Best of 2026 BusinessRate badge" loading="lazy">
-        <div><h3>2026 Ranked 1 by Momentum Score</h3><p>Showcasing excellence in customer satisfaction and review performance.</p></div></div>
+      <a class="wcu-card" href="https://businessrate.com/report/11336748?geocatSerial=1441698653&amp;scoreType=br" target="_blank" rel="noopener" aria-label="2026 Ranked 1 by Momentum Score: view our BusinessRate report (opens in a new tab)"><img src="images/badge-best.webp" width="225" height="202" alt="Best of 2026 BusinessRate badge" loading="lazy">
+        <div><h3>2026 Ranked 1 by Momentum Score</h3><p>Showcasing excellence in customer satisfaction and review performance.</p></div></a>
     </div>
     <!-- Passion for Precision strip. -->
     <div class="wcu-prec">
