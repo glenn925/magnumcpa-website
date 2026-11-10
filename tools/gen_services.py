@@ -218,7 +218,7 @@ def page(svc, tpl):
     # menu: take the highlight off Resources ...
     head = head.replace('<a href="#" class="sub-toggle active">Resources ▾</a>', '<a href="#" class="sub-toggle">Resources ▾</a>')
     # ... and put it on Services instead
-    head = head.replace('<a href="./#services" class="sub-toggle">Services ▾</a>', '<a href="./#services" class="sub-toggle active">Services ▾</a>')
+    head = head.replace('<a href="services" class="sub-toggle">Services ▾</a>', '<a href="services" class="sub-toggle active">Services ▾</a>')
     # in the Services drop-down, mark this page's own link as the current page (for screen readers)
     head = head.replace('<li><a href="%s">' % slug(svc), '<li><a href="%s" aria-current="page">' % slug(svc))
     # safety check: stop with an AssertionError if the title tag is missing or the Services highlight,
@@ -243,7 +243,7 @@ def page(svc, tpl):
   <div class="container">
     <!-- All Services back link, and the Switch service drop-down that jumps to another service page -->
     <div class="sd-bar">
-      <a class="sd-back" href="./#services"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> All Services</a>
+      <a class="sd-back" href="services"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> All Services</a>
       <label class="sd-switch"><span>Switch service</span>
         <select onchange="try{sessionStorage.setItem('vtZoom','1')}catch(e){}if(this.value)location.href=this.value" aria-label="Switch to another service">
 %(switch)s        </select>

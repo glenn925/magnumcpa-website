@@ -3,3 +3,6 @@
 
 # Version snapshots (zips) stay on this computer; GitHub tags are the online copy
 versions/snapshots/
+
+# Excel lock file while reviews.xlsx is open
+~$*

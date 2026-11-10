@@ -20,16 +20,19 @@ Line numbers change with every edit, so this map uses banner names.
 | Brand colors, fonts, base text size | `index.html` (and same block in the other pages) | `===== SITE-WIDE SETUP` / `COLORS` |
 | "First consultation is free" strip | `index.html` | `===== ANNOUNCEMENT BANNER` |
 | Phone, email, office hours (top bar) | every page | `===== TOP BAR` |
-| Menu items / dropdowns | every page | `===== HEADER / NAV` (`HEADER AND MENU` on the calculators page) |
+| Menu items / dropdowns | every page (change all of them: `index.html`, `services.html`, `tax-videos.html`, `request-consultation.html`, `financial-calculators.html` + re-run the generator) | `===== HEADER / NAV` (`MAIN MENU` on the other pages) |
 | Home headline, hero photo, main button | `index.html` | `===== HERO` |
 | Award badge cards | `index.html` | `===== WHY CHOOSE US` |
 | About text, Max's photo | `index.html` | `===== ABOUT US` |
-| Client reviews (add/edit a review) | `index.html` | `===== MISSION + REVIEWS` |
+| Client reviews (which Google reviews show) | `reviews.xlsx`, then double-click `update-reviews.bat` | Reviews sheet: one row per review, **Show = Yes/No** picks what appears. Never type review cards into `index.html` |
+| "Leave Us a Google Review" / "See All Our Reviews on Google" buttons | `reviews.xlsx` → Settings sheet | B2 and B3 (blank = button hidden) |
 | YouTube "Why get tax help" video | `index.html` | `===== WHY GET TAX HELP` |
-| The four service cards on the home page | `index.html` | `===== SERVICES` |
+| The four service cards (Services page) | `services.html` | `===== SERVICES` (styles: `===== SERVICES PAGE`) |
 | Newsletter / article cards | `index.html` | `===== CLIENT NEWSLETTER`, `===== TAX PLANNING NEWSLETTER` |
-| Tax videos (add/remove a video) | `index.html` | `===== TAX VIDEOS` (the VIDEOS list in the script) |
-| Contact photo, address, map | `index.html` | `===== CONTACT` |
+| Tax videos (add/remove a video) | `tax-videos.html` | `===== TAX VIDEOS SCRIPT` (the VIDEOS list) |
+| Contact photo, address | `index.html` | `===== CONTACT` |
+| Google Business Profile box (map with stars and reviews) | `index.html` | `===== GOOGLE BUSINESS PROFILE` |
+| Old links like `magnumcpa.com/#services` opening the new page | `index.html` | `===== #request REDIRECT` (the `moved` list) |
 | Footer links, social icons | every page | `===== FOOTER` |
 | Floating "Book a Consultation" button | every page | `===== FLOATING BOOK BUTTON` |
 | Booking pop-up (when it appears, its text) | `index.html` | `===== BOOKING POPUP` |
@@ -65,14 +68,26 @@ overrides*. The **later** one wins — edit that one, or your change won't show.
 
 | File | What it is |
 |---|---|
-| `index.html` | Home page (everything except the form). Starts with a "HOW THIS FILE IS ORGANIZED" note. |
+| `index.html` | Home page (everything except the form, the service cards and the videos). Starts with a "HOW THIS FILE IS ORGANIZED" note. |
+| `services.html` | Services page (`/services`): the four service cards and the call-to-action band. Built once from the calculators page, **edited by hand**. |
+| `tax-videos.html` | Tax Videos page (`/tax-videos`): the 45-video gallery. Built once from the calculators page, **edited by hand**. |
 | `request-consultation.html` | Request a Consultation page: form → anti-spam check → sends to the backend → shows the Acuity calendar. Starts with a "PAGE OVERVIEW" note listing its banners. |
 | `financial-calculators.html` | Calculators page; also the **template** for the four service pages. |
 | `tax-preparation-planning.html`, `bookkeeping-payroll.html`, `business-consulting.html`, `future-security.html` | Service pages — **generated, don't edit by hand** (see §3). |
 | `CNAME` | Connects the site to www.magnumcpa.com. **Never delete or edit.** |
 | `_config.yml` | Tells GitHub Pages which files to keep off the live site. |
 | `sitemap.xml`, `robots.txt` | Tell Google which pages exist (clean addresses) and that it may read them all. |
+| `reviews.xlsx`, `update-reviews.bat`, `tools/build_reviews.py` | Client reviews: the spreadsheet holds the reviews, the .bat builds the review cards into `index.html` and publishes. Not on the live site. |
+| `MULTI-PAGE-PLAN.md` | The plan for giving every menu heading its own page (not built yet). |
 | `images/` | All pictures. `sig-*.png` are used by Max's **email signature** — keep them. |
+
+### Showing real Google reviews on the home page
+1. Open `reviews.xlsx`. On the **Reviews** sheet add one row per Google review: Show = **Yes**,
+   Stars, Name (e.g. Jane D.), Review (pasted word for word), Review Link (that review's Share link).
+   Set Show = **No** to keep a review in the sheet but off the website.
+2. On the **Settings** sheet: B2 = your "Ask for reviews" link, B3 = your Google reviews page link.
+3. Save, close Excel, double-click `update-reviews.bat`. It builds the cards and publishes.
+   With no Show = Yes rows, the review slideshow stays hidden (only the Google buttons show).
 
 ### Adding a field to the consultation form (end to end)
 1. `request-consultation.html` → `===== FORM FIELDS`: add the input.
@@ -143,6 +158,7 @@ Nobody is emailed when a form arrives yet.
 | File | Purpose |
 |---|---|
 | `sync.bat` | Double-click to publish: pulls, commits, pushes to GitHub (live in 1–2 min) |
+| `update-reviews.bat` | Double-click after editing `reviews.xlsx` (Excel closed): builds the review cards and publishes only those |
 | `versions/` | Saved versions + save/restore scripts (see `versions/README.md`) |
 | `README.md` | Hosting overview (GitHub Pages, GoDaddy DNS, Google email, Cloudflare) |
 | `SETUP-CLOUDFLARE.md`, `RECENT-UPDATES.md` | Older setup notes and change history |
@@ -153,7 +169,7 @@ Nobody is emailed when a form arrives yet.
 
 **Website**
 - Booking pop-up reads browser storage without a guard; where storage is
-  blocked, the search and Tax Videos stop working (`index.html`, `BOOKING POPUP`).
+  blocked, the home page search stops working (`index.html`, `BOOKING POPUP`).
 - Form subtitle says **EST**; the office is in Sacramento (Pacific).
 - After a rejected submit, the anti-spam token isn't reset, so a second try can fail.
 - "Subscribe to the Newsletter" only jumps to Contact (no sign-up form).

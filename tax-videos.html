@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- ===== PAGE SETTINGS (head) =====
+     This page was built once from financial-calculators.html and is edited BY HAND (the service
+     page generator does not touch it). When the menu, footer or search list changes on the other
+     pages, make the same change here. -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ===== CLEAN ADDRESS ===== -->
+<!-- The one official address of this page, for Google. Never end it in .html. -->
+<link rel="canonical" href="https://www.magnumcpa.com/tax-videos">
+<!-- Someone opened an old link ending in .html: show the clean address instead (no reload). -->
+<script>(function(){try{if(!/^https?:$/.test(location.protocol))return;var p=location.pathname,c=p.replace(/(^|\/)index\.html$/,'$1').replace(/\.html$/,'');if(c!==p)history.replaceState(history.state,'',c+location.search+location.hash);}catch(_){}})();</script>
+<!-- Browser tab title and Google description. -->
+<title>Tax Videos — Plain-English Answers to Your Tax Questions | Magnum CPA PC</title>
+<meta name="description" content="Short, plain-English videos from Max Drew, CPA on the tax topics that matter most: deductions, audits, estimated taxes, capital gains, IRS notices and more.">
+<!-- color of the phone browser's address bar, then the tab icon and the iPhone home-screen icon -->
+<meta name="theme-color" content="#0B3D91">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<!-- fonts: Plus Jakarta Sans from Google Fonts, and Font Awesome for the small icons (class names starting fa-) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link id="fa-cdn" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<!-- ===== STYLES =====
+     All colors, sizes and layout. Later rules win over earlier ones with the same selector.
+     This page's own styles are at the end of this block (TAX VIDEOS PAGE). -->
+<style>
+  /* ===== COLORS AND SIZES (variables) =====
+     Change a value here and it updates everywhere it is used, for example var(--primary). */
+  :root{
+    /* Palette: Primary #0B3D91 · Secondary #3BA7F2 · Tertiary #7FE7D6 · Background #E8F6FF.
+       Everything else here is a shade of those four, for text and the dark bands. */
+    --primary:#0B3D91;--secondary:#3BA7F2;--tertiary:#7FE7D6;--bg:#E8F6FF;
+    --primary-700:#0A3480;--primary-800:#072A66;--primary-900:#051D47;
+    --secondary-ink:#1670B8;   /* secondary, darkened enough for small text on light backgrounds */
+    --navy:var(--primary);--navy-dark:var(--primary-800);--navy-3:var(--primary-900);
+    --text:#0B1F3F;--muted:#4A607E;--bg-alt:#F3FAFF;--surface:#FFFFFF;
+    --border:#CFE5F6;--radius:10px;--maxw:none;
+    --shadow:0 1px 2px rgba(11,61,145,.06),0 10px 28px rgba(11,61,145,.10);
+    --shadow-lg:0 2px 4px rgba(11,61,145,.06),0 22px 50px rgba(11,61,145,.16);
+    --on-dark:#D6E9FB;
+    --gold:#D9A53A;--gold-ink:#9A6B10;   /* the logo's gold, used only as a small accent */
+  }
+  /* ===== BASE / RESET =====
+     Removes the browser's default spacing and sets the page's base font, text color and background. */
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{font-size:17px;scroll-behavior:smooth;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;
+    background:var(--bg);
+  }
+  /* pictures never overflow their box; links have no underline and take the surrounding text color */
+  img{max-width:100%;height:auto;display:block;}
+  a{color:inherit;text-decoration:none;}
+  /* content fills the screen at any width, with a proportional side margin */
+  .container{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,6vw,140px);}
+
+  /* ===== TOP BAR ===== */
+  /* top bar */
+  .topbar{background:var(--primary-900);color:var(--on-dark);font-size:.98rem;font-weight:500;}
+  .topbar .container{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center;justify-content:space-between;padding:8px clamp(20px,6vw,140px);}
+
+  /* ===== HEADER AND MENU ===== */
+  /* header / nav */
+  /* the white bar with the logo and menu; it sticks to the top while you scroll */
+  header.site-header{background:rgba(255,255,255,.94);-webkit-backdrop-filter:saturate(1.4) blur(12px);backdrop-filter:saturate(1.4) blur(12px);
+    position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border);box-shadow:0 4px 18px rgba(11,61,145,.08);}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding-top:12px;padding-bottom:12px;gap:16px;}
+  .brand{display:flex;align-items:center;gap:12px;color:#fff;}
+  /* Logo files are 840px wide (about 3x display size) so they stay sharp on high-density screens. */
+  .brand img{display:block;height:58px;width:auto;transition:transform .25s,filter .25s;}
+  .brand:hover img{transform:scale(1.03);filter:drop-shadow(0 4px 14px rgba(59,167,242,.35));}
+  /* hamburger button (three lines): hidden on wide screens, shown by the 980px rule in RESPONSIVE below */
+  .nav-toggle{display:none;background:transparent;border:0;cursor:pointer;padding:8px;border-radius:6px;}
+  .nav-toggle span{display:block;width:24px;height:2px;background:var(--primary);margin:5px 0;transition:.3s;}
+  /* desktop menu: one row of small uppercase links; .active paints the current section's link blue */
+  nav.main-nav > ul{list-style:none;display:flex;flex-wrap:nowrap;gap:2px;justify-content:flex-end;align-items:center;}
+  nav.main-nav a{color:var(--primary-800);font-size:.76rem;font-weight:600;letter-spacing:.2px;padding:8px 8px;border-radius:6px;
+    text-transform:uppercase;transition:background .2s,color .2s;white-space:nowrap;display:inline-block;}
+  nav.main-nav a:hover{background:var(--bg);color:var(--primary);}
+  nav.main-nav a.active{background:var(--primary);color:#fff;}
+  /* drop-down menus (Services, Resources): hidden until you hover over the menu item */
+  .has-sub{position:relative;}
+  .submenu{position:absolute;top:100%;left:0;min-width:230px;background:#fff;border-radius:10px;border:1px solid var(--border);
+    box-shadow:var(--shadow-lg);padding:6px;display:none;flex-direction:column;gap:2px;z-index:60;list-style:none;}
+  .has-sub:hover .submenu{display:flex;}
+  .submenu li{width:100%;}
+  .submenu a{display:block;text-align:left;border-radius:5px;}
+
+  /* ===== PAGE TITLE BAND ===== */
+  /* light section band: kicker + headline + subtitle, faded globe and gold stripe on the right */
+  .sec-head{position:relative;overflow:hidden;padding:46px 0 42px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+    background:linear-gradient(100deg,#fff 0%,var(--bg-alt) 45%,#D6ECFB 100%);}
+  /* :before = faded globe picture, :after = slanted gold stripe.
+     NOTE: both are switched off further down (display:none in the FOOTER: SOFT TOP block). */
+  .sec-head:before{content:"";position:absolute;right:4%;top:50%;width:380px;aspect-ratio:600/546;transform:translateY(-50%);
+    background:url('images/globe.webp') center/contain no-repeat;opacity:.16;pointer-events:none;}
+  .sec-head:after{content:"";position:absolute;top:-10px;bottom:-10px;right:-70px;width:150px;transform:skewX(-32deg);pointer-events:none;
+    background:linear-gradient(90deg,var(--gold) 0 7px,rgba(11,61,145,.1) 7px);}
+  .sec-head .container{position:relative;z-index:1;}
+  /* small uppercase label above the title (the word Resources) with a short line after it */
+  .sec-kicker{display:flex;align-items:center;gap:12px;color:var(--gold-ink);font-weight:800;font-size:1.1rem;letter-spacing:.6px;text-transform:uppercase;}
+  .sec-kicker:after{content:"";width:46px;height:2px;background:var(--gold);}
+  .sec-kicker.blue{color:var(--secondary-ink);font-size:.9rem;letter-spacing:1.2px;}
+  .sec-kicker.blue:after{background:linear-gradient(90deg,var(--secondary),var(--tertiary));}
+  /* the big page title and the gray line under it */
+  .sec-head h1,.sec-head h2{color:var(--primary);font-size:2.15rem;line-height:1.2;margin:6px 0 8px;}
+  .sec-head p{color:var(--muted);font-size:1.12rem;}
+  /* phones: less padding and a smaller title */
+  @media(max-width:600px){.sec-head{padding:34px 0 30px;}.sec-head h1,.sec-head h2{font-size:1.6rem;}.sec-head:before{opacity:.1;right:-80px;}.sec-head:after{display:none;}}
+
+  /* ===== SECTION SPACING ===== */
+  /* sections */
+  .section{padding:60px 0;}
+
+  /* ===== BUTTONS ===== */
+  /* buttons */
+  .btn{display:inline-block;background:linear-gradient(135deg,var(--primary),#1560C9);color:#fff;font-weight:700;padding:12px 26px;border-radius:8px;
+    border:0;cursor:pointer;letter-spacing:.4px;font-size:.95rem;transition:transform .15s,box-shadow .2s,filter .2s;
+    box-shadow:0 6px 16px rgba(11,61,145,.22);}
+  /* hover: lifts slightly; focus-visible: outline shown when using the keyboard */
+  .btn:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(11,61,145,.32);filter:brightness(1.08);}
+  .btn:focus-visible{outline:3px solid var(--secondary);outline-offset:3px;}
+  /* NOTE: the two .cta-band .btn rules below are overridden by the CALL-TO-ACTION BAND block further down */
+  /* on dark bands the button flips to tertiary mint so it stands out */
+  .cta-band .btn{background:var(--tertiary);color:var(--primary-900);box-shadow:0 8px 22px rgba(127,231,214,.28);}
+  .cta-band .btn:hover{box-shadow:0 14px 32px rgba(127,231,214,.42);filter:brightness(1.04);}
+
+  /* ===== CALCULATOR CARDS ===== */
+  /* calculators */
+  /* one category: a heading (gradient text with a short colored underline) and its grid of cards */
+  .calc-cat{margin-bottom:34px;}
+  .calc-cat h2{color:var(--primary);background:linear-gradient(90deg,#0B3D91,#1C8BDF 55%,#139E92);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;width:fit-content;font-size:1.3rem;margin-bottom:6px;}
+  .calc-cat h2:after{content:"";display:block;width:54px;height:4px;background:linear-gradient(90deg,var(--secondary),var(--tertiary));margin-top:10px;border-radius:2px;}
+  /* grid of cards: 3 per row on wide screens */
+  .calc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px;}
+  /* one white calculator card with a blue left edge; b = name, span = gray description */
+  .calc-card{background:#fff;color:var(--text);border-radius:10px;padding:16px 18px;border-left:4px solid var(--secondary);
+    box-shadow:var(--shadow);transition:transform .15s,box-shadow .2s,border-color .2s;}
+  .calc-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-left-color:var(--tertiary);}
+  .calc-card b{display:block;color:var(--navy);font-size:.98rem;}
+  .calc-card span{color:var(--muted);font-size:.85rem;}
+  /* tablets: 2 cards per row; phones: 1 card per row */
+  @media(max-width:860px){.calc-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.calc-grid{grid-template-columns:1fr;}}
+
+  /* ===== CTA BAND (older version) =====
+     Mostly overridden by the CALL-TO-ACTION BAND block further down; edit that one instead. */
+  /* CTA band */
+  .cta-band{position:relative;overflow:hidden;color:#fff;text-align:center;padding:62px 0;
+    background:radial-gradient(90% 160% at 100% 0%,rgba(59,167,242,.45),transparent 60%),radial-gradient(70% 120% at 0% 100%,rgba(127,231,214,.22),transparent 60%),linear-gradient(120deg,var(--primary-800),var(--primary));}
+  .cta-band h2{font-size:1.9rem;margin-bottom:10px;}
+  .cta-band p{color:var(--on-dark);margin-bottom:24px;}
+
+  /* ===== SEARCH ===== */
+  /* search */
+  /* the magnifier icon in the menu */
+  .search-li a{font-size:1.05rem;}
+  /* dark see-through backdrop over the whole page; hidden until the .open class is added by the SEARCH script */
+  .search-overlay{position:fixed;inset:0;background:rgba(5,29,71,.62);display:none;z-index:200;padding:84px 16px 16px;}
+  .search-overlay.open{display:block;}
+  /* the white search box: top row = icon, typing field and close X */
+  .search-box{max-width:640px;margin:0 auto;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 30px 70px rgba(5,29,71,.4);}
+  .search-top{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--border);}
+  .search-ic{font-size:1.2rem;}
+  .search-top input{flex:1;border:0;outline:none;font-size:1.1rem;color:var(--text);font-family:inherit;background:transparent;}
+  .search-close{background:transparent;border:0;font-size:1.7rem;line-height:1;cursor:pointer;color:var(--muted);padding:0 4px;}
+  /* the list of results (scrolls if long); each result shows a bold title and a gray snippet */
+  .search-results{max-height:62vh;overflow:auto;}
+  .search-results a{display:block;padding:14px 18px;border-bottom:1px solid var(--border);color:var(--primary);}
+  .search-results a:hover{background:var(--bg-alt);}
+  .search-results a b{display:block;font-size:1rem;}
+  .search-results a span{font-size:.86rem;color:var(--muted);}
+  /* the hint / no-results message */
+  .search-none{padding:20px 18px;color:var(--muted);}
+
+  /* ===== FLOATING BOOK BUTTON ===== */
+  /* floating "Book a Consultation" CTA */
+  .book-fab{position:fixed;right:22px;bottom:22px;z-index:90;background:linear-gradient(135deg,var(--primary),#1560C9);color:#fff;
+    font-weight:800;padding:14px 24px;border-radius:40px;display:inline-flex;align-items:center;gap:8px;letter-spacing:.3px;
+    box-shadow:0 12px 30px rgba(11,61,145,.35);transition:transform .15s,box-shadow .2s;animation:bookpulse 2.8s ease-in-out infinite;}
+  .book-fab:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(11,61,145,.45);}
+  /* the slow glowing pulse around the button */
+  @keyframes bookpulse{0%,100%{box-shadow:0 12px 30px rgba(11,61,145,.3),0 0 0 0 rgba(59,167,242,.5);}50%{box-shadow:0 14px 36px rgba(11,61,145,.38),0 0 0 12px rgba(59,167,242,0);}}
+  /* phones: smaller button, closer to the corner */
+  @media(max-width:560px){.book-fab{right:14px;bottom:14px;padding:12px 18px;font-size:.92rem;}}
+
+  /* ===== FOOTER (older dark version) =====
+     Most of these rules are overridden by the FOOTER (LIGHT) and FOOTER: SOFT TOP blocks below. */
+  /* footer */
+  footer{position:relative;background:var(--primary-900);color:#B8CBE6;padding:50px 0 22px;margin-top:20px;}
+  footer::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--primary),var(--secondary),var(--tertiary));}
+  footer .brand img{height:60px;}
+  .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:30px;margin-bottom:28px;}
+  footer h4{color:#fff;font-size:1rem;margin-bottom:13px;}
+  footer ul{list-style:none;}
+  footer li{margin-bottom:8px;font-size:.9rem;}
+  footer a:hover{color:var(--tertiary);}
+  /* row of round social media icons, and the copyright line */
+  .social{display:flex;gap:12px;justify-content:center;margin:6px 0 22px;}
+  .social a{width:40px;height:40px;border-radius:50%;background:var(--tertiary);color:var(--primary-900);display:grid;place-items:center;font-size:1.05rem;transition:transform .15s,background .2s,color .2s;}
+  .social a:hover{transform:translateY(-3px);background:var(--secondary);color:#fff;}
+  .foot-copy{border-top:1px solid rgba(255,255,255,.12);padding-top:18px;font-size:.82rem;text-align:center;}
+
+  /* ===== RESPONSIVE (tablets and phones) ===== */
+  /* responsive */
+  /* 980px and narrower: footer columns two across */
+  @media (max-width:980px){.foot-grid{grid-template-columns:1fr 1fr;}}
+  /* 980px and narrower: the menu becomes a hamburger drop-down that slides open (.open is added by the NAV script) */
+  @media (max-width:980px){
+    .nav-toggle{display:block;}
+    nav.main-nav{position:absolute;top:100%;left:0;right:0;background:#fff;box-shadow:0 18px 30px rgba(11,61,145,.12);max-height:0;overflow:hidden;transition:max-height .35s ease;}
+    nav.main-nav.open{max-height:760px;overflow:auto;}
+    nav.main-nav > ul{flex-direction:column;gap:0;padding:8px 0;align-items:stretch;}
+    nav.main-nav li{width:100%;}
+    nav.main-nav a{display:block;padding:13px 24px;border-radius:0;border-bottom:1px solid var(--border);text-align:left;}
+    /* sub-menus open in place (tap to open) instead of floating on hover */
+    .submenu{position:static;display:none;box-shadow:none;border:0;border-radius:0;background:var(--bg-alt);padding:0;min-width:0;}
+    .has-sub.open .submenu{display:flex;}
+    .submenu a{padding-left:40px;}
+  }
+  /* 600px and narrower (phones): tighter margins, centered top bar, one footer column, smaller logo */
+  @media (max-width:600px){
+    .container{padding:0 16px;}
+    .topbar .container{justify-content:center;text-align:center;gap:2px 14px;font-size:.74rem;padding:7px 14px;}
+    .foot-grid{grid-template-columns:1fr;}
+    .section{padding:46px 0;}
+    .brand img{height:46px;}
+  }
+
+  /* ===== call-to-action band ===== */
+  /* the blue band with the Book a Free Consultation button; the long url(...) draws the wavy teal shapes */
+  .cta-band{position:relative;overflow:hidden;color:#fff;text-align:center;padding:70px 0 76px;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 300' preserveAspectRatio='none'%3E%3Cpath d='M0 120C260 200 420 290 640 300H0Z' fill='%237FE7D6' opacity='.35'/%3E%3Cpath d='M0 170C300 230 470 280 700 300' fill='none' stroke='%23BFF3EC' stroke-width='2' opacity='.7'/%3E%3Cpath d='M1600 150C1350 230 1180 280 980 300H1600Z' fill='%233BA7F2' opacity='.35'/%3E%3Cpath d='M1600 190C1380 250 1200 285 1020 300' fill='none' stroke='%23BFE6FF' stroke-width='2' opacity='.7'/%3E%3C/svg%3E") bottom/100% 100% no-repeat,
+      radial-gradient(60% 120% at 100% 0%,rgba(79,195,255,.55),transparent 60%),linear-gradient(120deg,#062C74,#0B3D91 45%,#1561C9);}
+  .cta-band h2{font-size:2.5rem;font-weight:800;line-height:1.15;margin-bottom:10px;}
+  .cta-band p{color:#E3EEFF;font-size:1.2rem;margin-bottom:28px;}
+  /* the mint pill button; its arrow slides right on hover */
+  .cta-band .btn{display:inline-flex;align-items:center;gap:12px;padding:16px 34px;border-radius:999px;font-size:1.02rem;
+    background:linear-gradient(90deg,#7FE7D6,#5EEAD4);color:#0A2A6B;box-shadow:0 12px 30px rgba(127,231,214,.35);}
+  .cta-band .btn i{transition:transform .2s;}
+  .cta-band .btn:hover i{transform:translateX(4px);}
+  /* phones: smaller heading and text */
+  @media(max-width:600px){.cta-band h2{font-size:1.7rem;}.cta-band p{font-size:1rem;}}
+
+  /* ===== footer (light) ===== */
+  /* light blue footer background (the wave drawing is later hidden by FOOTER: SOFT TOP) */
+  footer{position:relative;overflow:hidden;background:linear-gradient(180deg,#F7FBFF,#EAF5FF);color:var(--primary);padding:64px 0 26px;margin-top:0;}
+  footer::before{content:"";position:absolute;left:0;right:0;bottom:0;top:auto;height:260px;pointer-events:none;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 300' preserveAspectRatio='none'%3E%3Cpath d='M0 120C260 200 420 290 640 300H0Z' fill='%237FE7D6' opacity='.35'/%3E%3Cpath d='M0 170C300 230 470 280 700 300' fill='none' stroke='%23BFF3EC' stroke-width='2' opacity='.7'/%3E%3Cpath d='M1600 150C1350 230 1180 280 980 300H1600Z' fill='%233BA7F2' opacity='.35'/%3E%3Cpath d='M1600 190C1380 250 1200 285 1020 300' fill='none' stroke='%23BFE6FF' stroke-width='2' opacity='.7'/%3E%3C/svg%3E") bottom/100% 100% no-repeat;opacity:.9;}
+  footer .container{position:relative;z-index:1;max-width:var(--maxw);}
+  footer .brand img{height:76px;}
+  /* three columns: logo and bio, Company links, Resources links; thin blue lines between them */
+  .foot-grid{grid-template-columns:1.45fr 1fr 1.05fr;gap:0;margin-bottom:30px;align-items:start;}
+  .foot-grid > div{padding:0 34px;}
+  .foot-grid > div:first-child{padding-left:0;}
+  .foot-grid > div + div:not(.foot-cta){border-left:1px solid rgba(59,167,242,.3);}
+  .foot-grid > div:nth-child(2),.foot-grid > div:nth-child(3){padding-bottom:8px;}
+  /* the bio text in the first column, with a short gradient bar above it */
+  .foot-grid > div:first-child p{color:var(--primary);font-size:1.02rem !important;line-height:1.6;}
+  .foot-grid > div:first-child p:before{content:"";display:block;width:76px;height:3px;border-radius:2px;margin:0 0 16px;background:linear-gradient(90deg,#1C8BDF,#5FD3E2);}
+  /* column headings (Company, Resources) with a small colored bar above */
+  footer h4{color:var(--primary);font-size:1.15rem;margin-bottom:16px;}
+  footer h4:before{content:"";display:block;width:34px;height:3px;border-radius:2px;margin-bottom:14px;background:linear-gradient(90deg,#3BA7F2,#7FE7D6);}
+  /* footer links; content "\f054" is the Font Awesome small arrow icon shown before each link */
+  footer li{margin-bottom:12px;font-size:.98rem;}
+  footer li a{white-space:nowrap;display:inline-flex;align-items:center;gap:12px;color:#1D3F75;transition:color .2s,transform .2s;}
+  footer li a:before{content:"\f054";font-family:"Font Awesome 6 Free";font-weight:900;font-size:.72rem;color:#1CA9D6;}
+  footer li a:hover{color:#1C8BDF;transform:translateX(3px);}
+  /* optional fourth column with a big Book button (.foot-cta / .foot-book); not used in this page's footer */
+  .foot-cta{align-self:center;padding:0 0 0 34px !important;border-left:1px solid rgba(59,167,242,.3);}
+  .foot-book{display:inline-flex;align-items:center;gap:16px;white-space:nowrap;padding:18px 30px;border-radius:999px;color:#fff !important;font-weight:700;
+    background:linear-gradient(90deg,#0B3D91,#1560C9);box-shadow:0 14px 34px rgba(11,61,145,.3),0 0 0 3px rgba(59,167,242,.35);transition:transform .2s,box-shadow .2s;}
+  .foot-book .sep{width:1px;height:24px;background:rgba(255,255,255,.35);}
+  .foot-book i{font-size:1.2rem;}
+  .foot-book .fa-arrow-right{font-size:.85rem;transition:transform .2s;}
+  .foot-book:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(11,61,145,.38),0 0 0 3px rgba(59,167,242,.5);}
+  .foot-book:hover .fa-arrow-right{transform:translateX(4px);}
+  /* social icons row: fading lines on both sides, and each icon a different shade of blue/teal */
+  .social{position:relative;gap:16px;margin:10px 0 22px;align-items:center;}
+  .social:before,.social:after{content:"";width:min(340px,22vw);height:1px;background:linear-gradient(90deg,transparent,rgba(59,167,242,.45));}
+  .social:after{background:linear-gradient(90deg,rgba(59,167,242,.45),transparent);}
+  .social a{width:46px;height:46px;font-size:1.1rem;color:#fff;background:#0B3D91;box-shadow:0 8px 18px rgba(11,61,145,.2);}
+  .social a:nth-child(6n+2){background:#1C8BDF;}
+  .social a:nth-child(6n+3){background:#2EC4B6;}
+  .social a:nth-child(6n+4){background:#3BA7F2;}
+  .social a:nth-child(6n+5){background:#5FD3C8;}
+  .social a:hover{transform:translateY(-3px);background:#0A2A6B;color:#fff;}
+  .foot-copy{border-top:0;color:#1D3F75;font-size:.95rem;}
+  footer a:hover{color:#1C8BDF;}
+  /* 1100px and narrower: footer columns two across; 600px and narrower: one column */
+  @media(max-width:1100px){.foot-grid{grid-template-columns:1fr 1fr;row-gap:34px;}.foot-grid > div{padding:0 24px;}
+    .foot-grid > div:nth-child(3){border-left:1px solid rgba(59,167,242,.3);}.foot-grid > div:nth-child(2){border-left:0;padding-left:0;}
+    .foot-cta{grid-column:1/-1;border-left:0 !important;padding:0 !important;}}
+  @media(max-width:600px){.foot-grid{grid-template-columns:1fr;}.foot-grid > div{padding:0 !important;border-left:0 !important;}
+    .social{flex-wrap:wrap;gap:12px;}.social:before,.social:after{display:none;}.foot-book{padding:15px 24px;}}
+
+  /* ===== one typeface everywhere ===== */
+  body,button,input,select,textarea{font-family:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  /* ===== two-tone gradient headings ===== */
+  .grad{background:linear-gradient(90deg,#1C8BDF,#139E92);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+  .grad-light{background:linear-gradient(90deg,#9FD8FF,#7FE7D6);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+  /* Class names like .mc, .wcu, .hero, .nl-... and .cx-... in the blocks below belong to the home page.
+     They do nothing here; they are kept so the shared styles match index.html. */
+  .mc{border-top:0 !important;}
+  /* title band fades out at the bottom (switched off again in FOOTER: SOFT TOP below) */
+  .sec-head{border-top:0;border-bottom:0;-webkit-mask-image:linear-gradient(180deg,#000 70%,transparent);mask-image:linear-gradient(180deg,#000 70%,transparent);}
+
+  /* ===== one continuous background: no visible section edges ===== */
+  body{background:#EDF6FE;background-image:radial-gradient(60vw 60vh at 85% 15%,rgba(59,167,242,.10),transparent 70%),
+    radial-gradient(55vw 55vh at 10% 70%,rgba(127,231,214,.10),transparent 70%);background-attachment:fixed;}
+  /* make these sections see-through so the page background above shows through */
+  .mc,.wcu,.hero,.sec-head,.sd-hero,.section{background:transparent !important;}
+  .mc-deco{display:none;}
+  /* ===== small titles are gold, with a gold rule ===== */
+  .sec-kicker.blue,.hero .sec-kicker.blue,.nl-kicker,.wcu-kicker,.sd-kicker,.vg-count{color:var(--gold-ink) !important;}
+  .sec-kicker.blue:after,.hero .sec-kicker.blue:after,.nl-kicker.line:after,.sd-kicker:after,.vg-count:after{background:var(--gold) !important;width:46px !important;height:2px !important;}
+  .wcu-kicker:before,.wcu-kicker:after{background:var(--gold) !important;}
+  .nl-kicker .sep{background:rgba(217,165,58,.5);}
+  .cx-card .h .lbl{color:var(--gold-ink);}
+  /* ===== every section title the same size ===== */
+  .mc-title,.mc-title.plain,.nl-head h2,.wcu-title,.about-txt h2,.contactx h1,.cta-band h2,.sec-head h1,.sec-head h2,.sd-hero h1,.sd-sec h2{
+    font-size:2.15rem !important;font-weight:700 !important;line-height:1.2 !important;letter-spacing:-.2px !important;text-transform:none !important;}
+  .wcu-title .grad{display:inline;}
+  /* phones: all section titles a bit smaller */
+  @media(max-width:600px){.mc-title,.mc-title.plain,.nl-head h2,.wcu-title,.about-txt h2,.contactx h1,.cta-band h2,.sec-head h1,.sec-head h2,.sd-hero h1,.sd-sec h2{font-size:1.6rem !important;}}
+  /* ===== footer: soft top, dark blue bottom bar ===== */
+  footer{background:transparent !important;padding-bottom:0 !important;}
+  footer::before{display:none !important;}
+  /* the dark blue bar at the very bottom holding the social icons and the copyright line */
+  .foot-bottom{position:relative;margin-top:30px;padding:26px 0 22px;background:linear-gradient(90deg,#051D47,#0B3D91 50%,#072A66);}
+  .foot-bottom .social{margin:0 0 14px;}
+  .foot-bottom .social:before,.foot-bottom .social:after{background:linear-gradient(90deg,transparent,rgba(127,231,214,.5)) !important;}
+  .foot-bottom .social:after{background:linear-gradient(90deg,rgba(127,231,214,.5),transparent) !important;}
+  .foot-bottom .foot-copy{color:#C9DAF2;padding-top:0;}
+  .foot-bottom .social a:hover{background:#fff;color:var(--primary);}
+  .foot-bottom .social a:nth-child(6n+1),.foot-bottom .social a:nth-child(6n){background:#1C8BDF;}
+  /* hides the globe and gold stripe of the title band */
+  .sec-head:before,.sec-head:after{display:none !important;}
+  /* header band sits right on top of its content */
+  .sec-head{padding-bottom:18px !important;}
+  .sec-head + .section{padding-top:14px !important;}
+  /* turns off the fade-out at the bottom of the title band */
+  .sec-head{-webkit-mask-image:none !important;mask-image:none !important;}
+
+  /* ===== shared-element page transition (card photo <-> service page photo) ===== */
+  /* In browsers that support it (Chrome, Edge, Safari 18+), pages fade into each other instead of a hard cut. */
+  @view-transition{navigation:auto;}
+  ::view-transition-group(*){animation-duration:500ms;animation-timing-function:cubic-bezier(.32,.72,0,1);}
+  ::view-transition-old(root){animation:vtOut 220ms ease both;}
+  ::view-transition-new(root){animation:vtIn 360ms cubic-bezier(.32,.72,0,1) 120ms both;}
+  /* keep photos cropped, not stretched, while they change shape */
+  ::view-transition-old(svc-tax),::view-transition-new(svc-tax),::view-transition-old(svc-books),::view-transition-new(svc-books),
+  ::view-transition-old(svc-consult),::view-transition-new(svc-consult),::view-transition-old(svc-future),::view-transition-new(svc-future){
+    height:100%;width:100%;object-fit:cover;overflow:clip;animation-duration:500ms;}
+  /* vtOut = old page fades away; vtIn = new page fades in while rising slightly */
+  @keyframes vtOut{to{opacity:0;}}
+  @keyframes vtIn{from{opacity:0;transform:translateY(8px);}}
+  /* visitors who turned on reduced motion in their device settings get no page animation */
+  @media(prefers-reduced-motion:reduce){@view-transition{navigation:none;}}
+
+  /* ===== dropdown navigation: the next page zooms up from card size ===== */
+  /* used only when the PAGE-ZOOM HELPER script tagged the navigation as a zoom: old page shrinks, new page grows */
+  html:active-view-transition-type(zoom)::view-transition-old(root){animation:vtShrink 420ms cubic-bezier(.32,.72,0,1) both;}
+  html:active-view-transition-type(zoom)::view-transition-new(root){animation:vtZoom 560ms cubic-bezier(.32,.72,0,1) both;}
+  /* during a zoom, switch off the photo morph so only the zoom plays */
+  html:active-view-transition-type(zoom) [style*="view-transition-name"]{view-transition-name:none !important;}
+  /* the shrink and zoom movements themselves */
+  @keyframes vtShrink{to{opacity:0;transform:scale(.9);}}
+  @keyframes vtZoom{from{transform:scale(.42);opacity:.5;clip-path:inset(0 round 60px);filter:drop-shadow(0 30px 60px rgba(11,61,145,.3));}
+    to{clip-path:inset(0 round 0);}}
+
+  /* ===== curtain wipe: a blue panel covers the page on the way to and from the request form ===== */
+  /* the panel itself: covers the whole screen, parked off to the left and invisible until needed */
+  .curtain{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;pointer-events:none;visibility:hidden;transform:translateX(-101%);
+    background:linear-gradient(120deg,var(--primary) 0%,#1560C9 55%,var(--secondary) 100%);}
+  .curtain img{width:min(260px,52vw);height:auto;}
+  /* curtain-cover = panel covering the page; curtain-moving = panel sliding (classes set by the CURTAIN script) */
+  html.curtain-cover .curtain{visibility:visible;transform:none;}
+  html.curtain-moving .curtain{visibility:visible;pointer-events:auto;}
+
+  /* ===== TAX VIDEOS PAGE ===== */
+  /* Section panel and the small dot decorations (same as on the home page). */
+  .mc{position:relative;overflow:hidden;padding:76px 0 84px;background:linear-gradient(180deg,#F4FAFF 0%,#EAF5FF 100%);}
+  /* Decorative wave shapes in the corners (hidden later under SITE-WIDE OVERRIDES). */
+  .mc-deco{position:absolute;pointer-events:none;}
+  .mc-deco.tl{top:0;left:0;width:340px;}
+  .mc-deco.bl{bottom:0;left:0;width:520px;}
+  .mc-deco.br{bottom:0;right:0;width:460px;}
+  /* Small dot-grid decorations. */
+  .mc-dots{position:absolute;width:84px;height:52px;pointer-events:none;opacity:.55;
+    background:radial-gradient(circle,#9CCBF0 2.4px,transparent 2.8px) 0 0/21px 17px;}
+  .mc-dots.tr{top:38px;right:5%;}
+  .mc-dots.br2{bottom:56px;right:6.5%;}
+  .mc .container{position:relative;z-index:1;}
+  .mc-dots.bl2{bottom:48px;left:2.5%;}
+  /* ===== NEWSLETTER + VIDEO HEADINGS (shared) ===== */
+  /* Left-aligned heading block used by CLIENT NEWSLETTER, TAX PLANNING NEWSLETTER and TAX VIDEOS. */
+  /* in-section header (newsletters, tax videos) */
+  .nl-head{margin-bottom:42px;max-width:980px;}
+  /* Small blue label with an icon above the heading. */
+  .nl-kicker{display:flex;align-items:center;gap:14px;color:#1C8BDF;font-weight:800;font-size:.95rem;letter-spacing:1.6px;text-transform:uppercase;}
+  .nl-kicker .ic{font-size:1.75rem;color:var(--primary);}
+  .nl-kicker .sep{width:1px;height:26px;background:#B9D9F2;}
+  .nl-kicker.line:after{content:"";width:44px;height:2px;background:linear-gradient(90deg,#3BA7F2,#7FE7D6);}
+  /* Heading size and color. */
+  .nl-head h1,.nl-head h2{color:var(--primary);font-size:2.7rem;font-weight:800;line-height:1.15;letter-spacing:-.3px;margin:12px 0 10px;}
+  /* grad: blue-to-teal gradient text used on highlighted words in titles. */
+  .grad{background:linear-gradient(90deg,#1C8BDF,#139E92);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+  .nl-head p{color:var(--muted);font-size:1.14rem;}
+  /* Short gradient bar under a heading. */
+  .nl-bar{display:block;width:76px;height:4px;border-radius:2px;margin-top:16px;background:linear-gradient(90deg,#1C8BDF,#3CCFC0);}
+  /* page title: same size as every other section title */
+  .nl-head h1{font-size:2.15rem !important;font-weight:700 !important;line-height:1.2 !important;letter-spacing:-.2px !important;}
+  @media(max-width:600px){.nl-head h1{font-size:1.6rem !important;}}
+  /* ===== TAX VIDEOS ===== */
+  /* Video gallery: big cover/player on the left, title and buttons on the right, thumbnail strip below. The video list is in the TAX VIDEOS script. */
+  /* ----- Resources: tax videos ----- */
+  /* Gallery: stacked slides crossfade on top, thumbnail tablist below with one
+     shared outline that slides to the active thumb. */
+  /* Gallery settings: cols = thumbnails visible at once, gap = space between them, spring = bouncy animation curve. */
+  .vg{--cols:5;--gap:6px;--pad:6px;
+    --spring:linear(0, 0.0941 5.6%, 0.2736 11.1%, 0.4548 16.7%, 0.6076 22.2%, 0.7255 27.8%, 0.8119 33.3%, 0.8732 38.9%, 0.9156 44.4%, 0.9444 50.0%, 0.9636 55.6%, 0.9764 61.1%, 0.9848 66.7%, 0.9902 72.2%, 0.9938 77.8%, 0.9960 83.3%, 0.9975 88.9%, 0.9984 94.4%, 1 100%);
+    max-width:860px;margin:0 auto;}
+  /* Top area: cover on the left (max 340px wide), text on the right. */
+  .vg-top{display:grid;grid-template-columns:minmax(0,340px) 1fr;gap:36px;align-items:center;}
+  /* The tall 9:16 box that shows the active video cover or player. */
+  .vg-stage{position:relative;aspect-ratio:9/16;border-radius:14px;overflow:hidden;background:var(--navy-3);
+    box-shadow:var(--shadow-lg);touch-action:pan-y;}
+  /* One slide per video; only the active one is visible (it fades in). */
+  .vg-slide{position:absolute;inset:0;opacity:0;transform:scale(1.06);
+    transition:opacity .6s ease,transform .9s cubic-bezier(.32,.72,0,1);}
+  .vg-slide{transition:opacity .6s ease,transform .9s var(--spring);}
+  .vg-slide.is-active{opacity:1;transform:none;z-index:1;}
+  .vg-slide img{display:block;width:100%;height:100%;object-fit:cover;}
+  .vg-slide iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000;}
+  /* Round mint play button on the cover. */
+  .vg-play{position:absolute;inset:0;margin:auto;width:76px;height:76px;border:0;border-radius:50%;cursor:pointer;
+    background:var(--tertiary);color:var(--primary-900);font-size:1.5rem;box-shadow:0 8px 24px rgba(5,29,71,.45);transition:transform .15s;}
+  .vg-play:before{content:"\25B6";margin-left:5px;}
+  .vg-play:hover{transform:scale(1.07);}
+  .vg-play:focus-visible{outline:3px solid #fff;outline-offset:4px;}
+  /* Title shown instead of a picture when a thumbnail fails to load. */
+  .vg-fallback{display:none;position:absolute;inset:0;padding:24px;place-items:center;text-align:center;
+    color:#fff;font-size:1.3rem;font-weight:700;background:var(--navy);}
+  .is-missing .vg-fallback{display:grid;}
+  .is-missing img{visibility:hidden;}
+  /* Right-hand text: video counter, title, description. */
+  .vg-info{color:var(--text);}
+  .vg-info h2{color:var(--primary);}
+  .vg-count{color:var(--secondary-ink);font-size:.82rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;}
+  .vg-info h2{font-size:2rem;line-height:1.2;margin:10px 0 12px;}
+  .vg-info p{color:var(--muted);}
+  /* Prev / Next / pause / Ask Us About This buttons. */
+  .vg-nav{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;}
+  .vg-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;font:inherit;font-size:.92rem;font-weight:600;
+    cursor:pointer;border:2px solid rgba(11,61,145,.2);background:#fff;color:var(--primary);text-decoration:none;transition:border-color .15s,background .15s,color .15s;}
+  .vg-btn:hover{border-color:var(--secondary);}
+  .vg-btn.solid{background:var(--primary);border-color:var(--primary);color:#fff;}
+  .vg-btn.solid:hover{background:var(--primary-700);border-color:var(--primary-700);}
+  .vg-btn:focus-visible{outline:3px solid var(--secondary);outline-offset:3px;}
+  /* Scrolling strip of thumbnails under the player. */
+  .vg-strip{position:relative;display:grid;grid-auto-flow:column;gap:var(--gap);padding:var(--pad);margin-top:30px;
+    grid-auto-columns:calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols));
+    overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:var(--secondary) transparent;}
+  /* One thumbnail button; the selected one is fully opaque. */
+  .vg-thumb{position:relative;aspect-ratio:9/16;padding:0;border:0;border-radius:8px;overflow:hidden;cursor:pointer;
+    background:var(--navy);opacity:.6;transition:opacity .3s ease;scroll-snap-align:start;}
+  .vg-thumb:hover{opacity:.85;}
+  .vg-thumb[aria-selected="true"]{opacity:1;}
+  .vg-thumb:focus-visible{outline:3px solid #fff;outline-offset:-3px;}
+  .vg-thumb img{display:block;width:100%;height:100%;object-fit:cover;}
+  .vg-thumb .vg-fallback{font-size:.78rem;padding:8px;}
+  /* Video number badge on each thumbnail. */
+  .vg-num{position:absolute;top:6px;left:6px;z-index:1;padding:1px 7px;border-radius:6px;font-size:.72rem;font-weight:700;
+    background:rgba(5,29,71,.85);color:#fff;}
+  /* One cell plus one gap wide, so translateX(n * 100%) lands exactly on thumb n. */
+  .vg-ind{position:absolute;top:var(--pad);left:var(--pad);pointer-events:none;z-index:2;
+    width:calc((100% - 2 * var(--pad) - (var(--cols) - 1) * var(--gap)) / var(--cols) + var(--gap));
+    transform:translateX(calc(var(--n, 0) * 100%));transition:transform .6s cubic-bezier(.32,.72,0,1);}
+  .vg-ind{transition:transform .6s var(--spring);}
+  /* 2px ring sitting 3px outside the thumb, like the reference's border at -3px. */
+  .vg-ind:before{content:"";display:block;width:calc(100% - var(--gap));aspect-ratio:9/16;border-radius:8px;
+    outline:2px solid var(--secondary);outline-offset:1px;}
+  /* ---- Interactive motion ---- */
+  /* Tilt, pulse, progress bar and entrance animations for the gallery. */
+  .vg-stage{transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+    transition:transform .5s var(--spring),box-shadow .3s;}
+  .vg-stage:hover{box-shadow:0 28px 60px rgba(11,61,145,.28);}
+  .vg-play:after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--tertiary);
+    animation:vgPulse 2s ease-out infinite;pointer-events:none;}
+  .vg-play:active{transform:scale(.93);}
+  .vg-slide iframe{animation:vgFade .4s ease;}
+  /* Thin progress bar at the bottom of the cover; when it fills, the next video comes up. */
+  .vg-progress{position:absolute;left:0;right:0;bottom:0;height:4px;z-index:3;background:rgba(255,255,255,.18);transition:opacity .3s;}
+  .vg-progress i{display:block;height:100%;background:linear-gradient(90deg,var(--secondary),var(--tertiary));transform-origin:left;transform:scaleX(0);}
+  .vg-progress i.run{animation:vgFill 4s linear forwards;}
+  .vg.is-paused .vg-progress i{animation-play-state:paused;}
+  .vg.is-paused .vg-progress{opacity:.45;}
+  .vg.is-playing .vg-progress,.vg.is-stopped .vg-progress{opacity:0;}
+  .vg-swap{animation:vgIn .55s var(--spring);}
+  .vg-thumb{transition:opacity .3s ease,transform .45s var(--spring);}
+  .vg-thumb:not([aria-selected="true"]):hover{transform:translateY(-4px);}
+  .vg-thumb:active{transform:scale(.95)!important;}
+  .vg-cap{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:22px 8px 8px;text-align:left;
+    font-size:.7rem;line-height:1.25;font-weight:600;color:#fff;background:linear-gradient(transparent,rgba(5,29,71,.95) 45%);
+    transform:translateY(101%);transition:transform .45s var(--spring);}
+  .vg-thumb:hover .vg-cap,.vg-thumb:focus-visible .vg-cap{transform:none;}
+  /* Pause/play auto-advance button. */
+  .vg-auto{width:44px;padding:10px 0;justify-content:center;}
+  /* Fade/rise-in when the gallery first scrolls into view. */
+  .vg.pre .vg-stage,.vg.pre .vg-info,.vg.pre .vg-thumb{opacity:0;}
+  .vg.is-in .vg-stage,.vg.is-in .vg-info{animation:vgRise .8s var(--spring) backwards;}
+  .vg.is-in .vg-info{animation-delay:.12s;}
+  .vg.is-in .vg-thumb{animation:vgRise .7s var(--spring) backwards;animation-delay:calc(.25s + var(--i,0) * 55ms);}
+  /* Animation definitions used above. */
+  @keyframes vgPulse{from{transform:scale(1);opacity:.85}to{transform:scale(1.7);opacity:0}}
+  @keyframes vgFill{to{transform:scaleX(1)}}
+  @keyframes vgIn{from{opacity:0;transform:translateY(12px)}}
+  @keyframes vgRise{from{opacity:0;transform:translateY(24px)}}
+  @keyframes vgFade{from{opacity:0}}
+  /* Touch screens: hide hover captions. */
+  @media(hover:none){.vg-cap{display:none;}}
+  /* Visitors whose device asks for less motion get no animations. */
+  @media(prefers-reduced-motion:reduce){
+    .vg-slide,.vg-ind,.vg-stage,.vg-thumb,.vg-cap{transition:none;}
+    .vg *,.vg *:before,.vg *:after{animation:none!important;}
+    .vg-stage{transform:none;}
+    .vg-progress,.vg-auto{display:none;}
+  }
+  /* Phones: stack the cover above the text. */
+  @media(max-width:760px){
+    .vg-top{grid-template-columns:1fr;gap:24px;text-align:center;}
+    .vg-stage{width:min(340px,100%);margin:0 auto;}
+    .vg-nav{justify-content:center;}
+    .vg-info h2{font-size:1.6rem;}
+    .vg-num{display:none;}
+  }
+  /* Later restyle of the gallery (wins over the rules above): 6 thumbnails, bigger title, white thumbnail cards. */
+  .vg{--cols:6;--gap:14px;--pad:8px;max-width:none;}
+  .vg-top{grid-template-columns:minmax(0,340px) minmax(0,560px);justify-content:center;gap:64px;}
+  .vg-count{display:flex;align-items:center;gap:14px;color:#1C8BDF;font-size:.98rem;font-weight:800;letter-spacing:2px;}
+  .vg-count:after{content:"";width:56px;height:2px;background:linear-gradient(90deg,#3BA7F2,#7FE7D6);}
+  .vg-info h2{font-family:inherit;font-weight:800;font-size:2.6rem;line-height:1.15;letter-spacing:-.3px;margin:14px 0 18px;}
+  .vg-info p{font-size:1.12rem;line-height:1.7;}
+  .vg-nav{gap:12px;margin-top:28px;}
+  .vg-btn{padding:11px 22px;font-size:.96rem;font-weight:700;border:2px solid #1C6FD1;color:#0B57C2;gap:10px;}
+  .vg-btn:hover{background:#EEF7FF;border-color:#0B57C2;}
+  .vg-btn.solid{padding:12px 24px;background:linear-gradient(90deg,var(--primary),#1560C9);border-color:transparent;
+    box-shadow:0 12px 26px rgba(11,61,145,.28);}
+  .vg-btn.solid:hover{background:linear-gradient(90deg,var(--primary-700),#1257B8);}
+  /* Wrapper around the thumbnail strip that holds the side arrows. */
+  .vg-stripwrap{position:relative;margin-top:44px;}
+  .vg-strip{margin-top:0;padding-bottom:14px;}
+  .vg-thumb{aspect-ratio:auto;display:flex;flex-direction:column;background:#fff;border-radius:14px;opacity:.72;
+    box-shadow:0 2px 4px rgba(11,61,145,.05),0 12px 26px rgba(11,61,145,.10);}
+  .vg-thumb:focus-visible{outline:3px solid var(--secondary);outline-offset:-3px;}
+  /* Thumbnail picture area and the caption under it. */
+  .vg-tthumb{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--navy);}
+  .vg-tthumb img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 14%;}
+  .vg-tthumb .vg-fallback{font-size:.78rem;padding:8px;}
+  .vg-tcap{display:block;padding:10px 12px 12px;text-align:left;color:var(--primary);font-size:.8rem;font-weight:600;line-height:1.3;}
+  .vg-tcap small{display:block;color:#1C8BDF;font-size:.72rem;font-weight:600;margin-bottom:2px;}
+  .vg-tcap .t{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  /* The moving outline that marks the selected thumbnail. */
+  .vg-ind{bottom:calc(var(--pad) + 14px);}
+  .vg-ind:before{aspect-ratio:auto;height:100%;border-radius:14px;outline-offset:2px;}
+  /* Round arrows at the ends of the thumbnail strip. */
+  .vg-sarrow{position:absolute;top:calc(50% - 7px);transform:translateY(-50%);z-index:3;width:50px;height:50px;border-radius:50%;cursor:pointer;
+    display:grid;place-items:center;background:#fff;color:#0B57C2;font-size:1rem;border:1px solid var(--border);
+    box-shadow:0 8px 20px rgba(11,61,145,.16);transition:transform .2s,background .2s,color .2s;}
+  .vg-sarrow:hover{background:#0B57C2;color:#fff;}
+  .vg-sarrow:focus-visible{outline:3px solid var(--secondary);outline-offset:3px;}
+  .vg-sarrow.prev{left:-26px;}.vg-sarrow.next{right:-26px;}
+  /* Fewer thumbnails per row as the screen narrows; arrows hidden on phones. */
+  @media(max-width:1240px){.vg-sarrow.prev{left:-6px;}.vg-sarrow.next{right:-6px;}}
+  @media(max-width:980px){.vg{--cols:4;}.vg-top{gap:36px;}}
+  @media(max-width:760px){.vg{--cols:3;--gap:10px;}.vg-top{grid-template-columns:1fr;gap:28px;}.vg-info h2{font-size:1.8rem;}.vg-count{justify-content:center;}.vg-sarrow{display:none;}}
+
+</style>
+<!-- ===== PAGE-ZOOM HELPER (one-line script) =====
+     When you click a service in the Services menu, it remembers that, so the next page zooms in. -->
+<script>/* links in the Services dropdown (and Switch service) mark the next navigation as a zoom */(function(){var K='vtZoom',RE=/(tax-preparation-planning|bookkeeping-payroll|business-consulting|future-security)(\.html)?$/;function tag(e){try{if(e.viewTransition&&sessionStorage.getItem(K))e.viewTransition.types.add('zoom');}catch(_){}}addEventListener('pageswap',tag);addEventListener('pagereveal',function(e){tag(e);try{sessionStorage.removeItem(K);}catch(_){}});document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('.submenu a');if(a&&RE.test(a.getAttribute('href')||'')){try{sessionStorage.setItem(K,'1');}catch(_){}}},true);})();</script>
+<!-- ===== CURTAIN SCRIPT ===== the blue panel wipe when going to or leaving the request form page -->
+<script>
+  /* Curtain wipe to and from the request form: the panel slides in over this page, the next page
+     opens covered, then the panel slides off it. Reduced motion gets a quick fade instead. */
+  (function(){
+    // K = the browser-memory key that says "arrive covered"; FORM = the request form page's file name
+    var K = 'curtain', FORM = 'request-consultation', d = document, html = d.documentElement;
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)'), EASE = 'cubic-bezier(.32,.72,0,1)';
+    // ms() = how long the wipe takes (shorter with reduced motion)
+    function ms(){ return reduce.matches ? 150 : 450; }
+    // frames(): the movement of the panel, sliding in (entering) or sliding off; a plain fade with reduced motion
+    function frames(entering){
+      if (reduce.matches) return entering ? [{opacity:0, transform:'none'}, {opacity:1, transform:'none'}] : [{opacity:1, transform:'none'}, {opacity:0, transform:'none'}];
+      return entering ? [{transform:'translateX(-101%)'}, {transform:'translateX(0)'}] : [{transform:'translateX(0)'}, {transform:'translateX(101%)'}];
+    }
+    // page(): the page name of an address without .html, e.g. request-consultation ('index' for the home page)
+    function page(u){ var f = u.pathname.split('/').pop().replace(/\.html$/, ''); return f && f !== 'index' ? f : 'index'; }
+
+    // ARRIVING: if the previous page set the memory key, start with the panel covering this page
+    var arriving = false;
+    try{ if (sessionStorage.getItem(K)){ sessionStorage.removeItem(K); arriving = true; html.classList.add('curtain-cover'); } }catch(_){}
+    // the panel is the transition, so skip the browser's own cross-fade between pages
+    addEventListener('pagereveal', function(e){ if (arriving && e.viewTransition) e.viewTransition.skipTransition(); });
+    // once the page has loaded, slide the panel off (reveal)
+    if (arriving) d.addEventListener('DOMContentLoaded', function(){
+      var c = d.querySelector('.curtain'), started = false;
+      function reveal(){
+        if (started) return; started = true;
+        html.classList.add('curtain-moving'); html.classList.remove('curtain-cover');
+        if (!c || !c.animate){ html.classList.remove('curtain-moving'); return; }
+        c.animate(frames(false), {duration:ms(), easing:EASE}).finished.then(function(){ html.classList.remove('curtain-moving'); });
+        var h = d.querySelector('[data-curtain-focus]');
+        if (h) h.focus({preventScroll:true});
+      }
+      // wait briefly for the web font so the page doesn't reflow as it's revealed
+      if (d.fonts) d.fonts.ready.then(reveal);
+      setTimeout(reveal, 400);
+    });
+
+    // LEAVING: a click on a link to or from the request form slides the panel in, then opens the link.
+    // Other links (new tab, other sites, other pages) are left alone.
+    d.addEventListener('click', function(e){
+      if (e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var a = e.target.closest && e.target.closest('a[href]');
+      if (!a || a.target === '_blank' || a.hasAttribute('download')) return;
+      var to = new URL(a.href, location.href), from = page(location), dest = page(to);
+      if (to.origin !== location.origin || dest === from || (dest !== FORM && from !== FORM)) return;
+      var c = d.querySelector('.curtain');
+      if (!c || !c.animate) return;
+      e.preventDefault();
+      try{ sessionStorage.setItem(K, '1'); }catch(_){}
+      html.classList.add('curtain-moving');
+      var gone = false;
+      function go(){ if (!gone){ gone = true; location.href = a.href; } }
+      // swap pages only once the screen is fully covered
+      c.animate(frames(true), {duration:ms(), easing:EASE, fill:'forwards'}).finished.then(go);
+      setTimeout(go, ms() + 150);
+    });
+
+    // back/forward cache brings this page back still covered: lift the panel
+    addEventListener('pageshow', function(e){
+      if (!e.persisted) return;
+      html.classList.remove('curtain-moving', 'curtain-cover');
+      var c = d.querySelector('.curtain');
+      if (c && c.getAnimations) c.getAnimations().forEach(function(x){ x.cancel(); });
+      try{ sessionStorage.removeItem(K); }catch(_){}
+    });
+  })();
+</script>
+</head>
+<body>
+<!-- ===== CURTAIN PANEL ===== the blue panel with the white logo used by the CURTAIN SCRIPT; hidden normally -->
+<div class="curtain" aria-hidden="true"><img src="images/logo-light.webp" width="840" height="180" alt=""></div>
+
+<!-- ===== Top contact bar ===== -->
+<div class="topbar">
+  <div class="container">
+    <!-- phone and email on the left, office hours on the right: edit the text here -->
+    <span>📞 (916) 616-1789 &nbsp;·&nbsp; ✉️ ask@magnumcpa.com</span>
+    <span>🕘 Mon–Fri 9:00am – 5:00pm &nbsp;·&nbsp; Sat–Sun 2:00pm – 6:00pm</span>
+  </div>
+</div>
+
+<!-- ===== Header / Navigation ===== -->
+<header class="site-header">
+  <div class="container nav-inner">
+    <!-- logo (links to the home page) -->
+    <a href="./" class="brand"><picture><source srcset="images/logo.webp" type="image/webp"><img src="images/logo.png" width="840" height="180" alt="Magnum CPA PC — Tax · Accounting · Advisory" fetchpriority="high"></picture></a>
+
+    <!-- hamburger button: only shows on small screens; opens and closes the menu -->
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- ===== MAIN MENU ===== the same menu is on every page; change them all together -->
+    <nav class="main-nav" id="mainNav">
+      <ul>
+        <li><a href="./">Home</a></li>
+        <li><a href="./#about">About Us</a></li>
+        <!-- Services drop-down. -->
+        <li class="has-sub">
+          <a href="services" class="sub-toggle">Services ▾</a>
+          <ul class="submenu">
+            <li><a href="tax-preparation-planning">Tax Preparation &amp; Planning</a></li>
+            <li><a href="bookkeeping-payroll">Bookkeeping &amp; Payroll</a></li>
+            <li><a href="business-consulting">Business Consulting</a></li>
+            <li><a href="future-security">Future Security</a></li>
+            <li><a href="services">All Services</a></li>
+          </ul>
+        </li>
+        <!-- Resources drop-down (highlighted: this page is one of the resources). -->
+        <li class="has-sub">
+          <a href="#" class="sub-toggle active">Resources ▾</a>
+          <ul class="submenu">
+            <li><a href="./#client-newsletter">Client Newsletter</a></li>
+            <li><a href="./#tax-planning-newsletter">Tax Planning Newsletter</a></li>
+            <li><a href="tax-videos" aria-current="page">Tax Videos</a></li>
+            <!-- The client video library: its own site, so it opens in a new tab like the Client Portal. -->
+            <li><a href="https://library.magnumcpa.com" target="_blank" rel="noopener">Video Library</a></li>
+            <li><a href="financial-calculators">Financial Calculators</a></li>
+          </ul>
+        </li>
+        <!-- single links; Client Portal opens in a new tab -->
+        <li><a href="https://magnumcpa.clientportal.com/#/login" target="_blank" rel="noopener">Client Portal</a></li>
+        <li><a href="request-consultation">Request Consultation</a></li>
+        <li><a href="./#contact">Contact Us</a></li>
+        <!-- magnifier icon: opens the search box (see SEARCH in the scripts at the bottom) -->
+        <li class="search-li"><a href="#" class="search-btn" aria-label="Search the site">🔍</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== PAGE CONTENT (unique to each page) =====
+     On the calculators page this is the title band and the calculator list. The service pages
+     replace everything from here down to the footer with their own content. -->
+<main id="main">
+<!-- ===== TAX VIDEOS ===== -->
+<!-- The empty boxes below are filled by the TAX VIDEOS script at the bottom of this file; add or remove
+     videos in its VIDEOS list, not here. Styles: TAX VIDEOS (end of the style block). -->
+<section id="tax-videos" class="mc">
+    <svg class="mc-deco tl" viewBox="0 0 340 150" aria-hidden="true"><path d="M0 0h250C190 40 120 70 0 118Z" fill="#CFE8FB" opacity=".55"/><path d="M0 104C95 72 160 38 215 0" fill="none" stroke="#5FD3E2" stroke-width="2" opacity=".7"/></svg>
+    <svg class="mc-deco br" viewBox="0 0 460 170" aria-hidden="true"><path d="M460 30C350 70 250 120 130 170H460Z" fill="#CFE8FB" opacity=".6"/><path d="M460 70C370 110 300 140 220 170" fill="none" stroke="#7FE7D6" stroke-width="2" opacity=".8"/></svg>
+    <span class="mc-dots tr" aria-hidden="true"></span><span class="mc-dots bl2" aria-hidden="true"></span>
+  <div class="container">
+      <div class="nl-head">
+        <div class="nl-kicker line"><i class="fa-solid fa-circle-play ic" aria-hidden="true"></i>Tax Videos</div>
+        <h1>Plain-English Answers to<br><span class="grad">Your Tax Questions</span></h1>
+        <p>Short videos on the tax topics that matter most.</p>
+      </div>
+      <!-- Gallery: cover/player stage (left), info and buttons (right), thumbnail strip (below). -->
+      <div class="vg" id="videoGallery">
+        <div class="vg-top">
+          <div class="vg-stage" id="vgStage" role="tabpanel"></div>
+          <div class="vg-info">
+            <div class="vg-count" id="vgCount"></div>
+            <h2 id="vgTitle"></h2>
+            <p>Plain-English answers from Max Drew, CPA. Press play, or browse every topic below.</p>
+            <!-- Prev, Next, pause auto-advance, and Ask Us About This (opens request-consultation.html). -->
+            <div class="vg-nav">
+              <button type="button" class="vg-btn" id="vgPrev" aria-label="Previous video"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Prev</button>
+              <button type="button" class="vg-btn" id="vgNext" aria-label="Next video">Next <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+              <button type="button" class="vg-btn vg-auto" id="vgAuto" aria-pressed="false" aria-label="Pause auto-advance">&#10074;&#10074;</button>
+              <a class="vg-btn solid" href="request-consultation"><i class="fa-solid fa-comment-dots" aria-hidden="true"></i> Ask Us About This</a>
+            </div>
+          </div>
+        </div>
+        <!-- Thumbnail strip with arrows; the thumbnails are added by the script. -->
+        <div class="vg-stripwrap">
+          <button type="button" class="vg-sarrow prev" id="vgSPrev" aria-label="Previous video"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+          <div class="vg-strip" id="vgStrip" role="tablist" aria-label="Tax videos">
+            <div class="vg-ind" id="vgInd" aria-hidden="true"></div>
+          </div>
+          <button type="button" class="vg-sarrow next" id="vgSNext" aria-label="Next video"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+        </div>
+      </div>
+  </div>
+</section>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <!-- three columns side by side (stack on small screens) -->
+    <div class="foot-grid">
+      <!-- Column 1: logo and short bio -->
+      <div>
+        <div class="brand" style="margin-bottom:12px;"><picture><source srcset="images/logo.webp" type="image/webp"><img src="images/logo.png" width="840" height="180" alt="Magnum CPA PC" loading="lazy"></picture></div>
+        <p style="font-size:.9rem;">Max Drew, CPA &amp; Financial Coach.<br>Trusted by Ramsey for 10+ years.</p>
+      </div>
+      <!-- Column 2: Company links -->
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="./#about">About Us</a></li>
+          <li><a href="services">Services</a></li>
+          <li><a href="./#contact">Contact Us</a></li>
+          <li><a href="request-consultation">Request Consultation</a></li>
+          <li><a href="https://magnumcpa.clientportal.com/#/login" target="_blank" rel="noopener">Client Portal</a></li>
+        </ul>
+      </div>
+      <!-- Column 3: Resources links -->
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="./#client-newsletter">Client Newsletter</a></li>
+          <li><a href="./#tax-planning-newsletter">Tax Planning Newsletter</a></li>
+          <li><a href="tax-videos">Tax Videos</a></li>
+          <li><a href="financial-calculators">Financial Calculators</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- dark blue bottom bar: social media icons, then the copyright line -->
+  <div class="foot-bottom"><div class="container">
+    <!-- social media links (each opens in a new tab); change an address in its href -->
+    <div class="social">
+      <a href="https://www.facebook.com/max.drew.522" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/magnumcpa11/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.youtube.com/@MaxDrew" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <a href="https://www.threads.com/@magnumcpa11?xmt=AQG0ulpk6R3kK_t4bDitznWtQA3G7iO-LKH2PQMVhY07s6E" target="_blank" rel="noopener" aria-label="Threads"><i class="fa-brands fa-threads"></i></a>
+      <a href="https://x.com/MagnumCPA11" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="https://www.quora.com/profile/Magnum-CPA" target="_blank" rel="noopener" aria-label="Quora"><i class="fa-brands fa-quora"></i></a>
+    </div>
+    <!-- copyright line; the year is filled in automatically by the NAV script below -->
+    <div class="foot-copy">© <span id="year"></span> Magnum CPA PC. All rights reserved.</div>
+  </div></div>
+</footer>
+
+<!-- ===== Floating Book a Consultation CTA ===== -->
+<a class="book-fab" href="request-consultation">📅 Book a Consultation</a>
+
+<!-- ===== SCRIPTS: NAV and SEARCH ===== -->
+<script>
+  // ===== NAV =====
+  /* Nav: mobile toggle + dropdown + year */
+  (function(){
+    // find the hamburger button and the menu
+    var toggle = document.getElementById('navToggle');
+    var nav = document.getElementById('mainNav');
+    // hamburger click: open or close the menu (the .open class shows it) and tell screen readers
+    if (toggle && nav){
+      toggle.addEventListener('click', function(){
+        nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', nav.classList.contains('open'));
+      });
+    }
+    // on small screens, tapping Services or Resources opens its sub-menu instead of following the link
+    document.querySelectorAll('.has-sub > .sub-toggle').forEach(function(a){
+      a.addEventListener('click', function(e){
+        if (window.matchMedia('(max-width:980px)').matches){
+          e.preventDefault();
+          a.parentNode.classList.toggle('open');
+        }
+      });
+    });
+    // put the current year into the footer copyright line
+    var y = document.getElementById('year');
+    if (y) y.textContent = new Date().getFullYear();
+  })();
+
+  // ===== SEARCH =====
+  /* Site search (links back to the single page's sections) */
+  (function(){
+    // The pages the search box can find. title = result heading, url = where the result goes,
+    // snippet = gray line under it, text = extra keywords (lowercase). To add a page, copy one entry.
+    // Copies of this list also live in index.html and request-consultation.html; keep them in step.
+    var INDEX = [
+      {title:'Home', url:'./',
+       snippet:"California's premier partner for strategic growth & tax advantage.",
+       text:'home magnum cpa pc max drew strategic growth tax advantage proactive accounting expert tax planning financial coaching ramsey trusted consultation california'},
+      {title:'About Us', url:'./#about',
+       snippet:'Our story, founder Max Drew, and The Magnum Advantage.',
+       text:'about us max magnum drew founder california professional corporation financial partners magnum advantage bbb accredited better business bureau trusted by ramsey best business rate sacramento history mission'},
+      {title:'Services', url:'services',
+       snippet:'Tax preparation & planning, bookkeeping, consulting, future security.',
+       text:'services tax preparation planning bookkeeping payroll business consulting future security wealth management retirement estate planning filings liabilities growth efficiency'},
+      // the four service pages (first added by tools/gen_services.py; it will not update them later)
+      {title:'Tax Preparation and Planning', url:'tax-preparation-planning',
+       snippet:'We help you stay compliant and maximize your tax savings with strategic, year-round planning.',
+       text:'tax preparation and planning tax preparation individual & business tax returns tax planning and projections irs representation and support year-round tax advisory'},
+      {title:'Bookkeeping and Payroll Services', url:'bookkeeping-payroll',
+       snippet:'Accurate records and timely payroll so you can focus on what matters most — your business.',
+       text:'bookkeeping and payroll services bookkeeping & payroll daily/monthly bookkeeping payroll processing & tax filings financial statement preparation clean-up and catch-up services'},
+      {title:'Business Consulting', url:'business-consulting',
+       snippet:'Strategic insights and practical solutions to drive growth, improve efficiency, and increase profitability.',
+       text:'business consulting business consulting business strategy and planning operational improvement financial analysis and forecasting succession and growth planning'},
+      {title:'Future Security', url:'future-security',
+       snippet:'Build, protect, and grow your wealth with a holistic approach to retirement, wealth management, and estate planning.',
+       text:'future security future security retirement planning wealth management estate and legacy planning life and business protection'},
+      {title:'Client Newsletter', url:'./#client-newsletter',
+       snippet:'Monthly updates, firm news, and money tips.',
+       text:'client newsletter mid-year money check-in refund last-minute filing tips updates subscribe firm news'},
+      {title:'Tax Planning Newsletter', url:'./#tax-planning-newsletter',
+       snippet:'Strategy articles for proactive tax savings.',
+       text:'tax planning newsletter retirement contributions 401k ira hsa small business entity llc s-corp sole proprietor charitable giving donor advised capital gains harvesting'},
+      {title:'Tax Videos', url:'tax-videos',
+       snippet:'Plain-English videos on key tax topics.',
+       text:'tax videos understanding w-2 deductions credits quarterly taxes freelancers small business watch learn'},
+      {title:'Financial Calculators', url:'financial-calculators',
+       snippet:'Tax, retirement, mortgage, loan, savings & business calculators.',
+       text:'financial calculators tax payroll 1040 marginal estate retirement roth ira 401k social security rmd mortgage piti arm loan amortization auto savings college net worth business cash flow breakeven valuation rent vs buy'},
+      {title:'Client Portal', url:'https://magnumcpa.clientportal.com/#/login', target:true,
+       snippet:'Secure client portal (Canopy) for documents and messages.',
+       text:'client portal canopy login documents upload messages secure account'},
+      {title:'Contact Us', url:'./#contact',
+       snippet:'Phone, email, and our Sacramento office location.',
+       text:'contact us phone 916 616 1789 email info ask magnumcpa find us 907 green moss drive sacramento ca 95831 google business profile reviews map directions location office hours'},
+      {title:'Request a Consultation', url:'request-consultation',
+       snippet:'Request your free consultation with Max Drew, CPA.',
+       text:'request consultation free appointment schedule book meeting max drew cpa tax planning preparation bookkeeping financial coaching preferred date service'}
+    ];
+
+    // makes typed text safe to show in the results (turns special HTML characters into plain text)
+    function escapeHtml(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+    // build the search pop-up (dark backdrop, white box, typing field, close X, results list) and add it to the page
+    var ov = document.createElement('div');
+    ov.className = 'search-overlay';
+    ov.innerHTML =
+      '<div class="search-box">' +
+        '<div class="search-top">' +
+          '<span class="search-ic">🔍</span>' +
+          '<input type="text" id="siteSearchInput" placeholder="Search the site..." autocomplete="off">' +
+          '<button class="search-close" aria-label="Close search">&times;</button>' +
+        '</div>' +
+        '<div class="search-results" id="siteSearchResults"></div>' +
+      '</div>';
+    document.body.appendChild(ov);
+
+    // the typing field and the results list inside the pop-up
+    var input = ov.querySelector('#siteSearchInput');
+    var results = ov.querySelector('#siteSearchResults');
+
+    // show the pop-up (empty, with the cursor in the field) / hide it
+    function openSearch(){ ov.classList.add('open'); input.value=''; render(''); setTimeout(function(){ input.focus(); }, 40); }
+    function closeSearch(){ ov.classList.remove('open'); }
+
+    // render(): show the pages matching what was typed. Each typed word found in a page
+    // scores 1 point; pages with at least 1 point are listed, best first.
+    function render(q){
+      q = q.trim().toLowerCase();
+      // nothing typed yet: show a hint
+      if (!q){ results.innerHTML = '<div class="search-none">Type a keyword to search across the website.</div>'; return; }
+      var terms = q.split(/\s+/);
+      var matches = INDEX.map(function(p){
+        var hay = (p.title + ' ' + p.text + ' ' + p.snippet).toLowerCase();
+        var score = 0;
+        terms.forEach(function(t){ if (hay.indexOf(t) > -1) score++; });
+        return {p:p, score:score};
+      }).filter(function(m){ return m.score > 0; })
+        .sort(function(a,b){ return b.score - a.score; });
+
+      // no matches: say so
+      if (!matches.length){ results.innerHTML = '<div class="search-none">No results for &ldquo;' + escapeHtml(q) + '&rdquo;.</div>'; return; }
+      // turn each match into a clickable result (entries marked target open in a new tab)
+      results.innerHTML = matches.map(function(m){
+        var tgt = m.p.target ? ' target="_blank" rel="noopener"' : '';
+        return '<a href="' + m.p.url + '"' + tgt + '><b>' + escapeHtml(m.p.title) + '</b><span>' + escapeHtml(m.p.snippet) + '</span></a>';
+      }).join('');
+    }
+
+    // update results while typing; close on the X, on a click outside the box, or with the Esc key
+    input.addEventListener('input', function(){ render(input.value); });
+    ov.querySelector('.search-close').addEventListener('click', closeSearch);
+    ov.addEventListener('click', function(e){ if (e.target === ov) closeSearch(); });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeSearch(); });
+
+    // the magnifier icon in the menu opens the search pop-up
+    document.querySelectorAll('.search-btn').forEach(function(b){
+      b.addEventListener('click', function(e){ e.preventDefault(); openSearch(); });
+    });
+  })();
+</script>
+<!-- ===== TAX VIDEOS SCRIPT ===== builds the gallery: the VIDEOS list is the only thing to edit -->
+<script>
+  // ===== TAX VIDEOS =====
+  /* ===== Tax Videos gallery ===== */
+  (function(){
+    // Find the gallery boxes in the HTML TAX VIDEOS section; stop if they are missing.
+    var gallery = document.getElementById('videoGallery');
+    var stage = document.getElementById('vgStage');
+    var strip = document.getElementById('vgStrip');
+    var ind = document.getElementById('vgInd');
+    if (!stage || !strip) return;
+
+    // [number, title, Google Drive file id]. Files must stay shared as
+    // "Anyone with the link" or the thumbnail and player render blank.
+    // To add a video: copy a line and change the number, title and Drive file id. Order here = order shown.
+    var VIDEOS = [
+      ['01','Alternative Minimum Tax','1x0Dm__ntt5S04ydgcmL6n74hWmZpq5YL'],
+      ['02','Audits','1bi86JDzXojyaCaSzzAHeVfNyYwkTis34'],
+      ['03','Cancellation of Debt & Insolvency','1ZUy0R69SxYWZtZ0c2E1DxOpUZ5_2WmmN'],
+      ['04','Capital Gains and Losses','1UdfyiyMDoRf0d2crpx2tiR-jprZ7hrXe'],
+      ['05','Charitable Contributions','1JceZIH5ciYXX0944XMQ9zon5xGkHy1RS'],
+      ['06','Charitable Contributions: Recordkeeping','1P3d1ia16Fiypb6Zq83Z_RPN88stLbndJ'],
+      ['07','Charitable Contributions: Noncash Gifts','1wrjWoXmDdpHb1FMrnC8IdZDO3qhsVRLE'],
+      ['08','Clergy & Religious Workers','1Go86qwhFbJaKe24ulLZNzSVUIFzO8rpx'],
+      ['09','Consumer Credit','1sXWnc2JihC_NyYwkm4_5w45hHOwucd2T'],
+      ['10','Crowdfunding','1v2CCBWgcpzI66QaciN26QYJrARZWBK0j'],
+      ['11','Dependent Support Worksheet','1r1l_8AoJXCUHQ7FZdUifT2TuB2q5xTF5'],
+      ['12','Digital Assets','1G2VCnPS4lLL_sHCzn1qNJugUCojKwUs4'],
+      ['13','Divorce and Taxes','1pihCYSgkKL-S3f7k-bY1hvoWVbmQYr0E'],
+      ['14','Education Tax Benefits','1PPVv0oqb7kFRbLtzVk4ciZDGObRw4Cdr'],
+      ['15','Estimated Taxes','1Ieh-3WhGwgd-nTDIfx6zaMmkxJdVB2dh'],
+      ['16','Extending Your Individual Income Tax Return','1tCjeSHSn8r4ZTNCKHdandEp_Nfy1ErsU'],
+      ['17','Families with Children','1zwqijw8W1L-Um8ztP4DT0XYT4SRBaTTd'],
+      ['19','Filing Status','1CQbtEJbdMnQlDoc08T9wdrGGtMvEPy2F'],
+      ['20','Foreign Bank and Financial Accounts','1PSceH5RBDW0yzYbmGeOqIlHa1CGTg2Pl'],
+      ['21','Gambling Log','1MQNNm6tGkZ0p4Bm6p3VmF4scfJMvlKJx'],
+      ['23','High-Income Taxpayers','1JCxRvsYPPSv_GB8Iz0QXnL3sQCSYS3c5'],
+      ['24','Hobby vs. Business','1nETceCt12rkFx_sBZetFvBpccX9EAXRY'],
+      ['25','Household Employees','1KG3PaNckryLQ4MKwv8gQeF9H77p9t6Ok'],
+      ['26','Identity Theft & Your Taxes','1jxgUJ9UgZcGdhzKdSKF4zceOhlGO2ZTg'],
+      ['27','Itemized Deductions: Casualty & Theft Losses','19XWK_Dc4yALAK-Uy0kn7LE_6A-Q899WE'],
+      ['28','Itemized Deductions: Homeowners','1yvzHHItg7sBflomggJALolor4cHZ6sPp'],
+      ['29','Itemized Deductions: Interest Paid','18ZiKPF0r_ktiaO3KyscVYSsyZRXvXrbk'],
+      ['30','Itemized Deductions: Medical Expenses','11RohZimwutVA1cFqL2pVxPy1xnTZCJp1'],
+      ['32','Itemized Deductions: Taxes Paid','1dBRDcTMlQW8kZI11bE-q7yShhe6TxcBU'],
+      ['33','Kiddie Tax','11u_udpl91rCGOaEZLsu690o7sQOPz_iG'],
+      ['34','Like-Kind Exchanges','17he11HU3HQWBUT8m7oLgrL2SScBrbE1y'],
+      ['35','Moving Expenses','1Zj-h0IkEL8NMvpjVPEVSAZcp14PAyhrN'],
+      ['36','Multi-State Taxation','1Dkv9xq4DfIYyTXds8FkP4iVdpiO0E7-2'],
+      ['37','New Tax Law Provisions','1k0GoqJcil-osZDmzcKrjtsgQKGljhFj_'],
+      ['38','Sale of a Principal Residence','1lATjiAMq7orRDfO7Aas35z6OQSmNK32J'],
+      ['39','Standard vs. Itemized Deduction','1wXpnAKaTv32RfBnmtFH_th2rRL2vTU9x'],
+      ['40','Stock Options: Same-Day Sales','1dziMBQ4kAb47WRacNz20tj1zzI6nTUNK'],
+      ['41','Tax Facts and Figures','1ZXqxn-50-VqEP5gyvGpKJgkKsjIyidg0'],
+      ['42','Tax Scams: Protect Yourself','1oxZ5iZxa85M5_GNVfeHuZeAjT68Kg4b7'],
+      ['43','Taxable Social Security Benefits','1iOnVVyp_1IpUP6q98IJrTspqs8vgVnXU'],
+      ['44','Taxpayers Who Receive an IRS Notice','1dyE2MKVmSohynOyvjCRGRvIvYi_z2wXi'],
+      ['45','Tipped Employees','1gCFnWvV7rk2YYD2wKlt0kEKrzu7R0JSc'],
+      ['46','Trump Accounts','1c1Lm7d7MeFTveFfl-4svhmEZfmpjI2d4'],
+      ['47','How the IRS Contacts Taxpayers','1N92pz4iNoczwaCPnt5uZLj9JMWde6Cmk'],
+      ['49','Withholding: Filling Out Form W-4','15_1MDamIXyW8rLGwysFX5-3SEDy-5IhQ']
+    ];
+    // Helpers: number of videos, Google Drive thumbnail address, reduced-motion setting, text boxes, current state.
+    var total = VIDEOS.length;
+    var thumbUrl = function(id, w){ return 'https://drive.google.com/thumbnail?id=' + id + '&sz=w' + w; };
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var countEl = document.getElementById('vgCount');
+    var titleEl = document.getElementById('vgTitle');
+    var slides = [], tabs = [], current = -1;
+
+    // el: makes a page element; withFallback: shows the title if an image fails to load.
+    function el(tag, cls){ var n = document.createElement(tag); if (cls) n.className = cls; return n; }
+    function withFallback(img, box, title){
+      var fb = el('span', 'vg-fallback'); fb.textContent = title; box.appendChild(fb);
+      img.addEventListener('error', function(){ box.classList.add('is-missing'); });
+    }
+
+    // For each video, build a big slide (cover + play button) and a thumbnail button in the strip.
+    VIDEOS.forEach(function(v, i){
+      var title = v[1];
+
+      var slide = el('div', 'vg-slide');
+      var img = el('img');
+      img.alt = 'Cover of the "' + title + '" video with Max Drew, CPA';
+      img.dataset.src = thumbUrl(v[2], 720);
+      slide.appendChild(img);
+      withFallback(img, slide, title);
+      var play = el('button', 'vg-play');
+      play.type = 'button';
+      play.setAttribute('aria-label', 'Play ' + title);
+      play.addEventListener('click', function(){ if (!swiped) startVideo(i); });
+      slide.appendChild(play);
+      slide.inert = true;
+      slide.setAttribute('aria-hidden', 'true');
+      stage.appendChild(slide);
+      slides.push(slide);
+
+      // Thumbnail button for this video.
+      var tab = el('button', 'vg-thumb');
+      tab.type = 'button';
+      tab.id = 'vg-tab-' + i;
+      tab.setAttribute('role', 'tab');
+      tab.setAttribute('aria-selected', 'false');
+      tab.setAttribute('aria-controls', 'vgStage');
+      tab.setAttribute('aria-label', 'Video ' + (i + 1) + ' of ' + total + ': ' + title);
+      tab.tabIndex = -1;
+      tab.style.setProperty('--i', Math.min(i, 8));
+      var box = el('span', 'vg-tthumb');
+      var timg = el('img');
+      timg.alt = 'Thumbnail for ' + title;
+      timg.loading = 'lazy';
+      timg.src = thumbUrl(v[2], 320);
+      box.appendChild(timg);
+      withFallback(timg, box, title);
+      var cap = el('span', 'vg-tcap'); cap.setAttribute('aria-hidden', 'true');
+      var capNum = el('small'); capNum.textContent = 'Video ' + (i + 1);
+      var capTitle = el('span', 't'); capTitle.textContent = title;
+      cap.appendChild(capNum); cap.appendChild(capTitle);
+      tab.appendChild(box);
+      tab.appendChild(cap);
+      tab.addEventListener('click', function(){ select(i); });
+      strip.appendChild(tab);
+      tabs.push(tab);
+    });
+
+    // Load the large cover only for the active slide and its neighbours.
+    function loadCover(i){
+      var img = slides[(i + total) % total].querySelector('img');
+      if (img.dataset.src){ img.src = img.dataset.src; delete img.dataset.src; }
+    }
+
+    // startVideo: replaces the cover with the Google Drive player for video i.
+    function startVideo(i){
+      var slide = slides[i];
+      if (slide.querySelector('iframe')) return;
+      var f = el('iframe');
+      f.src = 'https://drive.google.com/file/d/' + VIDEOS[i][2] + '/preview';
+      f.title = VIDEOS[i][1] + ' video player';
+      f.allow = 'autoplay; fullscreen';
+      f.allowFullscreen = true;
+      slide.appendChild(f);
+      f.focus();
+      stage.style.setProperty('--rx', '0deg');
+      stage.style.setProperty('--ry', '0deg');
+      updatePause();
+    }
+
+    // Restart a CSS animation by removing the class and forcing a reflow.
+    function replay(node, cls){
+      node.classList.remove(cls);
+      void node.offsetWidth;
+      node.classList.add(cls);
+    }
+
+    // select(i): switch to video i: stop any playing video, show the new cover, update title, counter and highlight.
+    function select(i, focusTab){
+      i = (i + total) % total;
+      if (i === current) return;
+      if (current >= 0){
+        var prev = slides[current];
+        var frame = prev.querySelector('iframe');
+        if (frame) prev.removeChild(frame);   // stops playback
+        prev.classList.remove('is-active');
+        prev.inert = true;
+        prev.setAttribute('aria-hidden', 'true');
+        tabs[current].setAttribute('aria-selected', 'false');
+        tabs[current].tabIndex = -1;
+      }
+      current = i;
+      loadCover(i); loadCover(i - 1); loadCover(i + 1);
+      slides[i].classList.add('is-active');
+      slides[i].inert = false;
+      slides[i].removeAttribute('aria-hidden');
+      tabs[i].setAttribute('aria-selected', 'true');
+      tabs[i].tabIndex = 0;
+      stage.setAttribute('aria-labelledby', tabs[i].id);
+      ind.style.setProperty('--n', i);
+      countEl.textContent = 'Video ' + (i + 1) + ' of ' + total;
+      titleEl.textContent = VIDEOS[i][1];
+      replay(countEl, 'vg-swap');
+      replay(titleEl, 'vg-swap');
+      replay(bar, 'run');
+      updatePause();
+
+      // Keep the active thumb in view without scrolling the page itself.
+      var t = tabs[i], pad = 6;
+      var left = t.offsetLeft - pad, right = t.offsetLeft + t.offsetWidth + pad - strip.clientWidth;
+      var to = strip.scrollLeft < right ? right : strip.scrollLeft > left ? left : null;
+      if (to !== null) strip.scrollTo({left: to, behavior: reduced.matches ? 'auto' : 'smooth'});
+      if (focusTab) t.focus({preventScroll: true});
+    }
+
+    // Keyboard: arrow keys, Home and End move between videos.
+    strip.addEventListener('keydown', function(e){
+      var next = {ArrowLeft: current - 1, ArrowRight: current + 1, Home: 0, End: total - 1}[e.key];
+      if (next === undefined) return;
+      e.preventDefault();
+      select(next, true);
+    });
+    stage.addEventListener('keydown', function(e){
+      if (e.key === 'ArrowLeft'){ e.preventDefault(); select(current - 1); }
+      if (e.key === 'ArrowRight'){ e.preventDefault(); select(current + 1); }
+    });
+    // Prev/Next buttons (beside the title and at the ends of the strip).
+    document.getElementById('vgPrev').addEventListener('click', function(){ select(current - 1); });
+    document.getElementById('vgNext').addEventListener('click', function(){ select(current + 1); });
+    document.getElementById('vgSPrev').addEventListener('click', function(){ select(current - 1); });
+    document.getElementById('vgSNext').addEventListener('click', function(){ select(current + 1); });
+
+    // Swipe on the cover. Once a video is playing the iframe owns the pointer.
+    var sx = 0, sy = 0, swiped = false;
+    stage.addEventListener('pointerdown', function(e){ sx = e.clientX; sy = e.clientY; swiped = false; });
+    stage.addEventListener('pointerup', function(e){
+      var dx = e.clientX - sx, dy = e.clientY - sy;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)){
+        swiped = true;
+        select(current + (dx < 0 ? 1 : -1));
+      }
+    });
+
+    // Tilt the cover toward the mouse.
+    stage.addEventListener('pointermove', function(e){
+      if (e.pointerType !== 'mouse' || reduced.matches || stage.querySelector('.is-active iframe')) return;
+      var r = stage.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      stage.style.setProperty('--rx', (y * -7).toFixed(2) + 'deg');
+      stage.style.setProperty('--ry', (x * 9).toFixed(2) + 'deg');
+    });
+    stage.addEventListener('pointerleave', function(){
+      stage.style.setProperty('--rx', '0deg');
+      stage.style.setProperty('--ry', '0deg');
+    });
+
+    // Auto-advance. The progress bar is the timer: its fill animation ends,
+    // the next video comes up. Pausing it (hover, keyboard focus, a recent
+    // click, off screen, a video playing) pauses the countdown with it.
+    // Reduced motion disables the animation, so nothing advances on its own.
+    var holdUntil = 0, hovering = false, onScreen = true, stopped = false;
+    var autoBtn = document.getElementById('vgAuto');
+    var prog = el('div', 'vg-progress'), bar = el('i');
+    prog.setAttribute('aria-hidden', 'true');
+    prog.appendChild(bar);
+    stage.appendChild(prog);
+
+    // updatePause: pauses the auto-advance timer while a video plays, the mouse is over the gallery, it is off screen, etc.
+    function updatePause(){
+      var playing = !!stage.querySelector('iframe');
+      gallery.classList.toggle('is-playing', playing);
+      gallery.classList.toggle('is-stopped', stopped);
+      gallery.classList.toggle('is-paused', playing || stopped || hovering || !onScreen || document.hidden ||
+        !!gallery.querySelector(':focus-visible') || performance.now() < holdUntil);
+    }
+    // When the progress bar fills up, go to the next video.
+    bar.addEventListener('animationend', function(){ select(current + 1); });
+
+    // After a click or key press, hold auto-advance for 2.5 seconds.
+    ['pointerdown', 'keydown'].forEach(function(ev){
+      gallery.addEventListener(ev, function(){
+        holdUntil = performance.now() + 2500;
+        updatePause();
+        setTimeout(updatePause, 2550);
+      });
+    });
+    // Pause while hovering or focused, or when the browser tab is hidden.
+    gallery.addEventListener('mouseenter', function(){ hovering = true; updatePause(); });
+    gallery.addEventListener('mouseleave', function(){ hovering = false; updatePause(); });
+    gallery.addEventListener('focusin', updatePause);
+    gallery.addEventListener('focusout', function(){ setTimeout(updatePause, 0); });
+    document.addEventListener('visibilitychange', updatePause);
+    // Pause/resume button.
+    autoBtn.addEventListener('click', function(){
+      stopped = !stopped;
+      autoBtn.setAttribute('aria-pressed', stopped);
+      autoBtn.setAttribute('aria-label', stopped ? 'Resume auto-advance' : 'Pause auto-advance');
+      autoBtn.innerHTML = stopped ? '&#9654;' : '&#10074;&#10074;';
+      updatePause();
+    });
+
+    // Rise in the first time the gallery scrolls into view; only count down while it's visible.
+    if ('IntersectionObserver' in window){
+      gallery.classList.add('pre');
+      onScreen = false;
+      new IntersectionObserver(function(entries){
+        onScreen = entries[0].isIntersecting;
+        if (onScreen && gallery.classList.contains('pre')){
+          gallery.classList.remove('pre');
+          gallery.classList.add('is-in');
+        }
+        updatePause();
+      }, {rootMargin: '0px 0px -20% 0px'}).observe(gallery); // fires once the top reaches 80% of the screen, however tall the gallery is
+    }
+
+    // Show the first video when the page loads.
+    select(0);
+  })();
+</script>
+</body>
+</html>

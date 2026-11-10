@@ -5,11 +5,14 @@
 exclude:
   - README.md
   - CODE-MAP.md
+  - MULTI-PAGE-PLAN.md
   - RECENT-UPDATES.md
   - SETUP-CLOUDFLARE.md
   - lead-funnel-diagram.svg
   - images/lead-funnel-diagram.png
   - sync.bat
+  - update-reviews.bat
+  - reviews.xlsx
   - worker/
   - .claude/
   - tools/

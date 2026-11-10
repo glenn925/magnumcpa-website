@@ -4,10 +4,12 @@
      Submit this file once in Google Search Console: https://www.magnumcpa.com/sitemap.xml -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://www.magnumcpa.com/</loc><lastmod>2026-11-09</lastmod></url>
+  <url><loc>https://www.magnumcpa.com/services</loc><lastmod>2026-11-09</lastmod></url>
   <url><loc>https://www.magnumcpa.com/tax-preparation-planning</loc><lastmod>2026-11-09</lastmod></url>
   <url><loc>https://www.magnumcpa.com/bookkeeping-payroll</loc><lastmod>2026-11-09</lastmod></url>
   <url><loc>https://www.magnumcpa.com/business-consulting</loc><lastmod>2026-11-09</lastmod></url>
   <url><loc>https://www.magnumcpa.com/future-security</loc><lastmod>2026-11-09</lastmod></url>
+  <url><loc>https://www.magnumcpa.com/tax-videos</loc><lastmod>2026-11-09</lastmod></url>
   <url><loc>https://www.magnumcpa.com/financial-calculators</loc><lastmod>2026-11-09</lastmod></url>
   <url><loc>https://www.magnumcpa.com/request-consultation</loc><lastmod>2026-11-09</lastmod></url>
 </urlset>
