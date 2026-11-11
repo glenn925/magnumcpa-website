@@ -9,3 +9,4 @@ Newest at the bottom. Restore any of these with `restore-version.bat`
 - **2026-11-09_2016** - Before own pages for Services + Tax Videos, reviews, GBP embed
 - **2026-11-09_2028** - Services + Tax Videos pages, real reviews only, Google Business Profile box
 - **2026-11-10_1111** - Badge cards link to BBB profile and BusinessRate report
+- **2026-11-11_1316** - Show 5 real Google reviews with Read more
