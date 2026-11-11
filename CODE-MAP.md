@@ -25,6 +25,7 @@ Line numbers change with every edit, so this map uses banner names.
 | Award badge cards | `index.html` | `===== WHY CHOOSE US` |
 | About text, Max's photo | `index.html` | `===== ABOUT US` |
 | Client reviews (which Google reviews show) | `reviews.xlsx`, then double-click `update-reviews.bat` | Reviews sheet: one row per review, **Show = Yes/No** picks what appears. Never type review cards into `index.html` |
+| How many lines a review shows before "Read more" | `index.html` | `===== MISSION + REVIEWS` style: `-webkit-line-clamp:4` (desktop) and `6` in the `max-width:560px` phone rule. The button itself is added by the review slider script |
 | "Leave Us a Google Review" / "See All Our Reviews on Google" buttons | `reviews.xlsx` → Settings sheet | B2 and B3 (blank = button hidden) |
 | YouTube "Why get tax help" video | `index.html` | `===== WHY GET TAX HELP` |
 | The four service cards (Services page) | `services.html` | `===== SERVICES` (styles: `===== SERVICES PAGE`) |
@@ -88,6 +89,8 @@ overrides*. The **later** one wins — edit that one, or your change won't show.
 2. On the **Settings** sheet: B2 = your "Ask for reviews" link, B3 = your Google reviews page link.
 3. Save, close Excel, double-click `update-reviews.bat`. It builds the cards and publishes.
    With no Show = Yes rows, the review slideshow stays hidden (only the Google buttons show).
+   Long reviews are shortened on screen with a "Read more" link that opens the card; the full text
+   stays in the page so Google still reads it.
 
 ### Adding a field to the consultation form (end to end)
 1. `request-consultation.html` → `===== FORM FIELDS`: add the input.

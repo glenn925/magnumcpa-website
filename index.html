@@ -329,6 +329,15 @@
   .review .stars{color:#1C8BDF;font-size:1.55rem;letter-spacing:4px;line-height:1;margin-bottom:14px;}
   .review h4{color:var(--primary);font-size:1.45rem;line-height:1.3;margin-bottom:12px;}
   .review p{color:#2A4A7A;font-size:1.04rem;line-height:1.8;}
+  /* Long reviews show their first 4 lines (6 on phones) with a "Read more" link that opens the card in place.
+     The whole review stays in the page, so Google reads all of it. The link is added by the review slider script. */
+  .review p{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;line-clamp:4;overflow:hidden;}
+  .review.is-open p{display:block;-webkit-line-clamp:unset;line-clamp:none;overflow:visible;}
+  .review-viewport{transition:height .35s ease;}
+  .rev-more{display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:2px 0;background:none;border:0;font:inherit;font-size:.92rem;font-weight:700;color:#1C8BDF;cursor:pointer;}
+  .rev-more:hover{text-decoration:underline;}
+  .rev-more i{font-size:.75rem;transition:transform .3s;}
+  .review.is-open .rev-more i{transform:rotate(180deg);}
   /* Reviewer name + Google mark at the bottom of a card (with its Read on Google link), and the Google buttons under the slider. */
   .review .rev-by{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-top:18px;color:var(--primary);font-weight:700;}
   .review .rev-by i{color:#1C8BDF;}
@@ -441,7 +450,7 @@
     .mc-deco.bl,.mc-deco.br{width:300px;}
   }
   /* Phones: tighter review card and smaller titles. */
-  @media(max-width:560px){.review{padding:28px 22px;}.review h4{font-size:1.15rem;}.review p{font-size:.97rem;}.mc{padding:54px 0 60px;}.mc-dots{display:none;}.mc-title{font-size:1.5rem;}}
+  @media(max-width:560px){.review{padding:28px 22px;}.review h4{font-size:1.15rem;}.review p{font-size:.97rem;-webkit-line-clamp:6;line-clamp:6;}.mc{padding:54px 0 60px;}.mc-dots{display:none;}.mc-title{font-size:1.5rem;}}
 
   /* ===== SEARCH ===== */
   /* Pop-up search box opened by the magnifier icon in the menu. The box itself is built by the SEARCH script. */
@@ -1182,6 +1191,51 @@
         <div class="review-viewport">
           <div class="review-track" id="reviewTrack">
             <!-- REVIEWS:START (generated from reviews.xlsx; changes made here are overwritten) -->
+            <div class="review">
+              <div class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+              <p>I’ve had a great experience working with Max Drew! He’s very knowledgeable, professional, and always takes the time to answer my questions. As a business owner, I appreciate how he explains everything clearly and helps me better understand my taxes and business finances. It’s great having a CPA I can trust and rely on. I highly recommend Max Drew to any business owner looking for a great CPA!</p>
+              <div class="rev-by">
+                <i class="fa-brands fa-google" aria-hidden="true"></i>
+                <span>Jose Rodriguez · Google review</span>
+                <a href="https://maps.app.goo.gl/Q5jTtxQ2bykbjvPy6" target="_blank" rel="noopener">Read on Google</a>
+              </div>
+            </div>
+            <div class="review">
+              <div class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+              <p>Max, at MagnumCPA has decades of experience in taxes and financial consulting. He is honest, conscientious and genuinely cares for the best interest of his clients. I have been a client for 5 years and plan to continue using his experties.</p>
+              <div class="rev-by">
+                <i class="fa-brands fa-google" aria-hidden="true"></i>
+                <span>Elham Snell · Google review</span>
+                <a href="https://maps.app.goo.gl/Q5jTtxQ2bykbjvPy6" target="_blank" rel="noopener">Read on Google</a>
+              </div>
+            </div>
+            <div class="review">
+              <div class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+              <p>I can't recommend Magnum CPA enough. They took the time to walk me through strategies I had never even considered, especially cost segregation and how it can be used to maximize tax savings for real estate investments. They explained everything in a way that was easy to understand and helped me see the bigger picture when it comes to tax planning and building long-term wealth.<br>What impressed me most was that they weren't just trying to file my taxes--they were looking for ways to help me keep more of what I earn and make smarter financial decisions. Their knowledge,<br>professionalism, and willingness to educate their clients really set them apart. If you're a real estate investor or simply looking for a CPA who thinks beyond the numbers, Magnum CPA is well worth talking to</p>
+              <div class="rev-by">
+                <i class="fa-brands fa-google" aria-hidden="true"></i>
+                <span>Hunter Whitchurch · Google review</span>
+                <a href="https://maps.app.goo.gl/Q5jTtxQ2bykbjvPy6" target="_blank" rel="noopener">Read on Google</a>
+              </div>
+            </div>
+            <div class="review">
+              <div class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+              <p>Outstanding financial guidance and tax support!<br>Working with Magnum CPA PC has been an absolute game-changer for my overall financial situation. Their expertise went far beyond basic tax preparation—they provided thoughtful, comprehensive guidance that gave me complete clarity and confidence in my finances.<br>A special shout-out to the entire team as well! They are incredibly well-coordinated, prompt, and always willing to take the time to answer every question or concern I have with total clarity and patience. You can tell they truly care about their clients' long-term financial success. I couldn't be more grateful for their dedication and highly recommend them to anyone seeking top-tier CPA and financial advisory services!</p>
+              <div class="rev-by">
+                <i class="fa-brands fa-google" aria-hidden="true"></i>
+                <span>Angelique Castillo · Google review</span>
+                <a href="https://maps.app.goo.gl/Q5jTtxQ2bykbjvPy6" target="_blank" rel="noopener">Read on Google</a>
+              </div>
+            </div>
+            <div class="review">
+              <div class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+              <p>I really love doing my taxes with Max. It puts my mind at ease every time he explains every detail about my taxes. We all know taxes are very hard to deal with, but with Max, I can certainly say that you'll get your taxes done properly. His service exceeded my expectations, and I highly trust him to do my taxes for the upcoming years. Thank you so much, Max, for the excellent service!</p>
+              <div class="rev-by">
+                <i class="fa-brands fa-google" aria-hidden="true"></i>
+                <span>John Paul Mirafuentes · Google review</span>
+                <a href="https://maps.app.goo.gl/Q5jTtxQ2bykbjvPy6" target="_blank" rel="noopener">Read on Google</a>
+              </div>
+            </div>
             <!-- REVIEWS:END -->
           </div>
         </div>
@@ -1542,9 +1596,53 @@
       revDotsWrap.appendChild(d);
     }
   }
+  // "Read more": long reviews are cut to a few lines by the style block; this adds a button under each one
+  // that is actually cut off, which opens the card in place (the full text is always in the page).
+  var revView = revTrack ? revTrack.parentElement : null;
+  // revResize(change): run change() and slide the white card's height smoothly to its new size.
+  function revResize(change){
+    var from = revView.offsetHeight;
+    change();
+    var to = revView.scrollHeight;
+    if (from === to) return;
+    revView.style.height = from + 'px';
+    revView.offsetHeight;                                  // apply the start height before animating
+    revView.style.height = to + 'px';
+    setTimeout(function(){ revView.style.height = ''; }, 400);
+  }
+  function revOpen(card, open){
+    card.classList.toggle('is-open', open);
+    var b = card.querySelector('.rev-more');
+    if (b){ b.setAttribute('aria-expanded', open); b.firstChild.textContent = open ? 'Show less ' : 'Read more '; }
+  }
+  if (revTrack && revSlides){
+    [].forEach.call(revTrack.children, function(card, i){
+      var p = card.querySelector('p');
+      if (!p) return;
+      p.id = 'revText' + i;
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'rev-more'; b.hidden = true;
+      b.setAttribute('aria-controls', p.id); b.setAttribute('aria-expanded', 'false');
+      b.innerHTML = 'Read more <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>';
+      b.addEventListener('click', function(){ revResize(function(){ revOpen(card, !card.classList.contains('is-open')); }); });
+      p.insertAdjacentElement('afterend', b);
+    });
+    // Show the button only on reviews that are cut off at the current screen width.
+    var revFit = function(){
+      [].forEach.call(revTrack.children, function(card){
+        var p = card.querySelector('p'), b = card.querySelector('.rev-more');
+        if (b) b.hidden = !card.classList.contains('is-open') && p.scrollHeight <= p.clientHeight + 2;
+      });
+    };
+    revFit();
+    window.addEventListener('resize', revFit);
+    if (document.fonts) document.fonts.ready.then(revFit);
+  }
   // revShow(i): slide to review number i (wraps around) and highlight its dot.
   function revShow(i){
     if(!revSlides) return;
+    var open = revTrack.querySelector('.review.is-open');   // close an opened review when moving on
+    if (open) revResize(function(){ revOpen(open, false); });
     revIndex = (i % revSlides + revSlides) % revSlides;
     revTrack.style.transform = 'translateX(-' + (revIndex*100) + '%)';
     var dots = revDotsWrap.children;
@@ -1554,7 +1652,8 @@
   function revMove(d){ revShow(revIndex + d); }
   revShow(0);
   // Auto-advance every 7000 ms (7 seconds). Change the number to speed up or slow down.
-  if (revSlides > 1){ setInterval(function(){ revMove(1); }, 7000); }
+  // It waits while a visitor has a review opened with "Read more".
+  if (revSlides > 1){ setInterval(function(){ if (!revTrack.querySelector('.review.is-open')) revMove(1); }, 7000); }
 
 
   // ===== BOOKING POPUP =====
