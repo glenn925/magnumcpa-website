@@ -12,3 +12,4 @@ Newest at the bottom. Restore any of these with `restore-version.bat`
 - **2026-11-11_1316** - Show 5 real Google reviews with Read more
 - **2026-11-12_0534** - Organize folders: before
 - **2026-11-12_0540** - Organized folders: docs/, images/unused, README in every folder
+- **2026-11-12_1232** - Before publishing multi-page site
