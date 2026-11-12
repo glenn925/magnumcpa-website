@@ -1,7 +1,8 @@
-"""Builds the "What Our Clients Say" review cards in index.html from reviews.xlsx.
+"""Builds the "What Our Clients Say" review cards from reviews.xlsx on every page that shows them
+(PAGES below: the home page and the About page show the same reviews).
 
 Run by update-reviews.bat (or by hand: `python tools/build_reviews.py .` from the repo root).
-Only the parts of index.html between the REVIEWS:START/END and REVIEW-BUTTON:START/END
+Only the parts of each page between the REVIEWS:START/END and REVIEW-BUTTON:START/END
 markers are replaced; everything else on the page is left alone.
 
 reviews.xlsx
@@ -20,7 +21,9 @@ except ImportError:
     sys.exit('ERROR: the openpyxl package is missing. Run:  python -m pip install --user openpyxl')
 
 root = sys.argv[1] if len(sys.argv) > 1 else '.'
-XLSX, PAGE = root + '/reviews.xlsx', root + '/index.html'
+XLSX = root + '/reviews.xlsx'
+# the pages that show the reviews (each has the REVIEWS and REVIEW-BUTTON markers)
+PAGES = ('index.html', 'about.html')
 
 
 def fail(msg):
@@ -101,23 +104,22 @@ if all_url:
     pills += pill(all_url, 'B3', 'See All Our Reviews on Google', ' ghost')
 button = ('      <div class="rev-leave">\n%s      </div>\n' % pills) if pills else ''
 
-# ---- write them into index.html between the markers ----
-page = io.open(PAGE, encoding='utf-8').read()
-
-
-def put(page, tag, content):
+# ---- write them into each page between the markers ----
+def put(page, tag, content, name):
     start, end = '<!-- %s:START' % tag, '<!-- %s:END -->' % tag
     if page.count(start) != 1 or page.count(end) != 1:
-        fail('index.html is missing its %s markers; ask for the review section to be repaired.' % tag)
+        fail('%s is missing its %s markers; ask for the review section to be repaired.' % (name, tag))
     i = page.index('-->', page.index(start)) + 3        # keep the START comment itself
     j = page.rindex('\n', 0, page.index(end)) + 1       # keep the END comment's indent line
     return page[:i] + '\n' + content + page[j:]
 
 
-new = put(page, 'REVIEWS', ''.join(c + '\n' for c in cards))
-new = put(new, 'REVIEW-BUTTON', button)
-if new == page:
-    print('Reviews are already up to date (%d shown).' % len(cards))
-else:
-    io.open(PAGE, 'w', encoding='utf-8', newline='').write(new)
-    print('Updated index.html: %d review(s) shown, %d Google button(s).' % (len(cards), pills.count('<a ')))
+for name in PAGES:
+    page = io.open(root + '/' + name, encoding='utf-8').read()
+    new = put(page, 'REVIEWS', ''.join(c + '\n' for c in cards), name)
+    new = put(new, 'REVIEW-BUTTON', button, name)
+    if new == page:
+        print('%s: reviews are already up to date (%d shown).' % (name, len(cards)))
+    else:
+        io.open(root + '/' + name, 'w', encoding='utf-8', newline='').write(new)
+        print('Updated %s: %d review(s) shown, %d Google button(s).' % (name, len(cards), pills.count('<a ')))

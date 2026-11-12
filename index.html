@@ -8,6 +8,18 @@
 <!-- ===== CLEAN ADDRESS ===== -->
 <!-- The one official address of this page, for Google. Never end it in .html. -->
 <link rel="canonical" href="https://www.magnumcpa.com/">
+<!-- ===== SHARE + GOOGLE MARKUP ===== made by tools/sync_shared.py from this page's title, description
+     and address. Don't edit it here: change the tool (or the page title / description) and run it again. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Magnum CPA PC">
+<meta property="og:title" content="Magnum CPA PC — Max Drew, CPA | Trusted by Ramsey">
+<meta property="og:description" content="Magnum CPA PC — Max Drew, CPA &amp; Financial Coach. Ramsey Trusted for 10+ years. Tax planning, preparation, and financial coaching.">
+<meta property="og:url" content="https://www.magnumcpa.com/">
+<meta property="og:image" content="https://www.magnumcpa.com/images/hero-photo2.jpg">
+<meta property="og:image:alt" content="Max Drew, CPA, meeting with a client in the Magnum CPA PC office">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"AccountingService","@id":"https://www.magnumcpa.com/#business","name":"Magnum CPA PC","url":"https://www.magnumcpa.com/","logo":"https://www.magnumcpa.com/images/logo.png","image":"https://www.magnumcpa.com/images/hero-photo2.jpg","telephone":"+1-916-616-1789","email":"ask@magnumcpa.com","founder":{"@type":"Person","name":"Max Drew","jobTitle":"CPA"},"address":{"@type":"PostalAddress","streetAddress":"907 Green Moss Drive","addressLocality":"Sacramento","addressRegion":"CA","postalCode":"95831","addressCountry":"US"},"geo":{"@type":"GeoCoordinates","latitude":38.4907685,"longitude":-121.525695},"hasMap":"https://maps.google.com/?cid=3199418526220435988","openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"17:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday","Sunday"],"opens":"14:00","closes":"18:00"}],"sameAs":["https://www.facebook.com/max.drew.522","https://www.instagram.com/magnumcpa11/","https://www.youtube.com/@MaxDrew","https://www.threads.com/@magnumcpa11","https://x.com/MagnumCPA11","https://www.quora.com/profile/Magnum-CPA","https://maps.google.com/?cid=3199418526220435988"]}</script>
+<!-- SHARE + GOOGLE MARKUP:END -->
 <!-- Someone opened an old link ending in .html: show the clean address instead (no reload). -->
 <script>(function(){try{if(!/^https?:$/.test(location.protocol))return;var p=location.pathname,c=p.replace(/(^|\/)index\.html$/,'$1').replace(/\.html$/,'');if(c!==p)history.replaceState(history.state,'',c+location.search+location.hash);}catch(_){}})();</script>
 <!-- Browser tab title and the description Google shows in search results. Edit the text between the quotes. -->
@@ -26,8 +38,10 @@
 <!-- 1) STYLES (the style block below): colors, sizes, layout. 2) PAGE CONTENT (after the body tag). 3) SCRIPTS (near the bottom): menus, sliders, search. -->
 <!-- Each part has a banner like ===== HERO =====. Search for the same name to find its styles, content and script. -->
 <!-- Many sections get a second, later set of styles further down; when two rules clash, the later one wins. -->
-<!-- NOT in this file: the consultation form (request-consultation.html), the four service cards (services.html)
-     and the Tax Videos gallery (tax-videos.html). -->
+<!-- NOT in this file: each has its own page: About Us + mission (about.html), the four service cards (services.html),
+     the newsletters (client-newsletter.html, tax-planning-newsletter.html), the Tax Videos gallery (tax-videos.html),
+     Contact (contact.html) and the consultation form (request-consultation.html). This page links to them all (EXPLORE).
+     The menu, footer and search list below are the MASTER copies for every page (tools/sync_shared.py). -->
 <style>
   /* ===== Magnum CPA — shared styles ===== */
   /* ===== SITE-WIDE SETUP: COLORS AND BASICS ===== */
@@ -205,36 +219,6 @@
   /* generic card */
   .panel{background:#fff;color:var(--text);border-radius:14px;box-shadow:var(--shadow-lg);}
 
-  /* about */
-  /* ===== ABOUT US ===== */
-  /* Photo of Max on the left; welcome text and four value icons on the right. Two columns; gap is the space between them. */
-  .about-wrap{display:grid;grid-template-columns:minmax(0,420px) 1fr;gap:56px;align-items:center;}
-  /* Photo card; lifts slightly on hover. */
-  .about-card{position:relative;border-radius:20px;overflow:hidden;background:var(--primary-900);box-shadow:var(--shadow-lg);
-    transition:transform .35s,box-shadow .35s;}
-  .about-card:hover{transform:translateY(-4px);box-shadow:0 30px 64px rgba(11,61,145,.24);}
-  /* Keeps the photo square (aspect-ratio 1). */
-  .about-card img{width:100%;aspect-ratio:1;object-fit:cover;}
-  /* Name strip under the photo (not used on this page). */
-  .about-name{position:relative;padding:16px 20px 18px;text-align:center;color:#fff;
-    background:linear-gradient(120deg,var(--primary-800),var(--primary));border-top:3px solid var(--gold);}
-  .about-name b{display:block;font-size:1.12rem;}
-  .about-name span{display:block;font-size:.74rem;letter-spacing:1.6px;text-transform:uppercase;color:var(--on-dark);margin-top:2px;}
-  /* Welcome headline and paragraph. */
-  .about-txt h2{color:var(--primary);font-size:2.35rem;line-height:1.15;margin:10px 0 16px;}
-  .about-txt h2 span{color:var(--secondary-ink);}
-  .about-txt > p{color:var(--text);font-size:1.06rem;line-height:1.7;margin-bottom:30px;}
-  /* Row of four value items (Expert Guidance, Client First, ...). */
-  .about-vals{display:grid;grid-template-columns:repeat(4,1fr);}
-  .about-val{padding:0 18px;}
-  .about-val:first-child{padding-left:0;}
-  .about-val + .about-val{border-left:1px solid var(--border);}
-  /* Round icon bubble; its colors come from the --tint values set in the HTML. */
-  .about-val .ic{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-size:1.1rem;margin-bottom:12px;
-    background:var(--tint,#E3F0FD);color:var(--tint-ink,var(--primary));transition:transform .2s;}
-  .about-val:hover .ic{transform:translateY(-3px) scale(1.05);}
-  .about-val b{display:block;color:var(--primary);font-size:.95rem;margin-bottom:4px;}
-  .about-val span{display:block;color:var(--muted);font-size:.84rem;line-height:1.45;}
   /* Badge cards grid (adv-card): not used on this page. */
   .adv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:10px;}
   .adv-card{background:#fff;color:var(--text);border-radius:14px;padding:26px;text-align:center;box-shadow:var(--shadow);}
@@ -391,24 +375,7 @@
   .soft-card{background:#fff;border:1px solid rgba(207,229,246,.75);border-radius:18px;
     box-shadow:0 2px 4px rgba(11,61,145,.04),0 18px 44px rgba(11,61,145,.10);transition:transform .25s,box-shadow .25s;}
   .soft-card:hover{transform:translateY(-4px);box-shadow:0 4px 8px rgba(11,61,145,.05),0 26px 56px rgba(11,61,145,.15);}
-  /* ===== CLIENT NEWSLETTER (cards) ===== */
-  /* client newsletter cards */
-  .news-card.soft-card{position:relative;overflow:hidden;padding:28px 30px 30px;border-top:1px solid rgba(207,229,246,.75);}
-  .news-card.soft-card:before{content:"";position:absolute;top:-70px;right:-70px;width:190px;height:190px;border-radius:50%;
-    background:radial-gradient(circle,#DCF3FA 0,rgba(220,243,250,0) 70%);pointer-events:none;}
-  /* Top row of a card: date box on the left, icon on the right. */
-  .news-top{position:relative;display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px;}
-  .news-card.soft-card .date{background:#E3F0FD;color:var(--primary);border-radius:12px;padding:10px 14px;min-width:66px;margin:0;}
-  .news-card.soft-card .date b{font-size:1.65rem;font-weight:800;line-height:1.1;}
-  .news-card.soft-card .date span{display:block;font-size:.78rem;font-weight:700;letter-spacing:1px;}
-  /* Big icon with a small teal badge in the corner. */
-  .news-art{position:relative;font-size:2.7rem;line-height:1;color:#1C8BDF;margin:4px 10px 0 0;}
-  .news-art .bdg{position:absolute;right:-12px;bottom:-8px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;
-    background:#3CCFC0;color:#fff;font-size:.8rem;border:2px solid #fff;}
-  .news-card.soft-card h3{color:var(--primary);font-size:1.3rem;font-weight:800;line-height:1.25;margin-bottom:10px;}
-  .news-card.soft-card p{color:var(--muted);font-size:.98rem;line-height:1.6;}
-  .news-card.soft-card .nl-bar{width:56px;margin-top:20px;}
-  /* Pill button: Subscribe to the Newsletter. */
+  /* Pill button (the Google review buttons). */
   .btn-pill{display:inline-flex;align-items:center;gap:16px;padding:16px 32px;border-radius:999px;color:#fff;font-weight:700;font-size:.95rem;
     background:linear-gradient(90deg,var(--primary),#1C8BDF);box-shadow:0 12px 28px rgba(11,61,145,.28);transition:transform .2s,box-shadow .2s;}
   .btn-pill .sep{width:1px;height:22px;background:rgba(255,255,255,.4);}
@@ -417,16 +384,6 @@
   .btn-pill:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(11,61,145,.36);}
   .btn-pill:hover .fa-arrow-right{transform:translateX(4px);}
   .btn-pill:focus-visible{outline:3px solid var(--secondary);outline-offset:4px;}
-  /* ===== TAX PLANNING NEWSLETTER (cards) ===== */
-  /* tax planning cards */
-  .art-card.soft-card{display:flex;align-items:center;gap:26px;padding:30px 32px;border-top:1px solid rgba(207,229,246,.75);}
-  /* Round icon on the left of each article card. */
-  .art-ic{flex:none;width:96px;height:96px;border-radius:50%;display:grid;place-items:center;font-size:2.2rem;color:#1C8BDF;
-    background:radial-gradient(circle at 35% 30%,#F0FBFD,#D3EEF7);}
-  /* Article text with a teal line on its left. */
-  .art-body{border-left:2px solid #3CCFC0;padding-left:24px;}
-  .art-card.soft-card h3{color:var(--primary);font-size:1.3rem;font-weight:800;line-height:1.25;margin-bottom:8px;}
-  .art-card.soft-card p{color:var(--muted);font-size:.98rem;line-height:1.6;}
   /* ===== WHY GET TAX HELP (video frame) ===== */
   /* why get tax help video frame */
   .why-video.framed{max-width:860px;padding:8px;background:#fff;border-radius:18px;border-top:5px solid #2B9BEA;
@@ -451,6 +408,26 @@
   }
   /* Phones: tighter review card and smaller titles. */
   @media(max-width:560px){.review{padding:28px 22px;}.review h4{font-size:1.15rem;}.review p{font-size:.97rem;-webkit-line-clamp:6;line-clamp:6;}.mc{padding:54px 0 60px;}.mc-dots{display:none;}.mc-title{font-size:1.5rem;}}
+
+  /* ===== EXPLORE ===== */
+  /* Home page: one card per page of the site, 3 across (2 on tablets, 1 on phones). Content: EXPLORE section. */
+  .ex{padding:70px 0 30px;}
+  .ex-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:40px;}
+  .ex-card{display:flex;flex-direction:column;padding:28px 28px 26px;color:var(--text);text-decoration:none;}
+  /* round icon; every second card is teal instead of blue */
+  .ex-ic{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-size:1.35rem;margin-bottom:16px;background:#DDF1FD;color:var(--primary);}
+  .ex-card:nth-child(even) .ex-ic{background:#DDF7F2;color:#0F7C6C;}
+  .ex-card h3{color:var(--primary);font-size:1.25rem;font-weight:800;line-height:1.25;margin-bottom:8px;}
+  .ex-card p{flex:1;color:var(--muted);font-size:.96rem;line-height:1.6;}
+  /* the "Learn more" line at the bottom of each card; its arrow slides on hover */
+  .ex-more{display:inline-flex;align-items:center;gap:8px;margin-top:18px;color:#1C8BDF;font-weight:700;font-size:.92rem;}
+  .ex-more i{font-size:.8rem;transition:transform .2s;}
+  .ex-card:hover .ex-more i{transform:translateX(4px);}
+  .ex-card:focus-visible{outline:3px solid var(--secondary);outline-offset:3px;}
+  @media(max-width:980px){.ex-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:600px){.ex-grid{grid-template-columns:1fr;gap:16px;margin-top:28px;}.ex{padding:50px 0 16px;}.ex-card{padding:22px;}}
+  /* the reviews block right under it needs less space above */
+  #reviews{padding-top:56px;}
 
   /* ===== SEARCH ===== */
   /* Pop-up search box opened by the magnifier icon in the menu. The box itself is built by the SEARCH script. */
@@ -524,29 +501,6 @@
   /* Copyright line. */
   .foot-copy{border-top:1px solid rgba(255,255,255,.12);padding-top:18px;font-size:.82rem;text-align:center;}
 
-  /* ===== CLIENT NEWSLETTER (base styles) ===== */
-  /* ----- Resources: client newsletter ----- */
-  /* Three cards across; the soft-card look above refines these. */
-  .news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
-  .news-card{background:#fff;color:var(--text);border-radius:12px;padding:24px;box-shadow:var(--shadow);border-top:4px solid var(--secondary);transition:transform .2s,box-shadow .2s;}
-  .news-card:hover,.art-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);}
-  .news-card .date{background:linear-gradient(135deg,var(--primary),#1560C9);color:#fff;border-radius:8px;text-align:center;padding:8px 12px;display:inline-block;margin-bottom:14px;}
-  .news-card .date b{display:block;font-size:1.2rem;}.news-card .date span{font-size:.7rem;}
-  .news-card h3{color:var(--navy);font-size:1.1rem;margin-bottom:8px;}
-  .news-card p{color:var(--muted);font-size:.95rem;}
-  /* Tablets and phones: one card per row. */
-  @media(max-width:860px){.news-grid{grid-template-columns:1fr;}}
-
-  /* ===== TAX PLANNING NEWSLETTER (base styles) ===== */
-  /* ----- Resources: tax planning newsletter ----- */
-  /* Two article cards per row. */
-  .art-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
-  .art-card{background:#fff;color:var(--text);border-radius:12px;padding:26px;box-shadow:var(--shadow);border-top:4px solid var(--tertiary);transition:transform .2s,box-shadow .2s;}
-  .art-card h3{color:var(--navy);font-size:1.15rem;margin-bottom:8px;}
-  .art-card p{color:var(--muted);font-size:.95rem;}
-  /* Tablets and phones: one card per row. */
-  @media(max-width:860px){.art-grid{grid-template-columns:1fr;}}
-
   /* ===== FINANCIAL CALCULATORS ===== */
   /* Not used on this page (the calculators live on financial-calculators.html). */
   /* ----- Resources: financial calculators ----- */
@@ -561,66 +515,6 @@
   .calc-card span{color:var(--muted);font-size:.85rem;}
   @media(max-width:860px){.calc-grid{grid-template-columns:repeat(2,1fr);}}
   @media(max-width:560px){.calc-grid{grid-template-columns:1fr;}}
-
-  /* ===== CONTACT ===== */
-  /* White contact card: photo of Max, phone/email and address cards, Google map. A later block below repeats some rules with new values; the later ones win. */
-  /* ----- Contact ----- */
-  .contactx{background:#fff;color:var(--primary);border-radius:18px;max-width:none;margin:0 auto;
-    padding:48px 42px 42px;border:1px solid var(--border);box-shadow:var(--shadow-lg);position:relative;overflow:hidden;}
-  .contactx:before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--primary),var(--secondary),var(--tertiary));}
-  /* Card title and subtitle. */
-  .contactx h1{text-align:center;font-size:2.6rem;font-weight:800;color:var(--primary);letter-spacing:1px;margin:0;}
-  .contactx .sub{text-align:center;color:var(--muted);max-width:560px;margin:12px auto 38px;line-height:1.6;}
-  /* Two columns: photo on the left, details on the right. */
-  .cx-grid{display:grid;grid-template-columns:1fr 1.18fr;gap:34px;align-items:center;}
-  .cx-photo{position:relative;border-radius:12px;overflow:hidden;box-shadow:var(--shadow-lg);}
-  .cx-photo img{width:100%;display:block;}
-  /* Name and job title next to the photo. */
-  .cx-name b{font-size:1.55rem;color:var(--primary);}
-  .cx-name span{display:block;color:var(--muted);margin:2px 0 20px;}
-  /* The two info cards (Get In Touch, Find Us). */
-  .cx-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px;}
-  .cx-card{border:1px solid var(--border);border-radius:12px;padding:18px 20px;box-shadow:0 10px 24px rgba(11,61,145,.08);}
-  .cx-card .h{display:flex;align-items:center;gap:9px;font-weight:800;color:var(--primary);text-transform:uppercase;font-size:.82rem;letter-spacing:.5px;margin-bottom:14px;}
-  .cx-card .h .dot{width:30px;height:30px;border-radius:50%;background:var(--primary);color:var(--tertiary);display:grid;place-items:center;font-size:.85rem;flex:none;}
-  .cx-card p{font-size:.88rem;color:#33475F;margin-bottom:12px;line-height:1.45;}
-  .cx-card p:last-child{margin-bottom:0;}
-  .cx-card p b{color:var(--primary);display:block;}
-  /* Map frame height. */
-  .cx-map iframe{width:100%;height:200px;border:0;border-radius:12px;box-shadow:0 10px 24px rgba(11,61,145,.12);}
-  /* Tablets and phones: stack the columns. */
-  @media(max-width:860px){.cx-grid{grid-template-columns:1fr;}.cx-cards{grid-template-columns:1fr;}}
-  @media(max-width:600px){.contactx{padding:32px 20px;}.contactx h1{font-size:2rem;}}
-  /* CONTACT restyle (wins over the rules above). */
-  .contactx{border-radius:22px;border-color:rgba(207,229,246,.75);box-shadow:0 2px 4px rgba(11,61,145,.04),0 26px 64px rgba(11,61,145,.12);}
-  .contactx:before{top:26px;left:50%;right:auto;width:120px;height:3px;border-radius:2px;transform:translateX(-50%);
-    background:linear-gradient(90deg,#1C6FD1 0 55%,#BDE6F2 55%);}
-  .contactx h1{font-size:3rem;letter-spacing:.5px;}
-  .contactx h1 span{color:#1C8BDF;}
-  .contactx .sub{color:#4A607E;font-size:1.08rem;max-width:700px;}
-  .cx-photo{border-radius:16px;}
-  .cx-name b{font-size:2.4rem;font-weight:800;line-height:1.1;}
-  .cx-name span{font-size:1.15rem;margin:4px 0 0;}
-  .cx-name:after{content:"";display:block;width:50px;height:3px;border-radius:2px;background:#3CCFC0;margin:12px 0 24px;}
-  .cx-card{border-radius:16px;padding:22px 24px;border-color:rgba(207,229,246,.8);box-shadow:0 2px 4px rgba(11,61,145,.04),0 14px 34px rgba(11,61,145,.09);}
-  .cx-card .h{gap:14px;font-size:.9rem;letter-spacing:1.2px;white-space:nowrap;color:#1C8BDF;margin-bottom:20px;}
-  .cx-card .h .dot{width:56px;height:56px;font-size:1.25rem;background:#DDF1FD;color:var(--primary);}
-  .cx-card .h .lbl:after{content:"";display:block;width:34px;height:3px;border-radius:2px;background:#3CCFC0;margin-top:8px;}
-  /* One icon + text row inside an info card. */
-  .cx-row{display:flex;gap:14px;align-items:flex-start;margin-bottom:16px;}
-  .cx-row:last-child{margin-bottom:0;}
-  .cx-row > i{flex:none;width:22px;margin-top:3px;color:#1C8BDF;font-size:1.15rem;text-align:center;}
-  .cx-row p{margin:0;font-size:.96rem;color:#1D3F75;}
-  /* White frame around the map; its height is on the next line. */
-  .cx-map{padding:4px;background:#fff;border-radius:16px;border:1px solid rgba(207,229,246,.8);box-shadow:0 14px 34px rgba(11,61,145,.10);}
-  .cx-map iframe{height:210px;box-shadow:none;}
-  /* GOOGLE BUSINESS PROFILE: taller frame so Google's business card (name, stars, reviews) fits, and the link under it. */
-  .cx-gbp iframe{height:300px;}
-  .cx-gbp-link{display:inline-flex;align-items:center;gap:8px;margin-top:12px;color:#1C8BDF;font-weight:700;font-size:.92rem;}
-  .cx-gbp-link .fa-arrow-up-right-from-square{font-size:.75rem;}
-  .cx-gbp-link:hover{text-decoration:underline;}
-  .cx-gbp-link:focus-visible{outline:3px solid var(--secondary);outline-offset:3px;border-radius:4px;}
-  @media(max-width:600px){.contactx h1{font-size:2.1rem;}.cx-name b{font-size:1.9rem;}}
 
   /* ===== RESPONSIVE ===== */
   /* Rules inside @media(max-width:980px) apply to tablets and smaller; max-width:600px to phones. */
@@ -648,10 +542,6 @@
     .hero-info h1{font-size:2.3rem;}
     .hero-feats{grid-template-columns:repeat(2,1fr);row-gap:20px;margin-top:30px;}
     .hero-feat:nth-child(3){border-left:0;}
-    .about-wrap{grid-template-columns:1fr;gap:34px;}
-    .about-card{max-width:420px;width:100%;margin:0 auto;}
-    .about-vals{grid-template-columns:repeat(2,1fr);row-gap:22px;}
-    .about-val:nth-child(3){border-left:0;padding-left:0;}
     .adv-grid{grid-template-columns:repeat(2,1fr);}
   }
   /* Phones: single-column layouts and smaller text. */
@@ -669,9 +559,6 @@
     .sec-kicker.blue{font-size:.74rem;letter-spacing:.8px;}
     .hero-feat{padding:12px 14px;}
     .hero-feat + .hero-feat{border-left:0;border-top:1px solid var(--border);}
-    .about-txt h2{font-size:1.8rem;}
-    .about-vals{grid-template-columns:1fr;}
-    .about-val{padding:0 !important;border-left:0 !important;}
     .hero-cta{flex-direction:column;}
     .hero-cta .btn{width:100%;justify-content:center;}
     .brand img{height:46px;}
@@ -723,7 +610,7 @@
   .foot-copy{border-top:0;color:#1D3F75;font-size:.95rem;}
   footer a:hover{color:#1C8BDF;}
   /* Tablets and phones: fewer footer columns. */
-  @media(max-width:1100px){.foot-grid{grid-template-columns:1fr 1fr;row-gap:34px;}.foot-grid > div{padding:0 24px;}
+  @media(max-width:1100px){.foot-grid{grid-template-columns:1fr 1fr;row-gap:34px;}.foot-grid > div{padding:0 24px;}.foot-grid > div:first-child{grid-column:1/-1;}.foot-grid > div:nth-child(2):not(.foot-cta){border-left:0;}
     .foot-grid > div:nth-child(3){border-left:1px solid rgba(59,167,242,.3);}.foot-grid > div:nth-child(2){border-left:0;padding-left:0;}
     .foot-cta{grid-column:1/-1;border-left:0 !important;padding:0 !important;}}
   @media(max-width:600px){.foot-grid{grid-template-columns:1fr;}.foot-grid > div{padding:0 !important;border-left:0 !important;}
@@ -911,8 +798,8 @@
 
 
   /* ===== PAGE TRANSITIONS ===== */
-  /* Blue curtain that wipes across the screen when going to or from request-consultation.html. Script: PAGE TRANSITIONS. */
-  /* ===== curtain wipe: a blue panel covers the page on the way to and from the request form ===== */
+  /* Blue curtain that wipes across the screen on every change to another page. Script: PAGE TRANSITIONS. */
+  /* ===== curtain wipe: a blue panel covers the screen on every change to another page of this site ===== */
   /* The panel: parked off to the left until the script moves it. Change the background colors to recolor it. */
   .curtain{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;pointer-events:none;visibility:hidden;transform:translateX(-101%);
     background:linear-gradient(120deg,var(--primary) 0%,#1560C9 55%,var(--secondary) 100%);}
@@ -926,16 +813,17 @@
 <!-- Script 1: zoom animation when opening a service page from the Services menu (browsers that support it). -->
 <script>/* links in the Services dropdown (and Switch service) mark the next navigation as a zoom */(function(){var K='vtZoom',RE=/(tax-preparation-planning|bookkeeping-payroll|business-consulting|future-security)(\.html)?$/;function tag(e){try{if(e.viewTransition&&sessionStorage.getItem(K))e.viewTransition.types.add('zoom');}catch(_){}}addEventListener('pageswap',tag);addEventListener('pagereveal',function(e){tag(e);try{sessionStorage.removeItem(K);}catch(_){}});document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('.submenu a');if(a&&RE.test(a.getAttribute('href')||'')){try{sessionStorage.setItem(K,'1');}catch(_){}}},true);})();</script>
 <!-- ===== #request REDIRECT ===== -->
-<!-- Script 2: parts of this page that moved to their own page. Old links ending in #request, #services
-     or #tax-videos (Google results, bookmarks) open the new page instead. Add a line here when another part moves. -->
-<script>(function(){var moved={'#request':'request-consultation','#services':'services','#tax-videos':'tax-videos'}[location.hash];if(moved)location.replace(moved+location.search);})();</script>
-<!-- Script 3: the curtain wipe between this page and request-consultation.html (styles: PAGE TRANSITIONS). -->
+<!-- Script 2: parts of this page that moved to their own page. Old links ending in #request, #services,
+     #tax-videos, #about, #contact, #client-newsletter or #tax-planning-newsletter (Google results, bookmarks)
+     open the new page instead. Add a line here when another part moves. -->
+<script>(function(){var moved={'#request':'request-consultation','#services':'services','#tax-videos':'tax-videos','#about':'about','#contact':'contact','#client-newsletter':'client-newsletter','#tax-planning-newsletter':'tax-planning-newsletter'}[location.hash];if(moved)location.replace(moved+location.search);})();</script>
+<!-- Script 3: the curtain wipe on every change to another page of this site (styles: PAGE TRANSITIONS). -->
 <script>
-  /* Curtain wipe to and from the request form: the panel slides in over this page, the next page
+  /* Curtain wipe between the pages of this site: the panel slides in over this page, the next page
      opens covered, then the panel slides off it. Reduced motion gets a quick fade instead. */
   (function(){
-    // K = memory key; FORM = the page that gets the curtain effect; d and html are shortcuts.
-    var K = 'curtain', FORM = 'request-consultation', d = document, html = d.documentElement;
+    // K = memory key; d and html are shortcuts.
+    var K = 'curtain', d = document, html = d.documentElement;
     var reduce = matchMedia('(prefers-reduced-motion: reduce)'), EASE = 'cubic-bezier(.32,.72,0,1)';
     // ms: animation length in milliseconds (450, or 150 for reduced motion). frames: the slide (or fade) steps.
     function ms(){ return reduce.matches ? 150 : 450; }
@@ -945,6 +833,8 @@
     }
     // page: the page name of an address without .html, e.g. request-consultation ('index' for the home page).
     function page(u){ var f = u.pathname.split('/').pop().replace(/\.html$/, ''); return f && f !== 'index' ? f : 'index'; }
+    // SVC = the four service pages (see the click handler below)
+    var SVC = /^(tax-preparation-planning|bookkeeping-payroll|business-consulting|future-security)$/;
 
     // If the previous page set the memory key, this page starts covered and then uncovers itself.
     var arriving = false;
@@ -967,23 +857,35 @@
       setTimeout(reveal, 400);
     });
 
-    // Clicking a link to or from the form page: slide the curtain in, then open the new page.
+    // curtainTo(url): slide the panel in over this page, then open url once the screen is covered.
+    // Returns false (and does nothing) in old browsers, which then just open the page normally.
+    // Also used by the "Switch service" drop-down on the service pages.
+    function curtainTo(url){
+      var c = d.querySelector('.curtain');
+      if (!c || !c.animate) return false;
+      try{ sessionStorage.setItem(K, '1'); }catch(_){}
+      html.classList.add('curtain-moving');
+      var gone = false;
+      function go(){ if (!gone){ gone = true; location.href = url; } }
+      // swap pages only once the screen is fully covered
+      c.animate(frames(true), {duration:ms(), easing:EASE, fill:'forwards'}).finished.then(go);
+      setTimeout(go, ms() + 150);
+      return true;
+    }
+    window.curtainTo = curtainTo;
+
+    // Clicking a link to another page of this site: slide the curtain in, then open the new page.
     d.addEventListener('click', function(e){
       if (e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
       var a = e.target.closest && e.target.closest('a[href]');
       if (!a || a.target === '_blank' || a.hasAttribute('download')) return;
-      var to = new URL(a.href, location.href), from = page(location), dest = page(to);
-      if (to.origin !== location.origin || dest === from || (dest !== FORM && from !== FORM)) return;
-      var c = d.querySelector('.curtain');
-      if (!c || !c.animate) return;
-      e.preventDefault();
-      try{ sessionStorage.setItem(K, '1'); }catch(_){}
-      html.classList.add('curtain-moving');
-      var gone = false;
-      function go(){ if (!gone){ gone = true; location.href = a.href; } }
-      // swap pages only once the screen is fully covered
-      c.animate(frames(true), {duration:ms(), easing:EASE, fill:'forwards'}).finished.then(go);
-      setTimeout(go, ms() + 150);
+      var to = new URL(a.href, location.href);
+      // other websites, and links to a section of this same page (e.g. ./#why-choose-us on Home), are left alone
+      if (to.origin !== location.origin || page(to) === page(location)) return;
+      // the four service pages keep their own transition (photo grows from the card, or zoom from the Services menu),
+      // except to and from the request form, which always gets the curtain
+      if (SVC.test(page(to)) && page(location) !== 'request-consultation') return;
+      if (curtainTo(a.href)) e.preventDefault();
     });
 
     // back/forward cache brings this page back still covered: lift the panel
@@ -1025,7 +927,7 @@
 <!-- ===== Header / Navigation ===== -->
 <header class="site-header">
   <div class="container nav-inner">
-    <!-- Logo (click goes to the top). Replace images/logo.webp and logo.png to change it. -->
+    <!-- Logo (links to the home page). Replace images/logo.webp and logo.png to change it. -->
     <a href="./" class="brand"><picture><source srcset="images/logo.webp" type="image/webp"><img src="images/logo.png" width="840" height="180" alt="Magnum CPA PC — Tax · Accounting · Advisory" fetchpriority="high"></picture></a>
 
     <!-- Hamburger button, only visible on tablets and phones. -->
@@ -1033,11 +935,13 @@
       <span></span><span></span><span></span>
     </button>
 
-    <!-- Menu items: each li is one link. Copy an li line to add a menu item. -->
+    <!-- ===== MAIN MENU ===== The same menu is on every page. index.html holds the MASTER copy: edit it there, then
+         run  python tools/sync_shared.py .  to copy it to every page (it highlights each page's own item).
+         Each li is one link; copy an li line to add a menu item. -->
     <nav class="main-nav" id="mainNav">
       <ul>
-        <li><a href="./" class="active">Home</a></li>
-        <li><a href="#about">About Us</a></li>
+        <li><a href="./" class="active" aria-current="page">Home</a></li>
+        <li><a href="about">About Us</a></li>
         <!-- Services drop-down: links to the four service pages. -->
         <li class="has-sub">
           <a href="services" class="sub-toggle">Services ▾</a>
@@ -1053,8 +957,8 @@
         <li class="has-sub">
           <a href="#" class="sub-toggle">Resources ▾</a>
           <ul class="submenu">
-            <li><a href="#client-newsletter">Client Newsletter</a></li>
-            <li><a href="#tax-planning-newsletter">Tax Planning Newsletter</a></li>
+            <li><a href="client-newsletter">Client Newsletter</a></li>
+            <li><a href="tax-planning-newsletter">Tax Planning Newsletter</a></li>
             <li><a href="tax-videos">Tax Videos</a></li>
             <!-- The client video library: its own site, so it opens in a new tab like the Client Portal. -->
             <li><a href="https://library.magnumcpa.com" target="_blank" rel="noopener">Video Library</a></li>
@@ -1065,7 +969,7 @@
         <li><a href="https://magnumcpa.clientportal.com/#/login" target="_blank" rel="noopener">Client Portal</a></li>
         <!-- Opens the consultation form page (request-consultation.html). -->
         <li><a href="request-consultation">Request Consultation</a></li>
-        <li><a href="#contact">Contact Us</a></li>
+        <li><a href="contact">Contact Us</a></li>
         <!-- Magnifier icon that opens the SEARCH box. -->
         <li class="search-li"><a href="#" class="search-btn" aria-label="Search the site">🔍</a></li>
       </ul>
@@ -1130,56 +1034,42 @@
   </div>
 </section>
 
-<!-- ===== ABOUT US ===== -->
-<!-- Max's photo, welcome text and values, then MISSION + REVIEWS. Styles: ABOUT US. -->
-<!-- ===== About Us ===== -->
-<section id="about">
-  <!-- intro -->
-  <div class="section">
-    <div class="container">
-      <div class="about-wrap">
-        <!-- Photo of Max. -->
-        <figure class="about-card" style="margin:0;">
-          <picture>
-            <source type="image/webp" srcset="images/Max-contact-new-700.webp 700w, images/Max-contact-new.webp 1254w" sizes="(max-width:980px) 92vw, 420px">
-            <img src="images/Max-contact-new.jpg" width="1254" height="1254" loading="lazy" alt="Max (Magnum) Drew, Founder and CEO of Magnum CPA PC, smiling with arms crossed">
-          </picture>
-        </figure>
-        <!-- Welcome text; edit the paragraph to change the story. -->
-        <div class="about-txt">
-          <div class="sec-kicker blue">About Us</div>
-          <h2>Welcome to <span class="grad">Magnum CPA PC</span></h2>
-          <p>Our story began 10 years ago right here in California, established by our founder, Max (Magnum) Drew. We have grown from a small practice into a trusted professional corporation with a clear vision: to be more than just accountants—we aim to be true financial partners.</p>
-          <!-- Four value items: each about-val is one icon + title + line. The tint values in its style attribute set the bubble colors. -->
-          <div class="about-vals">
-            <div class="about-val"><span class="ic" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></span>
-              <b>Expert Guidance</b><span>Trusted expertise and personalized solutions.</span></div>
-            <div class="about-val" style="--tint:#DDF7F2;--tint-ink:#0F7C6C;"><span class="ic" aria-hidden="true"><i class="fa-solid fa-user-group"></i></span>
-              <b>Client First</b><span>Your success is our priority.</span></div>
-            <div class="about-val" style="--tint:#E1F1FD;--tint-ink:var(--secondary-ink);"><span class="ic" aria-hidden="true"><i class="fa-solid fa-chart-simple"></i></span>
-              <b>Long-Term Partnership</b><span>Building lasting financial security.</span></div>
-            <div class="about-val" style="--tint:#DDF7F2;--tint-ink:#0F7C6C;"><span class="ic" aria-hidden="true"><i class="fa-solid fa-handshake"></i></span>
-              <b>Integrity &amp; Excellence</b><span>Honesty, accuracy and professionalism.</span></div>
-          </div>
-        </div>
-      </div>
+<!-- ===== EXPLORE ===== -->
+<!-- One card per page of the website; the whole card is a link. Copy an <a class="ex-card ..."> to add one.
+     The text is a one-line summary of that page. Styles: EXPLORE. -->
+<section class="mc ex" id="explore">
+  <span class="mc-dots tr" aria-hidden="true"></span>
+  <div class="container">
+    <h2 class="mc-title plain">Explore <span class="grad">Magnum CPA PC</span></h2>
+    <div class="ex-grid">
+      <a class="ex-card soft-card" href="about"><span class="ex-ic" aria-hidden="true"><i class="fa-solid fa-user-tie"></i></span>
+        <h3>About Us</h3><p>Our story, founder Max Drew, our values and our mission.</p>
+        <span class="ex-more">Meet the firm <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span></a>
+      <a class="ex-card soft-card" href="services"><span class="ex-ic" aria-hidden="true"><i class="fa-solid fa-briefcase"></i></span>
+        <h3>Services</h3><p>Tax preparation &amp; planning, bookkeeping &amp; payroll, business consulting and future security.</p>
+        <span class="ex-more">See our services <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span></a>
+      <a class="ex-card soft-card" href="client-newsletter"><span class="ex-ic" aria-hidden="true"><i class="fa-solid fa-newspaper"></i></span>
+        <h3>Client Newsletter</h3><p>Monthly updates, firm news and practical money tips.</p>
+        <span class="ex-more">Read the newsletter <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span></a>
+      <a class="ex-card soft-card" href="tax-planning-newsletter"><span class="ex-ic" aria-hidden="true"><i class="fa-solid fa-envelope-open-text"></i></span>
+        <h3>Tax Planning Newsletter</h3><p>Strategy-focused articles for proactive tax savings all year long.</p>
+        <span class="ex-more">Read the articles <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span></a>
+      <a class="ex-card soft-card" href="tax-videos"><span class="ex-ic" aria-hidden="true"><i class="fa-solid fa-circle-play"></i></span>
+        <h3>Tax Videos</h3><p>Plain-English answers to your tax questions, one short video at a time.</p>
+        <span class="ex-more">Watch the videos <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span></a>
+      <a class="ex-card soft-card" href="contact"><span class="ex-ic" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span>
+        <h3>Contact Us</h3><p>Phone, email and our Sacramento office, with directions and our Google reviews.</p>
+        <span class="ex-more">Get in touch <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span></a>
     </div>
   </div>
+</section>
 
-    <!-- ===== MISSION + REVIEWS ===== -->
-    <!-- Our Mission + What Our Clients Say -->
-  <!-- Styles: MISSION + REVIEWS. Script: MISSION + REVIEWS (auto-rotating review slider). -->
-  <div class="mc">
-    <!-- Decorative corner waves and dots (purely visual). -->
-    <svg class="mc-deco tl" viewBox="0 0 340 150" aria-hidden="true"><path d="M0 0h250C190 40 120 70 0 118Z" fill="#CFE8FB" opacity=".55"/><path d="M0 104C95 72 160 38 215 0" fill="none" stroke="#5FD3E2" stroke-width="2" opacity=".7"/></svg>
-    <svg class="mc-deco bl" viewBox="0 0 520 230" aria-hidden="true"><path d="M0 70C120 70 230 150 330 230H0Z" fill="#CFE8FB" opacity=".6"/><path d="M0 20C150 30 260 120 360 230" fill="none" stroke="#5FD3E2" stroke-width="2" opacity=".7"/></svg>
-    <svg class="mc-deco br" viewBox="0 0 460 170" aria-hidden="true"><path d="M460 30C350 70 250 120 130 170H460Z" fill="#CFE8FB" opacity=".6"/><path d="M460 70C370 110 300 140 220 170" fill="none" stroke="#7FE7D6" stroke-width="2" opacity=".8"/></svg>
-    <span class="mc-dots tr" aria-hidden="true"></span><span class="mc-dots br2" aria-hidden="true"></span>
-    <div class="container">
-      <!-- Mission statement: edit the paragraph text. -->
-      <h2 class="mc-title">Our <span class="grad">Mission</span></h2>
-      <p class="mc-mission">Our mission is to be the trusted financial partner for individuals and businesses, delivering accurate tax compliance, proactive financial planning, and strategic advisory services that secure and grow their wealth.</p>
-
+<!-- ===== CLIENT REVIEWS ===== -->
+<!-- What Our Clients Say: the same Google reviews and buttons as on the About page (about.html); both are
+     BUILT FROM reviews.xlsx by update-reviews.bat. Styles and script: MISSION + REVIEWS. -->
+<section class="mc" id="reviews">
+  <span class="mc-dots tr" aria-hidden="true"></span><span class="mc-dots bl2" aria-hidden="true"></span>
+  <div class="container">
       <!-- REVIEWS: real Google reviews only. The cards and the Google buttons are BUILT FROM reviews.xlsx:
            edit the spreadsheet (Show = Yes / No picks which reviews appear), then double-click
            update-reviews.bat. Don't type cards here; the parts between the START/END markers are overwritten.
@@ -1251,7 +1141,6 @@
       </div>
       <!-- REVIEW-BUTTON:END -->
       </div>
-    </div>
   </div>
 </section>
 
@@ -1274,122 +1163,12 @@
   </div>
 </section>
 
-<!-- ===== CLIENT NEWSLETTER ===== -->
-<!-- Styles: CLIENT NEWSLETTER and NEWSLETTER + VIDEO HEADINGS. Also listed in the SEARCH script. -->
-<!-- ===== Resources: Client Newsletter ===== -->
-<section id="client-newsletter" class="mc">
-    <svg class="mc-deco tl" viewBox="0 0 340 150" aria-hidden="true"><path d="M0 0h250C190 40 120 70 0 118Z" fill="#CFE8FB" opacity=".55"/><path d="M0 104C95 72 160 38 215 0" fill="none" stroke="#5FD3E2" stroke-width="2" opacity=".7"/></svg>
-    <svg class="mc-deco br" viewBox="0 0 460 170" aria-hidden="true"><path d="M460 30C350 70 250 120 130 170H460Z" fill="#CFE8FB" opacity=".6"/><path d="M460 70C370 110 300 140 220 170" fill="none" stroke="#7FE7D6" stroke-width="2" opacity=".8"/></svg>
-    <span class="mc-dots tr" aria-hidden="true"></span><span class="mc-dots bl2" aria-hidden="true"></span>
-  <div class="container">
-    <!-- Heading: label, title, subtitle. -->
-    <div class="nl-head">
-      <div class="nl-kicker"><i class="fa-solid fa-newspaper ic" aria-hidden="true"></i><span class="sep" aria-hidden="true"></span>Client Newsletter</div>
-      <h2>Monthly Updates, <span class="grad">Firm News &amp; Money Tips</span></h2>
-      <p>Practical insights to keep your finances on track all year.</p>
-      <span class="nl-bar" aria-hidden="true"></span>
-    </div>
-    <!-- NEWSLETTER CARDS: each news-card is one issue (date box, icon, title, short text). Copy one to add another. -->
-    <div class="news-grid">
-      <div class="news-card soft-card"><div class="news-top"><div class="date"><b>15</b><span>JUN</span></div>
-        <span class="news-art" aria-hidden="true"><i class="fa-regular fa-calendar-days"></i><span class="bdg"><i class="fa-solid fa-dollar-sign"></i></span></span></div>
-        <h3>Mid-Year Money Check-In</h3><p>Five steps to keep your finances on track for the rest of the year.</p><span class="nl-bar" aria-hidden="true"></span></div>
-      <div class="news-card soft-card"><div class="news-top"><div class="date"><b>02</b><span>MAY</span></div>
-        <span class="news-art" aria-hidden="true"><i class="fa-solid fa-file-invoice"></i><span class="bdg"><i class="fa-solid fa-dollar-sign"></i></span></span></div>
-        <h3>Smart Ways to Use Your Refund</h3><p>Turn this year's refund into next year's progress.</p><span class="nl-bar" aria-hidden="true"></span></div>
-      <div class="news-card soft-card"><div class="news-top"><div class="date"><b>10</b><span>APR</span></div>
-        <span class="news-art" aria-hidden="true"><i class="fa-regular fa-file-lines"></i><span class="bdg"><i class="fa-regular fa-clock"></i></span></span></div>
-        <h3>Last-Minute Filing Tips</h3><p>Avoid the most common mistakes before the deadline.</p><span class="nl-bar" aria-hidden="true"></span></div>
-    </div>
-    <!-- Subscribe button (currently just jumps to the CONTACT section). -->
-    <div style="text-align:center;margin-top:44px;"><a href="#contact" class="btn-pill"><i class="fa-solid fa-envelope" aria-hidden="true"></i><span class="sep" aria-hidden="true"></span>Subscribe to the Newsletter <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div>
-  </div>
-</section>
-
-<!-- ===== TAX PLANNING NEWSLETTER ===== -->
-<!-- Styles: TAX PLANNING NEWSLETTER. -->
-<!-- ===== Resources: Tax Planning Newsletter ===== -->
-<section id="tax-planning-newsletter" class="mc">
-    <svg class="mc-deco tl" viewBox="0 0 340 150" aria-hidden="true"><path d="M0 0h250C190 40 120 70 0 118Z" fill="#CFE8FB" opacity=".55"/><path d="M0 104C95 72 160 38 215 0" fill="none" stroke="#5FD3E2" stroke-width="2" opacity=".7"/></svg>
-    <svg class="mc-deco br" viewBox="0 0 460 170" aria-hidden="true"><path d="M460 30C350 70 250 120 130 170H460Z" fill="#CFE8FB" opacity=".6"/><path d="M460 70C370 110 300 140 220 170" fill="none" stroke="#7FE7D6" stroke-width="2" opacity=".8"/></svg>
-    <span class="mc-dots tr" aria-hidden="true"></span><span class="mc-dots bl2" aria-hidden="true"></span>
-  <div class="container">
-    <div class="nl-head">
-      <div class="nl-kicker"><i class="fa-solid fa-envelope-open-text ic" aria-hidden="true"></i><span class="sep" aria-hidden="true"></span>Tax Planning Newsletter</div>
-      <h2>Strategies for <span class="grad">Proactive Tax Savings</span></h2>
-      <p>Strategy-focused articles for proactive tax savings all year long.</p>
-    </div>
-    <!-- ARTICLE CARDS: each art-card is one article (icon, title, text). Copy one to add another. -->
-    <div class="art-grid">
-      <div class="art-card soft-card"><span class="art-ic" aria-hidden="true"><i class="fa-solid fa-seedling"></i></span><div class="art-body"><h3>Maximizing Retirement Contributions</h3><p>How to use 401(k)s, IRAs, and HSAs to lower this year's tax bill while building wealth.</p></div></div>
-      <div class="art-card soft-card"><span class="art-ic" aria-hidden="true"><i class="fa-solid fa-store"></i></span><div class="art-body"><h3>Small Business Entity Choices</h3><p>LLC, S-Corp, or sole proprietor? Understand the tax impact of each structure.</p></div></div>
-      <div class="art-card soft-card"><span class="art-ic" aria-hidden="true"><i class="fa-solid fa-hand-holding-heart"></i></span><div class="art-body"><h3>Charitable Giving Strategies</h3><p>Bunching, donor-advised funds, and other ways to give smarter.</p></div></div>
-      <div class="art-card soft-card"><span class="art-ic" aria-hidden="true"><i class="fa-solid fa-chart-line"></i></span><div class="art-body"><h3>Capital Gains Planning</h3><p>Timing sales and harvesting losses to keep more of your investment returns.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== CONTACT ===== -->
-<!-- Contact card: photo, phone, email, address and the GOOGLE BUSINESS PROFILE embed. Styles: CONTACT. -->
-<!-- ===== Contact Us ===== -->
-<section id="contact" class="mc" style="padding:72px 0 84px;">
-    <svg class="mc-deco tl" viewBox="0 0 340 150" aria-hidden="true"><path d="M0 0h250C190 40 120 70 0 118Z" fill="#CFE8FB" opacity=".55"/><path d="M0 104C95 72 160 38 215 0" fill="none" stroke="#5FD3E2" stroke-width="2" opacity=".7"/></svg>
-    <svg class="mc-deco br" viewBox="0 0 460 170" aria-hidden="true"><path d="M460 30C350 70 250 120 130 170H460Z" fill="#CFE8FB" opacity=".6"/><path d="M460 70C370 110 300 140 220 170" fill="none" stroke="#7FE7D6" stroke-width="2" opacity=".8"/></svg>
-    <span class="mc-dots tr" aria-hidden="true"></span><span class="mc-dots bl2" aria-hidden="true"></span>
-    <div class="container">
-      <div class="contactx">
-        <!-- Title and subtitle. -->
-        <h1>Contact <span class="grad">Us</span></h1>
-        <p class="sub">Have questions about your accounting needs? We are here to help. Reach out to our dedicated team today.</p>
-
-        <div class="cx-grid">
-          <!-- Photo of Max at his desk (webp first, png fallback). -->
-          <div class="cx-photo">
-            <picture>
-              <source type="image/webp" srcset="images/Max-contact-desk-700.webp 700w, images/Max-contact-desk.webp 1327w" sizes="(max-width:860px) 92vw, 46vw">
-              <img src="images/Max-contact-desk.png" width="1327" height="1185" loading="lazy" alt="Max Drew, Founder and CPA of Magnum CPA PC, smiling at his desk">
-            </picture>
-          </div>
-
-          <div class="cx-right">
-            <div class="cx-name"><b>Max Drew</b><span>Founder &amp; CPA</span></div>
-
-            <div class="cx-cards">
-              <!-- Get In Touch card: edit phone and email here (and in the TOP BAR). -->
-              <div class="cx-card">
-                <div class="h"><span class="dot"><i class="fa-solid fa-phone" aria-hidden="true"></i></span><span class="lbl">Get In Touch</span></div>
-                <div class="cx-row"><i class="fa-solid fa-phone" aria-hidden="true"></i><p><b>Phone:</b> 916-616-1789</p></div>
-                <div class="cx-row"><i class="fa-solid fa-envelope" aria-hidden="true"></i><p><b>Email:</b> ask@magnumcpa.com</p></div>
-              </div>
-              <!-- Find Us card: office address. -->
-              <div class="cx-card">
-                <div class="h"><span class="dot"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></span><span class="lbl">Find Us</span></div>
-                <div class="cx-row"><i class="fa-solid fa-location-dot" aria-hidden="true"></i><p><b>Address:</b> 907 Green Moss Drive, Sacramento, CA 95831</p></div>
-              </div>
-            </div>
-
-            <!-- ===== GOOGLE BUSINESS PROFILE ===== -->
-            <!-- Our Google Business Profile (name, star rating, reviews, hours, directions) in place of a plain
-                 address map. It looks the business up by name + address. To use Google's own embed code instead:
-                 Google Maps > search "Magnum CPA PC" > Share > Embed a map > Copy HTML, then paste ONLY the
-                 address between the quotes after src= below (keep everything else). Styles: CONTACT (.cx-gbp). -->
-            <div class="cx-map cx-gbp">
-              <iframe title="Magnum CPA PC on Google: reviews, hours and directions" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-                src="https://www.google.com/maps?q=Magnum%20CPA%20PC%2C%20907%20Green%20Moss%20Drive%2C%20Sacramento%2C%20CA%2095831&output=embed"></iframe>
-            </div>
-            <!-- Opens the same profile in Google Maps (new tab), where visitors can read every review. -->
-            <a class="cx-gbp-link" href="https://www.google.com/maps/search/?api=1&amp;query=Magnum%20CPA%20PC%2C%20907%20Green%20Moss%20Drive%2C%20Sacramento%2C%20CA%2095831" target="_blank" rel="noopener"><i class="fa-brands fa-google" aria-hidden="true"></i> Open in Google Maps: reviews, hours &amp; directions <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-</section>
-
 <!-- ===== FOOTER ===== -->
 <!-- Logo, link columns, social icons, copyright (the year is filled in by the HEADER / NAV script). Styles: FOOTER. -->
 <!-- ===== Footer ===== -->
 <footer>
+  <!-- The footer is the same on every page. index.html holds the MASTER copy: edit it there, then run
+       python tools/sync_shared.py .  to copy it to every page. -->
   <div class="container">
     <div class="foot-grid">
       <!-- Column 1: logo and tagline. -->
@@ -1401,9 +1180,10 @@
       <div>
         <h4>Company</h4>
         <ul>
-          <li><a href="#about">About Us</a></li>
+          <li><a href="about">About Us</a></li>
           <li><a href="services">Services</a></li>
-          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="contact">Contact Us</a></li>
+          <li><a href="request-consultation">Request Consultation</a></li>
           <li><a href="https://magnumcpa.clientportal.com/#/login" target="_blank" rel="noopener">Client Portal</a></li>
         </ul>
       </div>
@@ -1411,8 +1191,8 @@
       <div>
         <h4>Resources</h4>
         <ul>
-          <li><a href="#client-newsletter">Client Newsletter</a></li>
-          <li><a href="#tax-planning-newsletter">Tax Planning Newsletter</a></li>
+          <li><a href="client-newsletter">Client Newsletter</a></li>
+          <li><a href="tax-planning-newsletter">Tax Planning Newsletter</a></li>
           <li><a href="tax-videos">Tax Videos</a></li>
           <li><a href="financial-calculators">Financial Calculators</a></li>
         </ul>
@@ -1528,10 +1308,10 @@
   })();
 
   // ===== CLEAN ADDRESS: no #section in the address bar =====
-  // Links to a part of this page (#about, #contact, the logo and Home) scroll there without adding
-  // "#about" to the address. Arriving from another page with a #section (e.g. ./#contact) scrolls
-  // there, then tidies the address back to magnumcpa.com/. Old links ending in #request, #services or
-  // #tax-videos are handled earlier, in the head (#request REDIRECT).
+  // Links to a part of this page (#why-choose-us, the logo and Home) scroll there without adding
+  // "#why-choose-us" to the address. Arriving from another page with a #section (e.g. ./#why-choose-us)
+  // scrolls there, then tidies the address back to magnumcpa.com/. Old links to parts that moved to
+  // their own page (#about, #contact, ...) are handled earlier, in the head (#request REDIRECT).
   (function(){
     var smooth = !matchMedia('(prefers-reduced-motion: reduce)').matches;
     // where(hash): the section a #name points to (null for the top of the page)
@@ -1680,10 +1460,11 @@
   (function(){
     // INDEX: every searchable page or section. title = result heading, url = where it goes, snippet = grey line, text = extra keywords. Copy an entry to add one.
     var INDEX = [
+      // MASTER list: tools/sync_shared.py copies it to every page. Edit it here only.
       {title:'Home', url:'./',
        snippet:"More than accounting — we're your strategic partner.",
        text:'home magnum cpa pc max drew strategic growth tax advantage proactive accounting expert tax planning financial coaching ramsey trusted consultation california'},
-      {title:'About Us', url:'#about',
+      {title:'About Us', url:'about',
        snippet:'Our story, founder Max Drew, and The Magnum Advantage.',
        text:'about us max magnum drew founder california professional corporation financial partners magnum advantage bbb accredited better business bureau trusted by ramsey best business rate sacramento history mission'},
       {title:'Why Choose Us', url:'#why-choose-us',
@@ -1704,10 +1485,10 @@
       {title:'Future Security', url:'future-security',
        snippet:'Build, protect, and grow your wealth with a holistic approach to retirement, wealth management, and estate planning.',
        text:'future security future security retirement planning wealth management estate and legacy planning life and business protection'},
-      {title:'Client Newsletter', url:'#client-newsletter',
+      {title:'Client Newsletter', url:'client-newsletter',
        snippet:'Monthly updates, firm news, and money tips.',
        text:'client newsletter mid-year money check-in refund last-minute filing tips updates subscribe firm news'},
-      {title:'Tax Planning Newsletter', url:'#tax-planning-newsletter',
+      {title:'Tax Planning Newsletter', url:'tax-planning-newsletter',
        snippet:'Strategy articles for proactive tax savings.',
        text:'tax planning newsletter retirement contributions 401k ira hsa small business entity llc s-corp sole proprietor charitable giving donor advised capital gains harvesting'},
       {title:'Tax Videos', url:'tax-videos',
@@ -1719,7 +1500,7 @@
       {title:'Client Portal', url:'https://magnumcpa.clientportal.com/#/login', target:true,
        snippet:'Secure client portal (Canopy) for documents and messages.',
        text:'client portal canopy login documents upload messages secure account'},
-      {title:'Contact Us', url:'#contact',
+      {title:'Contact Us', url:'contact',
        snippet:'Phone, email, and our Sacramento office location.',
        text:'contact us phone 916 616 1789 email info ask magnumcpa find us 907 green moss drive sacramento ca 95831 google business profile reviews map directions location office hours'},
       {title:'Request a Consultation', url:'request-consultation',

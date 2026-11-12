@@ -1,7 +1,7 @@
 # Plan: every menu heading gets its own page
 
-**Status:** plan only, not started. Nothing here is built until Glenn says go.
-Written 2026-11-09. Not published on the website (listed in `_config.yml`).
+**Status:** built 2026-11-12 (steps 1 to 5 and 7). Step 6, the Google side, is Glenn's to do.
+Written 2026-11-09. Not published on the website (the `docs/` folder is excluded in `_config.yml`).
 
 ## Why
 
@@ -15,17 +15,17 @@ of on the part they wanted. One page per topic, each with its own clean address
 
 | Menu item | Page / address | Status |
 |---|---|---|
-| Home | `/` | Trimmed: Services and Tax Videos already moved out |
-| About Us (with Mission, Reviews, Why Choose Us) | `/about` | **To do** |
+| Home | `/` | Done: hero, Why Choose Us, Explore cards (one per page), reviews, video |
+| About Us (with Mission and Reviews) | `/about` | Done (2026-11-12). Why Choose Us stayed on Home |
 | Services | `/services` | Done (2026-11-09) |
 | The four service pages | `/tax-preparation-planning`, `/bookkeeping-payroll`, `/business-consulting`, `/future-security` | Exist; still blank until the service text arrives |
-| Resources: Client Newsletter | `/client-newsletter` | **To do** |
-| Resources: Tax Planning Newsletter | `/tax-planning-newsletter` | **To do** |
+| Resources: Client Newsletter | `/client-newsletter` | Done (2026-11-12) |
+| Resources: Tax Planning Newsletter | `/tax-planning-newsletter` | Done (2026-11-12) |
 | Resources: Tax Videos | `/tax-videos` | Done (2026-11-09) |
 | Resources: Financial Calculators | `/financial-calculators` | Exists |
 | Resources: Video Library, Client Portal | External sites | No page needed |
 | Request Consultation | `/request-consultation` | Exists |
-| Contact Us (with the Google Business Profile box) | `/contact` | **To do** |
+| Contact Us (with the Google Business Profile box) | `/contact` | Done (2026-11-12) |
 
 ## Steps
 
@@ -53,6 +53,16 @@ of on the part they wanted. One page per topic, each with its own clean address
 7. **Check and save as you go.** Before each page move, double-click
    `versions\save-version.bat`. After it, test the menu, footer, search, the curtain
    wipe to the form and the old `#` links, then publish.
+
+## What was built (2026-11-12)
+
+- `tools/sync_shared.py`: `index.html` holds the master menu, footer and search list; the tool copies them
+  to every page, highlights each page's own item at build time (works without JavaScript), and writes the
+  share preview (Open Graph) and Google markup: business details (`AccountingService`) on Home and Contact,
+  breadcrumbs on every other page.
+- `/about`, `/contact`, `/client-newsletter`, `/tax-planning-newsletter`, each with its own title, description,
+  one `h1`, canonical address and sitemap line. Old `#about`-style links open the new pages.
+- Home: Explore cards link to every page; the reviews show on Home and About (`update-reviews.bat` updates both).
 
 ## Already done (2026-11-09)
 

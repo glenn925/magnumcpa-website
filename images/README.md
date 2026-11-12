@@ -19,7 +19,7 @@ This note is not published on the website (listed in `_config.yml`).
 ## Home page
 | File | Used for |
 |---|---|
-| `hero-photo2.webp`, `hero-photo2-700.webp`, `hero-photo2.jpg` | Top photo: Max meeting a client |
+| `hero-photo2.webp`, `hero-photo2-700.webp`, `hero-photo2.jpg` | Top photo: Max meeting a client. `hero-photo2.jpg` is also the picture shown when any page is shared (Facebook, texts) |
 | `why-bg.webp` | Why Choose Us: office photo behind the waves |
 | `why-desk.webp` | Why Choose Us: desk picture beside the cards |
 | `precision-desk.webp` | Background of the dark "precision band". Its style is still in `index.html`, but the band itself isn't on the page right now |
@@ -27,8 +27,12 @@ This note is not published on the website (listed in `_config.yml`).
 | `badge-ramsey.webp` | Why Choose Us badge: Ramsey Trusted |
 | `badge-sac.webp` | Why Choose Us badge: 2025 BusinessRate award plaque, Sacramento |
 | `badge-best.webp` | Why Choose Us badge: Best of 2026 BusinessRate |
-| `Max-contact-new.webp`, `Max-contact-new-700.webp`, `Max-contact-new.jpg` | Photo of Max in the About section |
-| `Max-contact-desk.webp`, `Max-contact-desk-700.webp`, `Max-contact-desk.png` | Photo of Max in the Contact section |
+
+## About and Contact pages
+| File | Used for |
+|---|---|
+| `Max-contact-new.webp`, `Max-contact-new-700.webp`, `Max-contact-new.jpg` | About page: photo of Max (arms crossed) |
+| `Max-contact-desk.webp`, `Max-contact-desk-700.webp`, `Max-contact-desk.png` | Contact page: photo of Max at his desk |
 
 ## Services (service cards and the four service pages)
 | File | Used for |

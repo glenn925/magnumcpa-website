@@ -36,10 +36,10 @@ if exist "~$reviews.xlsx" (
     goto :fail
 )
 
-:: Don't mix in hand edits to index.html that haven't been published yet
-git diff --quiet -- index.html
+:: Don't mix in hand edits to the review pages (index.html, about.html) that haven't been published yet
+git diff --quiet -- index.html about.html
 if %errorlevel% neq 0 (
-    echo index.html has other changes that are not on GitHub yet.
+    echo index.html or about.html has other changes that are not on GitHub yet.
     echo Publish or undo those first ^(or ask Claude^), then run this again.
     goto :fail
 )
@@ -56,15 +56,15 @@ echo Building the review cards from reviews.xlsx...
 python tools\build_reviews.py .
 if %errorlevel% neq 0 goto :fail
 
-:: Publish only the spreadsheet and the page it changes
-git add index.html reviews.xlsx
-git diff --cached --quiet -- index.html reviews.xlsx
+:: Publish only the spreadsheet and the two pages it changes
+git add index.html about.html reviews.xlsx
+git diff --cached --quiet -- index.html about.html reviews.xlsx
 if %errorlevel% equ 0 (
     echo.
     echo Nothing changed - the website already shows these reviews.
     goto :done
 )
-git commit -q -m "Update client reviews from reviews.xlsx (%date% %time:~0,5%)" -- index.html reviews.xlsx
+git commit -q -m "Update client reviews from reviews.xlsx (%date% %time:~0,5%)" -- index.html about.html reviews.xlsx
 if %errorlevel% neq 0 goto :fail
 
 echo.

@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- ===== PAGE SETTINGS (head) =====
+     This page was built once from financial-calculators.html and is edited BY HAND. Its menu, footer,
+     search list and SHARE + GOOGLE MARKUP are kept in step with index.html by tools/sync_shared.py. -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ===== CLEAN ADDRESS ===== -->
+<!-- The one official address of this page, for Google. Never end it in .html. -->
+<link rel="canonical" href="https://www.magnumcpa.com/about">
+<!-- ===== SHARE + GOOGLE MARKUP ===== made by tools/sync_shared.py from this page's title, description
+     and address. Don't edit it here: change the tool (or the page title / description) and run it again. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Magnum CPA PC">
+<meta property="og:title" content="About Us — Max Drew, CPA, and Our Story | Magnum CPA PC">
+<meta property="og:description" content="Meet Max (Magnum) Drew and Magnum CPA PC, a California CPA firm in Sacramento founded 10 years ago: our story, our values, our mission and what our clients say on Google.">
+<meta property="og:url" content="https://www.magnumcpa.com/about">
+<meta property="og:image" content="https://www.magnumcpa.com/images/hero-photo2.jpg">
+<meta property="og:image:alt" content="Max Drew, CPA, meeting with a client in the Magnum CPA PC office">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.magnumcpa.com/"},{"@type":"ListItem","position":2,"name":"About Us","item":"https://www.magnumcpa.com/about"}]}</script>
+<!-- SHARE + GOOGLE MARKUP:END -->
+<!-- Someone opened an old link ending in .html: show the clean address instead (no reload). -->
+<script>(function(){try{if(!/^https?:$/.test(location.protocol))return;var p=location.pathname,c=p.replace(/(^|\/)index\.html$/,'$1').replace(/\.html$/,'');if(c!==p)history.replaceState(history.state,'',c+location.search+location.hash);}catch(_){}})();</script>
+<!-- Browser tab title and Google description. -->
+<title>About Us — Max Drew, CPA, and Our Story | Magnum CPA PC</title>
+<meta name="description" content="Meet Max (Magnum) Drew and Magnum CPA PC, a California CPA firm in Sacramento founded 10 years ago: our story, our values, our mission and what our clients say on Google.">
+<!-- color of the phone browser's address bar, then the tab icon and the iPhone home-screen icon -->
+<meta name="theme-color" content="#0B3D91">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<!-- fonts: Plus Jakarta Sans from Google Fonts, and Font Awesome for the small icons (class names starting fa-) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link id="fa-cdn" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<!-- ===== STYLES =====
+     All colors, sizes and layout. Later rules win over earlier ones with the same selector.
+     This page's own styles are at the end of this block (ABOUT PAGE). -->
+<style>
+  /* ===== COLORS AND SIZES (variables) =====
+     Change a value here and it updates everywhere it is used, for example var(--primary). */
+  :root{
+    /* Palette: Primary #0B3D91 · Secondary #3BA7F2 · Tertiary #7FE7D6 · Background #E8F6FF.
+       Everything else here is a shade of those four, for text and the dark bands. */
+    --primary:#0B3D91;--secondary:#3BA7F2;--tertiary:#7FE7D6;--bg:#E8F6FF;
+    --primary-700:#0A3480;--primary-800:#072A66;--primary-900:#051D47;
+    --secondary-ink:#1670B8;   /* secondary, darkened enough for small text on light backgrounds */
+    --navy:var(--primary);--navy-dark:var(--primary-800);--navy-3:var(--primary-900);
+    --text:#0B1F3F;--muted:#4A607E;--bg-alt:#F3FAFF;--surface:#FFFFFF;
+    --border:#CFE5F6;--radius:10px;--maxw:none;
+    --shadow:0 1px 2px rgba(11,61,145,.06),0 10px 28px rgba(11,61,145,.10);
+    --shadow-lg:0 2px 4px rgba(11,61,145,.06),0 22px 50px rgba(11,61,145,.16);
+    --on-dark:#D6E9FB;
+    --gold:#D9A53A;--gold-ink:#9A6B10;   /* the logo's gold, used only as a small accent */
+  }
+  /* ===== BASE / RESET =====
+     Removes the browser's default spacing and sets the page's base font, text color and background. */
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{font-size:17px;scroll-behavior:smooth;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;
+    background:var(--bg);
+  }
+  /* pictures never overflow their box; links have no underline and take the surrounding text color */
+  img{max-width:100%;height:auto;display:block;}
+  a{color:inherit;text-decoration:none;}
+  /* content fills the screen at any width, with a proportional side margin */
+  .container{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,6vw,140px);}
+
+  /* ===== TOP BAR ===== */
+  /* top bar */
+  .topbar{background:var(--primary-900);color:var(--on-dark);font-size:.98rem;font-weight:500;}
+  .topbar .container{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center;justify-content:space-between;padding:8px clamp(20px,6vw,140px);}
+
+  /* ===== HEADER AND MENU ===== */
+  /* header / nav */
+  /* the white bar with the logo and menu; it sticks to the top while you scroll */
+  header.site-header{background:rgba(255,255,255,.94);-webkit-backdrop-filter:saturate(1.4) blur(12px);backdrop-filter:saturate(1.4) blur(12px);
+    position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border);box-shadow:0 4px 18px rgba(11,61,145,.08);}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding-top:12px;padding-bottom:12px;gap:16px;}
+  .brand{display:flex;align-items:center;gap:12px;color:#fff;}
+  /* Logo files are 840px wide (about 3x display size) so they stay sharp on high-density screens. */
+  .brand img{display:block;height:58px;width:auto;transition:transform .25s,filter .25s;}
+  .brand:hover img{transform:scale(1.03);filter:drop-shadow(0 4px 14px rgba(59,167,242,.35));}
+  /* hamburger button (three lines): hidden on wide screens, shown by the 980px rule in RESPONSIVE below */
+  .nav-toggle{display:none;background:transparent;border:0;cursor:pointer;padding:8px;border-radius:6px;}
+  .nav-toggle span{display:block;width:24px;height:2px;background:var(--primary);margin:5px 0;transition:.3s;}
+  /* desktop menu: one row of small uppercase links; .active paints the current section's link blue */
+  nav.main-nav > ul{list-style:none;display:flex;flex-wrap:nowrap;gap:2px;justify-content:flex-end;align-items:center;}
+  nav.main-nav a{color:var(--primary-800);font-size:.76rem;font-weight:600;letter-spacing:.2px;padding:8px 8px;border-radius:6px;
+    text-transform:uppercase;transition:background .2s,color .2s;white-space:nowrap;display:inline-block;}
+  nav.main-nav a:hover{background:var(--bg);color:var(--primary);}
+  nav.main-nav a.active{background:var(--primary);color:#fff;}
+  /* drop-down menus (Services, Resources): hidden until you hover over the menu item */
+  .has-sub{position:relative;}
+  .submenu{position:absolute;top:100%;left:0;min-width:230px;background:#fff;border-radius:10px;border:1px solid var(--border);
+    box-shadow:var(--shadow-lg);padding:6px;display:none;flex-direction:column;gap:2px;z-index:60;list-style:none;}
+  .has-sub:hover .submenu{display:flex;}
+  .submenu li{width:100%;}
+  .submenu a{display:block;text-align:left;border-radius:5px;}
+
+  /* ===== PAGE TITLE BAND ===== */
+  /* light section band: kicker + headline + subtitle, faded globe and gold stripe on the right */
+  .sec-head{position:relative;overflow:hidden;padding:46px 0 42px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+    background:linear-gradient(100deg,#fff 0%,var(--bg-alt) 45%,#D6ECFB 100%);}
+  /* :before = faded globe picture, :after = slanted gold stripe.
+     NOTE: both are switched off further down (display:none in the FOOTER: SOFT TOP block). */
+  .sec-head:before{content:"";position:absolute;right:4%;top:50%;width:380px;aspect-ratio:600/546;transform:translateY(-50%);
+    background:url('images/globe.webp') center/contain no-repeat;opacity:.16;pointer-events:none;}
+  .sec-head:after{content:"";position:absolute;top:-10px;bottom:-10px;right:-70px;width:150px;transform:skewX(-32deg);pointer-events:none;
+    background:linear-gradient(90deg,var(--gold) 0 7px,rgba(11,61,145,.1) 7px);}
+  .sec-head .container{position:relative;z-index:1;}
+  /* small uppercase label above the title (the word Resources) with a short line after it */
+  .sec-kicker{display:flex;align-items:center;gap:12px;color:var(--gold-ink);font-weight:800;font-size:1.1rem;letter-spacing:.6px;text-transform:uppercase;}
+  .sec-kicker:after{content:"";width:46px;height:2px;background:var(--gold);}
+  .sec-kicker.blue{color:var(--secondary-ink);font-size:.9rem;letter-spacing:1.2px;}
+  .sec-kicker.blue:after{background:linear-gradient(90deg,var(--secondary),var(--tertiary));}
+  /* the big page title and the gray line under it */
+  .sec-head h1,.sec-head h2{color:var(--primary);font-size:2.15rem;line-height:1.2;margin:6px 0 8px;}
+  .sec-head p{color:var(--muted);font-size:1.12rem;}
+  /* phones: less padding and a smaller title */
+  @media(max-width:600px){.sec-head{padding:34px 0 30px;}.sec-head h1,.sec-head h2{font-size:1.6rem;}.sec-head:before{opacity:.1;right:-80px;}.sec-head:after{display:none;}}
+
+  /* ===== SECTION SPACING ===== */
+  /* sections */
+  .section{padding:60px 0;}
+
+  /* ===== BUTTONS ===== */
+  /* buttons */
+  .btn{display:inline-block;background:linear-gradient(135deg,var(--primary),#1560C9);color:#fff;font-weight:700;padding:12px 26px;border-radius:8px;
+    border:0;cursor:pointer;letter-spacing:.4px;font-size:.95rem;transition:transform .15s,box-shadow .2s,filter .2s;
+    box-shadow:0 6px 16px rgba(11,61,145,.22);}
+  /* hover: lifts slightly; focus-visible: outline shown when using the keyboard */
+  .btn:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(11,61,145,.32);filter:brightness(1.08);}
+  .btn:focus-visible{outline:3px solid var(--secondary);outline-offset:3px;}
+  /* NOTE: the two .cta-band .btn rules below are overridden by the CALL-TO-ACTION BAND block further down */
+  /* on dark bands the button flips to tertiary mint so it stands out */
+  .cta-band .btn{background:var(--tertiary);color:var(--primary-900);box-shadow:0 8px 22px rgba(127,231,214,.28);}
+  .cta-band .btn:hover{box-shadow:0 14px 32px rgba(127,231,214,.42);filter:brightness(1.04);}
+
+  /* ===== CALCULATOR CARDS ===== */
+  /* calculators */
+  /* one category: a heading (gradient text with a short colored underline) and its grid of cards */
+  .calc-cat{margin-bottom:34px;}
+  .calc-cat h2{color:var(--primary);background:linear-gradient(90deg,#0B3D91,#1C8BDF 55%,#139E92);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;width:fit-content;font-size:1.3rem;margin-bottom:6px;}
+  .calc-cat h2:after{content:"";display:block;width:54px;height:4px;background:linear-gradient(90deg,var(--secondary),var(--tertiary));margin-top:10px;border-radius:2px;}
+  /* grid of cards: 3 per row on wide screens */
+  .calc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px;}
+  /* one white calculator card with a blue left edge; b = name, span = gray description */
+  .calc-card{background:#fff;color:var(--text);border-radius:10px;padding:16px 18px;border-left:4px solid var(--secondary);
+    box-shadow:var(--shadow);transition:transform .15s,box-shadow .2s,border-color .2s;}
+  .calc-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-left-color:var(--tertiary);}
+  .calc-card b{display:block;color:var(--navy);font-size:.98rem;}
+  .calc-card span{color:var(--muted);font-size:.85rem;}
+  /* tablets: 2 cards per row; phones: 1 card per row */
+  @media(max-width:860px){.calc-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.calc-grid{grid-template-columns:1fr;}}
+
+  /* ===== CTA BAND (older version) =====
+     Mostly overridden by the CALL-TO-ACTION BAND block further down; edit that one instead. */
+  /* CTA band */
+  .cta-band{position:relative;overflow:hidden;color:#fff;text-align:center;padding:62px 0;
+    background:radial-gradient(90% 160% at 100% 0%,rgba(59,167,242,.45),transparent 60%),radial-gradient(70% 120% at 0% 100%,rgba(127,231,214,.22),transparent 60%),linear-gradient(120deg,var(--primary-800),var(--primary));}
+  .cta-band h2{font-size:1.9rem;margin-bottom:10px;}
+  .cta-band p{color:var(--on-dark);margin-bottom:24px;}
+
+  /* ===== SEARCH ===== */
+  /* search */
+  /* the magnifier icon in the menu */
+  .search-li a{font-size:1.05rem;}
+  /* dark see-through backdrop over the whole page; hidden until the .open class is added by the SEARCH script */
+  .search-overlay{position:fixed;inset:0;background:rgba(5,29,71,.62);display:none;z-index:200;padding:84px 16px 16px;}
+  .search-overlay.open{display:block;}
+  /* the white search box: top row = icon, typing field and close X */
+  .search-box{max-width:640px;margin:0 auto;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 30px 70px rgba(5,29,71,.4);}
+  .search-top{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--border);}
+  .search-ic{font-size:1.2rem;}
+  .search-top input{flex:1;border:0;outline:none;font-size:1.1rem;color:var(--text);font-family:inherit;background:transparent;}
+  .search-close{background:transparent;border:0;font-size:1.7rem;line-height:1;cursor:pointer;color:var(--muted);padding:0 4px;}
+  /* the list of results (scrolls if long); each result shows a bold title and a gray snippet */
+  .search-results{max-height:62vh;overflow:auto;}
+  .search-results a{display:block;padding:14px 18px;border-bottom:1px solid var(--border);color:var(--primary);}
+  .search-results a:hover{background:var(--bg-alt);}
+  .search-results a b{display:block;font-size:1rem;}
+  .search-results a span{font-size:.86rem;color:var(--muted);}
+  /* the hint / no-results message */
+  .search-none{padding:20px 18px;color:var(--muted);}
+
+  /* ===== FLOATING BOOK BUTTON ===== */
+  /* floating "Book a Consultation" CTA */
+  .book-fab{position:fixed;right:22px;bottom:22px;z-index:90;background:linear-gradient(135deg,var(--primary),#1560C9);color:#fff;
+    font-weight:800;padding:14px 24px;border-radius:40px;display:inline-flex;align-items:center;gap:8px;letter-spacing:.3px;
+    box-shadow:0 12px 30px rgba(11,61,145,.35);transition:transform .15s,box-shadow .2s;animation:bookpulse 2.8s ease-in-out infinite;}
+  .book-fab:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(11,61,145,.45);}
+  /* the slow glowing pulse around the button */
+  @keyframes bookpulse{0%,100%{box-shadow:0 12px 30px rgba(11,61,145,.3),0 0 0 0 rgba(59,167,242,.5);}50%{box-shadow:0 14px 36px rgba(11,61,145,.38),0 0 0 12px rgba(59,167,242,0);}}
+  /* phones: smaller button, closer to the corner */
+  @media(max-width:560px){.book-fab{right:14px;bottom:14px;padding:12px 18px;font-size:.92rem;}}
+
+  /* ===== FOOTER (older dark version) =====
+     Most of these rules are overridden by the FOOTER (LIGHT) and FOOTER: SOFT TOP blocks below. */
+  /* footer */
+  footer{position:relative;background:var(--primary-900);color:#B8CBE6;padding:50px 0 22px;margin-top:20px;}
+  footer::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--primary),var(--secondary),var(--tertiary));}
+  footer .brand img{height:60px;}
+  .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:30px;margin-bottom:28px;}
+  footer h4{color:#fff;font-size:1rem;margin-bottom:13px;}
+  footer ul{list-style:none;}
+  footer li{margin-bottom:8px;font-size:.9rem;}
+  footer a:hover{color:var(--tertiary);}
+  /* row of round social media icons, and the copyright line */
+  .social{display:flex;gap:12px;justify-content:center;margin:6px 0 22px;}
+  .social a{width:40px;height:40px;border-radius:50%;background:var(--tertiary);color:var(--primary-900);display:grid;place-items:center;font-size:1.05rem;transition:transform .15s,background .2s,color .2s;}
+  .social a:hover{transform:translateY(-3px);background:var(--secondary);color:#fff;}
+  .foot-copy{border-top:1px solid rgba(255,255,255,.12);padding-top:18px;font-size:.82rem;text-align:center;}
+
+  /* ===== RESPONSIVE (tablets and phones) ===== */
+  /* responsive */
+  /* 980px and narrower: footer columns two across */
+  @media (max-width:980px){.foot-grid{grid-template-columns:1fr 1fr;}}
+  /* 980px and narrower: the menu becomes a hamburger drop-down that slides open (.open is added by the NAV script) */
+  @media (max-width:980px){
+    .nav-toggle{display:block;}
+    nav.main-nav{position:absolute;top:100%;left:0;right:0;background:#fff;box-shadow:0 18px 30px rgba(11,61,145,.12);max-height:0;overflow:hidden;transition:max-height .35s ease;}
+    nav.main-nav.open{max-height:760px;overflow:auto;}
+    nav.main-nav > ul{flex-direction:column;gap:0;padding:8px 0;align-items:stretch;}
+    nav.main-nav li{width:100%;}
+    nav.main-nav a{display:block;padding:13px 24px;border-radius:0;border-bottom:1px solid var(--border);text-align:left;}
+    /* sub-menus open in place (tap to open) instead of floating on hover */
+    .submenu{position:static;display:none;box-shadow:none;border:0;border-radius:0;background:var(--bg-alt);padding:0;min-width:0;}
+    .has-sub.open .submenu{display:flex;}
+    .submenu a{padding-left:40px;}
+  }
+  /* 600px and narrower (phones): tighter margins, centered top bar, one footer column, smaller logo */
+  @media (max-width:600px){
+    .container{padding:0 16px;}
+    .topbar .container{justify-content:center;text-align:center;gap:2px 14px;font-size:.74rem;padding:7px 14px;}
+    .foot-grid{grid-template-columns:1fr;}
+    .section{padding:46px 0;}
+    .brand img{height:46px;}
+  }
+
+  /* ===== call-to-action band ===== */
+  /* the blue band with the Book a Free Consultation button; the long url(...) draws the wavy teal shapes */
+  .cta-band{position:relative;overflow:hidden;color:#fff;text-align:center;padding:70px 0 76px;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 300' preserveAspectRatio='none'%3E%3Cpath d='M0 120C260 200 420 290 640 300H0Z' fill='%237FE7D6' opacity='.35'/%3E%3Cpath d='M0 170C300 230 470 280 700 300' fill='none' stroke='%23BFF3EC' stroke-width='2' opacity='.7'/%3E%3Cpath d='M1600 150C1350 230 1180 280 980 300H1600Z' fill='%233BA7F2' opacity='.35'/%3E%3Cpath d='M1600 190C1380 250 1200 285 1020 300' fill='none' stroke='%23BFE6FF' stroke-width='2' opacity='.7'/%3E%3C/svg%3E") bottom/100% 100% no-repeat,
+      radial-gradient(60% 120% at 100% 0%,rgba(79,195,255,.55),transparent 60%),linear-gradient(120deg,#062C74,#0B3D91 45%,#1561C9);}
+  .cta-band h2{font-size:2.5rem;font-weight:800;line-height:1.15;margin-bottom:10px;}
+  .cta-band p{color:#E3EEFF;font-size:1.2rem;margin-bottom:28px;}
+  /* the mint pill button; its arrow slides right on hover */
+  .cta-band .btn{display:inline-flex;align-items:center;gap:12px;padding:16px 34px;border-radius:999px;font-size:1.02rem;
+    background:linear-gradient(90deg,#7FE7D6,#5EEAD4);color:#0A2A6B;box-shadow:0 12px 30px rgba(127,231,214,.35);}
+  .cta-band .btn i{transition:transform .2s;}
+  .cta-band .btn:hover i{transform:translateX(4px);}
+  /* phones: smaller heading and text */
+  @media(max-width:600px){.cta-band h2{font-size:1.7rem;}.cta-band p{font-size:1rem;}}
+
+  /* ===== footer (light) ===== */
+  /* light blue footer background (the wave drawing is later hidden by FOOTER: SOFT TOP) */
+  footer{position:relative;overflow:hidden;background:linear-gradient(180deg,#F7FBFF,#EAF5FF);color:var(--primary);padding:64px 0 26px;margin-top:0;}
+  footer::before{content:"";position:absolute;left:0;right:0;bottom:0;top:auto;height:260px;pointer-events:none;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 300' preserveAspectRatio='none'%3E%3Cpath d='M0 120C260 200 420 290 640 300H0Z' fill='%237FE7D6' opacity='.35'/%3E%3Cpath d='M0 170C300 230 470 280 700 300' fill='none' stroke='%23BFF3EC' stroke-width='2' opacity='.7'/%3E%3Cpath d='M1600 150C1350 230 1180 280 980 300H1600Z' fill='%233BA7F2' opacity='.35'/%3E%3Cpath d='M1600 190C1380 250 1200 285 1020 300' fill='none' stroke='%23BFE6FF' stroke-width='2' opacity='.7'/%3E%3C/svg%3E") bottom/100% 100% no-repeat;opacity:.9;}
+  footer .container{position:relative;z-index:1;max-width:var(--maxw);}
+  footer .brand img{height:76px;}
+  /* three columns: logo and bio, Company links, Resources links; thin blue lines between them */
+  .foot-grid{grid-template-columns:1.45fr 1fr 1.05fr;gap:0;margin-bottom:30px;align-items:start;}
+  .foot-grid > div{padding:0 34px;}
+  .foot-grid > div:first-child{padding-left:0;}
+  .foot-grid > div + div:not(.foot-cta){border-left:1px solid rgba(59,167,242,.3);}
+  .foot-grid > div:nth-child(2),.foot-grid > div:nth-child(3){padding-bottom:8px;}
+  /* the bio text in the first column, with a short gradient bar above it */
+  .foot-grid > div:first-child p{color:var(--primary);font-size:1.02rem !important;line-height:1.6;}
+  .foot-grid > div:first-child p:before{content:"";display:block;width:76px;height:3px;border-radius:2px;margin:0 0 16px;background:linear-gradient(90deg,#1C8BDF,#5FD3E2);}
+  /* column headings (Company, Resources) with a small colored bar above */
+  footer h4{color:var(--primary);font-size:1.15rem;margin-bottom:16px;}
+  footer h4:before{content:"";display:block;width:34px;height:3px;border-radius:2px;margin-bottom:14px;background:linear-gradient(90deg,#3BA7F2,#7FE7D6);}
+  /* footer links; content "\f054" is the Font Awesome small arrow icon shown before each link */
+  footer li{margin-bottom:12px;font-size:.98rem;}
+  footer li a{white-space:nowrap;display:inline-flex;align-items:center;gap:12px;color:#1D3F75;transition:color .2s,transform .2s;}
+  footer li a:before{content:"\f054";font-family:"Font Awesome 6 Free";font-weight:900;font-size:.72rem;color:#1CA9D6;}
+  footer li a:hover{color:#1C8BDF;transform:translateX(3px);}
+  /* optional fourth column with a big Book button (.foot-cta / .foot-book); not used in this page's footer */
+  .foot-cta{align-self:center;padding:0 0 0 34px !important;border-left:1px solid rgba(59,167,242,.3);}
+  .foot-book{display:inline-flex;align-items:center;gap:16px;white-space:nowrap;padding:18px 30px;border-radius:999px;color:#fff !important;font-weight:700;
+    background:linear-gradient(90deg,#0B3D91,#1560C9);box-shadow:0 14px 34px rgba(11,61,145,.3),0 0 0 3px rgba(59,167,242,.35);transition:transform .2s,box-shadow .2s;}
+  .foot-book .sep{width:1px;height:24px;background:rgba(255,255,255,.35);}
+  .foot-book i{font-size:1.2rem;}
+  .foot-book .fa-arrow-right{font-size:.85rem;transition:transform .2s;}
+  .foot-book:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(11,61,145,.38),0 0 0 3px rgba(59,167,242,.5);}
+  .foot-book:hover .fa-arrow-right{transform:translateX(4px);}
+  /* social icons row: fading lines on both sides, and each icon a different shade of blue/teal */
+  .social{position:relative;gap:16px;margin:10px 0 22px;align-items:center;}
+  .social:before,.social:after{content:"";width:min(340px,22vw);height:1px;background:linear-gradient(90deg,transparent,rgba(59,167,242,.45));}
+  .social:after{background:linear-gradient(90deg,rgba(59,167,242,.45),transparent);}
+  .social a{width:46px;height:46px;font-size:1.1rem;color:#fff;background:#0B3D91;box-shadow:0 8px 18px rgba(11,61,145,.2);}
+  .social a:nth-child(6n+2){background:#1C8BDF;}
+  .social a:nth-child(6n+3){background:#2EC4B6;}
+  .social a:nth-child(6n+4){background:#3BA7F2;}
+  .social a:nth-child(6n+5){background:#5FD3C8;}
+  .social a:hover{transform:translateY(-3px);background:#0A2A6B;color:#fff;}
+  .foot-copy{border-top:0;color:#1D3F75;font-size:.95rem;}
+  footer a:hover{color:#1C8BDF;}
+  /* 1100px and narrower: logo and text across the top, Company and Resources side by side below; 600px and narrower: one column */
+  @media(max-width:1100px){.foot-grid{grid-template-columns:1fr 1fr;row-gap:34px;}.foot-grid > div{padding:0 24px;}.foot-grid > div:first-child{grid-column:1/-1;}.foot-grid > div:nth-child(2):not(.foot-cta){border-left:0;}
+    .foot-grid > div:nth-child(3){border-left:1px solid rgba(59,167,242,.3);}.foot-grid > div:nth-child(2){border-left:0;padding-left:0;}
+    .foot-cta{grid-column:1/-1;border-left:0 !important;padding:0 !important;}}
+  @media(max-width:600px){.foot-grid{grid-template-columns:1fr;}.foot-grid > div{padding:0 !important;border-left:0 !important;}
+    .social{flex-wrap:wrap;gap:12px;}.social:before,.social:after{display:none;}.foot-book{padding:15px 24px;}}
+
+  /* ===== one typeface everywhere ===== */
+  body,button,input,select,textarea{font-family:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  /* ===== two-tone gradient headings ===== */
+  .grad{background:linear-gradient(90deg,#1C8BDF,#139E92);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+  .grad-light{background:linear-gradient(90deg,#9FD8FF,#7FE7D6);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+  /* Class names like .mc, .wcu, .hero, .nl-... and .cx-... in the blocks below belong to the home page.
+     They do nothing here; they are kept so the shared styles match index.html. */
+  .mc{border-top:0 !important;}
+  /* title band fades out at the bottom (switched off again in FOOTER: SOFT TOP below) */
+  .sec-head{border-top:0;border-bottom:0;-webkit-mask-image:linear-gradient(180deg,#000 70%,transparent);mask-image:linear-gradient(180deg,#000 70%,transparent);}
+
+  /* ===== one continuous background: no visible section edges ===== */
+  body{background:#EDF6FE;background-image:radial-gradient(60vw 60vh at 85% 15%,rgba(59,167,242,.10),transparent 70%),
+    radial-gradient(55vw 55vh at 10% 70%,rgba(127,231,214,.10),transparent 70%);background-attachment:fixed;}
+  /* make these sections see-through so the page background above shows through */
+  .mc,.wcu,.hero,.sec-head,.sd-hero,.section{background:transparent !important;}
+  .mc-deco{display:none;}
+  /* ===== small titles are gold, with a gold rule ===== */
+  .sec-kicker.blue,.hero .sec-kicker.blue,.nl-kicker,.wcu-kicker,.sd-kicker,.vg-count{color:var(--gold-ink) !important;}
+  .sec-kicker.blue:after,.hero .sec-kicker.blue:after,.nl-kicker.line:after,.sd-kicker:after,.vg-count:after{background:var(--gold) !important;width:46px !important;height:2px !important;}
+  .wcu-kicker:before,.wcu-kicker:after{background:var(--gold) !important;}
+  .nl-kicker .sep{background:rgba(217,165,58,.5);}
+  .cx-card .h .lbl{color:var(--gold-ink);}
+  /* ===== every section title the same size ===== */
+  .mc-title,.mc-title.plain,.nl-head h2,.wcu-title,.about-txt h2,.contactx h1,.cta-band h2,.sec-head h1,.sec-head h2,.sd-hero h1,.sd-sec h2{
+    font-size:2.15rem !important;font-weight:700 !important;line-height:1.2 !important;letter-spacing:-.2px !important;text-transform:none !important;}
+  .wcu-title .grad{display:inline;}
+  /* phones: all section titles a bit smaller */
+  @media(max-width:600px){.mc-title,.mc-title.plain,.nl-head h2,.wcu-title,.about-txt h2,.contactx h1,.cta-band h2,.sec-head h1,.sec-head h2,.sd-hero h1,.sd-sec h2{font-size:1.6rem !important;}}
+  /* ===== footer: soft top, dark blue bottom bar ===== */
+  footer{background:transparent !important;padding-bottom:0 !important;}
+  footer::before{display:none !important;}
+  /* the dark blue bar at the very bottom holding the social icons and the copyright line */
+  .foot-bottom{position:relative;margin-top:30px;padding:26px 0 22px;background:linear-gradient(90deg,#051D47,#0B3D91 50%,#072A66);}
+  .foot-bottom .social{margin:0 0 14px;}
+  .foot-bottom .social:before,.foot-bottom .social:after{background:linear-gradient(90deg,transparent,rgba(127,231,214,.5)) !important;}
+  .foot-bottom .social:after{background:linear-gradient(90deg,rgba(127,231,214,.5),transparent) !important;}
+  .foot-bottom .foot-copy{color:#C9DAF2;padding-top:0;}
+  .foot-bottom .social a:hover{background:#fff;color:var(--primary);}
+  .foot-bottom .social a:nth-child(6n+1),.foot-bottom .social a:nth-child(6n){background:#1C8BDF;}
+  /* hides the globe and gold stripe of the title band */
+  .sec-head:before,.sec-head:after{display:none !important;}
+  /* header band sits right on top of its content */
+  .sec-head{padding-bottom:18px !important;}
+  .sec-head + .section{padding-top:14px !important;}
+  /* turns off the fade-out at the bottom of the title band */
+  .sec-head{-webkit-mask-image:none !important;mask-image:none !important;}
+
+  /* ===== shared-element page transition (card photo <-> service page photo) ===== */
+  /* In browsers that support it (Chrome, Edge, Safari 18+), pages fade into each other instead of a hard cut.
+     Links use the curtain wipe (CURTAIN SCRIPT) instead, except links to the four service pages, which keep this fade,
+     the card-photo morph and the Services-menu zoom. Back/Forward also use this fade. */
+  @view-transition{navigation:auto;}
+  ::view-transition-group(*){animation-duration:500ms;animation-timing-function:cubic-bezier(.32,.72,0,1);}
+  ::view-transition-old(root){animation:vtOut 220ms ease both;}
+  ::view-transition-new(root){animation:vtIn 360ms cubic-bezier(.32,.72,0,1) 120ms both;}
+  /* keep photos cropped, not stretched, while they change shape */
+  ::view-transition-old(svc-tax),::view-transition-new(svc-tax),::view-transition-old(svc-books),::view-transition-new(svc-books),
+  ::view-transition-old(svc-consult),::view-transition-new(svc-consult),::view-transition-old(svc-future),::view-transition-new(svc-future){
+    height:100%;width:100%;object-fit:cover;overflow:clip;animation-duration:500ms;}
+  /* vtOut = old page fades away; vtIn = new page fades in while rising slightly */
+  @keyframes vtOut{to{opacity:0;}}
+  @keyframes vtIn{from{opacity:0;transform:translateY(8px);}}
+  /* visitors who turned on reduced motion in their device settings get no page animation */
+  @media(prefers-reduced-motion:reduce){@view-transition{navigation:none;}}
+
+  /* ===== dropdown navigation: the next page zooms up from card size ===== */
+  /* used only when the PAGE-ZOOM HELPER script tagged the navigation as a zoom: old page shrinks, new page grows */
+  html:active-view-transition-type(zoom)::view-transition-old(root){animation:vtShrink 420ms cubic-bezier(.32,.72,0,1) both;}
+  html:active-view-transition-type(zoom)::view-transition-new(root){animation:vtZoom 560ms cubic-bezier(.32,.72,0,1) both;}
+  /* during a zoom, switch off the photo morph so only the zoom plays */
+  html:active-view-transition-type(zoom) [style*="view-transition-name"]{view-transition-name:none !important;}
+  /* the shrink and zoom movements themselves */
+  @keyframes vtShrink{to{opacity:0;transform:scale(.9);}}
+  @keyframes vtZoom{from{transform:scale(.42);opacity:.5;clip-path:inset(0 round 60px);filter:drop-shadow(0 30px 60px rgba(11,61,145,.3));}
+    to{clip-path:inset(0 round 0);}}
+
+  /* ===== curtain wipe: a blue panel covers the screen on every change to another page of this site ===== */
+  /* the panel itself: covers the whole screen, parked off to the left and invisible until needed */
+  .curtain{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;pointer-events:none;visibility:hidden;transform:translateX(-101%);
+    background:linear-gradient(120deg,var(--primary) 0%,#1560C9 55%,var(--secondary) 100%);}
+  .curtain img{width:min(260px,52vw);height:auto;}
+  /* curtain-cover = panel covering the page; curtain-moving = panel sliding (classes set by the CURTAIN script) */
+  html.curtain-cover .curtain{visibility:visible;transform:none;}
+  html.curtain-moving .curtain{visibility:visible;pointer-events:auto;}
+
+  /* ===== ABOUT PAGE ===== */
+  /* About Us (photo, welcome text, four values), then Our Mission and the review slider. Moved here from the home page. */
+  /* Photo of Max on the left; welcome text and four value icons on the right. Two columns; gap is the space between them. */
+  .about-wrap{display:grid;grid-template-columns:minmax(0,420px) 1fr;gap:56px;align-items:center;}
+  /* Photo card; lifts slightly on hover. */
+  .about-card{position:relative;margin:0;border-radius:20px;overflow:hidden;background:var(--primary-900);box-shadow:var(--shadow-lg);
+    transition:transform .35s,box-shadow .35s;}
+  .about-card:hover{transform:translateY(-4px);box-shadow:0 30px 64px rgba(11,61,145,.24);}
+  /* Keeps the photo square (aspect-ratio 1). */
+  .about-card img{width:100%;aspect-ratio:1;object-fit:cover;}
+  /* Name strip under the photo (not used on this page). */
+  .about-name{position:relative;padding:16px 20px 18px;text-align:center;color:#fff;
+    background:linear-gradient(120deg,var(--primary-800),var(--primary));border-top:3px solid var(--gold);}
+  .about-name b{display:block;font-size:1.12rem;}
+  .about-name span{display:block;font-size:.74rem;letter-spacing:1.6px;text-transform:uppercase;color:var(--on-dark);margin-top:2px;}
+  /* Welcome headline and paragraph. */
+  .about-txt h2{color:var(--primary);font-size:2.35rem;line-height:1.15;margin:10px 0 16px;}
+  .about-txt h2 span{color:var(--secondary-ink);}
+  .about-txt > p{color:var(--text);font-size:1.06rem;line-height:1.7;margin-bottom:30px;}
+  /* Row of four value items (Expert Guidance, Client First, ...). */
+  .about-vals{display:grid;grid-template-columns:repeat(4,1fr);}
+  .about-val{padding:0 18px;}
+  .about-val:first-child{padding-left:0;}
+  .about-val + .about-val{border-left:1px solid var(--border);}
+  /* Round icon bubble; its colors come from the --tint values set in the HTML. */
+  .about-val .ic{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-size:1.1rem;margin-bottom:12px;
+    background:var(--tint,#E3F0FD);color:var(--tint-ink,var(--primary));transition:transform .2s;}
+  .about-val:hover .ic{transform:translateY(-3px) scale(1.05);}
+  .about-val b{display:block;color:var(--primary);font-size:.95rem;margin-bottom:4px;}
+  .about-val span{display:block;color:var(--muted);font-size:.84rem;line-height:1.45;}
+  .about-txt h1{color:var(--primary);margin:10px 0 16px;}
+  .about-txt h1{font-size:2.15rem !important;font-weight:700 !important;line-height:1.2 !important;letter-spacing:-.2px !important;}
+  @media(max-width:600px){.about-txt h1{font-size:1.6rem !important;}}
+  @media (max-width:980px){.about-wrap{grid-template-columns:1fr;gap:34px;}.about-card{max-width:420px;width:100%;margin:0 auto;}
+    .about-vals{grid-template-columns:repeat(2,1fr);row-gap:22px;}.about-val:nth-child(3){border-left:0;padding-left:0;}}
+  @media (max-width:600px){.about-vals{grid-template-columns:1fr;}.about-val{padding:0 !important;border-left:0 !important;}}
+  /* ===== MISSION + REVIEWS ===== */
+  /* The .mc panel is also reused by WHY GET TAX HELP, the newsletters, TAX VIDEOS and CONTACT. */
+  .mc{position:relative;overflow:hidden;padding:76px 0 84px;background:linear-gradient(180deg,#F4FAFF 0%,#EAF5FF 100%);}
+  /* Decorative wave shapes in the corners (hidden later under SITE-WIDE OVERRIDES). */
+  .mc-deco{position:absolute;pointer-events:none;}
+  .mc-deco.tl{top:0;left:0;width:340px;}
+  .mc-deco.bl{bottom:0;left:0;width:520px;}
+  .mc-deco.br{bottom:0;right:0;width:460px;}
+  /* Small dot-grid decorations. */
+  .mc-dots{position:absolute;width:84px;height:52px;pointer-events:none;opacity:.55;
+    background:radial-gradient(circle,#9CCBF0 2.4px,transparent 2.8px) 0 0/21px 17px;}
+  .mc-dots.tr{top:38px;right:5%;}
+  .mc-dots.br2{bottom:56px;right:6.5%;}
+  .mc .container{position:relative;z-index:1;}
+  /* Big centered titles (Our Mission, What Our Clients Say) with a teal bar under them. */
+  .mc-title{text-align:center;color:var(--primary);font-size:2.6rem;font-weight:800;letter-spacing:.5px;line-height:1.15;text-transform:uppercase;}
+  .mc-title span{color:#1C8BDF;}
+  .mc-title:after{content:"";display:block;width:72px;height:5px;border-radius:3px;margin:16px auto 0;background:#3CCFC0;}
+  /* Mission paragraph text. */
+  .mc-mission{max-width:880px;margin:22px auto 64px;text-align:center;color:#1D3F75;font-size:1.14rem;line-height:1.75;}
+  /* Review slider: viewport is the white card window, track slides left/right, each .review is one slide. */
+  .reviews{position:relative;max-width:1040px;margin:30px auto 0;}
+  .review-viewport{overflow:hidden;border-radius:18px;background:#fff;box-shadow:0 2px 4px rgba(11,61,145,.04),0 24px 60px rgba(11,61,145,.12);}
+  .review-track{display:flex;transition:transform .55s cubic-bezier(.32,.72,0,1);}
+  .review{min-width:100%;box-sizing:border-box;color:var(--text);padding:40px 46px 42px;}
+  /* Stars, review headline and review text. */
+  .review .stars{color:#1C8BDF;font-size:1.55rem;letter-spacing:4px;line-height:1;margin-bottom:14px;}
+  .review h4{color:var(--primary);font-size:1.45rem;line-height:1.3;margin-bottom:12px;}
+  .review p{color:#2A4A7A;font-size:1.04rem;line-height:1.8;}
+  /* Long reviews show their first 4 lines (6 on phones) with a "Read more" link that opens the card in place.
+     The whole review stays in the page, so Google reads all of it. The link is added by the review slider script. */
+  .review p{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;line-clamp:4;overflow:hidden;}
+  .review.is-open p{display:block;-webkit-line-clamp:unset;line-clamp:none;overflow:visible;}
+  .review-viewport{transition:height .35s ease;}
+  .rev-more{display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:2px 0;background:none;border:0;font:inherit;font-size:.92rem;font-weight:700;color:#1C8BDF;cursor:pointer;}
+  .rev-more:hover{text-decoration:underline;}
+  .rev-more i{font-size:.75rem;transition:transform .3s;}
+  .review.is-open .rev-more i{transform:rotate(180deg);}
+  /* Reviewer name + Google mark at the bottom of a card (with its Read on Google link), and the Google buttons under the slider. */
+  .review .rev-by{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-top:18px;color:var(--primary);font-weight:700;}
+  .review .rev-by i{color:#1C8BDF;}
+  .review .rev-by a{margin-left:auto;font-size:.88rem;font-weight:600;color:#1C8BDF;}
+  .review .rev-by a:hover{text-decoration:underline;}
+  .rev-leave{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:34px;}
+  /* White outline version of the pill button (See All Our Reviews on Google). */
+  .btn-pill.ghost{background:#fff;color:var(--primary);border:2px solid rgba(11,61,145,.2);box-shadow:0 8px 20px rgba(11,61,145,.1);}
+  .btn-pill.ghost .sep{background:rgba(11,61,145,.2);}
+  /* No reviews published yet: hide the empty slideshow (and the heading too when there are no Google buttons either). */
+  .client-reviews:not(:has(.review)) .reviews{display:none;}
+  .client-reviews:not(:has(.review, .rev-leave a)){display:none;}
+  .mc-mission:has(+ .client-reviews:not(:has(.review, .rev-leave a))){margin-bottom:0;}
+  .client-reviews[hidden],.client-reviews [hidden]{display:none !important;}
+  /* Round left/right arrow buttons on each side of the review card. */
+  .rev-nav{position:absolute;top:calc(50% - 22px);transform:translateY(-50%);width:58px;height:58px;border-radius:50%;border:0;z-index:2;cursor:pointer;
+    display:grid;place-items:center;color:#fff;font-size:1.05rem;background:linear-gradient(135deg,#2B9BEA,#0B57C2);
+    box-shadow:0 10px 24px rgba(11,87,194,.35),0 0 0 6px rgba(255,255,255,.7);transition:transform .2s,box-shadow .2s;}
+  .rev-nav:hover{transform:translateY(-50%) scale(1.06);box-shadow:0 14px 30px rgba(11,87,194,.45),0 0 0 6px rgba(255,255,255,.85);}
+  .rev-nav:focus-visible{outline:3px solid var(--secondary);outline-offset:4px;}
+  .rev-nav.prev{left:-29px;}.rev-nav.next{right:-29px;}
+  /* Little dots under the slider (one per review, created by the script). */
+  .rev-dots{display:flex;gap:10px;justify-content:center;align-items:center;margin-top:28px;}
+  .rev-dots button{width:10px;height:10px;border-radius:50%;border:0;background:#9CCBF0;cursor:pointer;padding:0;transition:background .2s,transform .2s;}
+  .rev-dots button:hover{background:#5DB0EE;}
+  .rev-dots button.active{background:#0B57C2;transform:scale(1.4);}
+  .rev-dots button:focus-visible{outline:2px solid var(--secondary);outline-offset:3px;}
+  /* Late tweaks: panel border, extra dot position, plain-title variant. */
+  .mc{border-top:1px solid rgba(207,229,246,.7);}
+  .mc-dots.bl2{bottom:48px;left:2.5%;}
+  .mc-title.plain{text-transform:none;font-size:2.9rem;letter-spacing:-.3px;}
+  .mc-title.plain:after,.mc-title.grad-bar:after{background:linear-gradient(90deg,#1C8BDF,#3CCFC0);width:84px;}
+
+  /* Pill button: Subscribe to the Newsletter. */
+  .btn-pill{display:inline-flex;align-items:center;gap:16px;padding:16px 32px;border-radius:999px;color:#fff;font-weight:700;font-size:.95rem;
+    background:linear-gradient(90deg,var(--primary),#1C8BDF);box-shadow:0 12px 28px rgba(11,61,145,.28);transition:transform .2s,box-shadow .2s;}
+  .btn-pill .sep{width:1px;height:22px;background:rgba(255,255,255,.4);}
+  .btn-pill i{font-size:1.1rem;}
+  .btn-pill .fa-arrow-right{font-size:.85rem;transition:transform .2s;}
+  .btn-pill:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(11,61,145,.36);}
+  .btn-pill:hover .fa-arrow-right{transform:translateX(4px);}
+  .btn-pill:focus-visible{outline:3px solid var(--secondary);outline-offset:4px;}
+  /* MISSION + REVIEWS on smaller screens: */
+  /* smaller screens: arrows sit beside the dots instead of over the review text */
+  @media(max-width:880px){
+    .rev-dots{min-height:44px;align-items:center;margin-top:14px;}
+    .rev-nav{top:auto;bottom:0;transform:none;width:46px;height:46px;box-shadow:0 8px 18px rgba(11,87,194,.3);}
+    .rev-nav:hover{transform:scale(1.06);}
+    .rev-nav.prev{left:0;}.rev-nav.next{right:0;}
+    .mc-title{font-size:1.9rem;}
+    .mc-deco.bl,.mc-deco.br{width:300px;}
+  }
+  /* Phones: tighter review card and smaller titles. */
+  @media(max-width:560px){.review{padding:28px 22px;}.review h4{font-size:1.15rem;}.review p{font-size:.97rem;-webkit-line-clamp:6;line-clamp:6;}.mc{padding:54px 0 60px;}.mc-dots{display:none;}.mc-title{font-size:1.5rem;}}
+
+</style>
+<!-- ===== PAGE-ZOOM HELPER (one-line script) =====
+     When you click a service in the Services menu, it remembers that, so the next page zooms in. -->
+<script>/* links in the Services dropdown (and Switch service) mark the next navigation as a zoom */(function(){var K='vtZoom',RE=/(tax-preparation-planning|bookkeeping-payroll|business-consulting|future-security)(\.html)?$/;function tag(e){try{if(e.viewTransition&&sessionStorage.getItem(K))e.viewTransition.types.add('zoom');}catch(_){}}addEventListener('pageswap',tag);addEventListener('pagereveal',function(e){tag(e);try{sessionStorage.removeItem(K);}catch(_){}});document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('.submenu a');if(a&&RE.test(a.getAttribute('href')||'')){try{sessionStorage.setItem(K,'1');}catch(_){}}},true);})();</script>
+<!-- ===== CURTAIN SCRIPT ===== the blue panel wipe on every change to another page of this site -->
+<script>
+  /* Curtain wipe between the pages of this site: the panel slides in over this page, the next page
+     opens covered, then the panel slides off it. Reduced motion gets a quick fade instead. */
+  (function(){
+    // K = the browser-memory key that says "arrive covered"
+    var K = 'curtain', d = document, html = d.documentElement;
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)'), EASE = 'cubic-bezier(.32,.72,0,1)';
+    // ms() = how long the wipe takes (shorter with reduced motion)
+    function ms(){ return reduce.matches ? 150 : 450; }
+    // frames(): the movement of the panel, sliding in (entering) or sliding off; a plain fade with reduced motion
+    function frames(entering){
+      if (reduce.matches) return entering ? [{opacity:0, transform:'none'}, {opacity:1, transform:'none'}] : [{opacity:1, transform:'none'}, {opacity:0, transform:'none'}];
+      return entering ? [{transform:'translateX(-101%)'}, {transform:'translateX(0)'}] : [{transform:'translateX(0)'}, {transform:'translateX(101%)'}];
+    }
+    // page(): the page name of an address without .html, e.g. request-consultation ('index' for the home page)
+    function page(u){ var f = u.pathname.split('/').pop().replace(/\.html$/, ''); return f && f !== 'index' ? f : 'index'; }
+    // SVC = the four service pages (see the click handler below)
+    var SVC = /^(tax-preparation-planning|bookkeeping-payroll|business-consulting|future-security)$/;
+
+    // ARRIVING: if the previous page set the memory key, start with the panel covering this page
+    var arriving = false;
+    try{ if (sessionStorage.getItem(K)){ sessionStorage.removeItem(K); arriving = true; html.classList.add('curtain-cover'); } }catch(_){}
+    // the panel is the transition, so skip the browser's own cross-fade between pages
+    addEventListener('pagereveal', function(e){ if (arriving && e.viewTransition) e.viewTransition.skipTransition(); });
+    // once the page has loaded, slide the panel off (reveal)
+    if (arriving) d.addEventListener('DOMContentLoaded', function(){
+      var c = d.querySelector('.curtain'), started = false;
+      function reveal(){
+        if (started) return; started = true;
+        html.classList.add('curtain-moving'); html.classList.remove('curtain-cover');
+        if (!c || !c.animate){ html.classList.remove('curtain-moving'); return; }
+        c.animate(frames(false), {duration:ms(), easing:EASE}).finished.then(function(){ html.classList.remove('curtain-moving'); });
+        var h = d.querySelector('[data-curtain-focus]');
+        if (h) h.focus({preventScroll:true});
+      }
+      // wait briefly for the web font so the page doesn't reflow as it's revealed
+      if (d.fonts) d.fonts.ready.then(reveal);
+      setTimeout(reveal, 400);
+    });
+
+    // curtainTo(url): slide the panel in over this page, then open url once the screen is covered.
+    // Returns false (and does nothing) in old browsers, which then just open the page normally.
+    // Also used by the "Switch service" drop-down on the service pages.
+    function curtainTo(url){
+      var c = d.querySelector('.curtain');
+      if (!c || !c.animate) return false;
+      try{ sessionStorage.setItem(K, '1'); }catch(_){}
+      html.classList.add('curtain-moving');
+      var gone = false;
+      function go(){ if (!gone){ gone = true; location.href = url; } }
+      // swap pages only once the screen is fully covered
+      c.animate(frames(true), {duration:ms(), easing:EASE, fill:'forwards'}).finished.then(go);
+      setTimeout(go, ms() + 150);
+      return true;
+    }
+    window.curtainTo = curtainTo;
+
+    // LEAVING: a click on a link to another page of this site slides the panel in, then opens the link.
+    // Other links (new tab, other websites, a section of this same page) are left alone.
+    d.addEventListener('click', function(e){
+      if (e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var a = e.target.closest && e.target.closest('a[href]');
+      if (!a || a.target === '_blank' || a.hasAttribute('download')) return;
+      var to = new URL(a.href, location.href);
+      // other websites, and links to a section of this same page (e.g. ./#why-choose-us on Home), are left alone
+      if (to.origin !== location.origin || page(to) === page(location)) return;
+      // the four service pages keep their own transition (photo grows from the card, or zoom from the Services menu),
+      // except to and from the request form, which always gets the curtain
+      if (SVC.test(page(to)) && page(location) !== 'request-consultation') return;
+      if (curtainTo(a.href)) e.preventDefault();
+    });
+
+    // back/forward cache brings this page back still covered: lift the panel
+    addEventListener('pageshow', function(e){
+      if (!e.persisted) return;
+      html.classList.remove('curtain-moving', 'curtain-cover');
+      var c = d.querySelector('.curtain');
+      if (c && c.getAnimations) c.getAnimations().forEach(function(x){ x.cancel(); });
+      try{ sessionStorage.removeItem(K); }catch(_){}
+    });
+  })();
+</script>
+</head>
+<body>
+<!-- ===== CURTAIN PANEL ===== the blue panel with the white logo used by the CURTAIN SCRIPT; hidden normally -->
+<div class="curtain" aria-hidden="true"><img src="images/logo-light.webp" width="840" height="180" alt=""></div>
+
+<!-- ===== Top contact bar ===== -->
+<div class="topbar">
+  <div class="container">
+    <!-- phone and email on the left, office hours on the right: edit the text here -->
+    <span>📞 (916) 616-1789 &nbsp;·&nbsp; ✉️ ask@magnumcpa.com</span>
+    <span>🕘 Mon–Fri 9:00am – 5:00pm &nbsp;·&nbsp; Sat–Sun 2:00pm – 6:00pm</span>
+  </div>
+</div>
+
+<!-- ===== Header / Navigation ===== -->
+<header class="site-header">
+  <div class="container nav-inner">
+    <!-- Logo (links to the home page). Replace images/logo.webp and logo.png to change it. -->
+    <a href="./" class="brand"><picture><source srcset="images/logo.webp" type="image/webp"><img src="images/logo.png" width="840" height="180" alt="Magnum CPA PC — Tax · Accounting · Advisory" fetchpriority="high"></picture></a>
+
+    <!-- Hamburger button, only visible on tablets and phones. -->
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- ===== MAIN MENU ===== The same menu is on every page. index.html holds the MASTER copy: edit it there, then
+         run  python tools/sync_shared.py .  to copy it to every page (it highlights each page's own item).
+         Each li is one link; copy an li line to add a menu item. -->
+    <nav class="main-nav" id="mainNav">
+      <ul>
+        <li><a href="./">Home</a></li>
+        <li><a href="about" class="active" aria-current="page">About Us</a></li>
+        <!-- Services drop-down: links to the four service pages. -->
+        <li class="has-sub">
+          <a href="services" class="sub-toggle">Services ▾</a>
+          <ul class="submenu">
+            <li><a href="tax-preparation-planning">Tax Preparation &amp; Planning</a></li>
+            <li><a href="bookkeeping-payroll">Bookkeeping &amp; Payroll</a></li>
+            <li><a href="business-consulting">Business Consulting</a></li>
+            <li><a href="future-security">Future Security</a></li>
+            <li><a href="services">All Services</a></li>
+          </ul>
+        </li>
+        <!-- Resources drop-down. -->
+        <li class="has-sub">
+          <a href="#" class="sub-toggle">Resources ▾</a>
+          <ul class="submenu">
+            <li><a href="client-newsletter">Client Newsletter</a></li>
+            <li><a href="tax-planning-newsletter">Tax Planning Newsletter</a></li>
+            <li><a href="tax-videos">Tax Videos</a></li>
+            <!-- The client video library: its own site, so it opens in a new tab like the Client Portal. -->
+            <li><a href="https://library.magnumcpa.com" target="_blank" rel="noopener">Video Library</a></li>
+            <li><a href="financial-calculators">Financial Calculators</a></li>
+          </ul>
+        </li>
+        <!-- Opens the Canopy client portal in a new tab. -->
+        <li><a href="https://magnumcpa.clientportal.com/#/login" target="_blank" rel="noopener">Client Portal</a></li>
+        <!-- Opens the consultation form page (request-consultation.html). -->
+        <li><a href="request-consultation">Request Consultation</a></li>
+        <li><a href="contact">Contact Us</a></li>
+        <!-- Magnifier icon that opens the SEARCH box. -->
+        <li class="search-li"><a href="#" class="search-btn" aria-label="Search the site">🔍</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== PAGE CONTENT (unique to each page) =====
+     On the calculators page this is the title band and the calculator list. The service pages
+     replace everything from here down to the footer with their own content. -->
+<main id="main">
+<!-- ===== ABOUT US ===== -->
+<!-- Max's photo, welcome text and values, then MISSION + REVIEWS. Styles: ABOUT PAGE (end of the style block). -->
+<section id="about">
+  <!-- intro -->
+  <div class="section">
+    <div class="container">
+      <div class="about-wrap">
+        <!-- Photo of Max. -->
+        <figure class="about-card">
+          <picture>
+            <source type="image/webp" srcset="images/Max-contact-new-700.webp 700w, images/Max-contact-new.webp 1254w" sizes="(max-width:980px) 92vw, 420px">
+            <img src="images/Max-contact-new.jpg" width="1254" height="1254" fetchpriority="high" alt="Max (Magnum) Drew, Founder and CEO of Magnum CPA PC, smiling with arms crossed">
+          </picture>
+        </figure>
+        <!-- Welcome text; edit the paragraph to change the story. -->
+        <div class="about-txt">
+          <div class="sec-kicker blue">About Us</div>
+          <h1>Welcome to <span class="grad">Magnum CPA PC</span></h1>
+          <p>Our story began 10 years ago right here in California, established by our founder, Max (Magnum) Drew. We have grown from a small practice into a trusted professional corporation with a clear vision: to be more than just accountants—we aim to be true financial partners.</p>
+          <!-- Four value items: each about-val is one icon + title + line. The tint values in its style attribute set the bubble colors. -->
+          <div class="about-vals">
+            <div class="about-val"><span class="ic" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></span>
+              <b>Expert Guidance</b><span>Trusted expertise and personalized solutions.</span></div>
+            <div class="about-val" style="--tint:#DDF7F2;--tint-ink:#0F7C6C;"><span class="ic" aria-hidden="true"><i class="fa-solid fa-user-group"></i></span>
+              <b>Client First</b><span>Your success is our priority.</span></div>
+            <div class="about-val" style="--tint:#E1F1FD;--tint-ink:var(--secondary-ink);"><span class="ic" aria-hidden="true"><i class="fa-solid fa-chart-simple"></i></span>
+              <b>Long-Term Partnership</b><span>Building lasting financial security.</span></div>
+            <div class="about-val" style="--tint:#DDF7F2;--tint-ink:#0F7C6C;"><span class="ic" aria-hidden="true"><i class="fa-solid fa-handshake"></i></span>
+              <b>Integrity &amp; Excellence</b><span>Honesty, accuracy and professionalism.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- ===== MISSION + REVIEWS ===== -->
+    <!-- Our Mission + What Our Clients Say -->
+  <!-- Styles: MISSION + REVIEWS. Script: MISSION + REVIEWS (auto-rotating review slider). -->
+  <div class="mc">
+    <!-- Decorative corner waves and dots (purely visual). -->
+    <svg class="mc-deco tl" viewBox="0 0 340 150" aria-hidden="true"><path d="M0 0h250C190 40 120 70 0 118Z" fill="#CFE8FB" opacity=".55"/><path d="M0 104C95 72 160 38 215 0" fill="none" stroke="#5FD3E2" stroke-width="2" opacity=".7"/></svg>
+    <svg class="mc-deco bl" viewBox="0 0 520 230" aria-hidden="true"><path d="M0 70C120 70 230 150 330 230H0Z" fill="#CFE8FB" opacity=".6"/><path d="M0 20C150 30 260 120 360 230" fill="none" stroke="#5FD3E2" stroke-width="2" opacity=".7"/></svg>
+    <svg class="mc-deco br" viewBox="0 0 460 170" aria-hidden="true"><path d="M460 30C350 70 250 120 130 170H460Z" fill="#CFE8FB" opacity=".6"/><path d="M460 70C370 110 300 140 220 170" fill="none" stroke="#7FE7D6" stroke-width="2" opacity=".8"/></svg>
+    <span class="mc-dots tr" aria-hidden="true"></span><span class="mc-dots br2" aria-hidden="true"></span>
+    <div class="container">
+      <!-- Mission statement: edit the paragraph text. -->
+      <h2 class="mc-title">Our <span class="grad">Mission</span></h2>
+      <p class="mc-mission">Our mission is to be the trusted financial partner for individuals and businesses, delivering accurate tax compliance, proactive financial planning, and strategic advisory services that secure and grow their wealth.</p>
+
+      <!-- REVIEWS: real Google reviews only (the home page shows the same block). The cards and the Google buttons are BUILT FROM reviews.xlsx:
+           edit the spreadsheet (Show = Yes / No picks which reviews appear), then double-click
+           update-reviews.bat. Don't type cards here; the parts between the START/END markers are overwritten.
+           No review with Show = Yes: the slideshow hides itself and only the Google buttons show;
+           with no buttons either, this whole "What Our Clients Say" block hides. Dots are added automatically. -->
+      <div class="client-reviews" id="clientReviews">
+      <h2 class="mc-title">What Our <span class="grad">Clients Say</span></h2>
+      <div class="reviews">
+        <div class="review-viewport">
+          <div class="review-track" id="reviewTrack">
+            <!-- REVIEWS:START (generated from reviews.xlsx; changes made here are overwritten) -->
+            <div class="review">
+              <div class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+              <p>I’ve had a great experience working with Max Drew! He’s very knowledgeable, professional, and always takes the time to answer my questions. As a business owner, I appreciate how he explains everything clearly and helps me better understand my taxes and business finances. It’s great having a CPA I can trust and rely on. I highly recommend Max Drew to any business owner looking for a great CPA!</p>
+              <div class="rev-by">
+                <i class="fa-brands fa-google" aria-hidden="true"></i>
+                <span>Jose Rodriguez · Google review</span>
+                <a href="https://maps.app.goo.gl/Q5jTtxQ2bykbjvPy6" target="_blank" rel="noopener">Read on Google</a>
+              </div>
+            </div>
+            <div class="review">
+              <div class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+              <p>Max, at MagnumCPA has decades of experience in taxes and financial consulting. He is honest, conscientious and genuinely cares for the best interest of his clients. I have been a client for 5 years and plan to continue using his experties.</p>
+              <div class="rev-by">
+                <i class="fa-brands fa-google" aria-hidden="true"></i>
+                <span>Elham Snell · Google review</span>
+                <a href="https://maps.app.goo.gl/Q5jTtxQ2bykbjvPy6" target="_blank" rel="noopener">Read on Google</a>
+              </div>
+            </div>
+            <div class="review">
+              <div class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+              <p>I can't recommend Magnum CPA enough. They took the time to walk me through strategies I had never even considered, especially cost segregation and how it can be used to maximize tax savings for real estate investments. They explained everything in a way that was easy to understand and helped me see the bigger picture when it comes to tax planning and building long-term wealth.<br>What impressed me most was that they weren't just trying to file my taxes--they were looking for ways to help me keep more of what I earn and make smarter financial decisions. Their knowledge,<br>professionalism, and willingness to educate their clients really set them apart. If you're a real estate investor or simply looking for a CPA who thinks beyond the numbers, Magnum CPA is well worth talking to</p>
+              <div class="rev-by">
+                <i class="fa-brands fa-google" aria-hidden="true"></i>
+                <span>Hunter Whitchurch · Google review</span>
+                <a href="https://maps.app.goo.gl/Q5jTtxQ2bykbjvPy6" target="_blank" rel="noopener">Read on Google</a>
+              </div>
+            </div>
+            <div class="review">
+              <div class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+              <p>Outstanding financial guidance and tax support!<br>Working with Magnum CPA PC has been an absolute game-changer for my overall financial situation. Their expertise went far beyond basic tax preparation—they provided thoughtful, comprehensive guidance that gave me complete clarity and confidence in my finances.<br>A special shout-out to the entire team as well! They are incredibly well-coordinated, prompt, and always willing to take the time to answer every question or concern I have with total clarity and patience. You can tell they truly care about their clients' long-term financial success. I couldn't be more grateful for their dedication and highly recommend them to anyone seeking top-tier CPA and financial advisory services!</p>
+              <div class="rev-by">
+                <i class="fa-brands fa-google" aria-hidden="true"></i>
+                <span>Angelique Castillo · Google review</span>
+                <a href="https://maps.app.goo.gl/Q5jTtxQ2bykbjvPy6" target="_blank" rel="noopener">Read on Google</a>
+              </div>
+            </div>
+            <div class="review">
+              <div class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+              <p>I really love doing my taxes with Max. It puts my mind at ease every time he explains every detail about my taxes. We all know taxes are very hard to deal with, but with Max, I can certainly say that you'll get your taxes done properly. His service exceeded my expectations, and I highly trust him to do my taxes for the upcoming years. Thank you so much, Max, for the excellent service!</p>
+              <div class="rev-by">
+                <i class="fa-brands fa-google" aria-hidden="true"></i>
+                <span>John Paul Mirafuentes · Google review</span>
+                <a href="https://maps.app.goo.gl/Q5jTtxQ2bykbjvPy6" target="_blank" rel="noopener">Read on Google</a>
+              </div>
+            </div>
+            <!-- REVIEWS:END -->
+          </div>
+        </div>
+        <!-- Previous/next arrows and the dots row (dots are filled in by the script). -->
+        <button class="rev-nav prev" onclick="revMove(-1)" aria-label="Previous review"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+        <button class="rev-nav next" onclick="revMove(1)" aria-label="Next review"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+        <div class="rev-dots" id="revDots"></div>
+      </div>
+      <!-- REVIEW-BUTTON:START (generated from the Settings sheet of reviews.xlsx) -->
+      <div class="rev-leave">
+        <a href="https://g.page/r/CRRCLMcynmYsEBM/review" class="btn-pill" target="_blank" rel="noopener"><i class="fa-brands fa-google" aria-hidden="true"></i><span class="sep" aria-hidden="true"></span>Leave Us a Google Review <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        <a href="https://maps.app.goo.gl/Q5jTtxQ2bykbjvPy6" class="btn-pill ghost" target="_blank" rel="noopener"><i class="fa-brands fa-google" aria-hidden="true"></i><span class="sep" aria-hidden="true"></span>See All Our Reviews on Google <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+      </div>
+      <!-- REVIEW-BUTTON:END -->
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <!-- The footer is the same on every page. index.html holds the MASTER copy: edit it there, then run
+       python tools/sync_shared.py .  to copy it to every page. -->
+  <div class="container">
+    <div class="foot-grid">
+      <!-- Column 1: logo and tagline. -->
+      <div>
+        <div class="brand" style="margin-bottom:14px;"><picture><source srcset="images/logo.webp" type="image/webp"><img src="images/logo.png" width="840" height="180" alt="Magnum CPA PC" loading="lazy"></picture></div>
+        <p style="font-size:.9rem;">Max Drew, CPA &amp; Financial Coach.<br>Trusted by Ramsey for 10+ years.</p>
+      </div>
+      <!-- Column 2: Company links. -->
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about">About Us</a></li>
+          <li><a href="services">Services</a></li>
+          <li><a href="contact">Contact Us</a></li>
+          <li><a href="request-consultation">Request Consultation</a></li>
+          <li><a href="https://magnumcpa.clientportal.com/#/login" target="_blank" rel="noopener">Client Portal</a></li>
+        </ul>
+      </div>
+      <!-- Column 3: Resources links. -->
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="client-newsletter">Client Newsletter</a></li>
+          <li><a href="tax-planning-newsletter">Tax Planning Newsletter</a></li>
+          <li><a href="tax-videos">Tax Videos</a></li>
+          <li><a href="financial-calculators">Financial Calculators</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- Dark bottom bar: social icons and copyright. -->
+  <div class="foot-bottom"><div class="container">
+    <!-- Social links: each link is one round icon; copy one to add another network. -->
+    <div class="social">
+      <a href="https://www.facebook.com/max.drew.522" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/magnumcpa11/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.youtube.com/@MaxDrew" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <a href="https://www.threads.com/@magnumcpa11?xmt=AQG0ulpk6R3kK_t4bDitznWtQA3G7iO-LKH2PQMVhY07s6E" target="_blank" rel="noopener" aria-label="Threads"><i class="fa-brands fa-threads"></i></a>
+      <a href="https://x.com/MagnumCPA11" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="https://www.quora.com/profile/Magnum-CPA" target="_blank" rel="noopener" aria-label="Quora"><i class="fa-brands fa-quora"></i></a>
+    </div>
+    <div class="foot-copy">© <span id="year"></span> Magnum CPA PC. All rights reserved.</div>
+  </div></div>
+</footer>
+
+<!-- ===== Floating Book a Consultation CTA ===== -->
+<a class="book-fab" href="request-consultation">📅 Book a Consultation</a>
+
+<!-- ===== SCRIPTS: NAV and SEARCH ===== -->
+<script>
+  // ===== NAV =====
+  /* Nav: mobile toggle + dropdown + year */
+  (function(){
+    // find the hamburger button and the menu
+    var toggle = document.getElementById('navToggle');
+    var nav = document.getElementById('mainNav');
+    // hamburger click: open or close the menu (the .open class shows it) and tell screen readers
+    if (toggle && nav){
+      toggle.addEventListener('click', function(){
+        nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', nav.classList.contains('open'));
+      });
+    }
+    // on small screens, tapping Services or Resources opens its sub-menu instead of following the link
+    document.querySelectorAll('.has-sub > .sub-toggle').forEach(function(a){
+      a.addEventListener('click', function(e){
+        if (window.matchMedia('(max-width:980px)').matches){
+          e.preventDefault();
+          a.parentNode.classList.toggle('open');
+        }
+      });
+    });
+    // put the current year into the footer copyright line
+    var y = document.getElementById('year');
+    if (y) y.textContent = new Date().getFullYear();
+  })();
+
+  // ===== SEARCH =====
+  /* Site search (links back to the single page's sections) */
+  (function(){
+    // The pages the search box can find. title = result heading, url = where the result goes,
+    // snippet = gray line under it, text = extra keywords (lowercase). To add a page, copy one entry.
+    // Copies of this list also live in index.html and request-consultation.html; keep them in step.
+    var INDEX = [
+      // MASTER list: tools/sync_shared.py copies it to every page. Edit it here only.
+      {title:'Home', url:'./',
+       snippet:"More than accounting — we're your strategic partner.",
+       text:'home magnum cpa pc max drew strategic growth tax advantage proactive accounting expert tax planning financial coaching ramsey trusted consultation california'},
+      {title:'About Us', url:'about',
+       snippet:'Our story, founder Max Drew, and The Magnum Advantage.',
+       text:'about us max magnum drew founder california professional corporation financial partners magnum advantage bbb accredited better business bureau trusted by ramsey best business rate sacramento history mission'},
+      {title:'Why Choose Us', url:'./#why-choose-us',
+       snippet:'BBB Accredited, Trusted by Ramsey, Best Business Rate 2025, Momentum Score #1 2026.',
+       text:'why choose us trusted experienced committed success bbb accredited better business bureau best business rate sacramento 2025 ramsey trusted momentum score ranked 2026 passion for precision awards recognition'},
+      {title:'Services', url:'services',
+       snippet:'Tax preparation & planning, bookkeeping, consulting, future security.',
+       text:'services tax preparation planning bookkeeping payroll business consulting future security wealth management retirement estate planning filings liabilities growth efficiency'},
+      {title:'Tax Preparation and Planning', url:'tax-preparation-planning',
+       snippet:'We help you stay compliant and maximize your tax savings with strategic, year-round planning.',
+       text:'tax preparation and planning tax preparation individual & business tax returns tax planning and projections irs representation and support year-round tax advisory'},
+      {title:'Bookkeeping and Payroll Services', url:'bookkeeping-payroll',
+       snippet:'Accurate records and timely payroll so you can focus on what matters most — your business.',
+       text:'bookkeeping and payroll services bookkeeping & payroll daily/monthly bookkeeping payroll processing & tax filings financial statement preparation clean-up and catch-up services'},
+      {title:'Business Consulting', url:'business-consulting',
+       snippet:'Strategic insights and practical solutions to drive growth, improve efficiency, and increase profitability.',
+       text:'business consulting business consulting business strategy and planning operational improvement financial analysis and forecasting succession and growth planning'},
+      {title:'Future Security', url:'future-security',
+       snippet:'Build, protect, and grow your wealth with a holistic approach to retirement, wealth management, and estate planning.',
+       text:'future security future security retirement planning wealth management estate and legacy planning life and business protection'},
+      {title:'Client Newsletter', url:'client-newsletter',
+       snippet:'Monthly updates, firm news, and money tips.',
+       text:'client newsletter mid-year money check-in refund last-minute filing tips updates subscribe firm news'},
+      {title:'Tax Planning Newsletter', url:'tax-planning-newsletter',
+       snippet:'Strategy articles for proactive tax savings.',
+       text:'tax planning newsletter retirement contributions 401k ira hsa small business entity llc s-corp sole proprietor charitable giving donor advised capital gains harvesting'},
+      {title:'Tax Videos', url:'tax-videos',
+       snippet:'Plain-English videos on key tax topics.',
+       text:'tax videos watch learn alternative minimum tax amt audits cancellation of debt insolvency capital gains losses charitable contributions noncash recordkeeping clergy consumer credit crowdfunding dependent digital assets crypto divorce education estimated quarterly taxes extension families children filing status foreign bank accounts fbar gambling high income hobby business household employees identity theft itemized deductions casualty homeowners interest medical kiddie tax like-kind exchange moving expenses multi-state new tax law principal residence home sale standard deduction stock options tax facts figures scams social security irs notice tipped employees trump accounts irs contacts withholding w-4'},
+      {title:'Financial Calculators', url:'financial-calculators',
+       snippet:'Tax, retirement, mortgage, loan, savings & business calculators.',
+       text:'financial calculators tax payroll 1040 marginal estate retirement roth ira 401k social security rmd mortgage piti arm loan amortization auto savings college net worth business cash flow breakeven valuation rent vs buy'},
+      {title:'Client Portal', url:'https://magnumcpa.clientportal.com/#/login', target:true,
+       snippet:'Secure client portal (Canopy) for documents and messages.',
+       text:'client portal canopy login documents upload messages secure account'},
+      {title:'Contact Us', url:'contact',
+       snippet:'Phone, email, and our Sacramento office location.',
+       text:'contact us phone 916 616 1789 email info ask magnumcpa find us 907 green moss drive sacramento ca 95831 google business profile reviews map directions location office hours'},
+      {title:'Request a Consultation', url:'request-consultation',
+       snippet:'Request your free consultation with Max Drew, CPA.',
+       text:'request consultation free appointment schedule book meeting max drew cpa tax planning preparation bookkeeping financial coaching preferred date service'}
+    ];
+
+    // makes typed text safe to show in the results (turns special HTML characters into plain text)
+    function escapeHtml(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+    // build the search pop-up (dark backdrop, white box, typing field, close X, results list) and add it to the page
+    var ov = document.createElement('div');
+    ov.className = 'search-overlay';
+    ov.innerHTML =
+      '<div class="search-box">' +
+        '<div class="search-top">' +
+          '<span class="search-ic">🔍</span>' +
+          '<input type="text" id="siteSearchInput" placeholder="Search the site..." autocomplete="off">' +
+          '<button class="search-close" aria-label="Close search">&times;</button>' +
+        '</div>' +
+        '<div class="search-results" id="siteSearchResults"></div>' +
+      '</div>';
+    document.body.appendChild(ov);
+
+    // the typing field and the results list inside the pop-up
+    var input = ov.querySelector('#siteSearchInput');
+    var results = ov.querySelector('#siteSearchResults');
+
+    // show the pop-up (empty, with the cursor in the field) / hide it
+    function openSearch(){ ov.classList.add('open'); input.value=''; render(''); setTimeout(function(){ input.focus(); }, 40); }
+    function closeSearch(){ ov.classList.remove('open'); }
+
+    // render(): show the pages matching what was typed. Each typed word found in a page
+    // scores 1 point; pages with at least 1 point are listed, best first.
+    function render(q){
+      q = q.trim().toLowerCase();
+      // nothing typed yet: show a hint
+      if (!q){ results.innerHTML = '<div class="search-none">Type a keyword to search across the website.</div>'; return; }
+      var terms = q.split(/\s+/);
+      var matches = INDEX.map(function(p){
+        var hay = (p.title + ' ' + p.text + ' ' + p.snippet).toLowerCase();
+        var score = 0;
+        terms.forEach(function(t){ if (hay.indexOf(t) > -1) score++; });
+        return {p:p, score:score};
+      }).filter(function(m){ return m.score > 0; })
+        .sort(function(a,b){ return b.score - a.score; });
+
+      // no matches: say so
+      if (!matches.length){ results.innerHTML = '<div class="search-none">No results for &ldquo;' + escapeHtml(q) + '&rdquo;.</div>'; return; }
+      // turn each match into a clickable result (entries marked target open in a new tab)
+      results.innerHTML = matches.map(function(m){
+        var tgt = m.p.target ? ' target="_blank" rel="noopener"' : '';
+        return '<a href="' + m.p.url + '"' + tgt + '><b>' + escapeHtml(m.p.title) + '</b><span>' + escapeHtml(m.p.snippet) + '</span></a>';
+      }).join('');
+    }
+
+    // update results while typing; close on the X, on a click outside the box, or with the Esc key
+    input.addEventListener('input', function(){ render(input.value); });
+    ov.querySelector('.search-close').addEventListener('click', closeSearch);
+    ov.addEventListener('click', function(e){ if (e.target === ov) closeSearch(); });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeSearch(); });
+
+    // the magnifier icon in the menu opens the search pop-up
+    document.querySelectorAll('.search-btn').forEach(function(b){
+      b.addEventListener('click', function(e){ e.preventDefault(); openSearch(); });
+    });
+  })();
+</script>
+<!-- ===== MISSION + REVIEWS SCRIPT ===== the review slider, arrows, dots and Read more (same as on the home page) -->
+<script>
+  // ===== MISSION + REVIEWS: review slider =====
+  /* ===== Client reviews (About) — auto-rotating slideshow ===== */
+  // revIndex = review currently shown; the number of reviews is counted automatically from the HTML.
+  var revIndex = 0;
+  var revTrack = document.getElementById('reviewTrack');
+  var revSlides = revTrack ? revTrack.children.length : 0;
+  var revDotsWrap = document.getElementById('revDots');
+  // No reviews published (reviews.xlsx has no Show = Yes row): hide the empty slideshow, and the heading
+  // too if there are no Google buttons. (The style block does the same; this covers older browsers.)
+  // One review: no arrows or dots needed.
+  var revBox = document.getElementById('clientReviews');
+  if (revBox && !revSlides){
+    revBox.querySelector('.reviews').hidden = true;
+    if (!revBox.querySelector('.rev-leave a')) revBox.hidden = true;
+  } else if (revBox && revSlides === 1){
+    revBox.querySelectorAll('.rev-nav, .rev-dots').forEach(function(n){ n.hidden = true; });
+  }
+  // Create one dot button per review.
+  if (revTrack && revSlides){
+    for (var i=0;i<revSlides;i++){
+      var d = document.createElement('button');
+      d.setAttribute('aria-label','Go to review '+(i+1));
+      (function(idx){ d.addEventListener('click', function(){ revShow(idx); }); })(i);
+      revDotsWrap.appendChild(d);
+    }
+  }
+  // "Read more": long reviews are cut to a few lines by the style block; this adds a button under each one
+  // that is actually cut off, which opens the card in place (the full text is always in the page).
+  var revView = revTrack ? revTrack.parentElement : null;
+  // revResize(change): run change() and slide the white card's height smoothly to its new size.
+  function revResize(change){
+    var from = revView.offsetHeight;
+    change();
+    var to = revView.scrollHeight;
+    if (from === to) return;
+    revView.style.height = from + 'px';
+    revView.offsetHeight;                                  // apply the start height before animating
+    revView.style.height = to + 'px';
+    setTimeout(function(){ revView.style.height = ''; }, 400);
+  }
+  function revOpen(card, open){
+    card.classList.toggle('is-open', open);
+    var b = card.querySelector('.rev-more');
+    if (b){ b.setAttribute('aria-expanded', open); b.firstChild.textContent = open ? 'Show less ' : 'Read more '; }
+  }
+  if (revTrack && revSlides){
+    [].forEach.call(revTrack.children, function(card, i){
+      var p = card.querySelector('p');
+      if (!p) return;
+      p.id = 'revText' + i;
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'rev-more'; b.hidden = true;
+      b.setAttribute('aria-controls', p.id); b.setAttribute('aria-expanded', 'false');
+      b.innerHTML = 'Read more <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>';
+      b.addEventListener('click', function(){ revResize(function(){ revOpen(card, !card.classList.contains('is-open')); }); });
+      p.insertAdjacentElement('afterend', b);
+    });
+    // Show the button only on reviews that are cut off at the current screen width.
+    var revFit = function(){
+      [].forEach.call(revTrack.children, function(card){
+        var p = card.querySelector('p'), b = card.querySelector('.rev-more');
+        if (b) b.hidden = !card.classList.contains('is-open') && p.scrollHeight <= p.clientHeight + 2;
+      });
+    };
+    revFit();
+    window.addEventListener('resize', revFit);
+    if (document.fonts) document.fonts.ready.then(revFit);
+  }
+  // revShow(i): slide to review number i (wraps around) and highlight its dot.
+  function revShow(i){
+    if(!revSlides) return;
+    var open = revTrack.querySelector('.review.is-open');   // close an opened review when moving on
+    if (open) revResize(function(){ revOpen(open, false); });
+    revIndex = (i % revSlides + revSlides) % revSlides;
+    revTrack.style.transform = 'translateX(-' + (revIndex*100) + '%)';
+    var dots = revDotsWrap.children;
+    for (var k=0;k<dots.length;k++){ dots[k].classList.toggle('active', k===revIndex); }
+  }
+  // revMove(1) = next, revMove(-1) = previous; used by the arrow buttons.
+  function revMove(d){ revShow(revIndex + d); }
+  revShow(0);
+  // Auto-advance every 7000 ms (7 seconds). Change the number to speed up or slow down.
+  // It waits while a visitor has a review opened with "Read more".
+  if (revSlides > 1){ setInterval(function(){ if (!revTrack.querySelector('.review.is-open')) revMove(1); }, 7000); }
+</script>
+</body>
+</html>

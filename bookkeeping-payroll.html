@@ -9,6 +9,18 @@
 <!-- ===== CLEAN ADDRESS ===== -->
 <!-- The one official address of this page, for Google. Never end it in .html. -->
 <link rel="canonical" href="https://www.magnumcpa.com/bookkeeping-payroll">
+<!-- ===== SHARE + GOOGLE MARKUP ===== made by tools/sync_shared.py from this page's title, description
+     and address. Don't edit it here: change the tool (or the page title / description) and run it again. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Magnum CPA PC">
+<meta property="og:title" content="Bookkeeping and Payroll Services — Magnum CPA PC">
+<meta property="og:description" content="Bookkeeping and Payroll Services from Magnum CPA PC. Accurate records and timely payroll so you can focus on what matters most — your business.">
+<meta property="og:url" content="https://www.magnumcpa.com/bookkeeping-payroll">
+<meta property="og:image" content="https://www.magnumcpa.com/images/hero-photo2.jpg">
+<meta property="og:image:alt" content="Max Drew, CPA, meeting with a client in the Magnum CPA PC office">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.magnumcpa.com/"},{"@type":"ListItem","position":2,"name":"Services","item":"https://www.magnumcpa.com/services"},{"@type":"ListItem","position":3,"name":"Bookkeeping and Payroll Services","item":"https://www.magnumcpa.com/bookkeeping-payroll"}]}</script>
+<!-- SHARE + GOOGLE MARKUP:END -->
 <!-- Someone opened an old link ending in .html: show the clean address instead (no reload). -->
 <script>(function(){try{if(!/^https?:$/.test(location.protocol))return;var p=location.pathname,c=p.replace(/(^|\/)index\.html$/,'$1').replace(/\.html$/,'');if(c!==p)history.replaceState(history.state,'',c+location.search+location.hash);}catch(_){}})();</script>
 <!-- Browser tab title and Google description. The generator swaps these two lines for each
@@ -292,8 +304,8 @@
   .social a:hover{transform:translateY(-3px);background:#0A2A6B;color:#fff;}
   .foot-copy{border-top:0;color:#1D3F75;font-size:.95rem;}
   footer a:hover{color:#1C8BDF;}
-  /* 1100px and narrower: footer columns two across; 600px and narrower: one column */
-  @media(max-width:1100px){.foot-grid{grid-template-columns:1fr 1fr;row-gap:34px;}.foot-grid > div{padding:0 24px;}
+  /* 1100px and narrower: logo and text across the top, Company and Resources side by side below; 600px and narrower: one column */
+  @media(max-width:1100px){.foot-grid{grid-template-columns:1fr 1fr;row-gap:34px;}.foot-grid > div{padding:0 24px;}.foot-grid > div:first-child{grid-column:1/-1;}.foot-grid > div:nth-child(2):not(.foot-cta){border-left:0;}
     .foot-grid > div:nth-child(3){border-left:1px solid rgba(59,167,242,.3);}.foot-grid > div:nth-child(2){border-left:0;padding-left:0;}
     .foot-cta{grid-column:1/-1;border-left:0 !important;padding:0 !important;}}
   @media(max-width:600px){.foot-grid{grid-template-columns:1fr;}.foot-grid > div{padding:0 !important;border-left:0 !important;}
@@ -348,7 +360,9 @@
   .sec-head{-webkit-mask-image:none !important;mask-image:none !important;}
 
   /* ===== shared-element page transition (card photo <-> service page photo) ===== */
-  /* In browsers that support it (Chrome, Edge, Safari 18+), pages fade into each other instead of a hard cut. */
+  /* In browsers that support it (Chrome, Edge, Safari 18+), pages fade into each other instead of a hard cut.
+     Links use the curtain wipe (CURTAIN SCRIPT) instead, except links to the four service pages, which keep this fade,
+     the card-photo morph and the Services-menu zoom. Back/Forward also use this fade. */
   @view-transition{navigation:auto;}
   ::view-transition-group(*){animation-duration:500ms;animation-timing-function:cubic-bezier(.32,.72,0,1);}
   ::view-transition-old(root){animation:vtOut 220ms ease both;}
@@ -374,7 +388,7 @@
   @keyframes vtZoom{from{transform:scale(.42);opacity:.5;clip-path:inset(0 round 60px);filter:drop-shadow(0 30px 60px rgba(11,61,145,.3));}
     to{clip-path:inset(0 round 0);}}
 
-  /* ===== curtain wipe: a blue panel covers the page on the way to and from the request form ===== */
+  /* ===== curtain wipe: a blue panel covers the screen on every change to another page of this site ===== */
   /* the panel itself: covers the whole screen, parked off to the left and invisible until needed */
   .curtain{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;pointer-events:none;visibility:hidden;transform:translateX(-101%);
     background:linear-gradient(120deg,var(--primary) 0%,#1560C9 55%,var(--secondary) 100%);}
@@ -445,13 +459,13 @@
 <!-- ===== PAGE-ZOOM HELPER (one-line script) =====
      When you click a service in the Services menu, it remembers that, so the next page zooms in. -->
 <script>/* links in the Services dropdown (and Switch service) mark the next navigation as a zoom */(function(){var K='vtZoom',RE=/(tax-preparation-planning|bookkeeping-payroll|business-consulting|future-security)(\.html)?$/;function tag(e){try{if(e.viewTransition&&sessionStorage.getItem(K))e.viewTransition.types.add('zoom');}catch(_){}}addEventListener('pageswap',tag);addEventListener('pagereveal',function(e){tag(e);try{sessionStorage.removeItem(K);}catch(_){}});document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('.submenu a');if(a&&RE.test(a.getAttribute('href')||'')){try{sessionStorage.setItem(K,'1');}catch(_){}}},true);})();</script>
-<!-- ===== CURTAIN SCRIPT ===== the blue panel wipe when going to or leaving the request form page -->
+<!-- ===== CURTAIN SCRIPT ===== the blue panel wipe on every change to another page of this site -->
 <script>
-  /* Curtain wipe to and from the request form: the panel slides in over this page, the next page
+  /* Curtain wipe between the pages of this site: the panel slides in over this page, the next page
      opens covered, then the panel slides off it. Reduced motion gets a quick fade instead. */
   (function(){
-    // K = the browser-memory key that says "arrive covered"; FORM = the request form page's file name
-    var K = 'curtain', FORM = 'request-consultation', d = document, html = d.documentElement;
+    // K = the browser-memory key that says "arrive covered"
+    var K = 'curtain', d = document, html = d.documentElement;
     var reduce = matchMedia('(prefers-reduced-motion: reduce)'), EASE = 'cubic-bezier(.32,.72,0,1)';
     // ms() = how long the wipe takes (shorter with reduced motion)
     function ms(){ return reduce.matches ? 150 : 450; }
@@ -462,6 +476,8 @@
     }
     // page(): the page name of an address without .html, e.g. request-consultation ('index' for the home page)
     function page(u){ var f = u.pathname.split('/').pop().replace(/\.html$/, ''); return f && f !== 'index' ? f : 'index'; }
+    // SVC = the four service pages (see the click handler below)
+    var SVC = /^(tax-preparation-planning|bookkeeping-payroll|business-consulting|future-security)$/;
 
     // ARRIVING: if the previous page set the memory key, start with the panel covering this page
     var arriving = false;
@@ -484,24 +500,36 @@
       setTimeout(reveal, 400);
     });
 
-    // LEAVING: a click on a link to or from the request form slides the panel in, then opens the link.
-    // Other links (new tab, other sites, other pages) are left alone.
+    // curtainTo(url): slide the panel in over this page, then open url once the screen is covered.
+    // Returns false (and does nothing) in old browsers, which then just open the page normally.
+    // Also used by the "Switch service" drop-down on the service pages.
+    function curtainTo(url){
+      var c = d.querySelector('.curtain');
+      if (!c || !c.animate) return false;
+      try{ sessionStorage.setItem(K, '1'); }catch(_){}
+      html.classList.add('curtain-moving');
+      var gone = false;
+      function go(){ if (!gone){ gone = true; location.href = url; } }
+      // swap pages only once the screen is fully covered
+      c.animate(frames(true), {duration:ms(), easing:EASE, fill:'forwards'}).finished.then(go);
+      setTimeout(go, ms() + 150);
+      return true;
+    }
+    window.curtainTo = curtainTo;
+
+    // LEAVING: a click on a link to another page of this site slides the panel in, then opens the link.
+    // Other links (new tab, other websites, a section of this same page) are left alone.
     d.addEventListener('click', function(e){
       if (e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
       var a = e.target.closest && e.target.closest('a[href]');
       if (!a || a.target === '_blank' || a.hasAttribute('download')) return;
-      var to = new URL(a.href, location.href), from = page(location), dest = page(to);
-      if (to.origin !== location.origin || dest === from || (dest !== FORM && from !== FORM)) return;
-      var c = d.querySelector('.curtain');
-      if (!c || !c.animate) return;
-      e.preventDefault();
-      try{ sessionStorage.setItem(K, '1'); }catch(_){}
-      html.classList.add('curtain-moving');
-      var gone = false;
-      function go(){ if (!gone){ gone = true; location.href = a.href; } }
-      // swap pages only once the screen is fully covered
-      c.animate(frames(true), {duration:ms(), easing:EASE, fill:'forwards'}).finished.then(go);
-      setTimeout(go, ms() + 150);
+      var to = new URL(a.href, location.href);
+      // other websites, and links to a section of this same page (e.g. ./#why-choose-us on Home), are left alone
+      if (to.origin !== location.origin || page(to) === page(location)) return;
+      // the four service pages keep their own transition (photo grows from the card, or zoom from the Services menu),
+      // except to and from the request form, which always gets the curtain
+      if (SVC.test(page(to)) && page(location) !== 'request-consultation') return;
+      if (curtainTo(a.href)) e.preventDefault();
     });
 
     // back/forward cache brings this page back still covered: lift the panel
@@ -531,21 +559,22 @@
 <!-- ===== Header / Navigation ===== -->
 <header class="site-header">
   <div class="container nav-inner">
-    <!-- logo (links to the home page) -->
+    <!-- Logo (links to the home page). Replace images/logo.webp and logo.png to change it. -->
     <a href="./" class="brand"><picture><source srcset="images/logo.webp" type="image/webp"><img src="images/logo.png" width="840" height="180" alt="Magnum CPA PC — Tax · Accounting · Advisory" fetchpriority="high"></picture></a>
 
-    <!-- hamburger button: only shows on small screens; opens and closes the menu -->
+    <!-- Hamburger button, only visible on tablets and phones. -->
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
 
-    <!-- ===== MAIN MENU ===== the same menu is copied into the four service pages -->
+    <!-- ===== MAIN MENU ===== The same menu is on every page. index.html holds the MASTER copy: edit it there, then
+         run  python tools/sync_shared.py .  to copy it to every page (it highlights each page's own item).
+         Each li is one link; copy an li line to add a menu item. -->
     <nav class="main-nav" id="mainNav">
       <ul>
         <li><a href="./">Home</a></li>
-        <li><a href="./#about">About Us</a></li>
-        <!-- Services drop-down. On each service page the generator highlights Services and marks that
-             page's own link as current, by exact text, so keep these link lines unchanged if you can. -->
+        <li><a href="about">About Us</a></li>
+        <!-- Services drop-down: links to the four service pages. -->
         <li class="has-sub">
           <a href="services" class="sub-toggle active">Services ▾</a>
           <ul class="submenu">
@@ -556,24 +585,24 @@
             <li><a href="services">All Services</a></li>
           </ul>
         </li>
-        <!-- Resources drop-down. It is highlighted (active) because this page is a resource;
-             the generator removes that highlight on the service pages. -->
+        <!-- Resources drop-down. -->
         <li class="has-sub">
           <a href="#" class="sub-toggle">Resources ▾</a>
           <ul class="submenu">
-            <li><a href="./#client-newsletter">Client Newsletter</a></li>
-            <li><a href="./#tax-planning-newsletter">Tax Planning Newsletter</a></li>
+            <li><a href="client-newsletter">Client Newsletter</a></li>
+            <li><a href="tax-planning-newsletter">Tax Planning Newsletter</a></li>
             <li><a href="tax-videos">Tax Videos</a></li>
             <!-- The client video library: its own site, so it opens in a new tab like the Client Portal. -->
             <li><a href="https://library.magnumcpa.com" target="_blank" rel="noopener">Video Library</a></li>
             <li><a href="financial-calculators">Financial Calculators</a></li>
           </ul>
         </li>
-        <!-- single links; Client Portal opens in a new tab -->
+        <!-- Opens the Canopy client portal in a new tab. -->
         <li><a href="https://magnumcpa.clientportal.com/#/login" target="_blank" rel="noopener">Client Portal</a></li>
+        <!-- Opens the consultation form page (request-consultation.html). -->
         <li><a href="request-consultation">Request Consultation</a></li>
-        <li><a href="./#contact">Contact Us</a></li>
-        <!-- magnifier icon: opens the search box (see SEARCH in the scripts at the bottom) -->
+        <li><a href="contact">Contact Us</a></li>
+        <!-- Magnifier icon that opens the SEARCH box. -->
         <li class="search-li"><a href="#" class="search-btn" aria-label="Search the site">🔍</a></li>
       </ul>
     </nav>
@@ -611,40 +640,41 @@
 </main>
 
 <footer>
+  <!-- The footer is the same on every page. index.html holds the MASTER copy: edit it there, then run
+       python tools/sync_shared.py .  to copy it to every page. -->
   <div class="container">
-    <!-- three columns side by side (stack on small screens) -->
     <div class="foot-grid">
-      <!-- Column 1: logo and short bio -->
+      <!-- Column 1: logo and tagline. -->
       <div>
-        <div class="brand" style="margin-bottom:12px;"><picture><source srcset="images/logo.webp" type="image/webp"><img src="images/logo.png" width="840" height="180" alt="Magnum CPA PC" loading="lazy"></picture></div>
+        <div class="brand" style="margin-bottom:14px;"><picture><source srcset="images/logo.webp" type="image/webp"><img src="images/logo.png" width="840" height="180" alt="Magnum CPA PC" loading="lazy"></picture></div>
         <p style="font-size:.9rem;">Max Drew, CPA &amp; Financial Coach.<br>Trusted by Ramsey for 10+ years.</p>
       </div>
-      <!-- Column 2: Company links -->
+      <!-- Column 2: Company links. -->
       <div>
         <h4>Company</h4>
         <ul>
-          <li><a href="./#about">About Us</a></li>
+          <li><a href="about">About Us</a></li>
           <li><a href="services">Services</a></li>
-          <li><a href="./#contact">Contact Us</a></li>
+          <li><a href="contact">Contact Us</a></li>
           <li><a href="request-consultation">Request Consultation</a></li>
           <li><a href="https://magnumcpa.clientportal.com/#/login" target="_blank" rel="noopener">Client Portal</a></li>
         </ul>
       </div>
-      <!-- Column 3: Resources links -->
+      <!-- Column 3: Resources links. -->
       <div>
         <h4>Resources</h4>
         <ul>
-          <li><a href="./#client-newsletter">Client Newsletter</a></li>
-          <li><a href="./#tax-planning-newsletter">Tax Planning Newsletter</a></li>
+          <li><a href="client-newsletter">Client Newsletter</a></li>
+          <li><a href="tax-planning-newsletter">Tax Planning Newsletter</a></li>
           <li><a href="tax-videos">Tax Videos</a></li>
           <li><a href="financial-calculators">Financial Calculators</a></li>
         </ul>
       </div>
     </div>
   </div>
-  <!-- dark blue bottom bar: social media icons, then the copyright line -->
+  <!-- Dark bottom bar: social icons and copyright. -->
   <div class="foot-bottom"><div class="container">
-    <!-- social media links (each opens in a new tab); change an address in its href -->
+    <!-- Social links: each link is one round icon; copy one to add another network. -->
     <div class="social">
       <a href="https://www.facebook.com/max.drew.522" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
       <a href="https://www.instagram.com/magnumcpa11/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
@@ -653,7 +683,6 @@
       <a href="https://x.com/MagnumCPA11" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
       <a href="https://www.quora.com/profile/Magnum-CPA" target="_blank" rel="noopener" aria-label="Quora"><i class="fa-brands fa-quora"></i></a>
     </div>
-    <!-- copyright line; the year is filled in automatically by the NAV script below -->
     <div class="foot-copy">© <span id="year"></span> Magnum CPA PC. All rights reserved.</div>
   </div></div>
 </footer>
@@ -695,18 +724,21 @@
   (function(){
     // The pages the search box can find. title = result heading, url = where the result goes,
     // snippet = gray line under it, text = extra keywords (lowercase). To add a page, copy one entry.
-    // Copies of this list also live in index.html and request-consultation.html; keep them in step.
+    // The MASTER copy of this list is in index.html; tools/sync_shared.py copies it here.
     var INDEX = [
+      // MASTER list: tools/sync_shared.py copies it to every page. Edit it here only.
       {title:'Home', url:'./',
-       snippet:"California's premier partner for strategic growth & tax advantage.",
+       snippet:"More than accounting — we're your strategic partner.",
        text:'home magnum cpa pc max drew strategic growth tax advantage proactive accounting expert tax planning financial coaching ramsey trusted consultation california'},
-      {title:'About Us', url:'./#about',
+      {title:'About Us', url:'about',
        snippet:'Our story, founder Max Drew, and The Magnum Advantage.',
        text:'about us max magnum drew founder california professional corporation financial partners magnum advantage bbb accredited better business bureau trusted by ramsey best business rate sacramento history mission'},
+      {title:'Why Choose Us', url:'./#why-choose-us',
+       snippet:'BBB Accredited, Trusted by Ramsey, Best Business Rate 2025, Momentum Score #1 2026.',
+       text:'why choose us trusted experienced committed success bbb accredited better business bureau best business rate sacramento 2025 ramsey trusted momentum score ranked 2026 passion for precision awards recognition'},
       {title:'Services', url:'services',
        snippet:'Tax preparation & planning, bookkeeping, consulting, future security.',
        text:'services tax preparation planning bookkeeping payroll business consulting future security wealth management retirement estate planning filings liabilities growth efficiency'},
-      // the four service pages (first added by tools/gen_services.py; it will not update them later)
       {title:'Tax Preparation and Planning', url:'tax-preparation-planning',
        snippet:'We help you stay compliant and maximize your tax savings with strategic, year-round planning.',
        text:'tax preparation and planning tax preparation individual & business tax returns tax planning and projections irs representation and support year-round tax advisory'},
@@ -719,22 +751,22 @@
       {title:'Future Security', url:'future-security',
        snippet:'Build, protect, and grow your wealth with a holistic approach to retirement, wealth management, and estate planning.',
        text:'future security future security retirement planning wealth management estate and legacy planning life and business protection'},
-      {title:'Client Newsletter', url:'./#client-newsletter',
+      {title:'Client Newsletter', url:'client-newsletter',
        snippet:'Monthly updates, firm news, and money tips.',
        text:'client newsletter mid-year money check-in refund last-minute filing tips updates subscribe firm news'},
-      {title:'Tax Planning Newsletter', url:'./#tax-planning-newsletter',
+      {title:'Tax Planning Newsletter', url:'tax-planning-newsletter',
        snippet:'Strategy articles for proactive tax savings.',
        text:'tax planning newsletter retirement contributions 401k ira hsa small business entity llc s-corp sole proprietor charitable giving donor advised capital gains harvesting'},
       {title:'Tax Videos', url:'tax-videos',
        snippet:'Plain-English videos on key tax topics.',
-       text:'tax videos understanding w-2 deductions credits quarterly taxes freelancers small business watch learn'},
+       text:'tax videos watch learn alternative minimum tax amt audits cancellation of debt insolvency capital gains losses charitable contributions noncash recordkeeping clergy consumer credit crowdfunding dependent digital assets crypto divorce education estimated quarterly taxes extension families children filing status foreign bank accounts fbar gambling high income hobby business household employees identity theft itemized deductions casualty homeowners interest medical kiddie tax like-kind exchange moving expenses multi-state new tax law principal residence home sale standard deduction stock options tax facts figures scams social security irs notice tipped employees trump accounts irs contacts withholding w-4'},
       {title:'Financial Calculators', url:'financial-calculators',
        snippet:'Tax, retirement, mortgage, loan, savings & business calculators.',
        text:'financial calculators tax payroll 1040 marginal estate retirement roth ira 401k social security rmd mortgage piti arm loan amortization auto savings college net worth business cash flow breakeven valuation rent vs buy'},
       {title:'Client Portal', url:'https://magnumcpa.clientportal.com/#/login', target:true,
        snippet:'Secure client portal (Canopy) for documents and messages.',
        text:'client portal canopy login documents upload messages secure account'},
-      {title:'Contact Us', url:'./#contact',
+      {title:'Contact Us', url:'contact',
        snippet:'Phone, email, and our Sacramento office location.',
        text:'contact us phone 916 616 1789 email info ask magnumcpa find us 907 green moss drive sacramento ca 95831 google business profile reviews map directions location office hours'},
       {title:'Request a Consultation', url:'request-consultation',
