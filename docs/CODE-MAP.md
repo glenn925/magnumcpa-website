@@ -7,6 +7,9 @@ part, open the file in VS Code, press **Ctrl+F**, and type the banner name
 content (HTML) and behaviour (JavaScript), so searching finds all three.
 
 Line numbers change with every edit, so this map uses banner names.
+File paths are from the project folder (`single page magnum`), e.g. `index.html` is at the
+top and this map is `docs/CODE-MAP.md`. The top-level `README.md` shows every folder, and
+each folder has its own `README.md` listing what's inside.
 
 > Before any risky change, double-click `versions\save-version.bat`.
 > If something breaks, use `versions\restore-version.bat` (see `versions\README.md`).
@@ -79,8 +82,8 @@ overrides*. The **later** one wins — edit that one, or your change won't show.
 | `_config.yml` | Tells GitHub Pages which files to keep off the live site. |
 | `sitemap.xml`, `robots.txt` | Tell Google which pages exist (clean addresses) and that it may read them all. |
 | `reviews.xlsx`, `update-reviews.bat`, `tools/build_reviews.py` | Client reviews: the spreadsheet holds the reviews, the .bat builds the review cards into `index.html` and publishes. Not on the live site. |
-| `MULTI-PAGE-PLAN.md` | The plan for giving every menu heading its own page (not built yet). |
-| `images/` | All pictures. `sig-*.png` are used by Max's **email signature** — keep them. |
+| `docs/MULTI-PAGE-PLAN.md` | The plan for giving every menu heading its own page (not built yet). |
+| `images/` | All pictures; `images/README.md` says which page uses each one. `sig-*.png` are used by Max's **email signature** — keep them. Pictures no page uses are in `images/unused/`. |
 
 ### Showing real Google reviews on the home page
 1. Open `reviews.xlsx`. On the **Reviews** sheet add one row per Google review: Show = **Yes**,
@@ -163,8 +166,10 @@ Nobody is emailed when a form arrives yet.
 | `sync.bat` | Double-click to publish: pulls, commits, pushes to GitHub (live in 1–2 min) |
 | `update-reviews.bat` | Double-click after editing `reviews.xlsx` (Excel closed): builds the review cards and publishes only those |
 | `versions/` | Saved versions + save/restore scripts (see `versions/README.md`) |
-| `README.md` | Hosting overview (GitHub Pages, GoDaddy DNS, Google email, Cloudflare) |
-| `SETUP-CLOUDFLARE.md`, `RECENT-UPDATES.md` | Older setup notes and change history |
+| `README.md` | Map of every file and folder, plus hosting overview (GitHub Pages, GoDaddy DNS, Google email, Cloudflare) |
+| `docs/` | Notes and plans: this map, `MULTI-PAGE-PLAN.md`, `SETUP-CLOUDFLARE.md` (form backend setup), `RECENT-UPDATES.md` (June–July 2026 history), `lead-funnel-diagram.svg` |
+| `tools/` | `gen_services.py`, `build_reviews.py` (see `tools/README.md`) |
+| `worker/` | The form backend (§4, `worker/README.md`) |
 
 ---
 

@@ -99,7 +99,7 @@ export async function handleLead(
   // Turnstile: fail closed once configured. If TURNSTILE_SECRET_KEY isn't
   // set yet (pre-launch/dev), skip with an audit note rather than blocking
   // every submission — this must be configured before real launch; see
-  // SETUP-CLOUDFLARE.md.
+  // docs/SETUP-CLOUDFLARE.md.
   if (env.TURNSTILE_SECRET_KEY) {
     const passed = await verifyTurnstile(env.TURNSTILE_SECRET_KEY, turnstileToken, ip);
     if (!passed) {

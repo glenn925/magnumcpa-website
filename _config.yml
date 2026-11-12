@@ -4,11 +4,9 @@
 # Cloudflare Worker source here so visitors can't browse them.
 exclude:
   - README.md
-  - CODE-MAP.md
-  - MULTI-PAGE-PLAN.md
-  - RECENT-UPDATES.md
-  - SETUP-CLOUDFLARE.md
-  - lead-funnel-diagram.svg
+  - docs/
+  - images/README.md
+  - images/unused/
   - images/lead-funnel-diagram.png
   - sync.bat
   - update-reviews.bat

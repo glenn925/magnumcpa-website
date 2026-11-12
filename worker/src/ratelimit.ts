@@ -27,7 +27,7 @@ export interface RateLimitOptions {
 // same IP within the same window this can under-count by a request or two.
 // That's an acceptable trade-off for a low-volume contact form — it's not a
 // substitute for Cloudflare's own zone-level Rate Limiting Rules once the
-// domain is proxied through Cloudflare (see SETUP-CLOUDFLARE.md), just a
+// domain is proxied through Cloudflare (see docs/SETUP-CLOUDFLARE.md), just a
 // working baseline that functions today on *.workers.dev with no DNS change.
 //
 // The defaults reproduce the original 2-argument behaviour exactly (`rl:{ip}:
