@@ -13,3 +13,4 @@ Newest at the bottom. Restore any of these with `restore-version.bat`
 - **2026-11-12_0534** - Organize folders: before
 - **2026-11-12_0540** - Organized folders: docs/, images/unused, README in every folder
 - **2026-11-12_1232** - Before publishing multi-page site
+- **2026-11-12_1234** - Multi-page site live (About, Contact, newsletters), curtain wipe, tablet fixes
