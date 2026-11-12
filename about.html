@@ -599,6 +599,8 @@
       // the four service pages keep their own transition (photo grows from the card, or zoom from the Services menu),
       // except to and from the request form, which always gets the curtain
       if (SVC.test(page(to)) && page(location) !== 'request-consultation') return;
+      // from a service page back to the Services page: the photo shrinks back into its card instead
+      if (page(to) === 'services' && SVC.test(page(location))) return;
       if (curtainTo(a.href)) e.preventDefault();
     });
 
