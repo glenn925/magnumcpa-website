@@ -4,6 +4,8 @@ index.html holds the MASTER copy of:
   - the main menu   (<header class="site-header"> ... </header>)
   - the footer      (<footer> ... </footer>)
   - the search list (var INDEX = [ ... ]; in the SEARCH script)
+  - the floating call button (its styles, from FLOATING CALL BUTTON to FLOATING CALL BUTTON:END in the style
+    block, and its HTML + script, from <!-- ===== FLOATING CALL BUTTON ===== --> to <!-- FLOATING CALL BUTTON:END -->)
 Edit those in index.html, then run from the project folder:
 
     python tools/sync_shared.py .
@@ -109,6 +111,13 @@ i, j = block(master, '<footer>', '</footer>', 'index.html footer')
 FOOTER = master[i:j]
 i, j = block(master, '    var INDEX = [', '\n    ];', 'index.html search list')
 SEARCH = master[i:j]
+# floating call button: its styles (inside <style>) and its HTML + script (after the Book button)
+CALL_CSS_START, CALL_CSS_END = '  /* ===== FLOATING CALL BUTTON ===== */', '  /* FLOATING CALL BUTTON:END */\n'
+CALL_HTML_START, CALL_HTML_END = '<!-- ===== FLOATING CALL BUTTON ===== -->', '<!-- FLOATING CALL BUTTON:END -->\n'
+i, j = block(master, CALL_CSS_START, CALL_CSS_END, 'index.html call button styles')
+CALL_CSS = master[i:j]
+i, j = block(master, CALL_HTML_START, CALL_HTML_END, 'index.html call button')
+CALL_HTML = master[i:j]
 
 
 def mark(menu, slug):
@@ -176,6 +185,22 @@ def sync(p):
     i, j = block(new, '    var INDEX = [', '\n    ];', p + ' search list')
     # on other pages a link to a part of the home page needs ./ in front (#why-choose-us -> ./#why-choose-us)
     new = new[:i] + (SEARCH if slug == 'index' else SEARCH.replace("url:'#", "url:'./#")) + new[j:]
+    # floating call button: replace the page's copy, or add it (styles just before </style>,
+    # HTML after the Book button, or after the footer on pages without one)
+    if CALL_CSS_START in new:
+        i, j = block(new, CALL_CSS_START, CALL_CSS_END, p + ' call button styles')
+        new = new[:i] + CALL_CSS + new[j:]
+    else:
+        i = new.index('</style>')
+        new = new[:i] + CALL_CSS + new[i:]
+    if CALL_HTML_START in new:
+        i, j = block(new, CALL_HTML_START, CALL_HTML_END, p + ' call button')
+        new = new[:i] + CALL_HTML + new[j:]
+    else:
+        m = re.search(r'<a class="book-fab"[^\n]*\n', new) or re.search(r'</footer>\n', new)
+        if not m:
+            fail(p + ': no Book button or </footer> to put the call button after.')
+        new = new[:m.end()] + CALL_HTML + new[m.end():]
     # the head markup goes right after the canonical link (replacing the previous one)
     start, end = '<!-- ===== SHARE + GOOGLE MARKUP =====', '<!-- SHARE + GOOGLE MARKUP:END -->\n'
     if start in new:

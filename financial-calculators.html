@@ -396,6 +396,59 @@
   /* curtain-cover = panel covering the page; curtain-moving = panel sliding (classes set by the CURTAIN script) */
   html.curtain-cover .curtain{visibility:visible;transform:none;}
   html.curtain-moving .curtain{visibility:visible;pointer-events:auto;}
+  /* ===== FLOATING CALL BUTTON ===== */
+  /* MASTER copy: tools/sync_shared.py copies everything from here to FLOATING CALL BUTTON:END into every page. */
+  /* Round blue phone button that floats above the Book button. Clicking it opens a small card with the phone
+     number (tap to call on phones, Copy on computers). Text: HTML FLOATING CALL BUTTON. Script: FLOATING CALL BUTTON. */
+  .call-fab{position:fixed;right:22px;bottom:94px;z-index:91;}
+  /* site palette: the Book button is the deep blue (primary); the call button is the bright blue (secondary) with a
+     thin aqua (tertiary) ring, so the two belong together but are easy to tell apart */
+  .call-btn{width:58px;height:58px;border-radius:50%;border:2px solid rgba(127,231,214,.85);cursor:pointer;display:grid;place-items:center;color:#fff;font-size:1.3rem;
+    background:linear-gradient(135deg,#1670B8 0%,#1C8BDF 55%,#3BA7F2 100%);box-shadow:0 12px 30px rgba(22,112,184,.38);transition:transform .15s,box-shadow .2s;}
+  .call-btn:hover{transform:translateY(-3px);}
+  .call-btn:focus-visible{outline:3px solid var(--secondary);outline-offset:3px;}
+  /* phone icon normally; an X while the card is open */
+  .call-btn .ic-close,.call-fab.open .call-btn .ic-open{display:none;}
+  .call-fab.open .call-btn .ic-close{display:block;}
+  /* the card with the number: hidden until the button is clicked */
+  .call-card{position:absolute;right:0;bottom:72px;width:280px;background:#fff;border-radius:18px;border:1px solid var(--border);
+    box-shadow:0 2px 4px rgba(11,61,145,.05),0 24px 56px rgba(11,61,145,.22);padding:18px 18px 16px;
+    opacity:0;visibility:hidden;transform:translateY(10px) scale(.97);transform-origin:bottom right;transition:opacity .2s,transform .2s,visibility .2s;}
+  .call-fab.open .call-card{opacity:1;visibility:visible;transform:none;}
+  .call-card .lbl{display:block;font-size:.76rem;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold-ink);}
+  .call-card .num{display:flex;align-items:center;gap:10px;margin:8px 0 14px;font-size:1.6rem;font-weight:800;color:var(--primary);white-space:nowrap;}
+  .call-card .num i{font-size:1.05rem;color:#1C8BDF;}
+  .call-card .acts{display:flex;gap:8px;}
+  .call-card .acts a,.call-card .acts button{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 12px;border-radius:999px;
+    font:inherit;font-weight:700;font-size:.92rem;cursor:pointer;transition:background .2s,color .2s;}
+  .call-card .call-now{background:linear-gradient(135deg,var(--primary),#1560C9);color:#fff;border:0;}
+  .call-card .call-copy{background:#fff;color:var(--primary);border:1.5px solid var(--border);}
+  .call-card .call-copy:hover{background:var(--bg);}
+  /* ----- FLOATING BUTTONS ANIMATION (call + Book) -----
+     fabHop: every 5 seconds a small double hop (the call button first, the Book button a moment later).
+     glowCall / glowBook: a soft light that breathes around each button, with a ring that ripples outward.
+     They use the separate 'translate' property so the hover lift and the Book button's hide-on-hero still work.
+     Change the 5s / 2.8s to make them slower or faster; delete these lines to stop the motion. */
+  @keyframes fabHop{0%,70%,100%{translate:0 0;}76%{translate:0 -9px;}82%{translate:0 0;}87%{translate:0 -4px;}92%{translate:0 0;}}
+  @keyframes glowCall{0%,100%{box-shadow:0 12px 30px rgba(22,112,184,.36),0 0 14px rgba(127,231,214,.35),0 0 0 0 rgba(127,231,214,.6);}
+    55%{box-shadow:0 14px 34px rgba(22,112,184,.42),0 0 26px rgba(127,231,214,.65),0 0 0 14px rgba(127,231,214,0);}}
+  @keyframes glowBook{0%,100%{box-shadow:0 12px 30px rgba(11,61,145,.32),0 0 14px rgba(59,167,242,.3),0 0 0 0 rgba(59,167,242,.55);}
+    55%{box-shadow:0 14px 36px rgba(11,61,145,.4),0 0 28px rgba(59,167,242,.6),0 0 0 14px rgba(59,167,242,0);}}
+  .call-btn{animation:glowCall 2.8s ease-in-out infinite,fabHop 5s ease-in-out infinite;}
+  .book-fab{animation:glowBook 2.8s ease-in-out .4s infinite,fabHop 5s ease-in-out .2s infinite;}
+  /* no hopping while the number card is open */
+  .call-fab.open .call-btn{animation:glowCall 2.8s ease-in-out infinite;}
+  /* visitors who turned on reduced motion in their device settings: still buttons, steady soft light */
+  @media(prefers-reduced-motion:reduce){
+    .call-btn,.call-fab.open .call-btn{animation:none;box-shadow:0 12px 30px rgba(22,112,184,.36),0 0 16px rgba(127,231,214,.45);}
+    .book-fab{animation:none;box-shadow:0 12px 30px rgba(11,61,145,.32),0 0 16px rgba(59,167,242,.4);}
+  }
+  /* Phones: closer to the corner, just above the smaller Book button. */
+  @media(max-width:560px){.call-fab{right:14px;bottom:76px;}.call-btn{width:52px;height:52px;font-size:1.15rem;}.call-card{bottom:64px;width:min(280px,calc(100vw - 28px));}}
+  /* pages without a Book button (the request form): the call button sits in the corner instead */
+  body:not(:has(.book-fab)) .call-fab{bottom:22px;}
+  @media(max-width:560px){body:not(:has(.book-fab)) .call-fab{bottom:14px;}}
+  /* FLOATING CALL BUTTON:END */
 </style>
 <!-- ===== PAGE-ZOOM HELPER (one-line script) =====
      When you click a service in the Services menu, it remembers that, so the next page zooms in. -->
@@ -740,6 +793,45 @@
 
 <!-- ===== Floating Book a Consultation CTA ===== -->
 <a class="book-fab" href="request-consultation">📅 Book a Consultation</a>
+<!-- ===== FLOATING CALL BUTTON ===== -->
+<!-- MASTER copy: edit it here in index.html, then run  python tools/sync_shared.py .  to copy it to every page. -->
+<!-- Round phone button above the Book button; clicking it shows the number. To change the number, edit all four
+     spots below: the two tel: links (+1 format, no dashes), the number shown, and data-num on the Copy button.
+     Styles: FLOATING CALL BUTTON in the style block. -->
+<div class="call-fab">
+  <div class="call-card" id="callCard">
+    <span class="lbl">Call Magnum CPA PC</span>
+    <a class="num" href="tel:+19166161789"><i class="fa-solid fa-phone" aria-hidden="true"></i>916-616-1789</a>
+    <div class="acts">
+      <a class="call-now" href="tel:+19166161789"><i class="fa-solid fa-phone" aria-hidden="true"></i> Call now</a>
+      <button class="call-copy" type="button" data-num="916-616-1789"><i class="fa-regular fa-copy" aria-hidden="true"></i> Copy</button>
+    </div>
+  </div>
+  <button class="call-btn" type="button" aria-expanded="false" aria-controls="callCard" aria-label="Show our phone number">
+    <i class="fa-solid fa-phone ic-open" aria-hidden="true"></i><i class="fa-solid fa-xmark ic-close" aria-hidden="true"></i>
+  </button>
+</div>
+<script>
+  // Opens and closes the phone-number card; closes on a click elsewhere or the Esc key. Copy puts the number on the clipboard.
+  (function(){
+    var w = document.querySelector('.call-fab'); if (!w) return;
+    var btn = w.querySelector('.call-btn'), copy = w.querySelector('.call-copy');
+    function set(open){
+      w.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open);
+      btn.setAttribute('aria-label', open ? 'Hide our phone number' : 'Show our phone number');
+    }
+    btn.addEventListener('click', function(){ set(!w.classList.contains('open')); });
+    document.addEventListener('click', function(e){ if (!w.contains(e.target)) set(false); });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && w.classList.contains('open')){ set(false); btn.focus(); } });
+    copy.addEventListener('click', function(){
+      var label = copy.innerHTML;
+      function done(){ copy.textContent = 'Copied!'; setTimeout(function(){ copy.innerHTML = label; }, 1600); }
+      try{ navigator.clipboard.writeText(copy.getAttribute('data-num')).then(done, function(){}); }catch(_){}
+    });
+  })();
+</script>
+<!-- FLOATING CALL BUTTON:END -->
 
 <!-- ===== SCRIPTS: NAV and SEARCH ===== -->
 <script>

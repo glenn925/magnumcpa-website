@@ -40,7 +40,7 @@ each folder has its own `README.md` listing what's inside.
 | Old links like `magnumcpa.com/#about` opening the new page | `index.html` | `===== #request REDIRECT` (the `moved` list) |
 | Footer links, social icons | `index.html` only (MASTER copy), then `python tools/sync_shared.py .` | `===== FOOTER` |
 | Floating "Book a Consultation" button | every page | `===== FLOATING BOOK BUTTON` |
-| Booking pop-up (when it appears, its text) | `index.html` | `===== BOOKING POPUP` |
+| Floating call button (round blue phone button above the Book button; click shows 916-616-1789 with Call now and Copy). Also the hop and glow of both floating buttons | every page; MASTER copy in `index.html`, copied by `tools/sync_shared.py` | `===== FLOATING CALL BUTTON` (styles, up to `FLOATING CALL BUTTON:END`) and the HTML + script after the Book button. To change the number edit the 4 spots in the HTML in `index.html`, then run `python tools/sync_shared.py .` |
 | Site search results list | `index.html` only (MASTER copy), then `python tools/sync_shared.py .` | `===== SEARCH` (the `INDEX` list) |
 | Share preview (Facebook, texts) and the business details / breadcrumbs Google reads | `tools/sync_shared.py` | `===== BUSINESS DETAILS`, `===== PAGES`; each page's head has a `SHARE + GOOGLE MARKUP` block made from its title and description |
 | Phone/tablet layout fixes | every page | `===== RESPONSIVE` |
@@ -182,8 +182,6 @@ Nobody is emailed when a form arrives yet.
 ## 6. Known issues (found while commenting — not fixed yet)
 
 **Website**
-- Booking pop-up reads browser storage without a guard; where storage is
-  blocked, the home page search stops working (`index.html`, `BOOKING POPUP`).
 - Form subtitle says **EST**; the office is in Sacramento (Pacific).
 - After a rejected submit, the anti-spam token isn't reset, so a second try can fail.
 - "Subscribe to the Newsletter" only opens the Contact page (no sign-up form).

@@ -46,7 +46,7 @@ single page magnum/
 ### Keeping it organized
 - **New web page:** at the top level (its file name becomes its address); add it to `sitemap.xml`, to the menu in
   `index.html` and to `PAGES` in `tools/sync_shared.py`, then run `python tools/sync_shared.py .`.
-- **Menu, footer or search list:** change them in `index.html` only, then run `python tools/sync_shared.py .`;
+- **Menu, footer, search list or floating call button:** change them in `index.html` only, then run `python tools/sync_shared.py .`;
   it copies them to every page.
 - **New picture:** in `images/`; add a line to `images/README.md`. Pictures no longer used go to `images/unused/`.
 - **New note or plan:** in `docs/`.
